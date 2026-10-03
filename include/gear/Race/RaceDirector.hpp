@@ -5,7 +5,9 @@
 #include "LapRankChecker.hpp"
 
 #include <gear/Actor/Actor.hpp>
-#include <object/Race/RaceCheckerBase.hpp>
+
+
+namespace object { class RaceCheckerBase; } // mRaceCheckerBase below (class kept minimal: mRaceState @0x38 over Actor)
 
 namespace gear
 {

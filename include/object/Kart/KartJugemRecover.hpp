@@ -1,9 +1,10 @@
 #pragma once
 #include <cstdint>
-#include <object/Race/LapRankChecker.hpp>
+
 
 namespace object
 {
+    class LapRankChecker; // layout unmapped (header removed)
     /*
      * Lakitu (Jugem) recover handler. Layout NOT yet
      * mapped against the 400 binary: no decompiled function touching this

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-#include <object/Race/RaceDirector.hpp>
+#include <gear/Race/RaceDirector.hpp>
 #include <object/Kart/KartDirector.hpp>
 #include <object/Effect/GameEffectDirector.hpp>
 #include <object/Directors/RecorderDirector.hpp>
@@ -17,7 +17,7 @@ namespace object
     {
         public:
             uint8_t mPad00[0x218];
-            object::RaceDirector* mRaceDirector; //0x218
+            gear::RaceDirector* mRaceDirector; //0x218
             gear::FieldDirector* mFieldDirector; //0x220
             uintptr_t mPad228; //0x228
             object::RecorderDirector* mRecorderDirector; //0x230

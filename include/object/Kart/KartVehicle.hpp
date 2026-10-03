@@ -5,8 +5,8 @@
 #include "KartUnit.hpp"
 #include "KartVehicleControl.hpp"
 #include "KartVehicleCpu.hpp"
+#include "kart/KartVehicleMove.hpp" // real 64-bit layout (the object/ stub is gone)
 #include "KartVehicleNet.hpp"
-#include "KartVehicleMove.hpp"
 #include "KartVehicleTrick.hpp"
 #include "KartVehicleBody.hpp"
 #include "KartVehicleReact.hpp"
@@ -14,8 +14,7 @@
 #include "KartSteerAssist.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
-// v400 binary by the mk8dx-400 check). The ::KartVehicle struct in
-// There is no other KartVehicle header.
+// v400 binary by the mk8dx-400 check).
 namespace object
 {
     class KartVehicle
