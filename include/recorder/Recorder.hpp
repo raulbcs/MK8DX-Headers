@@ -134,10 +134,10 @@ namespace recorder
         int32_t indexB;        // 0x1dc — ctor: -1
         uint8_t pad1e0[0x8];
         void* mgrId;           // 0x1e8 — *(Mgr*) read at ctor; must equal registry's +0x1e8
-        float scale;           // 0x1f0 — 1.0f
-        float field1f4;        // 0x1f4 — 256.0f
-        float field1f8;        // 0x1f8 — 0.00390625f (1/256)
-        uint8_t flag1fc;       // 0x1fc — 1
+        float eps;             // 0x1f0 — quantization step (ctor 1.0f; quant channel: eps)
+        float quantStep;       // 0x1f4 — (exp2f(n)-1)/range for quant channels (ctor 256.0f)
+        float quantStepInv;    // 0x1f8 — 1/quantStep (ctor 0.00390625f = 1/256)
+        uint8_t flag1fc;       // 0x1fc — 1 (cleared for one quant-channel variant)
         uint32_t field200;     // 0x200 — zeroed
         const char* name;      // 0x208 — registration name (NULL until addChannel)
         uint8_t flag210;       // 0x210 — 1
@@ -198,6 +198,42 @@ namespace recorder
     // its name. Type gate: binder->mgrId == registry->type ==
     // *(global mgr cell 0x710130f7c8).
     void addChannel_71007ac0cc(Registry*, Binder*, const char* name);
+
+    // FUN_71007b9400 — quantized-float channel factory. Bucket count
+    // from eps over [min,max] via logf/exp2f; descriptor cluster by
+    // bucket count (cells 0x710130fb10 <=10 buckets, 0x710130fe80 for
+    // 11..16, 0x710130fe78 fallback); fills eps/quantStep/quantStepInv
+    // on the non-fallback paths.
+    Binder* createQuantChannel_71007b9400(void* owner, float min, float max,
+                                          float eps);
+
+    // FUN_710088ad40 — "rot" channel factory (rodata 0xf0a965): a
+    // 0x290/0x288 binder pair whose writers copy 3 or 9 ints through
+    // binder+0x288 indexed by binder+0x1d4.
+    void createRotChannel_710088ad40(void* ctx, void* param, int selA, int selB);
+
+    // FUN_71000c9c64 — affine 3x4 inverse (rows at in+0x0/0x10/0x20,
+    // translation column +0xc/0x1c/0x2c); returns false on zero det.
+    int invertAffine3x4_71000c9c64(void* out /*12 floats*/, const void* in);
+
+    /*
+     * Kart recorder context (per-kart state consumed by the per-frame
+     * calcs; recovered from 0x71003afaa4/0x71003b0124/0x71003af2f4/
+     * 0x71003af3f8).
+     */
+    struct KartContext
+    {
+        uint8_t pad00[0x280];
+        Mgr* mgr;              // 0x280
+        void* out;             // 0x288 — output struct for the kart matrix calc rows
+        void* matrixStruct;    // 0x290 — source 3x4 read by the point calcs
+        uint8_t pad298[0x18];
+        void* point;           // 0x2b0 — world point (vec3) in/out
+        float snapRows[3][4];  // 0x2b8 — transposed snapshot of *out (rows 0x2b8/0x2c8/0x2d8)
+        void* idxHi;           // 0x2e8 — packed byte split: *idxHi = byte >> 3
+        void* idxLo;           // 0x2f0 — *idxLo = byte & 7 (see point calcs)
+        float invRows[3][4];   // 0x318 — combined inverse rows (0x318/0x328/0x338)
+    };
 
     /*
      * Static singletons and global cells (bss):
