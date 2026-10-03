@@ -6,6 +6,17 @@
 
 namespace object
 {
+    // Value of KartDirector::mPhase790 while each stage of the calc pipeline
+    // runs; observed in KartDirector::CalcPosition (0x710013ef3c).
+    enum CalcPhase
+    {
+        CALC_PHASE_POSITION = 1,    // CalcPosition job submitted
+        CALC_PHASE_AI = 2,          // CalcAI()
+        CALC_PHASE_FRAME_STEP = 3,  // per-unit AccessorFrameStepMove loop
+        CALC_PHASE_MOVE = 4,        // CalcMove job submitted
+        CALC_PHASE_APPLY = 5,       // KartRadar | CalcApply branch
+    };
+
     // Calc pipeline: CalcPosition -> CalcAI -> CalcMove -> (KartRadar |
     // CalcApply), selected per phase. Each phase submits a job whose buffer
     // is one of the 0xC8 work blocks at 0x170-0x6E8; the phase id lives at
@@ -38,13 +49,13 @@ namespace object
             uint8_t pad_6E8[0x10]; // 0x6E8
             void* m6F8; // 0x6F8 — argument of the post-calc hook
             uint8_t pad_700[0x90]; // 0x700
-            int mPhase790; // 0x790 — current calc phase (1..5)
+            int mPhase790; // 0x790 — current CalcPhase (1..5)
 
             // AI calc phase: resets the work blocks, accumulates the eligible
             // units and submits the "KartDirector::CalcAI" job.
-            void CalcAI(); // KartDirector::CalcAI
+            void CalcAI() asm("KartDirector::CalcAI"); // KartDirector::CalcAI
             // Full calc pipeline: CalcPosition -> CalcAI -> CalcMove ->
             // (KartRadar|)CalcApply.
-            void CalcPosition(); // KartDirector::CalcPosition
+            void CalcPosition() asm("KartDirector::CalcPosition"); // KartDirector::CalcPosition
 	};
 }

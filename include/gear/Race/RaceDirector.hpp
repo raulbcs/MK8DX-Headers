@@ -19,27 +19,30 @@ namespace gear
     class RaceDirector : public Actor
     {
         public:
-            // Slots beyond Actor's vtable; names unknown.
-            virtual void slot70();  //0x70
-            virtual void slot78();  //0x78
-            virtual void slot80();  //0x80
-            virtual void slot88();  //0x88
-            virtual void slot90();  //0x90 — called from calc()
-            virtual void slot98();  //0x98 — calc() tail call
-            virtual void slotA0();  //0xa0
-            virtual void slotA8();  //0xa8
-            virtual void slotB0();  //0xb0 — called from exit()
-            virtual void slotB8();  //0xb8 — exit() tail call
+            // Slots beyond Actor's vtable; each stage of enter/calc/exit
+            // fires a pre/post hook pair. slot70/78/A0/A8 are still unnamed.
+            virtual void slot70();               //0x70 — unknown
+            virtual void slot78();               //0x78 — unknown
+            virtual void onEnterStart();         //0x80 — enter() announces here before walking the child array
+            virtual void onEnterEnd();           //0x88 — enter() tail call
+            virtual void onCalcStart();          //0x90 — calc() opens with this before the child walk
+            virtual void onCalcEnd();            //0x98 — calc() tail call
+            virtual void slotA0();               //0xa0 — unknown
+            virtual void slotA8();               //0xa8 — unknown
+            virtual void onExitStart();          //0xb0 — exit() opens with this before the child walk
+            virtual void onExitEnd();            //0xb8 — exit() tail call
 
             bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*) const; //0x00
-            sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo() const; //0x08
-            void calc();   //0x30 — RaceDirector::calc
-            void exit();   //0x40 — RaceDirector::exit
-            bool isDirector(); //0x48 — RaceDirector::isDirector
-            void enterOuter(); //0x68 — RaceDirector::enterOuter
+            sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo() const asm("RaceDirector::getRuntimeTypeInfo"); //0x08
+            void enter() asm("RaceDirector::enter"); //0x28 — RaceDirector::enter (Actor override)
+            void calc() asm("RaceDirector::calc");   //0x30 — RaceDirector::calc
+            void exit() asm("RaceDirector::exit");   //0x40 — RaceDirector::exit
+            bool isDirector() asm("RaceDirector::isDirector"); //0x48 — RaceDirector::isDirector
+            void enterOuter() asm("RaceDirector::enterOuter"); //0x68 — RaceDirector::enterOuter
+            ~RaceDirector(); //0x10/0x18 — D1/D0 carry the MethodTree labels via linker aliases in the .cpp
 
-            uint32_t mUnknown38; //0x38 — element count for calc/exit
-            void* mUnknown40;    //0x40 — element array walked by calc/exit
+            uint32_t mActorCount; //0x38 — Actor element count for calc/exit/enter
+            Actor** mActors;     //0x40 — Actor array walked by calc/exit/enter
             char mPad48[0x8];    //0x48
             object::RaceCheckerBase* mRaceCheckerBase; //0x50
             gear::LapRankChecker* mLapRankChecker;     //0x58

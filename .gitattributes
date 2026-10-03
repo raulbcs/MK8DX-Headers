@@ -1,0 +1,5 @@
+# Upstream (fishguy MK8DX-Headers) commits headers with CRLF verbatim and has
+# no normalization of its own. Disable git's text handling on headers so our
+# blobs match upstream byte-for-byte and cross-repo diffs stay content-only.
+*.hpp -text
+*.h -text
