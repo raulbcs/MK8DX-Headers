@@ -71,7 +71,9 @@ namespace recorder
         int32_t* tableB;       // 0x0f8 — int table (dst read / cb arg 3)
         uint8_t pad100[0x10];
         float seed;            // 0x110 — float seed for cb arg 4 when binder+0x1b8 is clear
+        uint8_t pad114[0xfc];
     };
+    static_assert(sizeof(Mgr) == 0x210, "Mgr size");  // recorderCreateMgr_71007aadd4 news 0x210 bytes
 
     /*
      * Channel binder (ctor FUN_71007aae24; size 0x288; calc
