@@ -13,6 +13,9 @@
 #include "KartJugemRecover.hpp"
 #include "KartSteerAssist.hpp"
 
+// Canonical KartVehicle layout (byte-exact offsets verified against the
+// v400 binary by the mk8dx-400 check). The ::KartVehicle struct in
+// There is no other KartVehicle header.
 namespace object
 {
     class KartVehicle
@@ -30,9 +33,9 @@ namespace object
         KartVehicle* mKartVehicle; //0x00
         KartUnit* mKartUnit; //0x08
         KartVehicleControl* mKartVehicleControl; //0x10
-        KartVehicleCpu* mKartVehicleCpu; //0x18
-        KartVehicleNet* mKartVehicleNet; //0x20
-        KartVehicleMove* mKartVehicleMove; //0x28
+        KartVehicleCpu* mKartVehicleCpu; //0x18 — pointer verified: deref [+0x78] u32 (FUN_7100173df4)
+        KartVehicleNet* mKartVehicleNet; //0x20 — pointer verified: virtual call via [+0x30] (FUN_7100173df4)
+        KartVehicleMove* mKartVehicleMove; //0x28 — verified: deref +0x118 (boost slot) and +0x37c
         KartVehicleTrick* mKartVehicleTrick; //0x30
         KartVehicleBody* mKartVehicleBody; //0x38
         KartVehicleReact* mKartVehicleReact; //0x40
@@ -91,15 +94,15 @@ namespace object
         uint8_t mPad184[0x40]; //0x184 - 0x1C3
         float mAntiGEmissionFrame; //0x1C4
         uint32_t mPad1C8; //0x1C8
-        uint32_t mKartStatusBits; //0x1CC
-        uint32_t mKartFrames; //0x1D0
+        uint32_t mKartStatusBits; //0x1CC — bits 0x15/0x18 tested in the 0x172-0x174 cluster
+        uint32_t mKartFrames; //0x1D0 — zeroed per-frame (FUN_7100173df4)
         uint8_t mPad1D4[8]; //0x1D4 - 0x1DB
         float mAntiGTransFrame; //0x1DC
         float mStartCharge; //0x1E0
         uint32_t mStarFrames; //0x1E4
         uint32_t mGessoFrames; //0x1E8
         int32_t mTeresaFrames; //0x1EC
-        uint32_t mPad1F0; //0x1F0
+        float mUnknown1F0; //0x1F0 — float (FUN_710017842c: ldr s)
         int mJumpActionType; //0x1F4
         uint8_t mPad1F8[8]; //0x1F8 - 0x1FF
         uint32_t mTrickFramesLeft; //0x200
@@ -124,8 +127,12 @@ namespace object
         float mKillerEndRatio; //0x260
         uint8_t mPad264[0xC]; //0x264 - 0x26F
         bool mIsAfterOnResetPosition; //0x270
-        uint8_t mPad271[7]; //0x271 - 0x277
-        float mXluAlpha; //0x278
+        uint8_t mPad271[3]; //0x271 - 0x273
+        float mUnknown274; //0x274 — float (FUN_710017842c)
+        float mXluAlpha; //0x278 — float, verified (FUN_710017842c ldr/str s on a
+            // base with mKartStatusBits/mKartFrames); matches recorder channel
+            // "p_xlu_alpha". The strb users at +0x278 are the boost-envelope
+            // struct (its own bytes 0x250-0x253), NOT this field.
         uint8_t mPad27C[0x1C]; //0x27C - 0x297
         uint32_t mRaceInvincibilityFrames; //0x298
         uint8_t mPad29C[0x88]; //0x29C - 0x323
@@ -136,7 +143,7 @@ namespace object
         uint32_t mPad338; //0x338
         bool mIsNeedToSendJugemHang; //0x33C
         uint8_t mPad33D[3]; //0x33D - 0x33F
-        sead::Vector2f mStickVolForKiller; //0x340
+        sead::Vector2f mStickVolForKiller; //0x340 — zeroed via 8-byte store in FUN_7100173c40
         uint8_t mPad348[0x28]; //0x348 - 0x36F
         
         ControlInfo getControlInfo();

@@ -20,8 +20,7 @@ namespace object
     class KartVehicleMove
     {
         public:
-            void SetMatrix(/* gear::MtxT const&, sead::Vector3<float> */);
-            void SetMatrix();
+            void SetMatrix(); // (gear::MtxT const&, sead::Vector3<float>) in the binary
 
             KartVehicleMove();
     };

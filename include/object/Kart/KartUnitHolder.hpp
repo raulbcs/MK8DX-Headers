@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-#include <kart/KartVehicle.hpp>
+#include "KartVehicle.hpp"
 
 namespace object
 {
@@ -11,7 +11,7 @@ namespace object
      * the unit; it stores a pointer at +0x8.
      *
      * Anchored to the decomp (all verified in the 400 binary):
-     *   - +0x08  ::KartVehicle (global) pointer — FUN_710016dab0 reads
+     *   - +0x08  KartVehicle pointer — FUN_710016dab0 reads
      *            [this+0x8] then the vehicle's +0xd3 flag; FUN_710016cabc
      *            and the reset helpers at 0x173bfc/0x173c40 do the same
      *   - +0x30  list/container head — FUN_710016dae0 reads [this+0x30]
@@ -28,7 +28,7 @@ namespace object
     {
         public:
             uint8_t pad00[0x8];      // 0x00
-            ::KartVehicle* mVehicle;  // 0x08 — verified
+            KartVehicle* mVehicle;  // 0x08 — verified
             uint8_t pad10[0x20];     // 0x10
             void* mContainer30;      // 0x30 — list/container head
             void* mJob38;            // 0x38 — state object (int state at +0x8)
