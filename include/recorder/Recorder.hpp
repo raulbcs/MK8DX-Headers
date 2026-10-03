@@ -11,12 +11,16 @@
  *   object::RecorderDirector        scene director; makeGhostData()
  *                                   at vtable slot 0x98 (see
  *                                   object/Directors/RecorderDirector.hpp)
- *   recorder::Mgr                   global manager; instance pointer in
- *                                   bss cell 0x710130f7c8
+ *   recorder::Mgr                   global manager, 0x210 bytes (ctor
+ *                                   recorderMgrCtor_71007b7634); instance
+ *                                   pointer in bss cell 0x710130f7c8,
+ *                                   created by recorderCreateMgr_71007aadd4
  *   recorder::Binder                ~0x288-byte per-channel binder,
  *                                   ctor FUN_71007aae24, per-frame calc
  *                                   FUN_71007aaf68; registered by
- *                                   addChannel FUN_71007ac0cc
+ *                                   addChannel FUN_71007ac0cc; per-kart
+ *                                   float/channel setup
+ *                                   recorderSetupKartChannels_71003aef8c
  *   recorder::Registry              owner of the two channel lists
  *   getRecorderInstance_*           one bss cell per channel descriptor
  *                                   cluster (0x71013078b8..0x71013079xx)
@@ -158,6 +162,18 @@ namespace recorder
         uint8_t pad100[0xe8];
         void* type;          // 0x1e8 — vtable/owner type checked on registration
     };
+
+    // FUN_71007b7634 — Mgr constructor (0x210-byte object).
+    void mgrCtor_71007b7634(Mgr* /*uninitialized*/);
+
+    // FUN_71007aadd4 — create global state: the -1 slot array into bss
+    // cell 0x710130f7c0 and a new Mgr (mgrCtor) into cell 0x710130f7c8.
+    void createMgr_71007aadd4(void);
+
+    // FUN_71003aef8c — per-kart channel setup: constructs the Binder,
+    // copies the 0x70-byte owner block to binder+0x278, registers it via
+    // addChannel and initializes the float channels.
+    void setupKartChannels_71003aef8c(Binder*, void* kart /*+0x70 owner block*/);
 
     // FUN_71007aae24 — Binder constructor.
     void recorderBinderCtor_71007aae24(Binder* /*uninitialized, 0x288 bytes*/);
