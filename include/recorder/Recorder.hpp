@@ -22,6 +22,20 @@
  *                                   float/channel setup
  *                                   recorderSetupKartChannels_71003aef8c
  *   recorder::Registry              owner of the two channel lists
+ *   recorderCreateQuantChannel_71007b9400
+ *                                   quantized-float channel factory
+ *                                   (log2/exp2 buckets, 0x280 binder)
+ *   recorderCreateRotChannel_710088ad40
+ *                                   "rot" channel factory (0x290/0x288
+ *                                   binder pair, 3/9-int writers)
+ *   recorderSetupKartChannels_71003aef8c / recorderSetupKartStateChannels_71003aed50
+ *                                   per-kart float channel setup
+ *                                   (p_drive_speed..., mSteerX, p_*)
+ *   recorderCalcKartMatrix_71003afaa4 / recorderUpdateKartInvMatrix_71003b0124
+ *   recorderCalcKartPointDots_71003af2f4 / recorderCalcKartPosFromDots_71003af3f8
+ *                                   per-kart per-frame float calcs
+ *                                   (kart recorder context: mgr at
+ *                                   +0x280, out at +0x288)
  *   getRecorderInstance_*           one bss cell per channel descriptor
  *                                   cluster (0x71013078b8..0x71013079xx)
  *   getRecorderKart*Name_*          vtable name getters returning the
