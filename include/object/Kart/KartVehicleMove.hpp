@@ -2,46 +2,27 @@
 
 #include <cstdint>
 
-#include "KartRigidBody.hpp"
-
-#include <gear/Math/Matrix.hpp>
-#include <math/seadVectorFwd.h>
+// The real KartVehicleMove layout on Switch is kart/KartVehicleMove.hpp:
+// the object lives at KartVehicle+0x28 and extends past 0x22a8
+// (boost slot +0x118, flags +0x1680, reset float pairs +0x2288..+0x22a8).
 
 namespace object
 {
     /*
-     * NOTE: Still based off of 32-bit structure.
+     * DEPRECATED name kept for the fishguy include graph
+     * (KartVehicleBody/KartVehicleTrick include this header).
+     *
+     * The offsets this header used to carry (base 0xEC, mSpeed 0x37C,
+     * total 0x5F8) were transcribed from the Wii U 32-bit build and do NOT
+     * apply to the 64-bit binary. No Switch offset in this class is
+     * verified — use ::KartVehicleMove (kart/KartVehicleMove.hpp).
      */
-    class KartVehicleMove : public KartRigidBody
+    class KartVehicleMove
     {
         public:
-            uint8_t mPadEC[0x90]; //0xEC
-			sead::Vector3f mPad17C; // 0x17C - 0x184
-			sead::Vector3f mPad188; // 0x188 - 0x190
-			uint8_t mPad194[0xE8]; //0x194
-			sead::Vector3f mGravityVector; //0x27C - 0x284
-			uint8_t mPad288[0x14]; //0x288
-            gear::MtxT mPad29C; //0x29C
-            gear::MtxT mPad2CC; //0x2CC
-            sead::Vector3f mDriveDir; //0x2FC - 0x304
-			sead::Vector3f mPad308; //0x308 - 0x310
-			sead::Vector3f mPad314; //0x314 - 0x31C
-			sead::Vector3f mPad320; //0x320 - 0x328
-			sead::Vector3f mPad32C; //0x32C - 0x334
-			sead::Vector3f mPad338; //0x338 - 0x340
-			uint8_t mPad344[0x38]; //0x344
-			float mSpeed; //0x37C
-			uint8_t mPad380[0xA4];
-			float mTopSpeed1; // 0x424
-			float mTopSpeed2; // 0x428
-			float mTopSpeed3; // 0x42C
-			uint8_t mPad430[0x1C8]; // 0x430
-
-			//0x5F8
-
-            void SetMatrix(gear::MtxT const& transformation, sead::Vector3<float> position);
-			void SetMatrix(gear::MtxT const& transformation);
+            void SetMatrix(/* gear::MtxT const&, sead::Vector3<float> */);
+            void SetMatrix();
 
             KartVehicleMove();
     };
-}
+}  // namespace object

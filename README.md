@@ -1,5 +1,7 @@
 # MK8DX-Headers
 
+All layouts in `include/` target the **Nintendo Switch (aarch64, 64-bit)** binary.
+
 This is a **fork of [fishguy6564/MK8DX-Headers](https://github.com/fishguy6564/MK8DX-Headers)** — all credit for the original headers goes to fishguy and RoGamer97. Thank you for all the work you have put into this.
 
 ## Credits

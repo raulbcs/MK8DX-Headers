@@ -12,17 +12,20 @@ namespace ui
         YES,
         NO
     };
-    
+
+    /*     * Wii U (32-bit) layout and are NOT valid on Switch. Field order is
+     * kept as a placeholder until the offsets are re-derived from the
+     * 64-bit binary.
+     */
     class Page_Dialog : public gear::UIPage
     {
-        // Still 32-bit structure...
         public:
-            u8 pad_120[0xC]; //0x120
-            bool isDialogOpen; //0x12C
-            u8 pad_12D; //0x12D
-            u16 pad_12E; //0x12E
-            char pad_130[0x34]; //0x130
-            EDialogResult m_dialogResult; //0x164
+            uint8_t pad_120[0xC];
+            bool isDialogOpen;
+            uint8_t pad_12D;
+            uint16_t pad_12E;
+            uint8_t pad_130[0x34];
+            EDialogResult m_dialogResult;
 
             void open_(ui::UIDialogReq &, gear::EUIPageID);
     };
