@@ -22,7 +22,16 @@ namespace object
         uint32_t mode_24; //0x24 — compared ==1 / ==2 / ==3 (isKartUnitField24Eq{1,2,3};
                           // FUN_710014c2cc: ==1 || (mode_28 == 3))
         uint32_t mode_28; //0x28 — compared ==2 and ==3 (isKartUnitField28Eq2 / FUN_710014c304)
-        uint8_t pad_02c[0xc60]; // 0x2c
+        uint8_t pad_02c[0x44]; // 0x2c
+        uint32_t state_block[9]; //0x70..0x90 — contiguous u32 state snapshot:
+            // FUN_7100164614 copies all 9 to stack in one block (0x164ed4-0x164f1c).
+            // v305-era lead: +0x78 = control bitfield (idle/drift/boost/airborne),
+            // +0x7c = adjacent gate bits — bit map NOT yet confirmed in v400.
+        uint8_t pad_094[0x138]; // 0x94
+        uint32_t status_1cc; //0x1cc — RMW'd with ~0xc000 and 0x40000|0x4000 masks
+            // in FUN_7100164614 (0x164bcc/0x164a28); mirrors the KartVehicle+0x1cc
+            // bit pattern (bits 14/21)
+        uint8_t pad_1d0[0xabc]; // 0x1d0
 
         uint32_t wheel_flag_c8c; //0xc8c — read as int, ==1 selects the PTR_DAT_71012f5148 table
             // (getKartUnitWheelFlagC8cVec_710014c82c; table[sel] has NO index clamp)
