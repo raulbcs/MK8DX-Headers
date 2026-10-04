@@ -44,6 +44,8 @@ namespace object
         struct KartVehicleHeadLight; // unnamed in binary; size 0x130
         struct KartSusKit;           // unnamed in binary; size 0x128
         struct KartVehicleBalloon;   // unnamed in binary; size 0xAB8
+        struct KartRecorderKey;      // unnamed in binary; size 0x298
+        struct KartPathJob;          // unnamed in binary; size 0x2B8
 
         KartVehicle* mKartVehicle; //0x00
         KartUnit* mKartUnit; //0x08
@@ -67,10 +69,13 @@ namespace object
         KartParameter* mKartParameter; //0x78 — 0xb8-byte param object; init by the
             // stat calc FUN_710014b6d0, getters cached as bytes at +0xd8..0xdd
             // by FUN_7100170090
-        uintptr_t mRecorderKey; //0x80
-        uintptr_t mPathJob; //0x88 — pointer to a job object with an int state at
-            // +0x8 (==2 gate in the Path2Gate cluster, FUN_7100173140)
-        KartJugemRecover* mKartJugemRecover; //0x90 — 8-byte thunks ldr x0,[x0,#0x90]
+        KartRecorderKey* mRecorderKey; //0x80 — object size 0x298 (new @ 0x7100170458,
+            // ctor 0x3ae42c with mPlayerID); allocated in a guarded ctor block
+        KartPathJob* mPathJob; //0x88 — object size 0x2B8 (new @ 0x71001704c0, ctor
+            // 0x3aed50); same guarded block as mRecorderKey; int state at +0x8
+            // (==2 gate in the Path2Gate cluster, FUN_7100173140)
+        KartJugemRecover* mKartJugemRecover; //0x90 — size 0x1D8 (new @ 0x71001704dc,
+            // ctor 0x142a60 with mPlayerID); 8-byte thunks ldr x0,[x0,#0x90]
             // (FUN_7100175a28 / FUN_7100175a30)
         uintptr_t mPad98; //0x98
         KartSteerAssist* mKartSteerAssist; //0xA0
@@ -107,14 +112,25 @@ namespace object
         bool mIsThief; //0xEA
         bool mIsEndTeresaTrigger; //0xEB
         bool mIsGoalGhostAlone; //0xEC
-        uint8_t mPadED[0x23]; //0xED - 0x10F
+        uint8_t mPadED[7]; //0xED - 0xF3
+        float mF_f4; //0xF4 — float; multiplied with getKartUnitF32F90 and stored
+            // to +0x26C by the ctor helper 0x170548 (0x170588-0x1705a4)
+        uint8_t mPadF8[0xC]; //0xF8 - 0x103
+        uint32_t mChassisMirror19C; //0x104 — copied to KartChassis+0x19C by helper
+            // 0x170548 (0x1705b8)
+        uint32_t mChassisMirror1A0; //0x108 — -> KartChassis+0x1A0
+        uint32_t mChassisMirror1A4; //0x10C — -> KartChassis+0x1A4
         sead::Vector3f mKartScaleVec; //0x110
         float mKartScaleMultiplier; //0x11C
         uint8_t mPad120[0x0C]; //0x120 - 0x12B
         float mCameraShownHeight; //0x12C
         uint8_t mPad130[0x20]; //0x130 - 0x14F
         float mWaterDepth; //0x150
-        uint8_t mPad154[0x1C]; //0x154 - 0x16F
+        uint8_t mPad154[0x10]; //0x154 - 0x163
+        float mBikeConst164; //0x164 — ctor picks from table 0xf20898 indexed by
+            // mIsHangOnBike (0x1704f4-0x17051c)
+        float mBikeConst168; //0x168 — same, table 0xf208a0[mIsHangOnBike]
+        uint8_t mPad16C[4]; //0x16C - 0x16F
         ControlInfo kartControlInfo; //0x170 - 0x183
         uint8_t mPad184[0x40]; //0x184 - 0x1C3
         float mAntiGEmissionFrame; //0x1C4
@@ -154,7 +170,9 @@ namespace object
         uint32_t mAirFramesForJugem; //0x258
         uint32_t mPrisonIndex; //0x25C
         float mKillerEndRatio; //0x260
-        uint8_t mPad264[0xC]; //0x264 - 0x26F
+        uint8_t mPad264[8]; //0x264 - 0x26B
+        float mF26c; //0x26C — ctor helper 0x170548: getKartUnitF32F90(kartParameter)
+            // * mF_f4 (0x170588-0x1705a4)
         bool mIsAfterOnResetPosition; //0x270
         uint8_t mPad271[3]; //0x271 - 0x273
         float mUnknown274; //0x274 — float (FUN_710017842c)
