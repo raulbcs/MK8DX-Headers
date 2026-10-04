@@ -12,6 +12,7 @@
 #include "KartVehicleReact.hpp"
 #include "KartJugemRecover.hpp"
 #include "KartSteerAssist.hpp"
+#include "KartParameter.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
 // v400 binary by the mk8dx-400 check).
@@ -44,7 +45,9 @@ namespace object
         uintptr_t mKartHeadLight; //0x60
         uintptr_t mSusKit; //0x68
         uintptr_t mKartBalloon; //0x70
-        uintptr_t mKartParameter; //0x78
+        KartParameter* mKartParameter; //0x78 — 0xb8-byte param object; init by the
+            // stat calc FUN_710014b6d0, getters cached as bytes at +0xd8..0xdd
+            // by FUN_7100170090
         uintptr_t mRecorderKey; //0x80
         uintptr_t mPad88; //0x88
         KartJugemRecover* mKartJugemRecover; //0x90
