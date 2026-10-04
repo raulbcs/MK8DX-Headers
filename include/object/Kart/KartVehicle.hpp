@@ -12,10 +12,20 @@
 #include "KartVehicleReact.hpp"
 #include "KartJugemRecover.hpp"
 #include "KartSteerAssist.hpp"
+#include "KartChassis.hpp"
+#include "KartChassisAnim.hpp"
 #include "KartParameter.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
 // v400 binary by the mk8dx-400 check).
+//
+// Subobject allocation table (proven by operator new sites in the ctor
+// 0x7100170100-0x7100170460): Control 0x70 @+0x10, Cpu 0x90 @+0x18,
+// Net 0x42D8 @+0x20, Move 0x5F8 @+0x28, Trick 0x1A0 @+0x30, Body 0x160
+// @+0x38, React 0x90 @+0x40, Collision 0x2D0 @+0x48 (ctor 0x139838),
+// Chassis 0x510 @+0x50, ChassisAnim 0x130 @+0x58, HeadLight 0x130 @+0x60
+// (ctor 0x140514), SusKit 0x128 @+0x68 (ctor 0x15dd9c), Balloon 0xAB8
+// @+0x70 (ctor 0x1142e4), SteerAssist 0x120 @+0xA0 (conditional on mIsMaster).
 namespace object
 {
     class KartVehicle
@@ -30,6 +40,11 @@ namespace object
             float controlStickY; //0x10
         };
 
+        struct KartVehicleCollision; // unnamed in binary; size 0x2D0
+        struct KartVehicleHeadLight; // unnamed in binary; size 0x130
+        struct KartSusKit;           // unnamed in binary; size 0x128
+        struct KartVehicleBalloon;   // unnamed in binary; size 0xAB8
+
         KartVehicle* mKartVehicle; //0x00
         KartUnit* mKartUnit; //0x08
         KartVehicleControl* mKartVehicleControl; //0x10 — FUN_7100172e90 writes a
@@ -41,12 +56,14 @@ namespace object
         KartVehicleTrick* mKartVehicleTrick; //0x30
         KartVehicleBody* mKartVehicleBody; //0x38
         KartVehicleReact* mKartVehicleReact; //0x40
-        uintptr_t mKartCollision; //0x48
-        uintptr_t mKartChassis; //0x50
-        uintptr_t mKartChassisAnim; //0x58
-        uintptr_t mKartHeadLight; //0x60
-        uintptr_t mSusKit; //0x68 — FUN_7100174f7c reads a float at Sus+0xD0 (>= 1.0f gate)
-        uintptr_t mKartBalloon; //0x70
+        KartVehicleCollision* mKartCollision; //0x48 — size 0x2D0 (ctor 0x139838)
+        KartChassis* mKartChassis; //0x50 — size 0x510 (ctor 0x11c0c4)
+        KartChassisAnim* mKartChassisAnim; //0x58 — size 0x130 (ctor 0x12289c,
+            // receives KartChassis+0x10)
+        KartVehicleHeadLight* mKartHeadLight; //0x60 — size 0x130 (ctor 0x140514)
+        KartSusKit* mSusKit; //0x68 — size 0x128 (ctor 0x15dd9c); FUN_7100174f7c
+            // reads a float at Sus+0xD0 (>= 1.0f gate)
+        KartVehicleBalloon* mKartBalloon; //0x70 — size 0xAB8 (ctor 0x1142e4)
         KartParameter* mKartParameter; //0x78 — 0xb8-byte param object; init by the
             // stat calc FUN_710014b6d0, getters cached as bytes at +0xd8..0xdd
             // by FUN_7100170090
