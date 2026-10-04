@@ -92,22 +92,23 @@ namespace object
         bool mIsCpuOrKiller; //0xD3
         bool mIsGhost; //0xD4
         uint8_t mPadD5[3]; //0xD5-0xD7
-        bool mIsBike; //0xD8
-        bool mIsHangOnBike; //0xD9
-        bool mIsHangOnBike_; //0xDA
-        bool mIsBikeRideType; //0xDB
-        bool mIsATVRideType; //0xDC
-        bool mIsTrike; //0xDD
-        bool mIsTrikeR; //0xDE
+        bool mIsBike; //0xD8 — INIT: mirrored from isKartUnitState24Eq1 by
+            // FUN_7100170090 (0x1700d0); suggests KartUnit mode_24==1 encodes bike
+        bool mIsHangOnBike; //0xD9 — INIT: isKartUnitField28Eq2 mirror (0x1700e0)
+        bool mIsHangOnBike_; //0xDA — INIT: isKartUnitField28Eq2 mirror again (0x1700f0)
+        bool mIsBikeRideType; //0xDB — INIT: isKartUnitState24Eq1Or28Eq3 mirror (0x170100)
+        bool mIsATVRideType; //0xDC — INIT: isKartUnitState28Eq3 mirror (0x170110)
+        bool mIsTrike; //0xDD — INIT: isKartUnitField24Eq2 mirror (0x170120)
+        bool mIsTrikeR; //0xDE — INIT: isKartUnitField24Eq3 mirror (0x170130)
         uint8_t mPadDF[2]; //0xDF-0xE0
         bool mIsEnableRun; //0xE1
         uint8_t mPadE2[3]; //0xE2 - 0xE4
-        bool mIsNetVS; //0xE5
-        bool mIsNetSend; //0xE6
-        bool mIsNetRecv; //0xE7 — on level-mode change: 0 for cpu, else copies 0xE8
-            // (setKartVehicleLevelMode_7100172ebc)
-        uint8_t mIsNetRecvDefault; //0xE8 — source byte copied into mIsNetRecv by
-            // setKartVehicleLevelMode_7100172ebc
+        bool mIsNetVS; //0xE5 — INIT: bit3 of the manager global at 0x87fcd0->+0x24 (0x17014c)
+        bool mIsNetSend; //0xE6 — INIT: mIsNetVS && (param+0xd54 != 2) (0x17015c-0x17016c)
+        bool mIsNetRecv; //0xE7 — INIT: mIsNetVS && (param+0xd54 == 2) (0x170184); on
+            // level-mode change: 0 for cpu, else copies 0xE8 (setKartVehicleLevelMode_7100172ebc)
+        uint8_t mIsNetRecvDefault; //0xE8 — INIT: same as mIsNetRecv (0x170188); source
+            // byte copied into mIsNetRecv by setKartVehicleLevelMode_7100172ebc
         bool mIsPolice; //0xE9
         bool mIsThief; //0xEA
         bool mIsEndTeresaTrigger; //0xEB
