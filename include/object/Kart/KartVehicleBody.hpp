@@ -4,18 +4,33 @@
 
 #include "KartRigidBody.hpp"
 
+// KartVehicleBody — size 0x160, proven by operator new(0x160) in the
+// KartVehicle ctor (v400 0x7100170218, stored at KartVehicle+0x38; ctor
+// 0x7100178da4 calls the KartRigidBody base 0x710014ddb4). NOTE: the
+// 74-slot vtable family whose impl touches +0x240 is a DIFFERENT class —
+// it cannot be this one (offsets beyond 0x160 are out of bounds).
 namespace object
 {
+    struct KartVehicle; // KartVehicle.hpp
+
     class KartVehicleBody : public KartRigidBody
 	{
 		public:
-			uint8_t mPadEC[0x4c]; //0xEC - 0x137
-			void* mDriftStateRef; //0x138 — object holding floats at +0x10..0x30
-				// (BodyVt18 family: BodyVt18_71001a43c8 copies them into +0xc0/+0x208)
-			uint8_t mPad140[0xc8]; //0x140 - 0x207
-			float mF208; //0x208 — written by BodyVt18_71001a43c8
-			uint8_t mPad20C[0x34]; //0x20C - 0x23F
-			uint32_t mU240; //0x240 — BodyVt18: mU240 += mU244
-			uint32_t mU244; //0x244 — added into mU240 each BodyVt18 call
+			uint8_t mPadEC[0xc]; //0xEC - 0xF7
+			KartVehicle* mOwnerKartVehicle; //0xF8 — ctor arg (0x178dbc)
+			float mF100; //0x100 — ctor zero
+			float mF104; //0x104 — ctor sets -4.0f (0xc0800000)
+			uint64_t mU108; //0x108 — ctor zero
+			float mF110[3]; //0x110..0x11B — ctor/reset (0x178e84) set all to 1.0f
+			uint8_t mFlag11C; //0x11C — ctor zero
+			uint8_t mPad11D[3]; //0x11D
+			uint64_t mU120; //0x120 — ctor zero
+			uint64_t mU128; //0x128 — ctor zero (stp 0x128/0x130)
+			uint64_t mU130; //0x130
+			uint8_t mPad138[4]; //0x138
+			float mF13C[3]; //0x13C..0x147 — ctor/reset set all to 1.0f
+			uint64_t mU148; //0x148 — ctor zero
+			uint64_t mU150; //0x150 — ctor zero (stp 0x150/0x158)
+			uint64_t mU158; //0x158
 	};
 }
