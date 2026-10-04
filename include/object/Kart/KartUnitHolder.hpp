@@ -8,7 +8,7 @@ namespace object
 {
     /*
      * Per-slot entry of KartDirector::mKartUnitHolders. NOT a subclass of
-     * the unit; it stores a pointer at +0x8.
+     * KartVehicle; it stores a pointer at +0x8.
      *
      * Anchored to the decomp (all verified in the 400 binary):
      *   - +0x08  KartVehicle pointer — FUN_710016dab0 reads

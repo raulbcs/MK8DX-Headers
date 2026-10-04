@@ -9,6 +9,5 @@ namespace ui
     class Control_RaceView : public gear::UIControlT<eui::ControlBase>
     {
     public:
-        //
     };
 }

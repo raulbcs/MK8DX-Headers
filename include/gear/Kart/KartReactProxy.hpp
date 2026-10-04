@@ -18,6 +18,5 @@ namespace gear
         virtual bool checkCollision(gear::ShapeColConvex *) = 0;
         virtual void setHitInfo(gear::PrimColDefine::HitInfo const&) = 0;
         virtual int32_t getIndex() const = 0;
-        //
     };
 }

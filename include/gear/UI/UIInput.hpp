@@ -4,6 +4,5 @@ namespace gear
 {
     class UIInput
     {
-        //
     };
 }

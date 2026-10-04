@@ -24,7 +24,5 @@ namespace gear
             ItemDirector();
 
             void emitItemKinoko(sead::Vector3<float> const&, sead::Vector3<float> const&, int32_t);
-            // ItemObjBase* searchItemObj(int, int, bool);
-            // ItemObjManagerBase* getItemObjManagerPtr(gear::EItemType)const;
     };
 }

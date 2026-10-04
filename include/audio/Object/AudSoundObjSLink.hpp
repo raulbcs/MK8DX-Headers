@@ -7,6 +7,5 @@ namespace audio
     class AudSoundObjSLink
     {
     public:
-        //
     };
 }

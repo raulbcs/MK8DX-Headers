@@ -27,7 +27,5 @@ namespace gsys
         virtual void getBoneLocalMatrix(sead::Matrix34<float>*, sead::Vector3<float>*, int);
         virtual void setBoneWorldMatrix(sead::Matrix34<float> const&, int);
         virtual void getBoneWorldMatrix(sead::Matrix34<float>*, int);
-        // uint8_t mPad00[0xC8]; // 0x00
-        // nn::g3d::ModelObj mModelObj; // 0xC8
     };
 }

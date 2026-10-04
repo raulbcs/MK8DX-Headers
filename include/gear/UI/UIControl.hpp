@@ -9,7 +9,6 @@
 #include <container/seadPtrArray.h>
 
 #include <math/seadVector.h>
-// #include <math/seadVector.hpp>
 
 #include <nn/ui2d/Layout.h>
 #include <_nn/ui2d/Layout.hpp>

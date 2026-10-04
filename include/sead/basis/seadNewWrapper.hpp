@@ -10,14 +10,10 @@ class GameAllocator
 {
 public:
     static void* alloc(unsigned long size);
-    // static void* operator new[](size_t size);
     static void* alloc(unsigned int size, const std::nothrow_t&) noexcept;
-    // static void* operator new[](size_t size, const std::nothrow_t&) noexcept;
 
     static void* alloc(unsigned int size, s32 alignment);
-    // static void* operator new[](size_t size, s32 alignment);
     static void* alloc(unsigned int size, s32 alignment, const std::nothrow_t&) noexcept;
-    // static void* operator new[](size_t size, s32 alignment, const std::nothrow_t&) noexcept;
 
     static void* alloc(unsigned int size, sead::Heap* heap, const std::nothrow_t&) noexcept;
     static void* allocArray(unsigned int size, sead::Heap* heap, const std::nothrow_t&) noexcept;

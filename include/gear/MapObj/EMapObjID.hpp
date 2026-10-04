@@ -6,6 +6,5 @@ namespace gear
 {
     enum EMapObjID : int32_t
     {
-        //
     };
 }

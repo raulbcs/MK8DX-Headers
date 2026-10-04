@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-// #include "SaveDataGhostListFile.hpp"
 #include "SaveDataFile.hpp"
 #include <filedevice/nin/seadNinSaveFileDeviceNin.h>
 
@@ -95,7 +94,6 @@ namespace gear
     class SaveDataGhostListFile : public SaveDataFile
     {
     public:
-        // using Data = gear::SaveDataGhostListBase::Data;
         void update(gear::SaveDataManager::SaveGhostParam const*);
     };
 

@@ -15,7 +15,7 @@ namespace ui
             {
                 public:
                     uint8_t mPad00[0x18]; //0x00
-                    void set(uint8_t,unsigned long long,bool,bool);;
+                    void set(uint8_t, unsigned long long, bool, bool);
             };
 
             uint32_t mPadB4; // 0xB4
@@ -26,18 +26,17 @@ namespace ui
             uint8_t mPad23A; // 0x23A
             uint8_t mPad23B; // 0x23B
             uint8_t mPad23C[0x9C]; // 0x23C
-            uint32_t* mTitleList; //0x2D8!
+            uint32_t* mTitleList; //0x2D8
             int32_t mSize; // 0x2E0
             int32_t mCapacity; // 0x2E4
             uintptr_t** mContentList; //0x2E8
-            int32_t mTitleCount; //0x2F0 #
+            int32_t mTitleCount; //0x2F0
             int32_t mOptionCount; //0x2F4 #
             uint32_t mPad2F8; //0x2F8
             uint32_t mCounter1; //0x2FC
             uint32_t mCounter2; //0x300
             uint8_t mPad304[0x14]; //0x304
 
-            // u32 pad_64; //0x64
             // u32 pad_68; //0x68
             // u32 m_counter_6C; //0x6C
             // Item* m_itemList; //0x70
@@ -51,6 +50,5 @@ namespace ui
             // u32 pad_23C; //0x23C
             // u32 m_counter1; //0x240
             // u32 m_counter2; //0x244
-            // u8 pad_248[0x10]; //0x248
     }; //Size 0x318
 }

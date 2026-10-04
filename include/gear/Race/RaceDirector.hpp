@@ -7,14 +7,13 @@
 #include <gear/Actor/Actor.hpp>
 
 
-namespace object { class RaceCheckerBase; } // mRaceCheckerBase below (class kept minimal: mRaceState @0x38 over Actor)
+namespace object { class RaceCheckerBase; } // object/Race/RaceCheckerBase.hpp (mRaceState @0x38 over Actor)
 
 namespace gear
 {
     // RaceDirector walks an element array every frame (calc) and tears it
     // down (exit). The element count/array live at 0x38/0x40; the race
     // checkers and the lap rank checker are installed at 0x50/0x58.
-    //
     // Signatures below match the 4.0.0 binary. Actor's slots 0x00/0x08 were
     // corrected to return bool / const sead::RuntimeTypeInfo::Interface*
     // accordingly.

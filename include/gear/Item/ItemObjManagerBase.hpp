@@ -10,6 +10,5 @@ namespace gear
     public:
         bool emitItemFromObj(sead::Vector3<float> const&,sead::Vector3<float> const&,int,int);
 
-        // ItemObjBase* ItemObjManagerBase::searchItemObj(int, int, bool);
     };
 }

@@ -59,7 +59,6 @@ namespace ui
             }
             
             void pushRule(ui::UIRule& rule, bool isCheck) {
-                // rule.mPad0B = 1;
 
                 if(this->mSize < this->mCapacity)
                 {

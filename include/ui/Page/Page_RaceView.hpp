@@ -9,6 +9,5 @@ namespace ui
     class Page_RaceView : public gear::UIPage
     {
     public:
-        //
     };
 }

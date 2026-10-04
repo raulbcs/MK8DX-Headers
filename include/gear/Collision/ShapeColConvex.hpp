@@ -7,6 +7,5 @@ namespace gear
     class ShapeColConvex
     {
     public:
-        //
     };
 }

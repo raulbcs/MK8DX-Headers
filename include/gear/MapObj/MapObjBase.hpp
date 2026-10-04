@@ -114,7 +114,6 @@ namespace gear
             float mPad04; // 0x04
             float mPad08; // 0x08
 
-            // ClassParam() {}
             ClassParam(uint8_t, uint8_t);
             ClassParam(uint8_t, uint8_t, float, float);
         };

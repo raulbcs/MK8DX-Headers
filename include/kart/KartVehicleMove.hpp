@@ -3,9 +3,8 @@
 #include <cstdint>
 
 // KartVehicleMove (64-bit, partial; real object ~0x5f8B+ — the reset helper
-// touches +0x22a8, so the object is at least 0x22ac bytes). The upstream
-// object/Kart/KartVehicleMove.hpp is still the 32-bit layout and does NOT
-// apply to this build. PROVISIONAL: name has no MethodTree string.
+// touches +0x22a8, so the object is at least 0x22ac bytes). PROVISIONAL:
+// name has no MethodTree string.
 struct KartVehicleMove
 {
     uint8_t pad_000[0x118]; // 0x00

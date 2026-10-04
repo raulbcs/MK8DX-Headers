@@ -19,8 +19,8 @@ namespace ui
             );
         }
 
-        // NOTE: Animation currently undocumented.
-        // Expect for this function name to change...
+        // NOTE: animation currently undocumented.
+        // Expect this function name to change.
         void playDLCBgChange(bool forward);
     };
 }

@@ -4,7 +4,7 @@
 
 namespace object
 {
-    class KartVehicle; // kart/KartVehicle.hpp (cycle-safe fwd decl)
+    class KartVehicle; // cycle-safe forward declaration
 
     class KartVehicleReact
 	{

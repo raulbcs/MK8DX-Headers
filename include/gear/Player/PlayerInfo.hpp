@@ -16,6 +16,5 @@ namespace gear
         char16_t mPlayerName[21]; // 0xD0
         uint8_t mPadFA[0x06]; // 0xFA
 
-        // PlayerInfo() {}
     };
 }

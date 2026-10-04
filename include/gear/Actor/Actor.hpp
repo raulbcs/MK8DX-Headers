@@ -15,7 +15,6 @@ namespace gear
     // base ctor with its own vtable before writing Actor's, and the vtable
     // at .data:0x11ad018 is followed by a second sub-vtable at 0x11ad098 —
     // multiple inheritance, matching the sead hostio base.
-    //
     // sead::hostio::Node resolves to the MK8DX fork override
     // (sead/hostio/seadHostIONode.hpp — hostio disabled, size 0x38); the
     // open-ead Node does not match the 4.0.0 binary. Node supplies the

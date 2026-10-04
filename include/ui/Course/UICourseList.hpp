@@ -5,6 +5,5 @@ namespace ui
     class UICourseList
     {
     public:
-        //
     };
 }
