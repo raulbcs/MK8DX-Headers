@@ -16,6 +16,8 @@
 #include "KartChassisAnim.hpp"
 #include "KartVehicleCollision.hpp"
 #include "KartVehicleBalloon.hpp"
+#include "KartVehicleHeadLight.hpp"
+#include "KartSusKit.hpp"
 #include "KartParameter.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
@@ -32,8 +34,6 @@ namespace object
 {
     struct KartRecorderKey; // unnamed in binary; size 0x298 (ctor 0x3ae42c)
     struct KartPathJob;     // unnamed in binary; size 0x2B8 (ctor 0x3aed50)
-    struct KartVehicleHeadLight; // unnamed in binary; size 0x130 (ctor 0x140514)
-    struct KartSusKit;           // unnamed in binary; size 0x128 (ctor 0x15dd9c)
 
     class KartVehicle
 	{
