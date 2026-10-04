@@ -4,11 +4,12 @@
 
 // KartChassis — size 0x510, proven by operator new(0x510) in the KartVehicle
 // ctor (v400 0x7100170298, stored at KartVehicle+0x50; ctor 0x710011c0c4).
-// PROVISIONAL: name mirrors the KartVehicle::mKartChassis field; no MethodTree
-// string. Runtime cross-evidence: FUN_7100174ea8 reads a float at +0x198
+// Name CONFIRMED by the recorder channel string "RecorderKartChassis"
+// (rodata 0xee5f99, plus a "RecorderKartChassisPackun" variant). Runtime cross-evidence: FUN_7100174ea8 reads a float at +0x198
 // (multiplied by KartVehicle+0x118), FUN_7100174cc4 a u8 at +0x1C0, and the
 // drift-state accessors (0x71001420e4/21b4/23d8, 0x710017b9xx-bcxx family)
-// reach a drift-state object through the pointer at +0x110.
+// reach a KartVehicleDrift object (name from the recorder channel
+    // "RecorderKartVehicleDrift", rodata 0xee602a) through +0x110.
 namespace object
 {
     struct KartVehicle; // KartVehicle.hpp

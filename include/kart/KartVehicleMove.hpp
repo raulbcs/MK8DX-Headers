@@ -7,7 +7,8 @@
 // KartVehicleMove — size 0x5F8, proven by operator new(0x5F8) in the
 // KartVehicle ctor (v400 0x71001701e4, stored at KartVehicle+0x28). Derives
 // from KartRigidBody (ctor 0x71001812b4 calls 0x710014ddb4 first) — NOT a
-// standalone struct. PROVISIONAL: name has no MethodTree string.
+// standalone struct. Name CONFIRMED by the recorder channel string "RecorderKartVehicleMove"
+// (rodata 0xee6002).
 //
 // MISATTRIBUTED FIELDS: earlier revisions declared fields at +0x1680 (flag
 // bitfield) and +0x2288/+0x2298 (float pairs, "reset helper") — those lie
