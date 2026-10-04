@@ -18,6 +18,8 @@
 #include "KartVehicleBalloon.hpp"
 #include "KartVehicleHeadLight.hpp"
 #include "KartSusKit.hpp"
+#include "KartRecorderKey.hpp"
+#include "KartPathJob.hpp"
 #include "KartParameter.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
@@ -32,8 +34,6 @@
 // @+0x70 (ctor 0x1142e4), SteerAssist 0x120 @+0xA0 (conditional on mIsMaster).
 namespace object
 {
-    struct KartRecorderKey; // unnamed in binary; size 0x298 (ctor 0x3ae42c)
-    struct KartPathJob;     // unnamed in binary; size 0x2B8 (ctor 0x3aed50)
 
     class KartVehicle
 	{
@@ -74,11 +74,10 @@ namespace object
             // stat calc FUN_710014b6d0, getters cached as bytes at +0xd8..0xdd
             // by FUN_7100170090
         KartRecorderKey* mRecorderKey; //0x80 — object size 0x298 (new @ 0x7100170458,
-            // ctor 0x3ae42c with mPlayerID); allocated in a guarded ctor block
-            // (KartRecorderKey not yet mapped)
-        KartPathJob* mPathJob; //0x88 — object size 0x2B8 (new @ 0x71001704c0, ctor
-            // 0x3aed50); same guarded block as mRecorderKey; int state at +0x8
-            // (==2 gate in the Path2Gate cluster, FUN_7100173140)
+            // ctor 0x3ae42c); skipped for ghosts/replays (guarded block)
+        KartPathJob* mPathJob; //0x88 — recorder camera rig, size 0x2B8 (new @
+            // 0x71001704c0, ctor 0x3aed50); int state at +0x8 (==2 gate in the
+            // Path2Gate cluster, FUN_7100173140)
         KartJugemRecover* mKartJugemRecover; //0x90 — size 0x1D8 (new @ 0x71001704dc,
             // ctor 0x142a60 with mPlayerID); 8-byte thunks ldr x0,[x0,#0x90]
             // (FUN_7100175a28 / FUN_7100175a30)
