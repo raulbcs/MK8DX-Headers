@@ -32,10 +32,12 @@ namespace object
 
         KartVehicle* mKartVehicle; //0x00
         KartUnit* mKartUnit; //0x08
-        KartVehicleControl* mKartVehicleControl; //0x10
-        KartVehicleCpu* mKartVehicleCpu; //0x18 — pointer verified: deref [+0x78] u32 (FUN_7100173df4)
-        KartVehicleNet* mKartVehicleNet; //0x20 — pointer verified: virtual call via [+0x30] (FUN_7100173df4)
-        KartVehicleMove* mKartVehicleMove; //0x28 — verified: deref +0x118 (boost slot) and +0x37c
+        KartVehicleControl* mKartVehicleControl; //0x10 — FUN_7100172e90 writes a
+            // u8 flag at this subobject's +0x18
+        KartVehicleCpu* mKartVehicleCpu; //0x18 — same +0x18 u8 flag (FUN_7100172e90)
+        KartVehicleNet* mKartVehicleNet; //0x20 — same +0x18 u8 flag (FUN_7100172e90)
+        KartVehicleMove* mKartVehicleMove; //0x28 — deref +0x118 (boost slot) and +0x37c;
+            // FUN_7100173234/324c read its +0x8 subobject
         KartVehicleTrick* mKartVehicleTrick; //0x30
         KartVehicleBody* mKartVehicleBody; //0x38
         KartVehicleReact* mKartVehicleReact; //0x40
@@ -43,14 +45,16 @@ namespace object
         uintptr_t mKartChassis; //0x50
         uintptr_t mKartChassisAnim; //0x58
         uintptr_t mKartHeadLight; //0x60
-        uintptr_t mSusKit; //0x68
+        uintptr_t mSusKit; //0x68 — FUN_7100174f7c reads a float at Sus+0xD0 (>= 1.0f gate)
         uintptr_t mKartBalloon; //0x70
         KartParameter* mKartParameter; //0x78 — 0xb8-byte param object; init by the
             // stat calc FUN_710014b6d0, getters cached as bytes at +0xd8..0xdd
             // by FUN_7100170090
         uintptr_t mRecorderKey; //0x80
-        uintptr_t mPad88; //0x88
-        KartJugemRecover* mKartJugemRecover; //0x90
+        uintptr_t mPathJob; //0x88 — pointer to a job object with an int state at
+            // +0x8 (==2 gate in the Path2Gate cluster, FUN_7100173140)
+        KartJugemRecover* mKartJugemRecover; //0x90 — 8-byte thunks ldr x0,[x0,#0x90]
+            // (FUN_7100175a28 / FUN_7100175a30)
         uintptr_t mPad98; //0x98
         KartSteerAssist* mKartSteerAssist; //0xA0
         uint32_t mPlayerID; //0xA8
@@ -78,8 +82,10 @@ namespace object
         uint8_t mPadE2[3]; //0xE2 - 0xE4
         bool mIsNetVS; //0xE5
         bool mIsNetSend; //0xE6
-        bool mIsNetRecv; //0xE7
-        uint8_t mPadE8; //0xE8
+        bool mIsNetRecv; //0xE7 — on level-mode change: 0 for cpu, else copies 0xE8
+            // (setKartVehicleLevelMode_7100172ebc)
+        uint8_t mIsNetRecvDefault; //0xE8 — source byte copied into mIsNetRecv by
+            // setKartVehicleLevelMode_7100172ebc
         bool mIsPolice; //0xE9
         bool mIsThief; //0xEA
         bool mIsEndTeresaTrigger; //0xEB
@@ -96,14 +102,18 @@ namespace object
         uint8_t mPad184[0x40]; //0x184 - 0x1C3
         float mAntiGEmissionFrame; //0x1C4
         uint32_t mPad1C8; //0x1C8
-        uint32_t mKartStatusBits; //0x1CC — bits 0x15/0x18 tested in the 0x172-0x174 cluster
+        uint32_t mKartStatusBits; //0x1CC — evidenced bits: 4 (FUN_7100174ec8),
+            // 6 (FUN_7100174f5c), 14+21 volatile 0x204000 gate (FUN_710017a830),
+            // 29 (FUN_7100177400, byte 0x1CF >>5)
         uint32_t mKartFrames; //0x1D0 — zeroed per-frame (FUN_7100173df4)
-        uint8_t mPad1D4[8]; //0x1D4 - 0x1DB
+        uint8_t mPad1D4[5]; //0x1D4 - 0x1D8
+        bool mFlag1D9; //0x1D9 — set true by FUN_7100173204 (SusKit call path)
+        uint8_t mPad1DA[2]; //0x1DA - 0x1DB
         float mAntiGTransFrame; //0x1DC
         float mStartCharge; //0x1E0
-        uint32_t mStarFrames; //0x1E4
-        uint32_t mGessoFrames; //0x1E8
-        int32_t mTeresaFrames; //0x1EC
+        uint32_t mStarFrames; //0x1E4 — zeroed by FUN_7100175af4
+        uint32_t mGessoFrames; //0x1E8 — set to 1 by FUN_7100175afc (min-1 semantics)
+        int32_t mTeresaFrames; //0x1EC — compared ==0x258/600 by FUN_7100174ce8
         float mUnknown1F0; //0x1F0 — float (FUN_710017842c: ldr s)
         int mJumpActionType; //0x1F4
         uint8_t mPad1F8[8]; //0x1F8 - 0x1FF
@@ -137,7 +147,9 @@ namespace object
             // struct (its own bytes 0x250-0x253), NOT this field.
         uint8_t mPad27C[0x1C]; //0x27C - 0x297
         uint32_t mRaceInvincibilityFrames; //0x298
-        uint8_t mPad29C[0x88]; //0x29C - 0x323
+        uint8_t mPad29C[0x24]; //0x29C - 0x2BF
+        uint8_t mFlag2C0; //0x2C0 — zeroed by FUN_7100173204
+        uint8_t mPad2C1[0x63]; //0x2C1 - 0x323
         uint32_t mRenegadeCaughtFrames; //0x324
         uint32_t mCaughtRenegadeToPrisonTime; //0x328
         uint8_t mPad32C[8]; //0x32C - 0x333
