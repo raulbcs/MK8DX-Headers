@@ -62,6 +62,12 @@
  *   RecorderSkeletalAnm, RecorderMaterialAnm, RecorderModel[...],
  *   RecorderXLink*, RecorderEffect, RecorderRaceEvent.
  *
+ * Per-kart instances live on the KartVehicle itself: the 0x298 key/writer
+ * at KartVehicle+0x80 (object/Kart/KartRecorderKey.hpp) and the 0x2B8
+ * Registry hub at KartVehicle+0x88 (object/Kart/KartRecorderChannels.hpp,
+ * setup recorderSetupKartStateChannels_71003aed50); both only allocated
+ * while the recorder is active.
+ *
  * NOTE: the 400 binary carries no RTTI typeinfo names for game
  * classes, so "Binder"/"Mgr"/"Registry" are our layout names; the
  * rodata Recorder* strings above are registration/schema tags, not
