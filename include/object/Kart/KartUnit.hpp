@@ -24,8 +24,10 @@ namespace object
         uint32_t mode_28; //0x28 — compared ==2 and ==3 (isKartUnitField28Eq2 / FUN_710014c304)
         uint8_t pad_02c[0xc60]; // 0x2c
 
-        uint32_t wheel_flag_c8c; //0xc8c — ==1 selects the PTR_DAT_71012f5148 table (FUN_710014c82c)
-        float wheel_f_c90; //0xc90 — FUN_710014c8a0
+        uint32_t wheel_flag_c8c; //0xc8c — read as int, ==1 selects the PTR_DAT_71012f5148 table
+            // (getKartUnitWheelFlagC8cVec_710014c82c; table[sel] has NO index clamp)
+        uint32_t wheel_flag_c90; //0xc90 — read as int, ==1 table-select flag like c8c
+            // (getKartUnitWheelFC90_710014c540; getKartUnitWheelFC90Vec_710014c8a0)
         uint8_t pad_c94[2]; // 0xc94
         uint8_t flag_c96; //0xc96 — bool (isKartUnitFlagC96)
         uint8_t pad_c97[5]; // 0xc97
@@ -38,19 +40,18 @@ namespace object
         float f_cc4; //0xcc4 — default 0.0
         float f_cc8; //0xcc8 — default 1.0
         float f_ccc; //0xccc — default 1.0
-        void* ptr_cd0; //0xcd0 — FUN_710014cbf0
-        uint8_t pad_cd8[4]; // 0xcd8
-        uint8_t blob_cdc[0xc]; //0xcdc — FUN_710014cc0c returns &blob_cdc[0]
-        void* ptr_ce8; //0xce8 — FUN_710014cbd4
-        uint8_t pad_cf0[4]; // 0xcf0
+        uint8_t unk_cd0[0x24]; //0xcd0..0xcf3 — three 12-byte in-struct cells
+            // (getters 710014cbf0/cc0c/cbd4 return ku+0xcd0/0xcdc/0xce8; nothing
+            // evidences stored pointers, so no void* typing)
         float wheel_stance_base; //0xcf4 — wheel stance base (deg)
         float f_cf8; //0xcf8 — default 10.0
         uint8_t pad_cfc[0x30]; // 0xcfc
-        uint8_t blob_d2c[0xc]; //0xd2c — FUN_710014c55c returns &blob_d2c[0]
-        void* ptr_d38; //0xd38 — FUN_710014c578
-        uint8_t pad_d40[4]; // 0xd40
+        uint8_t unk_d2c[0x18]; //0xd2c..0xd43 — two 12-byte in-struct cells
+            // (getters 710014c55c/c578 return ku+0xd2c/0xd38; pointer typing unevidenced)
 
-        float wheel_stats[16]; //0xd44..0xd80 — per-wheel stats (getters d44..d80; stats[3] default 23.0)
+        float wheel_stats[16]; //0xd44..0xd80 — per-wheel stats (getters d44..d80).
+            // Defaults when KartUnit is null: idx 0,1,2,9 -> 0.0; idx 3 -> 23.0;
+            // idx 4..8, 11, 12, 14, 15 -> 1.0 (idx 10, 13 never read)
         uint8_t wheel_vecs_a[12][12]; //0xd84 — 12 x 12-byte entries (FUN_710014c914/c94c, idx = w1 + w2*3)
         uint8_t wheel_vecs_b[6][12]; //0xe14 — 6 x 12-byte entries (FUN_710014c988/c9b8)
         uint8_t pad_e5c[8]; // 0xe5c
@@ -61,7 +62,12 @@ namespace object
         float wheel_scale_ee4; //0xee4 — default 1.0
         float wheel_f_ee8; //0xee8 — default 1.0
         uint8_t vec_eec[3][12]; //0xeec — 3 x 12-byte entries (turn rate = [0], FUN_710014caec/ca08→[1]/[2])
-        uint8_t pad_f10[0x78]; // 0xf10
+        uint8_t vec_f10[4][12]; //0xf10 — 4 x 12-byte entries, idx clamped < 4
+            // (getKartUnitVecF10_710014c66c; At2 variant reads idx+2, c69c)
+        uint8_t vec_f40[4][12]; //0xf40 — 4 x 12-byte entries, idx clamped < 4
+            // (getKartUnitVecF40_710014c6d0; At2 variant, c700)
+        uint8_t vec_f70[2][12]; //0xf70 — 2 x 12-byte entries, idx clamped < 2
+            // (getKartUnitVecF70_710014cb54)
         float arr_f88[2]; //0xf88 — f32 pair, idx clamped to {0,1}, default 0
         float f_f90; //0xf90 — default 10.0
         uint8_t pad_f94[0xc]; // 0xf94
