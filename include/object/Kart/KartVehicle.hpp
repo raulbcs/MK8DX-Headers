@@ -14,6 +14,8 @@
 #include "KartSteerAssist.hpp"
 #include "KartChassis.hpp"
 #include "KartChassisAnim.hpp"
+#include "KartVehicleCollision.hpp"
+#include "KartVehicleBalloon.hpp"
 #include "KartParameter.hpp"
 
 // Canonical KartVehicle layout (byte-exact offsets verified against the
@@ -28,6 +30,11 @@
 // @+0x70 (ctor 0x1142e4), SteerAssist 0x120 @+0xA0 (conditional on mIsMaster).
 namespace object
 {
+    struct KartRecorderKey; // unnamed in binary; size 0x298 (ctor 0x3ae42c)
+    struct KartPathJob;     // unnamed in binary; size 0x2B8 (ctor 0x3aed50)
+    struct KartVehicleHeadLight; // unnamed in binary; size 0x130 (ctor 0x140514)
+    struct KartSusKit;           // unnamed in binary; size 0x128 (ctor 0x15dd9c)
+
     class KartVehicle
 	{
     public:
@@ -40,12 +47,9 @@ namespace object
             float controlStickY; //0x10
         };
 
-        struct KartVehicleCollision; // unnamed in binary; size 0x2D0
-        struct KartVehicleHeadLight; // unnamed in binary; size 0x130
-        struct KartSusKit;           // unnamed in binary; size 0x128
-        struct KartVehicleBalloon;   // unnamed in binary; size 0xAB8
-        struct KartRecorderKey;      // unnamed in binary; size 0x298
-        struct KartPathJob;          // unnamed in binary; size 0x2B8
+        // The Collision / HeadLight / SusKit / Balloon / RecorderKey / PathJob
+        // classes are defined (Collision, Balloon) or size-annotated elsewhere;
+        // all unnamed in the binary — sizes proven by allocation sites.
 
         KartVehicle* mKartVehicle; //0x00
         KartUnit* mKartUnit; //0x08
@@ -71,6 +75,7 @@ namespace object
             // by FUN_7100170090
         KartRecorderKey* mRecorderKey; //0x80 — object size 0x298 (new @ 0x7100170458,
             // ctor 0x3ae42c with mPlayerID); allocated in a guarded ctor block
+            // (KartRecorderKey not yet mapped)
         KartPathJob* mPathJob; //0x88 — object size 0x2B8 (new @ 0x71001704c0, ctor
             // 0x3aed50); same guarded block as mRecorderKey; int state at +0x8
             // (==2 gate in the Path2Gate cluster, FUN_7100173140)
