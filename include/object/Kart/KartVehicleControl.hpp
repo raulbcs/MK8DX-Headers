@@ -2,11 +2,36 @@
 
 #include <cstdint>
 
+// KartVehicleControl — size 0x70, proven by operator new(0x70) in the
+// KartVehicle ctor (v400 0x7100170194, stored at KartVehicle+0x10; ctor
+// 0x7100179660). Fields below come from that ctor + reset 0x71001796e4.
 namespace object
 {
     class KartVehicleControl
 	{
 		public:
-			uint8_t mPad00[0x70];
+			uint8_t mPad00[8]; //0x00 — vtable ptr at +0x00, u32=0 at +0x04
+			void* mOwnerKartVehicle; //0x10 — ctor 0x17966c stores the KartVehicle*;
+				// Net method 0x19026c reads owner mKartStatusBits through it
+			uint8_t mFlag18; //0x18 — enable/level flag written by
+				// setKartVehicleLevelMode (FUN_7100172e90), ctor-zeroed
+			uint8_t mPad19[3]; //0x19
+			uint64_t mU1c; //0x1C — ctor zero
+			float mF24[2]; //0x24 — ctor/reset set {1.0, 1.0} (also reset 0x7100179f44)
+			float mF2c; //0x2C — 1.0
+			uint64_t mU30; //0x30 — copied from the sCell12fb148 global pair
+			uint32_t mU38; //0x38
+			uint64_t mU3c; //0x3C — same global pair
+			uint32_t mU44; //0x44
+			uint16_t mU48; //0x48 — ctor zero
+			float mF4c; //0x4C — 52.0f (reset 0x179738)
+			float mF50; //0x50 — 76.0f
+			float mF54; //0x54 — 1.0f
+			float mF58; //0x58 — 1.0f
+			float mF5c; //0x5C — 25.0f
+			void* mOwned60; //0x60 — owned subobject, destroyed via 0x71001470ec
+			uint8_t mBool68; //0x68 — result of a call to 0x710013d578
+			uint8_t mPad69[3]; //0x69
+			uint32_t mU6c; //0x6C — zeroed by both the Cpu and Net ctors
 	};
 }
