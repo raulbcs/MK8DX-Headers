@@ -10,10 +10,15 @@ namespace gear
     class RaceDirectorSetHelper
     {
         public:
-            uint8_t pad00[0x10]; //0x00 — vtable ptr at +0x00; ctor zeroes 0x10/0x18
-            uint8_t pad18[8];    //0x18
-            void* mOwner20;      //0x20 — ctor arg x1 (the PlayerSet); +0x28 zero
-            uint32_t mZero30;    //0x30
-            uint32_t mZero38;    //0x38
+            void* vtable;        //0x00
+            uint32_t u08;        //0x08 — ctor zero
+            uint32_t u0c;        //0x0C — ctor zero
+            void* m10;           //0x10 — ctor zero
+            void* m18;           //0x18 — ctor zero
+            void* mOwner20;      //0x20 — ctor arg x1 (the PlayerSet)
+            uint64_t m28;        //0x28 — ctor zero
+            uint32_t m30;        //0x30 — ctor zero
+            uint8_t pad34[4];    //0x34
+            uint32_t m38;        //0x38 — ctor zero
     };
 }

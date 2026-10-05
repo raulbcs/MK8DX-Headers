@@ -58,6 +58,7 @@ namespace gear
                 // [0x12fbc00]+0x10; u16 +0x40 and byte +0x42 zeroed), registered
             Actor* mSubActor70;  //0x70 — new(0x160), ctor 0x71005c7f0 (vtable
                 // [0x12fbdb0]+0x10; bytes +0x41/+0x42 zeroed), registered
+            uint8_t mPad78[8];   //0x78 — gap: ctor writes nothing here
             void* mConfig80;     //0x80 — new(0x2C), ctor 0x7100585e8: five u32s +
                 // flag byte copied from the default block [0x12fb168]
             void* mConfig88;     //0x88 — second 0x2C config object, same ctor

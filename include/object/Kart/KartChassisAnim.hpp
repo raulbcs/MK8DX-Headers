@@ -37,6 +37,7 @@ namespace object
         int32_t s_f0; //0xF0 — ctor sets -1
         uint32_t u_f4; //0xF4 — ctor zero
         int32_t s_f8; //0xF8 — ctor sets -1
+        uint8_t pad_fc[4]; //0xFC
         uint32_t u100; //0x100 — ctor zero
         uint64_t u108; //0x108 — ctor zero
         uint32_t u110; //0x110 — ctor zero

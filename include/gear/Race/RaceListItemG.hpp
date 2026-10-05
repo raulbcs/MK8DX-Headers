@@ -11,14 +11,13 @@ namespace gear
     class RaceListItemG
     {
         public:
-            uint8_t pad00[8];    //0x00 — vtable ptr
+            void* vtable;        //0x00 — vtable ptr
             uint8_t pad08[0xf8]; //0x08
             uint32_t m108;       //0x108 — ctor sets 8
             uint32_t m10c;       //0x10C — ctor sets 0xC
             uint32_t m110;       //0x110 — ctor sets 4
             uint8_t pad114[0x89c];//0x114
-            uint8_t zero9b0[0x48]; //0x9B0 — ctor memset 0x48
-            uint8_t pad9f8[0x8]; //0x9F8
+            uint8_t zero9b0[0x18]; //0x9B0 - 0x9C7 — ctor memset 0x48
             int32_t m9c8;        //0x9C8 — ctor -1
             uint8_t pad9cc[0xc]; //0x9CC
             int32_t m9d8;        //0x9D8 — ctor -1

@@ -12,7 +12,7 @@ namespace gear
     class RaceDirectorSetChainMid : public RaceDirectorSetChain
     {
         public:
-            uint8_t padA8[0x38]; //0xA8
+            uint8_t padC0[0x20]; //0xC0
             uint32_t mZeroE0;    //0xE0 — ctor zero
             uint32_t mZeroE4;    //0xE4
             uint32_t mZeroE8;    //0xE8

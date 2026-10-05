@@ -16,6 +16,7 @@ namespace gear
     class RaceDirectorSetLanePool : public Actor
     {
         public:
+            uint8_t pad38[8];    //0x38 - 0x3F
             uint8_t b40;         //0x40 — ctor sets 3 (pool count base)
             uint8_t b41;         //0x41 — ctor zero
             uint8_t b42;         //0x42 — ctor zero
@@ -33,6 +34,7 @@ namespace gear
             int32_t mMinus1_94;  //0x94 — ctor -1
             uint32_t mZero98;    //0x98
             uint8_t mZer9c[4];   //0x9C — ctor zero
+            uint8_t pad_a0[8];   //0xA0 - 0xA7
             // (0xA8 total)
     };
 }

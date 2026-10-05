@@ -16,7 +16,9 @@ namespace object
     class KartVehicleBody : public KartRigidBody
 	{
 		public:
-			uint8_t mPadEC[0xc]; //0xEC - 0xF7
+			void* static_table_e0; //0xE0 — ctor overwrites with a static-table
+				// pointer (0x178df0: [0x12fd630]+0x40)
+			uint8_t pad_e8[0x10]; //0xE8 - 0xF7
 			KartVehicle* mOwnerKartVehicle; //0xF8 — ctor arg (0x178dbc)
 			float mF100; //0x100 — ctor zero
 			float mF104; //0x104 — ctor sets -4.0f (0xc0800000)

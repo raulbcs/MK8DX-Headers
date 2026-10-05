@@ -1,6 +1,5 @@
 #pragma once
 
-#include <math/seadVector.hpp>
 #include <gear/RigidBody.hpp>
 
 namespace object
@@ -9,10 +8,10 @@ namespace object
     {
         public:
             virtual void test();
-            // KartVehicleBody's ctor (0x178da4) overwrites +0xE0 with a pointer
-            // into a static table (global+0x40) — so despite the name it is a
-            // pointer-sized slot in the Body subclass, not a vector.
-            sead::Vector3<float> mPadE0; //0xE0 - 0xE8
+            // Class ends at 0xE0: the "mPadE0 Vector3f" here was a misread —
+            // the derived ctors (Body 0x178da4, Move 0x1812b4) overwrite +0xE0
+            // with a static-table pointer, which is the first field of the
+            // DERIVED class, not a RigidBody field.
 
             KartRigidBody();
     };

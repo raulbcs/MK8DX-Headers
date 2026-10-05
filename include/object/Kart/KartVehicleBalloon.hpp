@@ -21,7 +21,9 @@ namespace object
         //   +0x88/+0x98/+0xA8 u64 zeros; twelve {void* -> global 0x12fb038+0x10,
         //   u64 zero, u8 zero} entries at +0x108/0x120/0x138/0x150/0x168/0x180/
         //   0x198/0x1B0/0x1C8/0x1E0/0x1F8/0x210 (stride 0x18)
-        uint8_t mSlots[5][0x200]; //0x00..0xA27 (content 0x88-0x220 per slot)
+        uint8_t mSlots[0x9A0]; //0x88 - 0xA27 — five 0x200-stride windows
+            // (loop base x8 = 0,0x200,..,0x800); window N content at
+            // N*0x200+0x88 .. +0x220
         uint64_t s_a28; //0xA28 — ctor sets -1
         void* sub_a30; //0xA30 — operator new(0x70) constructed via 0x7c55cc(-1)
             // (0x11441c-0x114438)
@@ -30,12 +32,16 @@ namespace object
         uint8_t cells_a68[0xc]; //0xA68 — global pair 0x12fb148
         uint8_t cells_a74[0xc]; //0xA74 — same
         uint8_t cells_a80[0xc]; //0xA80 — same
-        uint64_t ua8c; //0xA8C — ctor zero
-        uint64_t ua94; //0xA94 — ctor zero
-        uint64_t uaa0; //0xAA0 — ctor zero
+        uint32_t m8c; //0xA8C — ctor zero (unaligned u64 store 0xa8c)
+        uint32_t m90; //0xA90
+        uint32_t m94; //0xA94 — ctor zero (unaligned u64 store 0xa94)
+        uint32_t m98; //0xA98
+        uint32_t m9c; //0xA9C — ctor zero (unaligned u64 store 0xa9c)
+        uint32_t ma0; //0xAA0
         uint8_t baa8; //0xAA8 — ctor zero
         uint8_t pad_aa9[3]; //0xAA9
-        uint64_t s_aac; //0xAAC — ctor sets -1
+        uint32_t s_aac; //0xAAC — ctor sets -1 (unaligned u64 store 0xaac)
+        uint32_t mab0; //0xAB0 — upper half of the -1 store
         uint32_t s_ab4; //0xAB4 — ctor sets -1; 0xAB4+4 = 0xAB8
     };
 }

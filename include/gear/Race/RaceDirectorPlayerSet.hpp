@@ -33,8 +33,10 @@ namespace gear
                                  // table entries {offset,1} for 0xc8-0x120, 0x6f4a8+)
             void* mSub78;        //0x78 — alloc(0x60)
             void* mSub80;        //0x80 — alloc(0x60)
+            uint8_t pad88[8];    //0x88
             void* mChain90;      //0x90 — RaceDirectorSetChainA ctor 0x61514
                                  // (alloc 0x100 @0x6ed40); also Vt2 0x4e2f4 (0x6f11c)
+            uint8_t pad98[0x10]; //0x98 - 0xA7
             void* mA8;           //0xA8 — director chain members (0x6ed4c: ctor
                                  // 0x61514, alloc 0x100; also 0x511a8->Vt5 @0x6f338,
                                  // 0x702e0 @0x6f388, 0x628bc @0x6f1e4)
@@ -44,6 +46,7 @@ namespace gear
             RaceDirectorSetStatePod* mB8; //0xB8 — new(0x3C), ctor 0x585c4 (0x6f3dc)
             RaceDirectorSetStatePod* mC0; //0xC0 — second POD; also stored into
                                  // [[set+0xb0]+0x78]
+            uint8_t padC8[8];    //0xC8 - 0xCF
             // plus: plain RaceDirector instance (0x4d7d8, alloc 0x90 @0x6f244),
             // Vt2 (0x6f11c), 0x6e9d0/0x6ded4/0x620a0/0x6e5e0 members
             // (0xD0 total)

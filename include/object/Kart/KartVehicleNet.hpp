@@ -13,10 +13,10 @@ namespace object
     class KartVehicleNet : public KartVehicleControl
 	{
 		public:
-			uint8_t mEntries[44][0x64]; //0x70 — 44 entries, stride 0x64 (ctor loop
-				// 0x18d6a0-0x18d6fc inits through +0x13F8). Per entry: +0x00 u32=0,
-				// +0x04 =-1, +0x08/+0x28 f32=1.0f, +0x58/+0x5A u16 from a global,
-				// +0x5C u32=0, rest zeroed
+			uint8_t mEntries[50][0x64]; //0x70 — 50 entries, stride 0x64 (ctor loop
+				// 0x18d6a0-0x18d6fc inits through +0x13F8 = 0x70 + 50*0x64). Per
+				// entry: +0x00 u32=0, +0x04 =-1, +0x08/+0x28 f32=1.0f, +0x58/+0x5A
+				// u16 from a global, +0x5C u32=0, rest zeroed
 			uint8_t mPad13F8[8]; //0x13F8
 			uint32_t mFlags1400; //0x1400 — bitfield; bits 9/11 tested by the
 				// accessor at 0x190288-0x1902a4

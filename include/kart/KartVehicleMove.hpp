@@ -27,6 +27,7 @@ struct KartVehicleMove : public object::KartRigidBody
     float f128[2]; //0x128 — ctor sets {1.0f, 1.0f}
     uint8_t pad_130[8]; //0x130
     float f138; //0x138 — ctor sets 1.0f
+    uint8_t pad13c[4]; //0x13C
     uint8_t zero_140[0xd0]; //0x140 - 0x20F — memset 0
     uint8_t flag210; //0x210 — ctor sets 1
     uint8_t pad_211[5]; //0x211 - 0x215 — ctor zeroes
@@ -47,10 +48,10 @@ struct KartVehicleMove : public object::KartRigidBody
     float f3a0; //0x3A0 — ctor sets 1.0f
     uint8_t pad_3a4[0x10]; //0x3A4 - 0x3B3
     float f3b8; //0x3B8 — ctor sets 0.75f (0x3F400000)
-    uint8_t pad_3bc[0x30]; //0x3BC - 0x3EB (ctor zeroes; +0x3EC u8=0, +0x3ED u8=1)
+    uint8_t pad_3bc[0x34]; //0x3BC - 0x3EF (ctor zeroes; +0x3EC u8=0, +0x3ED u8=1)
     uint8_t zero_3f0[0x4c]; //0x3F0 - 0x43B — memset 0
-    float f43c[22]; //0x43C..0x4B3 — ctor sets all twenty-two to 1.0f
-        // (eleven 8-byte {1.0, 1.0} pairs, 0x181458-0x1814d0)
+    float f43c[30]; //0x43C..0x4B3 — ctor sets all thirty to 1.0f
+        // (fifteen 8-byte {1.0, 1.0} pairs, 0x181458-0x1814d0)
     uint8_t zero_4b4[0x84]; //0x4B4 - 0x537 — memset 0
     float f538; //0x538 — ctor sets 1.0f
     uint8_t zero_53c[0x60]; //0x53C - 0x59B — memset 0 (+0x590/+0x594 re-zeroed)
