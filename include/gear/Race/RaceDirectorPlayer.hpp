@@ -12,6 +12,8 @@
 // factory (RaceDirectorPlayerSet) at +0x50.
 namespace gear
 {
+    struct RaceDirectorPlayerSet; // RaceDirectorPlayerSet.hpp
+
     class RaceDirectorPlayer : public Actor
     {
         public:
