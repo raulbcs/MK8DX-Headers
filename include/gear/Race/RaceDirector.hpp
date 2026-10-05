@@ -20,7 +20,9 @@ namespace gear
     class RaceDirector : public Actor
     {
         public:
-            // Slots beyond Actor's vtable; each stage of enter/calc/exit
+            // Vtable .data 0x11b2f28 (GOT cell 0x12fbc58); concrete size 0x90 — the
+// 0x6f244 factory news[] it directly.
+// Slots beyond Actor's vtable; each stage of enter/calc/exit
             // fires a pre/post hook pair. slot70/78/A0/A8 are still unnamed.
             virtual void slot70();               //0x70 — unknown
             virtual void slot78();               //0x78 — unknown
