@@ -60,6 +60,7 @@ namespace gear
             void* mConfig80;     //0x80 — new(0x2C), ctor 0x7100585e8: five u32s +
                 // flag byte copied from the default block [0x12fb168]
             void* mConfig88;     //0x88 — second 0x2C config object, same ctor
-            char mPad90[0x90];   //0x90
+            // Class ends at 0x90: derived RaceDirectorVt2 is 0xA0 with fields
+            // only at 0x90-0x9F (allocation proof 0x71006f108).
     };
 }
