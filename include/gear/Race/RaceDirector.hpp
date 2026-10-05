@@ -51,8 +51,9 @@ namespace gear
                 // each created child at mActors[cursor] and increments (0x4d8e8-0x4d9b8)
             object::RaceCheckerBase* mRaceCheckerBase; //0x50 — ctor arg x1 (0x4d808)
             gear::LapRankChecker* mLapRankChecker;     //0x58
-            Actor* mSubActor60;  //0x60 — new(0xB8), ctor 0x710066448 (inner alloc
-                // 0xB0, vtable [0x12fbeb0]+0x10), registered as child
+            Actor* mSubActor60;  //0x60 — new(0xB0), ctor 0x710066448
+                // (gear/Race/RaceDirectorSubActor60.hpp, vtable 0x11b41c8),
+                // registered as child
             Actor* mSubActor68;  //0x68 — new(0x1C8), ctor 0x7100490fc (vtable
                 // [0x12fbc00]+0x10; u16 +0x40 and byte +0x42 zeroed), registered
             Actor* mSubActor70;  //0x70 — new(0x160), ctor 0x71005c7f0 (vtable

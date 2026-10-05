@@ -17,6 +17,12 @@ namespace object
         CALC_PHASE_APPLY = 5,       // KartRadar | CalcApply branch
     };
 
+    // Ctor = 0x710013f968 (race-director family vtable 0x11ba328; doc
+    // race_director_vtable_family.md "H"): member ctors 0x6287b4 at the seven
+    // 0xC8 job blocks (back-pointers at block-0x28: 0x170/0x238/0x300/0x3C8/
+    // 0x490/0x558/0x620), member ctor 0x6286a4 at +0x708, vtable
+    // [0x12fbd48]+0x10 = 0x11b3928 at +0x758. Size >= 0x760.
+    //
     // Calc pipeline: CalcPosition -> CalcAI -> CalcMove -> (KartRadar |
     // CalcApply), selected per phase. Each phase submits a job whose buffer
     // is one of the 0xC8 work blocks at 0x170-0x6E8; the phase id lives at
