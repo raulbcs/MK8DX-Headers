@@ -4,11 +4,15 @@
 
 namespace object
 {
-    // One instance per kart (init 0x710087ffd0). Recorder channel
-    // "RaceKartChecker" (rodata 0xf0cccc), channel data names
-    // mRank/mLap/mCoinNum. Vtable .data 0x12d0c48:
-    //   0x20 0x710007a26c  0x28 0x71008814fc  0x30 0x7100881508
-    //   0x70 0x71008802f4 (enter body)  0xb8 0x7100881514 (calc body)
+    // One instance per kart. Vtable .data 0x12d0c48 (GOT cell 0x13110d0);
+    // ctor 0x710087ffd0 (allocation 0xb8 at 0x3a2008/0x87e2e0/0x87e354:
+    // operator new[](0xb8, nothrow)). Recorder channel "RaceKartChecker"
+    // (rodata 0xf0cccc) — the ctor builds the 0x280 recorder::Binder
+    // channel object and stores it at +0x90.
+    //
+    // Vtable: 0x20 0x710007a26c  0x28 0x71008814fc (enter fwd)
+    //   0x30 0x7100881508 (calc fwd)  0x70 0x71008802f4 (enter body)
+    //   0xb8 0x7100881514 (calc body)
     class RaceKartChecker : public RaceCheckerBase
     {
     public:
@@ -18,35 +22,38 @@ namespace object
         // singleton ([+0x190]->[+0x58]: count@0x40, base@0x48, stride 0x78,
         // lapTotal byte@0x64) by kart index; mLap is compared to lapTotal.
 
-        uint8_t mFlags3c;      // 0x3c — bit 2 checked by calc
-        uint32_t mField40;     // 0x40 — reset on enter, gets kart index
+        uint16_t mFlags3c;     // 0x3c — zeroed on ctor/enter; bit 2 checked by calc
+        uint16_t mPad3e;       // 0x3e
+        uint32_t mField40;     // 0x40 — ctor stores 1; reset on enter, gets kart index
         uint32_t mLap;         // 0x44 — compared against lapTotal
 
         // Time record {u32 id, u8 minutes, u8 seconds, u16 millis}, built
-        // by 0x7100888c30 (explicit) / 0x7100888c70 (from millis).
-        uint32_t mTimeId48;    // 0x48
+        // by 0x7100888c30 (explicit) / 0x7100888c70 (from millis; writes
+        // the {min, sec, ms} tail at +4). The ctor stamps record 0 at 0x48
+        // and the seven records of mTime with (9, 59, 999); the id word is
+        // left to enter. NOTE: records start at 0x54 (4 mod 8) — 4-byte
+        // aligned, NOT uint64_t.
+        struct TimeRecord
+        {
+            uint32_t id;       // +0
+            uint8_t minutes;   // +4
+            uint8_t seconds;   // +5
+            uint16_t millis;   // +6
+        };
+
+        uint32_t mTimeId48;    // 0x48 — record 0 id
         uint8_t mTimeMin4c;    // 0x4c
         uint8_t mTimeSec4d;    // 0x4d
         uint16_t mTimeMs4e;    // 0x4e
-        uint32_t mField50;     // 0x50 — reset on enter
-        uint8_t mPad51[3];     // 0x51
-        uint64_t mTime[7];     // 0x54 — seven time records (0x54..0x84)
-        uint16_t mField8c;     // 0x8c — zeroed on enter
-        uint8_t mPad8e[0xe];   // 0x8e
-        uint64_t mField9c;     // 0x9c — zeroed on enter
-        uint64_t mFieldA4;     // 0xa4 — zeroed on enter
-        uint64_t mFieldAc;     // 0xac — zeroed on enter
-        void* mRecorderChannel; // 0x90
-        uint8_t mFlag98;       // 0x98
-        uint8_t mFlag99;       // 0x99 — zero skips the calc walk
-        char mPad9a[0x126];    // 0x9a
-        uint32_t mRecorderId1c0; // 0x1c0
-        uint32_t mRecorderId1c4; // 0x1c4
-        char mPad1c8[0x40];    // 0x1c8
-        const char* mName;     // 0x208 — "RaceKartChecker"
-        char mPad210[0x20];    // 0x210
-        void* mField230;       // 0x230
-        char mPad238[0x40];    // 0x238
-        void* mField278;       // 0x278
+        uint32_t mPad50;       // 0x50 — zeroed on ctor (pre-index store)
+        TimeRecord mTime[7];   // 0x54 — records 1..7 (0x54..0x8c)
+        uint16_t mField8c;     // 0x8c — zeroed on ctor/enter
+        uint16_t mPad8e;       // 0x8e
+
+        void* mRecorderChannel; // 0x90 — recorder::Binder built by the ctor
+        uint16_t mFlags98;     // 0x98 — zeroed on ctor/enter; byte 0x99 zero
+                               // skips the calc walk (read at 0x881c44)
+
+        char mPad9a[0x1e];     // 0x9a — to end of object (0xb8)
     };
 }
