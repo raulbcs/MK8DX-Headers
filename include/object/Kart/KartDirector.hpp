@@ -24,7 +24,11 @@ namespace object
     class KartDirector
 	{
 		public:
-            uint8_t pad_00[0xB0]; // 0x00
+            uint8_t pad_00[0x50]; // 0x00
+            void* mUnits50[12]; // 0x50 — per-unit object pointers, indexed by unit
+                // idx clamped < 12 (FUN_710013f430 0x13f468-0x13f478, read before
+                // each KartUnitHolder is destroyed)
+            uint8_t pad_80[0x30]; // 0x80
             void* mB0; // 0xB0 — passed to the unit getter along with the index
             uint8_t pad_B8[0x8]; // 0xB8
             int mUnitCount; // 0xC0
