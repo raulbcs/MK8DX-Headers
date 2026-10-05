@@ -12,12 +12,14 @@
 // child (ctor 0x66ba8) registered in its own child array.
 namespace gear
 {
+    struct RaceDirectorSubActor60Child; // RaceDirectorSubActor60Child.hpp
+
     class RaceDirectorSubActor60 : public Actor
     {
         public:
             uint8_t pad38[0x28]; //0x38 — child array pattern (count/array/cursor),
                                  // registered by RaceDirector ctor
-            RaceDirectorSubActor60* mChild60; //0x60 — new(0xB0), ctor 0x66ba8
+            RaceDirectorSubActor60Child* mChild60; //0x60 — new(0xB0), ctor 0x66ba8
             uint8_t pad68[0x48]; //0x68 — to 0xB0
     };
 }
