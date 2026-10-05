@@ -43,13 +43,23 @@ namespace gear
             ~RaceDirector(); //0x10/0x18 — D1/D0 carry the MethodTree labels via linker aliases in the .cpp
 
             uint32_t mActorCount; //0x38 — Actor element count for calc/exit/enter
+                // (ctor: 3 after the child array allocation succeeds)
             Actor** mActors;     //0x40 — Actor array walked by calc/exit/enter
-            char mPad48[0x8];    //0x48
-            object::RaceCheckerBase* mRaceCheckerBase; //0x50
+                // (ctor allocs 0x18 = 3 slots, 0x4d818-0x4d830)
+            uint8_t mPad48[4];   //0x48
+            uint32_t mInsertCursor4C; //0x4C — child insertion cursor: ctor registers
+                // each created child at mActors[cursor] and increments (0x4d8e8-0x4d9b8)
+            object::RaceCheckerBase* mRaceCheckerBase; //0x50 — ctor arg x1 (0x4d808)
             gear::LapRankChecker* mLapRankChecker;     //0x58
-            char mPad60[0x20];   //0x60
-            void* mUnknown80;    //0x80 — deleted by the destructor
-            void* mUnknown88;    //0x88 — deleted by the destructor
+            Actor* mSubActor60;  //0x60 — new(0xB8), ctor 0x710066448 (inner alloc
+                // 0xB0, vtable [0x12fbeb0]+0x10), registered as child
+            Actor* mSubActor68;  //0x68 — new(0x1C8), ctor 0x7100490fc (vtable
+                // [0x12fbc00]+0x10; u16 +0x40 and byte +0x42 zeroed), registered
+            Actor* mSubActor70;  //0x70 — new(0x160), ctor 0x71005c7f0 (vtable
+                // [0x12fbdb0]+0x10; bytes +0x41/+0x42 zeroed), registered
+            void* mConfig80;     //0x80 — new(0x2C), ctor 0x7100585e8: five u32s +
+                // flag byte copied from the default block [0x12fb168]
+            void* mConfig88;     //0x88 — second 0x2C config object, same ctor
             char mPad90[0x90];   //0x90
     };
 }
