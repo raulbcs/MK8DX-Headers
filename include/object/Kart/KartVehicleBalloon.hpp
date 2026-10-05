@@ -25,7 +25,8 @@ namespace object
         uint64_t s_a28; //0xA28 — ctor sets -1
         void* sub_a30; //0xA30 — operator new(0x70) constructed via 0x7c55cc(-1)
             // (0x11441c-0x114438)
-        uint8_t block_a38[0x30]; //0xA38 — 0x30-byte copy of template 0x12fd108
+        uint8_t block_a38[0x30]; //0xA38 — 0x30-byte memcpy from the shared
+            // runtime-init default block (see KartChassis blocks_60 note)
         uint8_t cells_a68[0xc]; //0xA68 — global pair 0x12fb148
         uint8_t cells_a74[0xc]; //0xA74 — same
         uint8_t cells_a80[0xc]; //0xA80 — same

@@ -27,7 +27,8 @@ namespace object
         uint8_t pad_04c[0xc]; //0x4C
         int32_t s58; //0x58 — ctor sets -1
         uint8_t blocks_60[5][0x30]; //0x60..0x14F — five 0x30-byte blocks each
-            // copied from the static template at 0x12fd108 (ctor 0x11c160-0x11c1a0)
+            // memcpy'd from one shared default block (ctor 0x11c160-0x11c1a0).
+            // Source block: GOT cell 0x12fd108 -> bss 0x7101328d28, a 0x30-byte default block populated by static init before any kart exists (not a rodata constant).
         float f13c[9]; //0x13C..0x15F — ctor sets all nine to 1.0f
         uint8_t flag160; //0x160 — ctor arg: KartUnit flagC9cSel (isKartUnitFlagC9cSel_710014c3a8)
         uint8_t flag161; //0x161 — ctor arg: KartUnit fb1 && !fae (isKartUnitFlagFb1AndNotFae_710014c454)
@@ -45,8 +46,9 @@ namespace object
         float f1b4; //0x1B4 — ctor sets 0.1f (0x3DCCCCCD)
         float f1b8; //0x1B8 — ctor sets 0.1f
         uint8_t pad_1bc[4]; //0x1BC
-        uint8_t sub_1c0[0x28]; //0x1C0 — sub-init call 0x710016f7e4; the u8 at
-            // +0x1C0 is read by FUN_7100174cc4
+        uint8_t sub_1c0[0x28]; //0x1C0 — small polymorphic subobject initialized
+            // by 0x710016f7e4 (vtable [0x12fd610]+0x10, zeros +0x10..0x20, flag +0x20);
+            // byte read by FUN_7100174cc4
         uint8_t pad_1e8[0x24]; //0x1E8 — ctor zeroes through 0x20B (+0x208 u8=0,
             // zeros at 0x20C/0x214/0x21C)
         uint8_t blocks_224[2][0x30]; //0x224..0x283 — two more 0x30 template blocks

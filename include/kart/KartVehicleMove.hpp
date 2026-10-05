@@ -38,9 +38,9 @@ struct KartVehicleMove : public object::KartRigidBody
     uint8_t course_flag21b; //0x21B — 1 on course 0x71 (0x18158c)
     uint8_t pad_21c[3]; //0x21C
     uint8_t zero_220[0x7c]; //0x220 - 0x29B — ctor zeroes
-    uint8_t block_29c[0x30]; //0x29C — 0x30-byte copy of the static template
-        // at 0x12fd108 (same template KartChassis uses)
-    uint8_t block_2cc[0x30]; //0x2CC — same template copy
+    uint8_t block_29c[0x30]; //0x29C — 0x30-byte memcpy from the shared default
+        // block (same source as KartChassis). Source block: GOT cell 0x12fd108 -> bss 0x7101328d28, a 0x30-byte default block populated by static init before any kart exists (not a rodata constant).
+    uint8_t block_2cc[0x30]; //0x2CC — same source
     uint8_t zero_2fc[0x8c]; //0x2FC - 0x387 — memset 0
     float f388; //0x388 — ctor sets 1.0f
     uint8_t pad_38c[0x14]; //0x38C - 0x39F
