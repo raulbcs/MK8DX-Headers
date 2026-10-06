@@ -26,13 +26,17 @@ namespace object
         uint64_t mField48;     // 0x48 — zeroed on ctor
         int64_t mField50;      // 0x50 — -1 on ctor
         uint32_t mField58;     // 0x58 — copied from *x1 (param block)
-        int32_t mField5c;      // 0x5c — -1 on ctor
+        int32_t mField5c;      // 0x5c — -1 on ctor; runtime: per-player index
+                               // (<=0xb; selects [raceinfo+0x238]+idx*8 -> +0x50
+                               // object in the shapePos calc 0x7100012784)
         uint32_t mField60;     // 0x60 — ctor arg w2
 
         // Embedded member at 0x68 (ctor stores vptr 0x11addf8, n=4)
         char mSub68[8];        // 0x68 — extent to next write
         uint8_t mField70;      // 0x70 — 0 on ctor, then 0xb
-        uint8_t mPad71;        // 0x71
+        uint8_t mPad71;        // 0x71 — runtime: body-state enum read all over
+                               // the shapePos calc 0x7100012784 (==1 branch,
+                               // bitmask 0x62, dispatch 9..0xa, >6 test)
         uint8_t mField72;      // 0x72 — zeroed on ctor
         uint8_t mField73;      // 0x73 — 1 on ctor
         uint32_t mField74;     // 0x74 — zeroed on ctor
@@ -40,13 +44,20 @@ namespace object
         void* mArray80;        // 0x80 — new[](0xb0), zeroed head
         void* mArray88;        // 0x88 — new[](0xb0)
         void* mArray90;        // 0x90 — new[](0xb0)
-        char mPad98[0x38];     // 0x98 — to 0xd0
+        void* mQueryObj98;     // 0x98 — collision/terrain query object read
+                               // by the shapePos calc (vcall slot 0x80 bool,
+                               // axis getters 0x71001425c4/0x71001425f0,
+                               // scale setter 0x71006a1194); not ctor-written
+        char mPadA0[0x30];     // 0xa0 — to 0xd0
         uint64_t mFieldD0;     // 0xd0 — zeroed on ctor
         uint64_t mFieldD8;     // 0xd8 — zeroed on ctor
         uint32_t mFieldE0;     // 0xe0 — zeroed on ctor
         int32_t mFieldE4;      // 0xe4 — -1 on ctor
-        uint64_t mFieldE8;     // 0xe8 — zeroed on ctor
-        uint64_t mFieldF0;     // 0xf0 — zeroed on ctor
+        float mScaleXe8;       // 0xe8 — per-axis scale cache vs the query
+        float mScaleYec;       // 0xec — object's axis getters; when one
+        float mScaleZf0;       // 0xf0 — drifts from the fresh value, the calc
+        float mScaleWf4;       // 0xf4 — re-applies it via 0x71006a1194
+                               // (all zeroed on ctor; 1.0 = no override)
         uint32_t mFieldF8;     // 0xf8 — zeroed on ctor
         char mPadFc[4];        // 0xfc
 
