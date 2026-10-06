@@ -67,14 +67,24 @@ namespace object
         uint64_t mField110;    // 0x110 — zeroed on ctor
         uint8_t mField118;     // 0x118 — zeroed on ctor
         char mPad119[7];       // 0x119
-        char mPad120[0x58];    // 0x120 — memset(this+0x120, 0, 0x58)
+        // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
+        // the isSurfaceValid slot 0x710013190: pos + vel*t + 0.5*accel*t^2)
+        uint8_t mPad120[0xc];  // 0x120
+        float mPosX12c;        // 0x12c — position xyz (written by the
+        float mPosY130;        // 0x130 — shapePos calc integration 0x7100137a0+;
+        float mPosZ134;        // 0x134 — ==2 state branch copies them raw)
+        uint8_t mPad138[0x1c]; // 0x138
+        float mVelX154;        // 0x154 — velocity xyz (written by the physics
+        float mVelY158;        // 0x158 — integration 0x7100142d0-0x148e0)
+        float mVelZ15c;        // 0x15c
+        uint8_t mPad160[0x18]; // 0x160
         uint16_t mField178;    // 0x178 — 1 on ctor
         char mPad17a[2];       // 0x17a
-        uint32_t mField17c;    // 0x17c — zeroed on ctor (unaligned u64
-        uint32_t mField180;    // 0x180   store 0x11780, split for alignment)
-        uint32_t mField184;    // 0x184 — zeroed on ctor (unaligned u64
-        uint32_t mField188;    // 0x188   store 0x1177c, split for alignment)
-        float mF18c;           // 0x18c — 0.05f
+        float mAccX17c;        // 0x17c — acceleration xyz (written by fn
+        float mAccY180;        // 0x180 — 0x710012e20-0x13190; ctor zeroes via
+        float mAccZ184;        // 0x184 — unaligned u64 stores, split here)
+        float mAccW188;        // 0x188
+        float mF18c;           // 0x18c — ctor 0.05f (drag/damping constant?)
         const char* mName190;  // 0x190 — rodata 0xf20ea8 (name pair 2)
         const char* mName198;  // 0x198 — rodata 0xf20eac
         const char* mName1a0;  // 0x1a0 — rodata 0xf20eb0 (name pair 1)
