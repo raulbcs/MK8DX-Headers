@@ -5,7 +5,11 @@
 // RaceDirectorManager — PROVISIONAL vtable-anchored name ("A" in the
 // hierarchy pass). Vtable 0x11b3808 (GOT 0x12fbd40), typeinfo 0x58568
 // (predicate on this+0x9c). Ctor 0x71005876c — base ctor 0x7b98bc is NOT
-// the Actor chain, but the class reuses the child-array pattern
+// the Actor chain: it is RaceDirectorManagerBase (vtable 0x12c5638,
+// size 0x68 — see RaceDirectorManagerBase.hpp); this class overwrites the
+// vptr at offset 0 and starts its own fields at 0x68. Kept flat here (the
+// named 0x08/0x50/0x58 fields sit inside the base extent, written by this
+// ctor). The class reuses the child-array pattern
 // 0x38/0x40/0x4C. Size 0x1A0, proven by the allocation site 0x710013d994.
 // Top-level race director manager: owns the per-player directors
 // (RaceDirectorPlayer) and ~14 per-player data tables.

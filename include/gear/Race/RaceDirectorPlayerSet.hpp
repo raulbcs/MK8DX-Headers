@@ -6,7 +6,10 @@
 
 // RaceDirectorPlayerSet — PROVISIONAL vtable-anchored name ("C"). Per-player
 // child-director set/factory: vtable 0x11b4810 (GOT 0x12fbfd8, cell holds vptr-0x10), ctor
-// 0x71006eb5c (the director factory, base 0x7c2938), secondary vtable
+// 0x71006eb5c (the director factory; the 0x7c2938 call is the primary
+// base RaceDirectorPlayerSetBase, vtable 0x12c59b0, size 0x58 — see
+// RaceDirectorPlayerSetBase.hpp; this ctor overwrites the vptr at 0 and
+// starts its own fields at 0x58), secondary vtable
 // 0x11b3c78 at +0x58. Size 0xD0 (allocated by RaceDirectorPlayer ctor
 // 0x70e5c). Builds ~17 child directors (alloc -> ctor -> register at the
 // 0x38/0x40/0x4C cursor -> store into a set field), dispatching on

@@ -6,6 +6,11 @@
 // of the far race family (base chain 0x7ee400, NOT Actor). Vtable
 // 0x11b9650 (GOT 0x12fcfe8). Ctor 0x710010adec; size 0xA10, proven by the
 // allocation site 0x71003989cc. Registers into manager+0x218.
+// RECLASSIFIED: offsets 0x00-0x9AF below are the primary base
+// RaceListItemGBase (vtable 0x12c8f68, ctor 0x7ee400 — see
+// RaceListItemGBase.hpp); this ctor overwrites the vptr and starts its own
+// fields at 0x9B0. Kept flat here (the m108/m10C/m110 writes sit inside
+// the base extent).
 namespace gear
 {
     class RaceListItemG

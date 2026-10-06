@@ -9,7 +9,10 @@
 // (allocation site 0x710058c60). Constructed in a loop by
 // RaceDirectorManager (one per player, w1 = player index), registered in
 // the manager's child array and vector. Owns the per-player director-set
-// factory (RaceDirectorPlayerSet) at +0x50.
+// factory (RaceDirectorPlayerSet) at +0x50. The ctor's first call
+// (0x7c2a90) is the primary base RaceDirectorPlayerBase (vtable 0x12c5a88,
+// size 0x58 — see RaceDirectorPlayerBase.hpp); this ctor overwrites the
+// vptr at 0 and starts its own fields at 0x58.
 namespace gear
 {
     struct RaceDirectorPlayerSet; // RaceDirectorPlayerSet.hpp
