@@ -14,6 +14,13 @@ namespace object
     // Ctor own-field writes (after the KartPhysicsBodyMid base ctor):
     // secondary vptr at 0x390, byte flags 0x398-0x39b, u32 0x39c, zeros
     // 0x3a0-0x3c0, u16/u32 cluster 0x3c0-0x3d2, u64 0x3f8.
+    //
+    // Slot semantics (extra 37 slots 0x2c8-0x3e8, item behavior machines;
+    // the reset/enter slot 0x7100325ac re-initializes the 0x35c-0x3cc
+    // state cluster from a race-info row [..+0x3e0/+0x3e8] and preserves
+    // flags 0x399/0x39a). The root's getVelocity3D (slot 0x68) forwards
+    // to slot 0x28 = pure ret on the root — items override to expose
+    // their velocity.
     class KartPhysicsBodyKoura : public KartPhysicsBodyMid
     {
     public:
@@ -34,7 +41,8 @@ namespace object
         uint16_t mField3ce;    // 0x3ce
         uint16_t mField3d0;    // 0x3d0
         uint16_t mField3d2;    // 0x3d2
-        char mPad3d4[0x24];    // 0x3d4
+        char mPad3d4[0x24];    // 0x3d4 (state cluster 0x35c-0x3d2 is reset
+                               // by slot 0x7100325ac per race)
         uint64_t mField3f8;    // 0x3f8
         char mPad400[0x60];    // 0x400 — to end (0x460)
     };
