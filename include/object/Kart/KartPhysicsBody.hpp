@@ -113,7 +113,9 @@ namespace object
         uint64_t mField208;    // 0x208 — zeroed on ctor
         char mPad210[8];       // 0x210
         uint64_t mField218;    // 0x218 — zeroed on ctor
-        uint64_t mField220;    // 0x220 — zeroed on ctor
+        uint64_t mField220;    // 0x220 — zeroed on ctor; runtime: rigid-body
+                               // state enum (RigidBodyUpdate dispatches on
+                               // cmp #7, fn 0x710013b2c)
         char mPad228[6];       // 0x228 — ctor zeroes u16 0x228, u8 0x22a
 
         // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
@@ -127,7 +129,9 @@ namespace object
                                // stores cell 0x12fb118 at 0x260)
         char mPad260[0x14];    // 0x260 — ctor zeroes + stores more cells
         uint16_t mField274;    // 0x274
-        uint64_t mField278;    // 0x278 — zeroed on ctor
+        uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
+                               // helper object (CollisionScale 0x710013338
+                               // vcalls its slots 0x98/0xa8)
         uint64_t mField280;    // 0x280 — zeroed on ctor
         uint32_t mField288;    // 0x288 — zeroed on ctor
         char mPad28c[0x30];    // 0x28c
@@ -135,17 +139,26 @@ namespace object
         char mPad2c0[0x18];    // 0x2c0
         uint32_t mField2d8;    // 0x2d8 — zeroed on ctor
         char mPad2dc[0xc];     // 0x2dc
-        uint64_t mField2e8;    // 0x2e8 — zeroed on ctor
+        uint32_t mCur2e8;      // 0x2e8 — current/previous value pair: the
+        uint32_t mPrev2ec;     // 0x2ec — setter fn 0x710013278 moves the old
+                               // value to 0x2ec (guard byte 0x1f3), same
+                               // pattern as the axis-scale cache. 0x2fc-0x310
+                               // is the rigid-body update record
+                               // (RigidBodyUpdate 0x710013adc stores the
+                               // input pose u32 quad into
+                               // 0x304/0x308/0x30c/0x310).
         uint16_t mField2f0;    // 0x2f0
-        int32_t mField2f4;     // 0x2f4 — -1 on ctor
-        int32_t mField2f8;     // 0x2f8 — -1 on ctor
+        int32_t mField2f4;     // 0x2f4 — -1 on ctor (update-record field)
+        int32_t mField2f8;     // 0x2f8 — -1 on ctor (update-record field)
         char mPad2fc[0x18];    // 0x2fc
         uint32_t mField314;    // 0x314 — zeroed on ctor
         char mPad318[2];       // 0x318
         uint16_t mField31a;    // 0x31a — -1 on ctor
         uint32_t mField31c;    // 0x31c — zeroed on ctor
-        uint16_t mField320;    // 0x320 — -1 on ctor
-        uint16_t mField322;    // 0x322 — -1 on ctor
+        uint16_t mField320;    // 0x320 — -1 on ctor; runtime: rescue/player
+                               // state i16 pair, read by RescueBodyStateSet2
+        uint16_t mField322;    // 0x322 — (0x710012ae8), capped against 0xa
+                               // (player index bound)
         uint8_t mPad324[4];    // 0x324 — to end of root (0x328); the ctor's
                                // tail only fills the three 0xb0 arrays
     };
