@@ -10,10 +10,9 @@ namespace object
     // the KartPhysicsBody_shapePos_710001299c slot). Vtable .data 0x11ada60
     // (GOT cell 0x12fb050), ctor 0x7100116a4(this, x1 = param block, w2).
     //
-    // Concrete size NOT yet pinned: the ctor runs past 0x330 and derived
-    // items extend it (Koura allocation 0x460 at 0x35f10 bounds it from
-    // above). Ctor-proven writes only below; interior unproven gaps are
-    // pads.
+    // Concrete size 0x328: the intermediate base (KartPhysicsBodyMid,
+    // ctor 0x3703c) starts its own fields at 0x328. Ctor-proven writes
+    // only below; interior unproven gaps are pads.
     //
     // Derived evidence: Koura ctor 0x30d50 (vptr 0x11b0d98, n=126) calls
     // the root ctor; TogezoBomb's inlined ctor (vptr 0x11b0898, n=128)
@@ -59,14 +58,20 @@ namespace object
         char mPad119[7];       // 0x119
         char mPad120[0x58];    // 0x120 — memset(this+0x120, 0, 0x58)
         uint16_t mField178;    // 0x178 — 1 on ctor
-        char mPad17a[0xa];     // 0x17a
-        uint64_t mField184;    // 0x184 — zeroed on ctor
-        char mPad18c[0x14];    // 0x18c
-        const char* mName1a0;  // 0x1a0 — rodata 0xf20eb0
+        char mPad17a[2];       // 0x17a
+        uint32_t mField17c;    // 0x17c — zeroed on ctor (unaligned u64
+        uint32_t mField180;    // 0x180   store 0x11780, split for alignment)
+        uint32_t mField184;    // 0x184 — zeroed on ctor (unaligned u64
+        uint32_t mField188;    // 0x188   store 0x1177c, split for alignment)
+        float mF18c;           // 0x18c — 0.05f
+        const char* mName190;  // 0x190 — rodata 0xf20ea8 (name pair 2)
+        const char* mName198;  // 0x198 — rodata 0xf20eac
+        const char* mName1a0;  // 0x1a0 — rodata 0xf20eb0 (name pair 1)
         const char* mName1a8;  // 0x1a8 — rodata 0xf20eb4
         uint16_t mField1b0;    // 0x1b0 — -1 on ctor
         uint16_t mField1b2;    // 0x1b2 — -1 on ctor
-        char mPad1b4[4];       // 0x1b4
+        uint8_t mField1b4;     // 0x1b4 — 1 on ctor
+        char mPad1b5[3];       // 0x1b5
         uint64_t mField1b8;    // 0x1b8 — zeroed on ctor
         uint64_t mField1c0;    // 0x1c0 — zeroed on ctor
         char mPad1c8[4];       // 0x1c8 — ctor zeroes u64 at unaligned 0x1c6
@@ -120,7 +125,7 @@ namespace object
         uint32_t mField31c;    // 0x31c — zeroed on ctor
         uint16_t mField320;    // 0x320 — -1 on ctor
         uint16_t mField322;    // 0x322 — -1 on ctor
-        // ctor continues past 0x324 (three 0xb0 arrays, more fields) —
-        // size TBD pending the tail pass.
+        uint8_t mPad324[4];    // 0x324 — to end of root (0x328); the ctor's
+                               // tail only fills the three 0xb0 arrays
     };
 }
