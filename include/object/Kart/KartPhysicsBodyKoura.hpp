@@ -25,6 +25,16 @@ namespace object
     {
     public:
         void* mSecVt390;       // 0x390 — secondary vtable (GOT cell +0x10)
+        // Field-usage evidence (item behavior machines, see wip):
+        // 0x398 = counter (fn 0x710030ee0 str / 0x710030f34 ldr);
+        // 0x399/0x39a = state flags swapped by the reset slot 0x7100325ac;
+        // 0x39c = state counter (slot 0x710031624/0x710031cd4);
+        // 0x3a0-0x3b8 = four ptrs written by the ctor tail 0x710030ee0+;
+        // 0x3c0-0x3d2 = state/timer u16 cluster (readers 0x710031d54,
+        // 0x710032fa8, 0x710034900);
+        // 0x3d4-0x3e8 = param block written by fns 0x710030e4c-0x710030eac
+        // and 0x7100311xx (floats+u32); 0x3f0/0x400/0x404/0x408 state;
+        // 0x428-0x45c = config block written by 0x710031124-0x7100311a4.
         uint8_t mFlag398;      // 0x398 — zeroed on ctor
         uint8_t mFlag399;      // 0x399 — zeroed on ctor
         uint8_t mFlag39a;      // 0x39a — zeroed on ctor
