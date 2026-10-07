@@ -5,8 +5,7 @@
 namespace nn::ae
 {
     // AppletThread — PROVISIONAL name (SDK/glue). Base of the applet-thread
-    // family (vtable slot 0x10 = 0x3dcf30; 33 live vtables, census cluster
-    // c3dcf30). Shared ctor 0x7100628a54(this, name&vtable, 0, id, 0,
+    // family (vtable slot 0x10 = 0x3dcf30; 33 live vtables in the cluster). Shared ctor 0x7100628a54(this, name&vtable, 0, id, 0,
     // 0x7fffffff, attrFlags, stackSize) receives the vptr + rodata name through
     // a stack pair and the attr flags in w6 (0x2000/0x4000/0x1000/0x10000 per
     // subclass); shared member-init 0x7100628f3c(this).
