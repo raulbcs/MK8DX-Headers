@@ -11,6 +11,12 @@
 // three 0x30 entry pools; entries are {fn, ctx} callback pairs filled from
 // GOT code cells (0x704a4/0x704b0/0x70508/0x705a4). Config (qword+2 dwords)
 // copied from the rodata default [0xf57b7c] (dword +8 = -1 at +0x94).
+// Baptism audit 2026-10-07: entry-pool manager: {fn,ctx} callbacks from GOT code cells and rodata default [0xf57b7c]; behavior mapped, name not.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     class RaceDirectorSetLanePool : public Actor
