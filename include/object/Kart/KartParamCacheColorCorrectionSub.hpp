@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheColorCorrectionSub — named from ctor string evidence: same ctor 0x64fb3c + same tag 'aglccr' as KartParamCacheColorCorrection; vptr 0x12b30b8 = base+0x10 (secondary MI subobject table) (was PROVISIONAL vtable-anchored KartParamCacheVt30b8) (vptr 0x12b30b8, cell 0x130da78, n=13, site 0x64fb88, ctor 0x64fb3c, alloc 0x270).
+    // KartParamCacheColorCorrectionSub — named from ctor string evidence: same ctor 0x64fb3c + same tag 'aglccr' as KartParamCacheColorCorrection; vptr 0x12b30b8 = base+0x10 (secondary MI subobject table) (was address-anchored KartParamCacheVt30b8) (vptr 0x12b30b8, cell 0x130da78, n=13, site 0x64fb88, ctor 0x64fb3c, alloc 0x270).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheColorCorrectionSub : public KartParamCache
     {
@@ -110,3 +110,5 @@ namespace object
         uint32_t mZero1a28;       // 0x1a28 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

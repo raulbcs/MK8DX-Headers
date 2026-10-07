@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeVt2198 — PROVISIONAL vtable-anchored name (vptr 0x12b2198, GOT cell
+    // ParamNodeVt2198 — address-anchored name (vptr 0x12b2198, GOT cell
     // 0x130d920). Node class of the 0x647f40 hook-band cluster
     // (param-cache super-family ring): vptr, fields to 0x30, recorder
     // channel-pair member at 0x30 (ctor pair 0x7100662f30/0x7100662f70),
@@ -23,3 +23,5 @@ namespace object
         // (0x50 total)
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

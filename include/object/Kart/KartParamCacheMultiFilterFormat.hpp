@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheMultiFilterFormat — named from ctor string evidence: params format/comp_sel_r/g/b/a (0xef9e0f-0xef9e4e); format config of the MultiFilter family (Blur/ColorDrift siblings) (was PROVISIONAL vtable-anchored KartParamCacheVt3748) (vptr 0x12b3748,
+    // KartParamCacheMultiFilterFormat — named from ctor string evidence: params format/comp_sel_r/g/b/a (0xef9e0f-0xef9e4e); format config of the MultiFilter family (Blur/ColorDrift siblings) (was address-anchored KartParamCacheVt3748) (vptr 0x12b3748,
     // GOT cell 0x130db28). Derived KartParamCacheMid variant: ctor 0x710066092c
     // (calls the mid ctor with w1=4) built by the factory 0x710065efbc;
     // size 0x1b0 (factory alloc). Ctor 0x710066092c: after the mid ctor, five
@@ -19,3 +19,5 @@ namespace object
         // (0x1b0 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // KartParamCacheChanBase — PROVISIONAL vtable-anchored name (vptr 0x12b3af0,
+    // KartParamCacheChanBase — address-anchored name (vptr 0x12b3af0,
     // GOT cell 0x130d918). Base of the recorder channel-pair member class: ctor 0x7100662f30
     // (vptr, u32 @0x8, ptr zero @0x10); the callers overwrite the vptr with
     // KartParamCacheChan (0x12b21e0) and finish via 0x7100662f70.
@@ -18,3 +18,5 @@ namespace object
         // (0x18 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

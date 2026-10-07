@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheShadow — named from ctor string evidence: ctor string tag 'aglsdw' + params cascade_num/mip_level_num/depth_clamp/stable_texel_width (0xf1dab5-0xf1dbb2) (was PROVISIONAL vtable-anchored KartParamCacheVt3e90) (vptr 0x12f3e90, cell 0x13153d8, n=13, site 0xad9134, ctor 0xad90e8).
+    // KartParamCacheShadow — named from ctor string evidence: ctor string tag 'aglsdw' + params cascade_num/mip_level_num/depth_clamp/stable_texel_width (0xf1dab5-0xf1dbb2) (was address-anchored KartParamCacheVt3e90) (vptr 0x12f3e90, cell 0x13153d8, n=13, site 0xad9134, ctor 0xad90e8).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheShadow : public KartParamCache
     {
@@ -67,3 +67,5 @@ namespace object
         uint32_t mZero17c0;       // 0x17c0 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

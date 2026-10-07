@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (was PROVISIONAL vtable-anchored KartParamCacheVt31e8) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
+    // KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (was address-anchored KartParamCacheVt31e8) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheCubeMap : public KartParamCache
     {
@@ -76,3 +76,5 @@ namespace object
         uint32_t mField450;      // 0x450 — ctor-written
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

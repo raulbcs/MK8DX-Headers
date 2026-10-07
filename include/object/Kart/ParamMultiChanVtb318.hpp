@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamMultiChanVtb318 — PROVISIONAL vtable-anchored name (vptr 0x12bb318). Multi-channel
+    // ParamMultiChanVtb318 — address-anchored name (vptr 0x12bb318). Multi-channel
     // class of the 0x647f40 hook-band cluster: channel-pair members
     // (ctor 0x7100662f30/0x7100662f70) at 0x260, 0x2d8,
     // constructed in place at 0x6fad7c. EXTENT APPROXIMATE: last channel
@@ -19,3 +19,5 @@ namespace object
         // (~0x2f8 total, APPROXIMATE)
     };
 }
+
+// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.

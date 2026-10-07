@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheVt33b0 — PROVISIONAL vtable-anchored name (vptr 0x12f33b0, cell 0x13152c8, n=13, site 0xa83f70, ctor 0xa83984, alloc 0xa0).
+    // KartParamCacheVt33b0 — address-anchored name (vptr 0x12f33b0, cell 0x13152c8, n=13, site 0xa83f70, ctor 0xa83984, alloc 0xa0).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheVt33b0 : public KartParamCache
     {
@@ -37,3 +37,5 @@ namespace object
         uint64_t mField1c0;     // 0x1c0 — ctor: call result
     };
 }
+
+// Naming closure: docblock ctor anchor yields only nvn init strings (nvnDeviceInitialize/nvnDeviceGetProcAddress) — anchor misquote suspected; needs re-verification. Address-anchored name retained.

@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheVt3df8 — PROVISIONAL vtable-anchored name (vptr 0x12f3df8, cell 0x13153c8, n=13, site 0xad0720, ctor 0xad06d0).
+    // KartParamCacheVt3df8 — address-anchored name (vptr 0x12f3df8, cell 0x13153c8, n=13, site 0xad0720, ctor 0xad06d0).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheVt3df8 : public KartParamCache
     {
@@ -65,3 +65,5 @@ namespace object
         uint32_t mZero5c0;       // 0x5c0 — ctor zero
     };
 }
+
+// Naming closure: ctor strings found (pref, start/end, blur_type/kernel, clear color) but no engine tag and no unambiguous role; kept address-anchored.

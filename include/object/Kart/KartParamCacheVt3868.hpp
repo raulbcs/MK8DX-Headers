@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheVt3868 — PROVISIONAL vtable-anchored name (vptr 0x12b3868,
+    // KartParamCacheVt3868 — address-anchored name (vptr 0x12b3868,
     // GOT cell 0x130db10). Derived KartParamCacheMid variant built by the
     // factory 0x710065efbc (case w1=6, inline extension of the mid ctor);
     // size 0x150 (factory alloc). The factory also copies a u32 pair from
@@ -24,3 +24,5 @@ namespace object
         // (0x150 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

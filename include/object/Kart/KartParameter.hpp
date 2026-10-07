@@ -11,7 +11,7 @@ namespace object
     // ctor = the stat calc FUN_710014b6d0). Initialized by the stat calc
     // (vehicle-class-driven weights); the kart then caches the wrapper
     // getters' results as bytes at KartVehicle+0xd8..0xdd
-    // (FUN_7100170090). PROVISIONAL: name from the upstream field
+    // (FUN_7100170090). Name from the upstream field mirror
     // mKartParameter; layout below is the verified part only.
     struct KartParameter
     {

@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (was PROVISIONAL vtable-anchored KartParamCacheVt30a8) (vptr
+    // KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (was address-anchored KartParamCacheVt30a8) (vptr
     // 0x12b30a8, GOT cell 0x130da78). Largest KartParamCache variant:
     // ctor 0x710064fb3c built by the factory 0x710065efbc (alloc 0x1a30).
     // NOT a KartParamCacheMid derive — it goes straight over the
@@ -114,3 +114,5 @@ namespace object
         // (0x1a30 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

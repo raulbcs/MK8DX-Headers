@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeDirectionalLight — named from ctor string evidence: ctor params SkyColor/GroundColor/Intensity/Direction (EN/JP, 0xef9183-0xef92cd) (was PROVISIONAL vtable-anchored ParamNodeVt2c98) (vptr 0x12b2c98, cell 0x130d9e0, n=23, site 0x64d254, ctor 0x64d22c, alloc 0x28).
+    // ParamNodeDirectionalLight — named from ctor string evidence: ctor params SkyColor/GroundColor/Intensity/Direction (EN/JP, 0xef9183-0xef92cd) (was address-anchored ParamNodeVt2c98) (vptr 0x12b2c98, cell 0x130d9e0, n=23, site 0x64d254, ctor 0x64d22c, alloc 0x28).
     // Node class of the 0x647f40 hook-band cluster (shared trivial band
     // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
     // [this+0x1c]).
@@ -42,3 +42,5 @@ namespace object
         uint64_t mZero1b0;      // 0x1b0 — ctor zero
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

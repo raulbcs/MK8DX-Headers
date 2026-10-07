@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeVt4510 — PROVISIONAL vtable-anchored name (vptr 0x12f4510, cell 0x13154d8, n=22, site 0xaef788, ctor 0xaef760).
+    // ParamNodeVt4510 — address-anchored name (vptr 0x12f4510, cell 0x13154d8, n=22, site 0xaef788, ctor 0xaef760).
     // Node class of the 0x647f40 hook-band cluster (shared trivial band
     // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
     // [this+0x1c]).
@@ -47,3 +47,5 @@ namespace object
         uint32_t mFielde78;      // 0xe78 — ctor-written
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

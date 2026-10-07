@@ -4,7 +4,7 @@
 
 // KartSusKit — size 0x128, proven by operator new(0x128) in the KartVehicle
 // init (v400 0x71001701e4 region, stored at KartVehicle+0x68; ctor 0x710015dd9c
-// receives the KartVehicle*). PROVISIONAL: name mirrors KartVehicle::mSusKit
+// receives the KartVehicle*). Name mirrors KartVehicle::mSusKit (field-mirror evidence)
 // (suspension kit). Runtime cross-evidence: FUN_7100174f7c reads a float at
 // +0xD0 (>= 1.0f gate); FUN_7100173204 calls into it and sets
 // KartVehicle+0x1D9.

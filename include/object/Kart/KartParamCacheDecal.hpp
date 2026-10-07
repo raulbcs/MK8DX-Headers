@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheDecal — named from ctor string evidence: ctor string tag 'agldecd' + 'DecalDrawer' name string (0xf1e99a-0xf1e9a2) (was PROVISIONAL vtable-anchored KartParamCacheVt42a8) (vptr 0x12f42a8, cell 0x13154b0, n=13, site 0xaed278, ctor 0xaed234).
+    // KartParamCacheDecal — named from ctor string evidence: ctor string tag 'agldecd' + 'DecalDrawer' name string (0xf1e99a-0xf1e9a2) (was address-anchored KartParamCacheVt42a8) (vptr 0x12f42a8, cell 0x13154b0, n=13, site 0xaed278, ctor 0xaed234).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheDecal : public KartParamCache
     {
@@ -28,3 +28,5 @@ namespace object
         uint32_t mZero488;       // 0x488 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

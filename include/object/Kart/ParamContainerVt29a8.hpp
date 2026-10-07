@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamContainerVt29a8 — PROVISIONAL vtable-anchored name (vptr 0x12d29a8, GOT cell
+    // ParamContainerVt29a8 — address-anchored name (vptr 0x12d29a8, GOT cell
     // 0x1311590). Large container of the 0x647f40 hook-band cluster
     // (param-cache super-family ring): n=25 slots, allocation
     // 0x340 at site 0x88e930. Shares the trivial hook band
@@ -29,3 +29,5 @@ namespace object
         // (0x340 total, factory alloc)
     };
 }
+
+// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.

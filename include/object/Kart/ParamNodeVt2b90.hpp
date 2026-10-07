@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeVt2b90 — PROVISIONAL vtable-anchored name (vptr 0x12b2b90, GOT cell
+    // ParamNodeVt2b90 — address-anchored name (vptr 0x12b2b90, GOT cell
     // 0x130da00 holds 0x12b2b80; stored vptr = cell+0x10 = 0x12b2b90). CLOSED AS
     // PROVEN GAP (2026-10-07): semantic name not recoverable from the binary.
     //
@@ -38,3 +38,5 @@ namespace object
         // (own fields unmapped; secondary-base offset-to-top -0x30 at vt+0xb8)
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

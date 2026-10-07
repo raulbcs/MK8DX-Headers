@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // ParamChannelVt32b8 — PROVISIONAL vtable-anchored name (vptr 0x12b32b8,
+    // ParamChannelVt32b8 — address-anchored name (vptr 0x12b32b8,
     // GOT cell 0x130daa8). Channel type of the 0x66496c cluster, proven
     // 0x20 by the stride-0x20 pattern (same shape as ParamChannelVt2af0).
     // Instance evidence: KartParamCacheVtd608 ctor 0x71007284f0 embeds it
@@ -17,3 +17,5 @@ namespace object
         // (0x20 total)
     };
 }
+
+// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

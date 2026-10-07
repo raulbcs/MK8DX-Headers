@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // PROVISIONAL suffix. TS_ItemTeresa evidence; 108 slots.
+    // Address-anchored suffix. TS_ItemTeresa evidence; 108 slots.
     // Vtable .data 0x11b2310 (GOT cell 0x12fc270), ctor 0x71003bfe0, size 0x390
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
@@ -38,3 +38,5 @@ namespace object
         uint8_t mField38c;     // 0x38c — ctor-written
     };
 }
+
+// Naming closure: per item/kart physics-body variant; no distinguishing ctor strings, and the body's semantic identity requires the combo dictionary. Address-anchored name retained.

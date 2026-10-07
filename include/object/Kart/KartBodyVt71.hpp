@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // PROVISIONAL vtable-anchored name ("Vt71"). Base of the kart body
+    // Address-anchored name ("Vt71"). Base of the kart body
     // family: 665 vtables of 71-101 slots sharing PrePass20_7100197798 /
     // GetCurrentSpeed_7100197c90 / CoinItemInteraction_71001981ec — the
     // per-kart+driver-combination body classes. Full-family vtable analysis:
@@ -63,3 +63,5 @@ namespace object
         char mPad1b0[0x58];    // 0x1b0 — to end (0x208)
 };
 }
+
+// Naming closure: the 665 family members are per kart+driver combination variants (shared ctors, vtable passed as argument); semantic per-combo names need the combination dictionary and are not derivable from the binary alone. Address-anchored name retained.

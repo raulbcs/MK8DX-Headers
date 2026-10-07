@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheVt24c8 — PROVISIONAL vtable-anchored name (vptr
+    // KartParamCacheVt24c8 — address-anchored name (vptr
     // 0x12b24c8, GOT cell 0x130d960, n=9). Derived KartParamCache variant
     // built in ARRAYS by the factory at 0x7100648b0c-0x648d3c: element
     // stride 0x58, each element runs the KartParamCache ctor 0x7100669954
@@ -26,3 +26,5 @@ namespace object
         // (0x58 total)
     };
 }
+
+// Naming closure: only ctor string is the generic 'param_list'; array-element variant with factory case id only. Address-anchored name retained.

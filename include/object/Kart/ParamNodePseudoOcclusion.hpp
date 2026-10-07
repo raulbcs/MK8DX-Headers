@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodePseudoOcclusion — named from ctor string evidence: ctor params Position/Radius/CoreRadius/VerticesBias/DepthOffset/PseudoOccl (0xeeee93-0xf1ea66) (was PROVISIONAL vtable-anchored ParamNodeVt4400) (vptr 0x12f4400, cell 0x13154d0, n=22, site 0xaeeef0, ctor 0xaeeec8).
+    // ParamNodePseudoOcclusion — named from ctor string evidence: ctor params Position/Radius/CoreRadius/VerticesBias/DepthOffset/PseudoOccl (0xeeee93-0xf1ea66) (was address-anchored ParamNodeVt4400) (vptr 0x12f4400, cell 0x13154d0, n=22, site 0xaeeef0, ctor 0xaeeec8).
     // Node class of the 0x647f40 hook-band cluster (shared trivial band
     // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
     // [this+0x1c]).
@@ -76,3 +76,5 @@ namespace object
         uint32_t mZero2e4;      // 0x2e4 — ctor zero
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

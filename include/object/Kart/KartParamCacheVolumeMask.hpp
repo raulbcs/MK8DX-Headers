@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheVolumeMask — named from ctor string evidence: ctor string tag 'aglvolm' + param volume_mask (0xf1aa11-0xf01d00) (was PROVISIONAL vtable-anchored KartParamCacheVt2d18) (vptr 0x12f2d18, cell 0x1315208, n=14, site 0xa9cad8, ctor 0xa9ca94).
+    // KartParamCacheVolumeMask — named from ctor string evidence: ctor string tag 'aglvolm' + param volume_mask (0xf1aa11-0xf01d00) (was address-anchored KartParamCacheVt2d18) (vptr 0x12f2d18, cell 0x1315208, n=14, site 0xa9cad8, ctor 0xa9ca94).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheVolumeMask : public KartParamCache
     {
@@ -47,3 +47,5 @@ namespace object
         uint64_t mZero540;       // 0x540 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

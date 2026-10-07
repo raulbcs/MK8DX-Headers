@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // ParamChannelVt38f8 — PROVISIONAL vtable-anchored name (vptr 0x12b38f8, GOT cell
+    // ParamChannelVt38f8 — address-anchored name (vptr 0x12b38f8, GOT cell
     // 0x130db18). LAZY-resolver channel type of the 0x66496c cluster: the
     // cell has no static vptr store — instances are initialized at runtime
     // by the shared lazy-init method 0x7100646850(this, ctx), called
@@ -39,3 +39,5 @@ namespace object
         // (0x170 total, tail unmapped)
     };
 }
+
+// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

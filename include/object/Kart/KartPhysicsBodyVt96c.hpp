@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // PROVISIONAL vtable-anchored name. 96 slots.
+    // Address-anchored name. 96 slots.
     // Vtable .data 0x11b1f70 (GOT cell 0x12fc050), ctor 0x71003b5cc, size 0x338
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
@@ -16,3 +16,5 @@ namespace object
         uint64_t mField330;    // 0x330 — ctor-written
     };
 }
+
+// Naming closure: per item/kart physics-body variant; no distinguishing ctor strings, and the body's semantic identity requires the combo dictionary. Address-anchored name retained.

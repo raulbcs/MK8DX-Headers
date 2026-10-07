@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheCloudDraw — named from ctor string evidence: ctor string tag 'aglclwd' + member names mIsDrawReduceBuffer/mIsSyncSunPosition/mDrawOrder/mCloudColorScale (0xf1a661-0xf1a745) (was PROVISIONAL vtable-anchored KartParamCacheVt2b28) (vptr 0x12f2b28, cell 0x13151d8, n=13, site 0xa96144, ctor 0xa960f8).
+    // KartParamCacheCloudDraw — named from ctor string evidence: ctor string tag 'aglclwd' + member names mIsDrawReduceBuffer/mIsSyncSunPosition/mDrawOrder/mCloudColorScale (0xf1a661-0xf1a745) (was address-anchored KartParamCacheVt2b28) (vptr 0x12f2b28, cell 0x13151d8, n=13, site 0xa96144, ctor 0xa960f8).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheCloudDraw : public KartParamCache
     {
@@ -100,3 +100,5 @@ namespace object
         uint64_t mField7f88;       // 0x7f88 — ctor-written
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

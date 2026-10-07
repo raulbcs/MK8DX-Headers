@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheSky — named from ctor string evidence: ctor string tag 'aglsky' + params sun_indensity/rayleigh (0xf02b5f-0xf1bfea) (was PROVISIONAL vtable-anchored KartParamCacheVt2fb8) (vptr 0x12f2fb8, cell 0x1315270, n=13, site 0xaae038, ctor 0xaadfec).
+    // KartParamCacheSky — named from ctor string evidence: ctor string tag 'aglsky' + params sun_indensity/rayleigh (0xf02b5f-0xf1bfea) (was address-anchored KartParamCacheVt2fb8) (vptr 0x12f2fb8, cell 0x1315270, n=13, site 0xaae038, ctor 0xaadfec).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheSky : public KartParamCache
     {
@@ -63,3 +63,5 @@ namespace object
         uint64_t mZeroda8;       // 0xda8 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

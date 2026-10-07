@@ -4,8 +4,7 @@
 
 // KartVehicleHeadLight — size 0x130, proven by operator new(0x130) in the
 // KartVehicle init (v400 0x7100170354, stored at KartVehicle+0x60; ctor
-// 0x7100140514 with args (this, ptr, flag2, flag3)). PROVISIONAL: name
-// mirrors KartVehicle::mKartHeadLight.
+// 0x7100140514 with args (this, ptr, flag2, flag3)). Name mirrors KartVehicle::mKartHeadLight (field-mirror evidence).
 namespace object
 {
     struct KartVehicleHeadLight

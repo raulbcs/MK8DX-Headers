@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheOfx — named from ctor string evidence: ctor string tag 'aglofx' (0xf1f263) (was PROVISIONAL vtable-anchored KartParamCacheVt4bb8) (vptr 0x12f4bb8, cell 0x1315530, n=13, site 0xaf5744, ctor 0xaf56f8).
+    // KartParamCacheOfx — named from ctor string evidence: ctor string tag 'aglofx' (0xf1f263) (was address-anchored KartParamCacheVt4bb8) (vptr 0x12f4bb8, cell 0x1315530, n=13, site 0xaf5744, ctor 0xaf56f8).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheOfx : public KartParamCache
     {
@@ -113,3 +113,5 @@ namespace object
         uint64_t mField2838;      // 0x2838 — ctor-written
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

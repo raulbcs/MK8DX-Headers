@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheMid — PROVISIONAL vtable-anchored name (vptr 0x12b3478,
+    // KartParamCacheMid — address-anchored name (vptr 0x12b3478,
     // GOT cell 0x130daf0, n=11). Mid base of the big KartParamCache
     // variants: ctor 0x710065ede8 calls the KartParamCache ctor
     // (0x7100669954), builds an embedded member at 0x68 (ctor 0x710066a2a4)
@@ -40,3 +40,5 @@ namespace object
         // (0x110 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

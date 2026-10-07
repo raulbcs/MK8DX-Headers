@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // PROVISIONAL vtable-anchored name. Root-derived, 97 slots.
+    // Address-anchored name. Root-derived, 97 slots.
     // Vtable .data 0x11ad5a8 (GOT cell 0x12fb030), ctor 0x71000fcdc, size 0x348
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
@@ -20,3 +20,5 @@ namespace object
         uint8_t mPad346;       // 0x346 — ctor zero
     };
 }
+
+// Naming closure: per item/kart physics-body variant; no distinguishing ctor strings, and the body's semantic identity requires the combo dictionary. Address-anchored name retained.

@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeVtdba0 — PROVISIONAL vtable-anchored name (vptr 0x12bdba0, GOT cell
+    // ParamNodeVtdba0 — address-anchored name (vptr 0x12bdba0, GOT cell
     // 0x130e918 holds 0x12bdb90; stored vptr = cell+0x10). CLOSED AS PROVEN GAP
     // (2026-10-07): subsystem and role proven, self name not present in binary.
     //
@@ -37,3 +37,5 @@ namespace object
         // (own fields unmapped; secondary hook-band vptr at +0x30 = cell+0x108)
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.

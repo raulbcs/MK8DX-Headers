@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheMultiFilterColorDrift — named from ctor string evidence: ctor name string 'MultiFilterColorDrift' + params drift_r/g/b (0xef9e5b-0xef9e8b) (was PROVISIONAL vtable-anchored KartParamCacheVt37d8) (vptr 0x12b37d8,
+    // KartParamCacheMultiFilterColorDrift — named from ctor string evidence: ctor name string 'MultiFilterColorDrift' + params drift_r/g/b (0xef9e5b-0xef9e8b) (was address-anchored KartParamCacheVt37d8) (vptr 0x12b37d8,
     // GOT cell 0x130db30). Derived KartParamCacheMid variant: ctor 0x7100660cc4
     // (calls the mid ctor with w1=5) built by the factory 0x710065efbc;
     // size 0x170 (factory alloc). Ctor 0x7100660cc4: after the mid ctor, three
@@ -20,3 +20,5 @@ namespace object
         // (0x170 total)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

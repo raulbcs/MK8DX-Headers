@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // ParamChannelVt2af0 — PROVISIONAL vtable-anchored name (vptr 0x12b2af0, GOT cell
+    // ParamChannelVt2af0 — address-anchored name (vptr 0x12b2af0, GOT cell
     // 0x130d9b8). Channel type of the 0x66496c cluster: 0x20-byte
     // channel instantiated MULTIPLE times in its parent (sites
     // parent+0x110 and +0x130, float field at each instance's +0x18,
@@ -18,3 +18,5 @@ namespace object
         // (0x20 total)
     };
 }
+
+// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (was PROVISIONAL vtable-anchored KartParamCacheVt2ea8) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
+    // KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (was address-anchored KartParamCacheVt2ea8) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheLref : public KartParamCache
     {
@@ -28,3 +28,5 @@ namespace object
         uint8_t mPadf18;         // 0xf18 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

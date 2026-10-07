@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // KartParamCacheVt2668 — PROVISIONAL vtable-anchored name (vptr 0x12b2668,
+    // KartParamCacheVt2668 — address-anchored name (vptr 0x12b2668,
     // GOT cell 0x130d980). Cluster variant, extent 0x168 (ctor 0x710064a708):
     // KartParamCacheVt2358 base (ctor 0x710064822c, extent 0x38), then
     // members: KartParamCacheMid2-shaped 0x48 member at 0x40 (ctor
@@ -34,3 +34,5 @@ namespace object
         // (0x168 total)
     };
 }
+
+// Naming closure: only ctor string is the debug icon 'Icon=CIRCLE_GREEN' (0xef90b0); no role evidence. Address-anchored name retained.

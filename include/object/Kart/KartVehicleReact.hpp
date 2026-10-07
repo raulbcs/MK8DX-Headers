@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include <math/seadVector.h>
+
 namespace object
 {
     class KartVehicle; // cycle-safe forward declaration

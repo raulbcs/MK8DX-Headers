@@ -5,7 +5,7 @@
 // KartVehicleCollision — size 0x2D0, proven by operator new(0x2D0) in the
 // KartVehicle init (v400 0x7100170438, stored at KartVehicle+0x48; ctor
 // 0x7100139838 receives a stack config struct built from KartUnit getters
-// and SusKit+0xA8). PROVISIONAL: name mirrors KartVehicle::mKartCollision.
+// and SusKit+0xA8). Name mirrors KartVehicle::mKartCollision (field-mirror evidence).
 namespace object
 {
     struct KartVehicleCollision

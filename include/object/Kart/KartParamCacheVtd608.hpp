@@ -11,7 +11,7 @@
 
 namespace object
 {
-    // KartParamCacheVtd608 — PROVISIONAL vtable-anchored name (vptr 0x12bd608,
+    // KartParamCacheVtd608 — address-anchored name (vptr 0x12bd608,
     // GOT cell 0x130e8a8). Named node-group container of the c63c6f8
     // cluster (n=9). Ctor 0x71007284f0 (second variant 0x710072875c):
     // KartParamCache base (0x7100669954), then:
@@ -48,3 +48,5 @@ namespace object
         // (extent >= 0x318, tail unmapped)
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

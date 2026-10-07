@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // KartBodyVt71Profile19 — PROVISIONAL behavioral-profile name in the KartBodyVt71
+    // KartBodyVt71Profile19 — behavioral-profile name in the KartBodyVt71
     // family.
     // Profile = the set of band slots 0x80/0x88/0x90/0x98/0xa0 a member overrides
     // vs the family base 0x11bb5c0 (slot-diff analysis); per-slot semantics are
@@ -31,3 +31,5 @@ namespace object
     {
     };
 }
+
+// Naming closure: the 665 family members are per kart+driver combination variants (shared ctors, vtable passed as argument); semantic per-combo names need the combination dictionary and are not derivable from the binary alone. Address-anchored name retained.

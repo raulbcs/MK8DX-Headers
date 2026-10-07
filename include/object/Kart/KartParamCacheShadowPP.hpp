@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheShadowPP — named from ctor string evidence: ctor string tag 'aglshpp' + params screenSpaceBlurType/pcfWidth/is_outputLinearSampler (0xf028a5-0xf1df4a) (was PROVISIONAL vtable-anchored KartParamCacheVt4050) (vptr 0x12f4050, cell 0x1315478, n=13, site 0xae2fb0, ctor 0xae2f64).
+    // KartParamCacheShadowPP — named from ctor string evidence: ctor string tag 'aglshpp' + params screenSpaceBlurType/pcfWidth/is_outputLinearSampler (0xf028a5-0xf1df4a) (was address-anchored KartParamCacheVt4050) (vptr 0x12f4050, cell 0x1315478, n=13, site 0xae2fb0, ctor 0xae2f64).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheShadowPP : public KartParamCache
     {
@@ -173,3 +173,5 @@ namespace object
         uint8_t mPad904;         // 0x904 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

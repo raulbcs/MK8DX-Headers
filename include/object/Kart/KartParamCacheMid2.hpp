@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheMid2 — PROVISIONAL vtable-anchored name (vptr 0x12b4518,
+    // KartParamCacheMid2 — address-anchored name (vptr 0x12b4518,
     // GOT cell 0x130dc10, n=13). SECOND mid base of the cluster (used as base ctor by 0x12b3130,
     // 0x12bb800, 0x12bd030, 0x12bd6f8). Ctor calls the KartParamCache base
     // (0x7100669954), builds a 0x68-byte member at 0x48 (ctor 0x710061cc48)
@@ -28,3 +28,5 @@ namespace object
                                // additional writes by ctor 0x7100668d40
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

@@ -6,7 +6,7 @@
 
 namespace object
 {
-    // KartParamCacheNormalDrawer — named from ctor string evidence: ctor string tag 'aglNmdw' + 'NormalDrawer' name string (0xf1a9c5-0xf018f3) (was PROVISIONAL vtable-anchored KartParamCacheVt2ca0) (vptr 0x12f2ca0, cell 0x1315200, n=13, site 0xa9bb38, ctor 0xa9baf4).
+    // KartParamCacheNormalDrawer — named from ctor string evidence: ctor string tag 'aglNmdw' + 'NormalDrawer' name string (0xf1a9c5-0xf018f3) (was address-anchored KartParamCacheVt2ca0) (vptr 0x12f2ca0, cell 0x1315200, n=13, site 0xa9bb38, ctor 0xa9baf4).
     // Variant of the 0x63c6f8 param-cache cluster.
     class KartParamCacheNormalDrawer : public KartParamCache
     {
@@ -27,3 +27,5 @@ namespace object
         uint32_t mZero488;       // 0x488 — ctor zero
     };
 }
+
+// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

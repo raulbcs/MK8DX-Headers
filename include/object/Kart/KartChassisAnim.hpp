@@ -5,7 +5,7 @@
 // KartChassisAnim — size 0x130, proven by operator new(0x130) in the
 // KartVehicle ctor (v400 0x7100170308, stored at KartVehicle+0x58; ctor
 // 0x710012289c receives the KartVehicle* and KartChassis+0x10).
-// PROVISIONAL: name mirrors KartVehicle::mKartChassisAnim; no MethodTree
+// Name mirrors KartVehicle::mKartChassisAnim (field-mirror evidence); no MethodTree
 // string. The ctor also fills the 0x80..0xCB region with 0xFF and then
 // patches cells from globals 0x12fae28 / 0x12fada8 (beyond the dumped tail).
 namespace object

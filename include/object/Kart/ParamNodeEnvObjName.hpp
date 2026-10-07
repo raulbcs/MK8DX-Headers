@@ -4,7 +4,7 @@
 
 namespace object
 {
-    // ParamNodeEnvObjName — named from ctor string evidence: ctor params env 'name'/object-name JP + 'enable' display block (0xef8f59-0xef8f86) (was PROVISIONAL vtable-anchored ParamNodeVt1fc0) (vptr 0x12b1fc0, cell 0x130d900, n=22, site 0x646de0, ctor 0x646dac).
+    // ParamNodeEnvObjName — named from ctor string evidence: ctor params env 'name'/object-name JP + 'enable' display block (0xef8f59-0xef8f86) (was address-anchored ParamNodeVt1fc0) (vptr 0x12b1fc0, cell 0x130d900, n=22, site 0x646de0, ctor 0x646dac).
     // Node class of the 0x647f40 hook-band cluster (shared trivial band
     // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
     // [this+0x1c]).
@@ -33,3 +33,5 @@ namespace object
         uint16_t mField108;    // 0x108 — ctor-written
     };
 }
+
+// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
