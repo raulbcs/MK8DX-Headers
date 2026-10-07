@@ -15,14 +15,14 @@ namespace nn::ae
     class KeyboardAppletThread : public AppletThread
     {
     public:
-        uint8_t mOwn08[0xec];  // 0x08
+        uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
         uint8_t mFlagF4;       // 0xf4 — ctor zero
-        uint8_t padF5[0x523];  // 0xf5 — memset 0
+        uint8_t padF5[0x423];  // 0xf5 — unproven gap (docblock memset 0xf8-0x528)
         void* mBuf518;         // 0x518 — swkbd string buffer (0x868)
         void* mBuf520;         // 0x520 — swkbd string buffer copy (0x870)
         void* mBuf528;         // 0x528 — text-check work (0x878)
         void* mBuf530;         // 0x530 — swkbd work (0x880)
-        uint8_t pad538[0xc];   // 0x538 — unproven padding
+        uint8_t pad538[0xc];   // 0x538 — unproven padding — unproven padding
         uint32_t mBufSize544;  // 0x544 — GetRequiredStringBufferSize()
         // (0x548 total)
     };

@@ -12,7 +12,7 @@ namespace nn::ae
     class ControllerAppletThread : public AppletThread
     {
     public:
-        uint8_t mOwn08[0xec];  // 0x08
+        uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
         uint8_t mFlagF4;       // 0xf4 — ctor zero
         uint8_t padF5[0x21f];  // 0xf5 — memset 0
         uint32_t mZero314;     // 0x314 — ctor zero
