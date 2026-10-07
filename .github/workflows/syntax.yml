@@ -30,7 +30,7 @@ jobs:
  # When a file below starts passing, remove it from this list.
  ALLOWLIST=$(mktemp)
  cat > "$ALLOWLIST" <<'EOF'
- # (empty as of -Ivendor/sead/include + -DNNSDK on the
+ # (empty: -Ivendor/sead/include + -DNNSDK on the
  # include path fixed all 204 previously allowlisted failures; the
  # xlink2 and Page_Dialog include gaps were fixed in-repo)
  EOF
