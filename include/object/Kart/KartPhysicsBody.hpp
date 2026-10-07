@@ -18,6 +18,14 @@ namespace object
     // the root ctor; TogezoBomb's inlined ctor (vptr 0x11b0898, n=128)
     // calls the Koura ctor. Item factories inline the ctors — the
     // out-of-line copies have no direct callers.
+    //
+    // Vtable slot facts (root vtable): slot 0x18 = deleting dtor
+    // (operator delete); slots 0x340-0x3a8 (102-115) = no-ops; slot 0x120
+    // = no-op; slot 0x3f8 (125) = returns 40.0f; slot 0x1f8 (61) =
+    // sead::SharcArchiveRes::setCurrentDirectoryImpl (shared archive-
+    // interface band; Koura overrides it at 0x710002ffc4). Koura slot
+    // 0x338 (101) writes the (0x428, 0x4c8) word pair only while 0x4c8
+    // has bit 31 set; slot 0x1f8 reads the byte at 0x4cc.
     class KartPhysicsBody : public gear::Actor
     {
     public:
