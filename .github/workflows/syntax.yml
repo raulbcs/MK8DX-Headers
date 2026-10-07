@@ -58,9 +58,7 @@ jobs:
           fi
           echo "syntax check OK ($(wc -l < "$fails") allowlisted failures, $(wc -l < "$stale") stale entries)"
 
-      - name: Mechanical extent check (advisory until violations are zero)
-        # continue-on-error: tools/check_extents.py currently reports real
-        # header inconsistencies (see its output). Make this blocking once
-        # the existing violations are fixed in a follow-up task.
-        continue-on-error: true
+      - name: Mechanical layout lint (BLOCKING)
+        # tools/check_extents.py enforces overlap/coverage/pad-note/extent
+        # rules on every header with layout data. Exit != 0 fails the CI.
         run: python3 tools/check_extents.py
