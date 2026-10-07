@@ -13,6 +13,6 @@ namespace object
     class ParamChannelVt3218 : public KartParamCacheChan
     {
     public:
-        // (own fields unmapped)
+        // (no own fields beyond the Chan shape — see note)
     };
 }

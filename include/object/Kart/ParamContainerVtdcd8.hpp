@@ -9,7 +9,8 @@ namespace object
     // (param-cache super-family ring): n=33 slots, allocation
     // 0x488 at site 0x72f46c. Shares the trivial hook band
     // 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare).
-    // Own fields (0x40+) map pending.
+    // Own fields mapped from the inlined construction at the quoted site
+    // (vptr stores at +0x0/+0x30, tail count block); interior array region unproven.
     class ParamContainerVtdcd8
     {
     public:
