@@ -10,7 +10,7 @@ Current content: none. The previously-missing deps are covered by:
 
 - `vendor/sead` (open-ead/sead submodule), on the include path with `-DNNSDK`
 - `include/xlink2/TriggerType.hpp` and `include/xlink2/ResTriggerOverwriteParam.hpp`
-  (minimal in-repo headers, added 2026-10-07)
+ (minimal in-repo headers
 
 If a future header needs a missing external type, add a shim here using the
 same directory layout as the expected include path (e.g.

@@ -3,63 +3,63 @@ name: syntax
 # Local-first CI: run with `act workflow_dispatch` (or tools/pre-push-hook.sh,
 # installable via tools/hooks). Never auto-runs on GitHub.
 on:
-  workflow_dispatch:
+ workflow_dispatch:
 
 jobs:
-  syntax:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          # vendor/nnheaders (and the other vendor submodules) are NOT
-          # checked out by default; headers include <nn/...> from them.
-          submodules: recursive
+ syntax:
+ runs-on: ubuntu-latest
+ steps:
+ - uses: actions/checkout@v4
+ with:
+ # vendor/nnheaders (and the other vendor submodules) are NOT
+ # checked out by default; headers include <nn/...> from them.
+ submodules: recursive
 
-      - name: Install clang
-        run: |
-          if ! command -v clang++ >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y clang
-          fi
-          clang++ --version
+ - name: Install clang
+ run: |
+ if ! command -v clang++ >/dev/null 2>&1; then
+ sudo apt-get update && sudo apt-get install -y clang
+ fi
+ clang++ --version
 
-      - name: clang -fsyntax-only all headers
-        run: |
-          set -u
-          # Known-failing allowlist. Files here fail -fsyntax-only TODAY.
-          # Do NOT add new files here; fix them instead.
-          # When a file below starts passing, remove it from this list.
-          ALLOWLIST=$(mktemp)
-          cat > "$ALLOWLIST" <<'EOF'
-          # (empty as of 2026-10-07: -Ivendor/sead/include + -DNNSDK on the
-          # include path fixed all 204 previously allowlisted failures; the
-          # xlink2 and Page_Dialog include gaps were fixed in-repo)
-          EOF
-          fails=$(mktemp)
-          find include -name '*.hpp' | sort | while IFS= read -r f; do
-            clang++ -fsyntax-only -std=c++17 -DNNSDK -Iinclude -Ivendor/sead/include -Itools/shims -Ivendor/nnheaders -Ivendor/nnheaders/include "$f" 2>/dev/null \
-              || echo "$f" >> "$fails"
-          done
-          unexpected=$(mktemp); stale=$(mktemp)
-          # fail on any failing file OUTSIDE the allowlist
-          while IFS= read -r f; do
-            grep -qxF "$f" "$ALLOWLIST" || echo "$f" >> "$unexpected"
-          done < "$fails"
-          # warn on stale allowlist entries (file now compiles)
-          while IFS= read -r f; do
-            [ -f "$f" ] && ! grep -qxF "$f" "$fails" && echo "$f" >> "$stale"
-          done < "$ALLOWLIST"
-          if [ -s "$stale" ]; then
-            echo "::warning::allowlist entries that now PASS (remove them):"
-            cat "$stale"
-          fi
-          if [ -s "$unexpected" ]; then
-            echo "::error::headers failing syntax-check that are NOT allowlisted:"
-            cat "$unexpected"
-            exit 1
-          fi
-          echo "syntax check OK ($(wc -l < "$fails") allowlisted failures, $(wc -l < "$stale") stale entries)"
+ - name: clang -fsyntax-only all headers
+ run: |
+ set -u
+ # Known-failing allowlist. Files here fail -fsyntax-only TODAY.
+ # Do NOT add new files here; fix them instead.
+ # When a file below starts passing, remove it from this list.
+ ALLOWLIST=$(mktemp)
+ cat > "$ALLOWLIST" <<'EOF'
+ # (empty as of -Ivendor/sead/include + -DNNSDK on the
+ # include path fixed all 204 previously allowlisted failures; the
+ # xlink2 and Page_Dialog include gaps were fixed in-repo)
+ EOF
+ fails=$(mktemp)
+ find include -name '*.hpp' | sort | while IFS= read -r f; do
+ clang++ -fsyntax-only -std=c++17 -DNNSDK -Iinclude -Ivendor/sead/include -Itools/shims -Ivendor/nnheaders -Ivendor/nnheaders/include "$f" 2>/dev/null \
+ || echo "$f" >> "$fails"
+ done
+ unexpected=$(mktemp); stale=$(mktemp)
+ # fail on any failing file OUTSIDE the allowlist
+ while IFS= read -r f; do
+ grep -qxF "$f" "$ALLOWLIST" || echo "$f" >> "$unexpected"
+ done < "$fails"
+ # warn on stale allowlist entries (file now compiles)
+ while IFS= read -r f; do
+ [ -f "$f" ] && ! grep -qxF "$f" "$fails" && echo "$f" >> "$stale"
+ done < "$ALLOWLIST"
+ if [ -s "$stale" ]; then
+ echo "::warning::allowlist entries that now PASS (remove them):"
+ cat "$stale"
+ fi
+ if [ -s "$unexpected" ]; then
+ echo "::error::headers failing syntax-check that are NOT allowlisted:"
+ cat "$unexpected"
+ exit 1
+ fi
+ echo "syntax check OK ($(wc -l < "$fails") allowlisted failures, $(wc -l < "$stale") stale entries)"
 
-      - name: Mechanical layout lint (BLOCKING)
-        # tools/check_extents.py enforces overlap/coverage/pad-note/extent
-        # rules on every header with layout data. Exit != 0 fails the CI.
-        run: python3 tools/check_extents.py
+ - name: Mechanical layout lint (BLOCKING)
+ # tools/check_extents.py enforces overlap/coverage/pad-note/extent
+ # rules on every header with layout data. Exit != 0 fails the CI.
+ run: python3 tools/check_extents.py

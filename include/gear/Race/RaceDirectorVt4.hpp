@@ -10,7 +10,7 @@
 // proven by the allocation site 0x710006ee7c. Built by the director factory
 // 0x710006eb5c (dispatches on getRaceCheckManager [x0+8]/[x0+0xc] == 3) and
 // stored at [parent+0xa8].
-// Baptism audit 2026-10-07: predicate (this+0x9c) selector built when getRaceCheckManager flags == 3; no name evidence.
+// Baptism audit predicate (this+0x9c) selector built when getRaceCheckManager flags == 3; no name evidence.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
@@ -18,18 +18,18 @@
 
 namespace gear
 {
-    class RaceDirectorVt4 : public RaceDirectorVt2
-    {
-        public:
-            uint32_t mZero9c;  //0x9C — ctor zero
-            uint32_t mZeroa0;  //0xA0
-            uint32_t mZeroa4;  //0xA4
-            uint32_t mTicks600; //0xA8 — ctor sets 600 (0x258)
-            int32_t mMinus1ac; //0xAC — ctor sets -1
-            uint32_t mZerob0;  //0xB0
-            uint16_t mFfffb8;  //0xB8 — ctor sets 0xFFFF
-            uint16_t mFfffba;  //0xBA — ctor sets 0xFFFF
-            uint32_t mZerobc;  //0xBC
-            // (0xC0 total)
-    };
+ class RaceDirectorVt4 : public RaceDirectorVt2
+ {
+ public:
+ uint32_t mZero9c; //0x9C — ctor zero
+ uint32_t mZeroa0; //0xA0
+ uint32_t mZeroa4; //0xA4
+ uint32_t mTicks600; //0xA8 — ctor sets 600 (0x258)
+ int32_t mMinus1ac; //0xAC — ctor sets -1
+ uint32_t mZerob0; //0xB0
+ uint16_t mFfffb8; //0xB8 — ctor sets 0xFFFF
+ uint16_t mFfffba; //0xBA — ctor sets 0xFFFF
+ uint32_t mZerobc; //0xBC
+ // (0xC0 total)
+ };
 }

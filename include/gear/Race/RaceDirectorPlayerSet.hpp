@@ -15,7 +15,7 @@
 // 0x38/0x40/0x4C cursor -> store into a set field), dispatching on
 // getRaceCheckManager [x0+8]/[x0+0xc] == 3. Named fields hold the
 // RaceDirectorVt* chain members.
-// Baptism audit 2026-10-07: factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceCheckerBase flags; no rodata name, no method-tree entry.
+// Baptism audit factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceCheckerBase flags; no rodata name, no method-tree entry.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
@@ -23,43 +23,43 @@
 
 namespace gear
 {
-    struct RaceDirectorSetHelper;        // RaceDirectorSetHelper.hpp
-    struct RaceDirectorSetLanePool;      // RaceDirectorSetLanePool.hpp
-    struct RaceDirectorSetStatePod;      // RaceDirectorSetStatePod.hpp
+ struct RaceDirectorSetHelper; // RaceDirectorSetHelper.hpp
+ struct RaceDirectorSetLanePool; // RaceDirectorSetLanePool.hpp
+ struct RaceDirectorSetStatePod; // RaceDirectorSetStatePod.hpp
 
-    class RaceDirectorPlayerSet : public Actor
-    {
-        public:
-            uint8_t pad38[0x18]; //0x38 — child array pattern
-            RaceDirectorSetHelper* mHelper50; //0x50 — new(0x40), ctor 0x689c8
-            void* mSecondary58;  //0x58 — secondary vptr (0x11b3c78)
-            uint8_t mB60;        //0x60 — ctor 0, later 6
-            uint8_t mPad61[0x1]; // 0x61 — unproven gap
-            uint8_t mB62;        //0x62 — ctor 0
-            uint8_t mB63;        //0x63 — ctor 1
-            uint8_t mB64;        //0x64 — ctor 0
-            uint8_t mPad65[0x3]; // 0x65 — unproven gap
-            void* mChild68;      //0x68 — self (0x6f3fc)
-            void* mSub70;        //0x70 — alloc(0x60) via 0x60b04c (member-offset
-                                 // table entries {offset,1} for 0xc8-0x120, 0x6f4a8+)
-            void* mSub78;        //0x78 — alloc(0x60)
-            void* mSub80;        //0x80 — alloc(0x60)
-            uint8_t pad88[8];    //0x88 — unproven padding
-            void* mChain90;      //0x90 — RaceDirectorSetChainA ctor 0x61514
-                                 // (alloc 0x100 @0x6ed40); also Vt2 0x4e2f4 (0x6f11c)
-            uint8_t pad98[0x10]; //0x98 - 0xA7 — unproven padding
-            void* mA8;           //0xA8 — director chain members (0x6ed4c: ctor
-                                 // 0x61514, alloc 0x100; also 0x511a8->Vt5 @0x6f338,
-                                 // 0x702e0 @0x6f388, 0x628bc @0x6f1e4)
-            RaceDirectorSetLanePool* mB0; //0xB0 — new(0xA8), ctor 0x702e0 (0x6f388);
-                                 // the Vt3/Vt4/Vt6/Vt7 ctors (0x6eda0/0x6ee88/0x6ef70/
-                                 // 0x6f074) dispatch into the chain fields instead
-            RaceDirectorSetStatePod* mB8; //0xB8 — new(0x3C), ctor 0x585c4 (0x6f3dc)
-            RaceDirectorSetStatePod* mC0; //0xC0 — second POD; also stored into
-                                 // [[set+0xb0]+0x78]
-            uint8_t padC8[8];    //0xC8 - 0xCF — unproven padding
-            // plus: plain RaceDirector instance (0x4d7d8, alloc 0x90 @0x6f244),
-            // Vt2 (0x6f11c), 0x6e9d0/0x6ded4/0x620a0/0x6e5e0 members
-            // (0xD0 total)
-    };
+ class RaceDirectorPlayerSet : public Actor
+ {
+ public:
+ uint8_t pad38[0x18]; //0x38 — child array pattern
+ RaceDirectorSetHelper* mHelper50; //0x50 — new(0x40), ctor 0x689c8
+ void* mSecondary58; //0x58 — secondary vptr (0x11b3c78)
+ uint8_t mB60; //0x60 — ctor 0, later 6
+ uint8_t mPad61[0x1]; // 0x61 — unproven gap
+ uint8_t mB62; //0x62 — ctor 0
+ uint8_t mB63; //0x63 — ctor 1
+ uint8_t mB64; //0x64 — ctor 0
+ uint8_t mPad65[0x3]; // 0x65 — unproven gap
+ void* mChild68; //0x68 — self (0x6f3fc)
+ void* mSub70; //0x70 — alloc(0x60) via 0x60b04c (member-offset
+ // table entries {offset,1} for 0xc8-0x120, 0x6f4a8+)
+ void* mSub78; //0x78 — alloc(0x60)
+ void* mSub80; //0x80 — alloc(0x60)
+ uint8_t pad88[8]; //0x88 — unproven padding
+ void* mChain90; //0x90 — RaceDirectorSetChainA ctor 0x61514
+ // (alloc 0x100 @0x6ed40); also Vt2 0x4e2f4 (0x6f11c)
+ uint8_t pad98[0x10]; //0x98 - 0xA7 — unproven padding
+ void* mA8; //0xA8 — director chain members (0x6ed4c: ctor
+ // 0x61514, alloc 0x100; also 0x511a8->Vt5 @0x6f338,
+ // 0x702e0 @0x6f388, 0x628bc @0x6f1e4)
+ RaceDirectorSetLanePool* mB0; //0xB0 — new(0xA8), ctor 0x702e0 (0x6f388);
+ // the Vt3/Vt4/Vt6/Vt7 ctors (0x6eda0/0x6ee88/0x6ef70/
+ // 0x6f074) dispatch into the chain fields instead
+ RaceDirectorSetStatePod* mB8; //0xB8 — new(0x3C), ctor 0x585c4 (0x6f3dc)
+ RaceDirectorSetStatePod* mC0; //0xC0 — second POD; also stored into
+ // [[set+0xb0]+0x78]
+ uint8_t padC8[8]; //0xC8 - 0xCF — unproven padding
+ // plus: plain RaceDirector instance (0x4d7d8, alloc 0x90 @0x6f244),
+ // Vt2 (0x6f11c), 0x6e9d0/0x6ded4/0x620a0/0x6e5e0 members
+ // (0xD0 total)
+ };
 }
