@@ -380,8 +380,6 @@ EVIDENCE = re.compile(
 BASE_REGION_FIELD = re.compile(r"base region", re.I)
 
 OFFSET_COMMENT = re.compile(r"//\s*[-—]?\s*0x([0-9a-fA-F]{1,5})\b")
-FIXED_BY = re.compile(r"fixed by\s+\S+\s+at\s+0x([0-9a-fA-F]+)\b", re.I)
-ANY_COMMENT = re.compile(r"//")
 
 EXTENT_PATTERNS = [
     re.compile(r"extent\s+(?:is\s+|from\s+|of\s+|=|fixed by\s+\S+\s+at)?0x([0-9a-fA-F]+)", re.I),
@@ -390,7 +388,6 @@ EXTENT_PATTERNS = [
     re.compile(r"allocation[^.]*?size\s+0x([0-9a-fA-F]+)", re.I),
     re.compile(r"\bsize\s+0x([0-9a-fA-F]+)\s*\(", re.I),
 ]
-STRICT_EXTENT_NEG = re.compile(r"extent\s*(>=)", re.I)
 SUBOBJECT_LINE = re.compile(r"sub-?object|base region", re.I)
 SUBOBJECT_TO = re.compile(r"extent\s+0x[0-9a-fA-F]+,?\s+to\s", re.I)
 
@@ -515,7 +512,7 @@ def parse_fields(text):
         tail = line.split("//", 1)[1] if "//" in line else ""
         # A note is explanatory prose beyond the bare offset
         # ("// 0x38 - 0x3F" alone is NOT a note).
-        after = re.sub(r"[-\u2014]?\s*0x[0-9a-fA-F]{1,5}\b", "", tail, count=1)
+        after = re.sub(r"[-\u2014]?\s*0x[0-9a-fA-F]{1,5}\b", "", tail)
         after = re.sub(r"^[\s\-\u2014.,:;()]*", "", after)
         if (re.search(r"[A-Za-z]", after) or EVIDENCE.search(tail)
                 or EVIDENCE.search(prev_comment)):
@@ -538,8 +535,6 @@ def extract_extent(text):
             v = h(m.group(1))
             if 0 < v < OFFSET_LIMIT:
                 extents.append(v)
-    for m in STRICT_EXTENT_NEG.finditer(text):
-        pass  # lower bounds do not validate coverage
     return max(extents) if extents else None
 
 

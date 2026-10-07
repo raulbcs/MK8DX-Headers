@@ -63,7 +63,7 @@ namespace object
         char mPadFc[4];        // 0xfc — unproven padding
 
         // Embedded member at 0x100 (ctor 0x8dbc50; vptr 0x12d5b98, n=14)
-        char mSub100[0xc];     // 0x100..0x10c
+        char mSub100[0xc];     // 0x100..0x10c — unproven gap
         float mF10c;           // 0x10c — 1.0f
         uint64_t mField110;    // 0x110 — zeroed on ctor
         uint8_t mField118;     // 0x118 — zeroed on ctor

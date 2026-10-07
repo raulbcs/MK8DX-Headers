@@ -73,8 +73,6 @@ def classify(rel: str, stem: str, text: str, n_fields: int) -> str:
         return "PLACEHOLDER"
     if "PROVISIONAL" in text or RE_SEMANTIC_VT.match(stem):
         return "PROVISIONAL"
-    if rel.startswith("include/object/") and RE_OBJECT_VT.match(stem):
-        return "PLACEHOLDER"
     if rel in ALLOWLIST:
         return "NAMED"
     return "NAMED-PROVEN"
