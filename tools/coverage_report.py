@@ -160,22 +160,38 @@ HTML_TMPL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <title>MK8DX-Headers coverage treemap</title>
 <style>
-body{margin:0;font:13px/1.4 system-ui,sans-serif;background:#1e1e1e;color:#ddd}
-#bar{padding:6px 12px;background:#111;position:sticky;top:0}
-svg{display:block}
-rect{stroke:#1e1e1e;stroke-width:1;cursor:pointer}
+body{margin:0;font:13px/1.4 system-ui,sans-serif;background:#14161a;color:#ddd;overflow:hidden}
+#bar{padding:8px 12px;background:#0c0d10;position:fixed;top:0;left:0;right:0;z-index:10;display:flex;gap:10px;align-items:center;border-bottom:1px solid #2a2d33}
+.leg{display:inline-flex;align-items:center;gap:5px;cursor:pointer;padding:2px 8px;border-radius:10px;border:1px solid transparent;user-select:none}
+.leg.off{opacity:.25}
+.sw{width:11px;height:11px;border-radius:2px;display:inline-block}
+#hint{color:#889;margin-left:auto;font-size:11px}
+#msg{color:#8f8}
+svg{display:block;cursor:grab}
+svg.panning{cursor:grabbing}
+rect{stroke:#14161a;stroke-width:1;cursor:pointer}
 rect:hover{stroke:#fff;stroke-width:2}
 text{pointer-events:none;font:10px system-ui;fill:#000}
-#tip{position:fixed;display:none;background:#000c;color:#fff;padding:8px 10px;
-border-radius:4px;max-width:420px;pointer-events:none;z-index:9;white-space:pre-wrap}
-#msg{color:#8f8;margin-left:12px}
+#tip{position:fixed;display:none;background:#000d;color:#fff;padding:8px 10px;border-radius:4px;max-width:440px;pointer-events:none;z-index:9;white-space:pre-wrap}
 </style></head><body>
-<div id="bar"><b>MK8DX-Headers coverage</b> — click a tile to copy its path
-<span id="msg"></span></div>
+<div id="bar">
+<b>MK8DX-Headers coverage</b>
+<span class="leg" data-s="NAMED-PROVEN"><span class="sw" style="background:#3fb950"></span>named-proven</span>
+<span class="leg" data-s="NAMED"><span class="sw" style="background:#d29922"></span>named</span>
+<span class="leg" data-s="PROVISIONAL"><span class="sw" style="background:#f0883e"></span>provisional</span>
+<span class="leg" data-s="PLACEHOLDER"><span class="sw" style="background:#a371f7"></span>placeholder</span>
+<span class="leg" data-s="DOCBLOCK-ONLY"><span class="sw" style="background:#57606a"></span>docblock-only</span>
+<span id="msg"></span>
+<span id="hint">scroll = zoom &middot; drag = pan &middot; dblclick = reset &middot; click tile = copy path &middot; click legend = filter</span>
+</div>
 <svg id="tm"></svg><div id="tip"></div>
 <script>
 const DATA = __DATA__;
+const COLOR={"NAMED-PROVEN":"#3fb950","NAMED":"#d29922","PROVISIONAL":"#f0883e","PLACEHOLDER":"#a371f7","DOCBLOCK-ONLY":"#57606a"};
 const svg=document.getElementById('tm'),tip=document.getElementById('tip'),msg=document.getElementById('msg');
+const world=document.createElementNS('http://www.w3.org/2000/svg','g');
+svg.appendChild(world);
+function worstOf(row,side,total){const s=row.reduce((a,r)=>a+r.w,0);const thick=side*s/total;let worst=1e9;for(const r of row){const len=r.w/s*side;const a=len/thick;worst=Math.min(worst,Math.max(a,1/a));}return worst;}
 function layout(items,x,y,w,h){
  if(!items.length)return[];
  if(items.length===1)return[{it:items[0],x,y,w,h}];
@@ -187,10 +203,9 @@ function layout(items,x,y,w,h){
   const horiz=ww<hh;
   while(i<items.length){
    const cur=worstOf(row,horiz?ww:hh,total);
-   const cand=items[i], testSum=rowSum+cand.w;
-   row.push(cand);
+   row.push(items[i]);
    if(worstOf(row,horiz?ww:hh,total)>cur){row.pop();break;}
-   rowSum=testSum;i++;
+   rowSum+=items[i].w;i++;
   }
   const frac=rowSum/rest;
   if(horiz){const rh=hh*frac;let rx=xx;for(const r of row){const rw=ww*r.w/rowSum;out.push({it:r,x:rx,y:yy,w:rw,h:rh});rx+=rw;}yy+=rh;hh-=rh;}
@@ -199,34 +214,49 @@ function layout(items,x,y,w,h){
  }
  return out;
 }
-function worstOf(row,side,total){
- const s=row.reduce((a,r)=>a+r.w,0);
- const thick=side*s/total;let worst=1e9;
- for(const r of row){const len=r.w/s*side;const a=len/thick;worst=Math.min(worst,Math.max(a,1/a));}
- return worst;
+let visible=DATA.slice(),tiles=[];
+function render(){
+ world.innerHTML='';
+ const W=innerWidth,H=innerHeight-38;
+ svg.setAttribute('width',W);svg.setAttribute('height',H+38);
+ tiles=layout(visible,0,38,W-4,H-4);
+ for(const t of tiles){
+  const it=t.it;
+  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  r.setAttribute('x',t.x);r.setAttribute('y',t.y);r.setAttribute('width',Math.max(t.w-1,.5));r.setAttribute('height',Math.max(t.h-1,.5));
+  r.setAttribute('fill',COLOR[it.status]||'#888');
+  r.addEventListener('mousemove',e=>{tip.style.display='block';tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY+14)+'px';
+   tip.textContent=`${it.path}\nstatus: ${it.status}\nfields: ${it.fields}  gaps: ${it.gaps}`+
+    (it.vptr?`\nvptr: ${it.vptr}`:'')+(it.ctor?`\nctor: ${it.ctor}`:'')+
+    (it.anchors.length?`\nanchors: ${it.anchors.slice(0,8).join(', ')}${it.anchors.length>8?' …':''}`:'')+
+    (it.tags.length?`\ntags: ${it.tags.join(', ')}`:'');});
+  r.addEventListener('mouseleave',()=>tip.style.display='none');
+  r.addEventListener('click',e=>{e.stopPropagation();const done=()=>{msg.textContent='— copied '+it.path;setTimeout(()=>msg.textContent='',1500);};
+   if(navigator.clipboard){navigator.clipboard.writeText(it.path).then(done).catch(()=>fallback(it.path,done));}else fallback(it.path,done);});
+  world.appendChild(r);
+  if(t.w>52&&t.h>16){const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
+   tx.setAttribute('x',t.x+4);tx.setAttribute('y',t.y+13);tx.textContent=it.name.slice(0,Math.floor(t.w/6.2));world.appendChild(tx);}
+ }
 }
-const W=innerWidth,H=innerHeight-34;
-svg.setAttribute('width',W);svg.setAttribute('height',H+34);
-const tiles=layout(DATA,0,34,W-20,H-20);
-tiles.forEach(t=>{
- const it=t.it;if(t.w<1||t.h<1)return;
- const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
- r.setAttribute('x',t.x);r.setAttribute('y',t.y);r.setAttribute('width',Math.max(t.w-1,.5));r.setAttribute('height',Math.max(t.h-1,.5));
- r.setAttribute('fill',it.color);
- r.addEventListener('mousemove',e=>{tip.style.display='block';tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY+14)+'px';
-  tip.textContent=`${it.path}\\nstatus: ${it.status}\\nfields: ${it.fields}  gaps: ${it.gaps}`+
-   (it.vptr?`\\nvptr: ${it.vptr}`:'')+(it.ctor?`\\nctor: ${it.ctor}`:'')+
-   (it.anchors.length?`\\nanchors: ${it.anchors.slice(0,8).join(', ')}${it.anchors.length>8?' …':''}`:'')+
-   (it.tags.length?`\\ntags: ${it.tags.join(', ')}`:'');});
- r.addEventListener('mouseleave',()=>tip.style.display='none');
- r.addEventListener('click',()=>{const done=()=>{msg.textContent='— copied '+it.path;setTimeout(()=>msg.textContent='',1500);};
-  if(navigator.clipboard){navigator.clipboard.writeText(it.path).then(done).catch(()=>fallback(it.path,done));}else fallback(it.path,done);});
- svg.appendChild(r);
- if(t.w>46&&t.h>16){const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
-  tx.setAttribute('x',t.x+4);tx.setAttribute('y',t.y+12);tx.textContent=it.name.slice(0,Math.floor(t.w/6.2));svg.appendChild(tx);}
+// zoom & pan
+let scale=1,tx=0,ty=0;
+function apply(){world.setAttribute('transform',`translate(${tx},${ty}) scale(${scale})`);}
+svg.addEventListener('wheel',e=>{e.preventDefault();const k=e.deltaY<0?1.2:1/1.2;const ns=Math.min(40,Math.max(.2,scale*k));
+ const mx=e.clientX,my=e.clientY-0;tx=mx-(mx-tx)*(ns/scale);ty=my-(my-ty)*(ns/scale);scale=ns;apply();},{passive:false});
+let drag=null;
+svg.addEventListener('mousedown',e=>{drag={x:e.clientX,y:e.clientY,tx,ty};svg.classList.add('panning');});
+addEventListener('mousemove',e=>{if(!drag)return;tx=drag.tx+e.clientX-drag.x;ty=drag.ty+e.clientY-drag.y;apply();});
+addEventListener('mouseup',()=>{drag=null;svg.classList.remove('panning');});
+svg.addEventListener('dblclick',()=>{scale=1;tx=0;ty=0;apply();});
+// legend filter
+document.querySelectorAll('.leg').forEach(el=>{
+ el.addEventListener('click',()=>{const s=el.dataset.s;el.classList.toggle('off');
+  const off=new Set([...document.querySelectorAll('.leg.off')].map(e=>e.dataset.s));
+  visible=DATA.filter(d=>!off.has(d.status));render();});
 });
 function fallback(s,done){const ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();}
-addEventListener('resize',()=>location.reload());
+addEventListener('resize',()=>render());
+render();
 </script></body></html>
 """
 

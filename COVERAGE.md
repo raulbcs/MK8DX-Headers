@@ -1,6 +1,6 @@
 # Header coverage report
 
-Generated 2026-10-07 16:14 by `tools/coverage_report.py` — 590 headers.
+Generated 2026-10-07 16:59 by `tools/coverage_report.py` — 590 headers.
 
 | Status | Headers | % |
 |---|---:|---:|
