@@ -13,9 +13,10 @@ namespace object
     class ParamContainerVtb690
     {
     public:
-        void* vtable;         // 0x00
-        uint8_t pad08[8];     // 0x08
-        char mOwn10[0x1668];  // 0x10 — own-field region
+        void* vtable;        // 0x00
+        uint8_t mPad8[0x28];  // 0x8 — unproven gap (pre-secondary-base)
+        uint8_t mPad30[0x8];  // 0x30 — secondary hook-band vptr (ctor-written)
+        uint8_t mPad38[0x1640];  // 0x38 — array/body region — unproven gap
         // (0x1678 total, factory alloc)
     };
 }
