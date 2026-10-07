@@ -6,7 +6,7 @@ namespace object
 {
     // KartParamCacheVt2668 — address-anchored name (vptr 0x12b2668,
     // GOT cell 0x130d980). Cluster variant, extent 0x168 (ctor 0x710064a708):
-    // KartParamCacheVt2358 base (ctor 0x710064822c, extent 0x38), then
+    // KartParamCacheEnv base (ctor 0x710064822c, extent 0x38), then
     // members: KartParamCacheMid2-shaped 0x48 member at 0x40 (ctor
     // 0x710061cc48), KartParamCacheVt24c8-shaped 0x20 member at 0x88 (ctor
     // 0x7100669954), KartParamCacheChanBase member at 0xa8 (ctor
@@ -17,7 +17,7 @@ namespace object
     {
     public:
         void* vtable;           // 0x00
-        uint8_t mVt2358Base08[0x30]; // 0x08 — KartParamCacheVt2358 base fields (ctor-zeroed)
+        uint8_t mEnvBase08[0x30]; // 0x08 — KartParamCacheEnv base fields (ctor-zeroed)
         uint64_t mField38;      // 0x38 — ctor-written
         char mMid2Member40[0x48]; // 0x40 — member, ctor 0x710061cc48 (Mid2-shaped, extent 0x48)
         char mVt24c8Member88[0x20]; // 0x88 — member, ctor 0x7100669954 (Vt24c8-shaped, extent 0x20)

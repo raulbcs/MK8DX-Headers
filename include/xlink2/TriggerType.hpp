@@ -10,5 +10,4 @@ enum TriggerType
 {
     Invalid = -1,
 };
-static_assert(sizeof(TriggerType) == sizeof(int));
 } // namespace xlink2

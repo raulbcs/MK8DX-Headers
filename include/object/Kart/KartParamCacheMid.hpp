@@ -33,14 +33,13 @@ namespace object
         char mChanB0[0x20];    // 0xb0 — channel-pair member (cells 0x130d908;
                                // ctor zeroes a flag byte at 0xc8 = chan+0x18 —
                                // the +0x18 field here is a byte, NOT the float
-                               // seen in the Vt3130 instances)
+                               // seen in the KartParamCacheFilterAA instances)
         char mChanD0[0x20];    // 0xd0 — channel-pair member (flag byte at 0xe8)
         char mChanF0[0x18];    // 0xf0 — channel-pair member (to 0x108)
         int32_t mFffF108;      // 0x108 — ctor sets -1
+        uint8_t mPad10C[0x4]; // 0x10C — unproven gap
         // (0x110 total)
     };
 }
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
-
-        uint8_t mPad10C[0x4]; // 0x10C — unproven gap
