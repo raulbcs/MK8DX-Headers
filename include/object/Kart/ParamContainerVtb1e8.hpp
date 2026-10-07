@@ -13,9 +13,9 @@ namespace object
     class ParamContainerVtb1e8
     {
     public:
-        void* vtable;          // 0x00
-        uint8_t pad08[8];      // 0x08
-        char mOwn10[0x2e0];    // 0x10 — own-field region (map pending)
+        void* vtable;        // 0x00
+        uint8_t pad08[8];    // 0x08
+        char mOwn10[0x2e0];  // 0x10 — own-field region
         // (0x2f0 total, factory alloc)
     };
 }

@@ -13,7 +13,6 @@ namespace object
     class KartParamCacheContainer : public KartParamCacheMid2
     {
     public:
-        char mOwn1d0[0x720];   // 0x1d0 — own-field region (Mid2 extent 0x1d0) (map pending;
                                // ctor 0x710071db70 writes documented in the wip notes)
     };
 }

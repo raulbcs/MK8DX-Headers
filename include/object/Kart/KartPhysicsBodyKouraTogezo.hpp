@@ -17,6 +17,5 @@ namespace object
     class KartPhysicsBodyKouraTogezo : public KartPhysicsBodyKoura
     {
     public:
-        char mOwn460[0x78];    // 0x460 — own-field region (map pending)
     };
 }

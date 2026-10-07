@@ -13,7 +13,7 @@ namespace object
     class ParamChannelVt29b0 : public KartParamCacheChan
     {
     public:
-        char mOwn20[0x1a0];    // 0x20 — own-field region (map pending)
+        char mOwn20[0x1a0];  // 0x20 — own-field region
         // (0x1c0 total)
     };
 }

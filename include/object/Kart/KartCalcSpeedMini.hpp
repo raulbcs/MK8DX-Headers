@@ -11,6 +11,5 @@ namespace object
     class KartCalcSpeedMini : public KartCalcSpeedMiniCore
     {
     public:
-        char mOwn300[0x58];    // 0x300 — own-field region (map pending)
     };
 }

@@ -14,7 +14,6 @@ namespace object
     class KartParamCacheChan : public KartParamCacheChanBase
     {
     public:
-        char mTail18[8];       // 0x18 — filled by the 0x7100662f70 init
-                               // (map pending; extent 0x20)
+        char mTail18[8];  // 0x18 — filled by the 0x7100662f70 init
     };
 }

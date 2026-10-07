@@ -13,7 +13,6 @@ namespace object
     class KartParamCacheVt2738 : public KartParamCacheMid2
     {
     public:
-        char mOwn1d0[0x30];    // 0x1d0 — own-field region (map pending)
         // (0x200 total)
     };
 }

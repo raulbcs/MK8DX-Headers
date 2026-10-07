@@ -8,15 +8,14 @@ namespace object
     // class of the 0x647f40 hook-band cluster: channel-pair members
     // (ctor 0x7100662f30/0x7100662f70) at 0x4a8, 0x4d0, 0x4f0, 0x510, 0x530,
     // constructed in place at 0x711a24. EXTENT APPROXIMATE: last channel
-    // + 0x20 = 0x550 (no factory alloc; per-field map pending).
     class ParamMultiChanVtc200
     {
     public:
-        void* vtable;          // 0x00
-        uint8_t pad08[0x28];   // 0x08
-        char mChan30[0x20];    // 0x30 — first channel-pair member
+        void* vtable;         // 0x00
+        uint8_t pad08[0x28];  // 0x08
+        char mChan30[0x20];   // 0x30 — first channel-pair member
         char mMid50[0x458];   // 0x50 — fields/channel region
-        char mTail4a8[0xa8]; // 0x4a8 — channel array region (to 0x550)
+        char mTail4a8[0xa8];  // 0x4a8 — channel array region (to 0x550)
         // (~0x550 total, APPROXIMATE)
     };
 }

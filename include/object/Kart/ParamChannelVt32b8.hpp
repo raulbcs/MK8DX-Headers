@@ -14,7 +14,6 @@ namespace object
     class ParamChannelVt32b8 : public KartParamCacheChan
     {
     public:
-        char mTail18[8];       // 0x18 — 0x7100662f70 init (map pending)
         // (0x20 total)
     };
 }

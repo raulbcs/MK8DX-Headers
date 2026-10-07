@@ -12,7 +12,7 @@ namespace object
     class KartParamCacheVt7850 : public KartParamCache
     {
     public:
-        char mOwn40[0x120];    // 40 — own-field region (map pending)
+        char mOwn40[0x120];    // 40 — own-field region
         // (0x160 total)
     };
 }
