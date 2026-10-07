@@ -201,7 +201,8 @@ namespace object
         uint8_t mPad33D[3]; //0x33D - 0x33F — unproven padding
         sead::Vector2f mStickVolForKiller; //0x340 — zeroed via 8-byte store in FUN_7100173c40
         uint8_t mPad348[0x28]; //0x348 - 0x36F — unproven padding
-        
+        uint8_t mPad370[0x748]; //0x370 - 0xAB7 — unproven gap (region unmapped by ctor analysis)
+
         ControlInfo getControlInfo();
 
         void setMatrixAndVel(gear::MtxT const&, sead::Vector3<float>*);
@@ -210,5 +211,3 @@ namespace object
         KartVehicle();
 	};
 }
-
-        uint8_t mPad370[0x748]; // 0x370 — unproven gap (region unmapped by ctor analysis)
