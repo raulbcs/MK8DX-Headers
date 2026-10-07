@@ -7,8 +7,7 @@
 // owner = object::KartParameter at KartVehicle+0x78) and of the stat calc
 // FUN_710014b6d0. Holds live wheel/state fields with null-fallback defaults
 // (1.0/23.0/10.0/2.0). Name CONFIRMED by the recorder channel string
-// "RecorderKartUnit" (rodata 0xee5f88). Offsets validated byte-exact by the
-// mk8dx-400 check.
+// "RecorderKartUnit" (rodata 0xee5f88).
 namespace object
 {
     struct KartVehicle; // object/Kart/KartVehicle.hpp

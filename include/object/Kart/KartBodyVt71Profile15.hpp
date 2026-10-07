@@ -5,7 +5,7 @@
 namespace object
 {
     // KartBodyVt71Profile15 — PROVISIONAL behavioral-profile name in the KartBodyVt71
-    // family (census cluster kartbody_665, wip/vtable_census.json in mk8dx-400).
+    // family.
     // Profile = the set of band slots 0x80/0x88/0x90/0x98/0xa0 a member overrides
     // vs the family base 0x11bb5c0 (census slot_diff); per-slot semantics are
     // documented in KartBodyVt71.hpp. No layout beyond the base is implied: the

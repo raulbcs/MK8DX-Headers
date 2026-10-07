@@ -22,8 +22,7 @@
 #include "KartRecorderChannels.hpp"
 #include "KartParameter.hpp"
 
-// Canonical KartVehicle layout (byte-exact offsets verified against the
-// v400 binary by the mk8dx-400 check).
+// Canonical KartVehicle layout (byte-exact offsets verified against the v400 binary).
 //
 // Subobject allocation table (proven by operator new sites in the ctor
 // 0x7100170100-0x7100170460): Control 0x70 @+0x10, Cpu 0x90 @+0x18,

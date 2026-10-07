@@ -18,9 +18,8 @@ namespace object
     // 665 combos; a tiny per-combo block then stores the class vptr and
     // writes the per-combo data (fields 0x38, 0x128) — the same trio the
     // slot 0x18 re-init hook rewrites (0x38/0x128/0x1a8-clear). Per-combo
-    // BEHAVIOR is compiled per class (348 distinct slot-0x80 impls) —
-    // the 665 are not worth per-class headers; the census JSON
-    // (wip/kartbody_census_665.json) is the combo map.
+    // BEHAVIOR is compiled per class (348 distinct slot-0x80 impls) — the 665 are
+    // not worth per-class headers; the census is the combo map.
     //
     // Slot semantics (hot override band, census evidence):
     // - slot 0x18 (0x7100198ac8): re-init hook — base impl stores the
