@@ -206,7 +206,8 @@ function worstOf(row,side,total){
  return worst;
 }
 const W=innerWidth,H=innerHeight-34;
-const tiles=layout(DATA,W/2,H/2,W-20,H-20);
+svg.setAttribute('width',W);svg.setAttribute('height',H+34);
+const tiles=layout(DATA,0,34,W-20,H-20);
 tiles.forEach(t=>{
  const it=t.it;if(t.w<1||t.h<1)return;
  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');
