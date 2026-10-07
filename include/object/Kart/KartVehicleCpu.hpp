@@ -13,6 +13,14 @@ namespace object
     class KartVehicleCpu : public KartVehicleControl
 	{
 		public:
+			// Proven sub-offset map of 0x70..0x8F from ctor 0x7100179f5c
+			// (base KartVehicleControl ctor 0x179660 covers 0x00..0x6B):
+			//   0x06c u64 = 0 (write crosses the base/pad boundary)
+			//   0x074 u64 = 0
+			//   0x07c u8  = 1
+			//   0x080 f32 = 0.25f, 0x084 u32 = 0 (x store pair)
+			// Only 0x070..0x073 stays unproven (may be written by base ctor
+			// 0x179660); extent from factory alloc 0x90 at 0x71001701b4.
 			uint8_t mPad70[0x20];
 	};
 }

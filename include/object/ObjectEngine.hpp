@@ -15,9 +15,12 @@ namespace object
 {
     class ObjectEngine
     {
-        public:
-            uint8_t mPad00[0x218];
-            gear::RaceDirector* mRaceDirector; //0x218
+			public:
+				// Unproven — Switch ctor not identified (no RTTI, stripped binary);
+				// extent fixed by mRaceDirector at 0x218. The Wii U (32-bit) layout
+				// suggests per-director init state inside this range.
+				uint8_t mPad00[0x218];
+				gear::RaceDirector* mRaceDirector; //0x218
             gear::FieldDirector* mFieldDirector; //0x220
             uintptr_t mPad228; //0x228
             object::RecorderDirector* mRecorderDirector; //0x230
