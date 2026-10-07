@@ -13,6 +13,8 @@ namespace enl
     public:
         static inline Framework* sInstance;
 
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extent fixed by mPeerManager at 0x28.
         uint8_t mPad00[0x28];
         PeerManagerCommon* mPeerManager; // 0x28
         uintptr_t mPad30; // 0x30
