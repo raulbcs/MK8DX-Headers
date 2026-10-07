@@ -14,7 +14,7 @@ namespace object
     // slot-diff fingerprints, ctors SHARED across classes (vtable passed
     // as arg — data-parametrized at construction).
     //
-    // Construction pattern: base ctor 0x710019888 runs for ALL
+    // Construction pattern: base ctor 0x7100019888 runs for ALL
     // 665 combos; a tiny per-combo block then stores the class vptr and
     // writes the per-combo data (fields 0x38, 0x128) — the same trio the
     // slot 0x18 re-init hook rewrites (0x38/0x128/0x1a8-clear). Per-combo
@@ -34,7 +34,7 @@ namespace object
     // - slot 0x1c0 (0x710019b440): delegates to [0x140] -> [+0x730]
     //   vtable slot 0x18, returns [+0x738] (602 classes differ).
     //
-    // Vtable .data 0x11bb5c0 (GOT cell 0x12fd6a8), ctor 0x710019888, size
+    // Vtable .data 0x11bb5c0 (GOT cell 0x12fd6a8), ctor 0x7100019888, size
     // 0x208 (allocation 0x208 at 0x19d554). Ctor: Actor base 0x7b976c,
     // embedded member at 0x38 (ctor 0x86838c), zeros at 0x150-0x160,
     // u32 0x160 = 0. Derived variants add fields up to ~0x2b8 (observed

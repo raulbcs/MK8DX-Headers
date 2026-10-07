@@ -6,7 +6,7 @@
 
 // RaceListItemE — PROVISIONAL vtable-anchored name ("E"). Manager list item
 // of the far race family (NOT a RaceDirector child — reuses the enter/calc/
-// exit slot block only). Vtable 0x11b89c8 (GOT 0x12fcc80). Ctor 0x7100c8138
+// exit slot block only). Vtable 0x11b89c8 (GOT 0x12fcc80). Ctor 0x71000c8138
 // (Actor base 0x7b976c). Size 0xB00. Wired by its manager: child+0x18=self,
 // +0x20 intrusive node, +0x28=&manager+0x178, +0x30=[manager+0x1A8];
 // manager+0x1C0++.

@@ -6,7 +6,7 @@
 
 // RaceDirectorPlayer — PROVISIONAL vtable-anchored name ("P"). Per-player
 // director: vtable 0x11b4a40 (GOT 0x12fc060), ctor 0x7100070cb4, size 0x2B0
-// (allocation site 0x710058c60). Constructed in a loop by
+// (allocation site 0x7100058c60). Constructed in a loop by
 // RaceDirectorManager (one per player, w1 = player index), registered in
 // the manager's child array and vector. Owns the per-player director-set
 // factory (RaceDirectorPlayerSet) at +0x50. The ctor's first call

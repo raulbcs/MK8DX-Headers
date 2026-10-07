@@ -4,7 +4,7 @@
 
 // RaceListItemF — PROVISIONAL vtable-anchored name ("F"). Manager list item
 // of the far race family (same wiring pattern as D/E; base chain 0x7d5450,
-// NOT Actor). Vtable 0x11b8ab8 (GOT 0x12fcca8). Ctor 0x7100c9e04; size 0x198,
+// NOT Actor). Vtable 0x11b8ab8 (GOT 0x12fcca8). Ctor 0x71000c9e04; size 0x198,
 // proven by the allocation site 0x71003de7c4. Note: its typeinfo cell is
 // unreliable (points at unrelated code).
 // Baptism audit 2026-10-07: same wiring pattern, base chain 0x7d5450; typeinfo cell unreliable (points at unrelated code); no name.

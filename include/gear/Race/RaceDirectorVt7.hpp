@@ -7,8 +7,8 @@
 // RaceDirectorVt7 — PROVISIONAL vtable-anchored name. Vtable 0x11b36d0
 // (GOT 0x12fbd28; 0x11b36e0 is the D1 slot), typeinfo 0x56b28
 // ("(*(u32*)(this+0x9c) | 1) == 1" — accepts state 0 or 1). Derives from
-// RaceDirectorVt2 (ctor 0x710056ba8). Size 0xC8, proven by the allocation
-// site 0x71006f06c (guarded by the race-check-manager flag at 0x6efac).
+// RaceDirectorVt2 (ctor 0x7100056ba8). Size 0xC8, proven by the allocation
+// site 0x710006f06c (guarded by the race-check-manager flag at 0x6efac).
 // Overrides both slot 0xd0 (0x58374) and 0xd8 (0x58338) — the only one of
 // the set that does.
 // Baptism audit 2026-10-07: predicate accepts state 0/1; only member overriding slots 0xd0/0xd8; no name.

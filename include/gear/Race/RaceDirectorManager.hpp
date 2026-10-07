@@ -4,7 +4,7 @@
 
 // RaceDirectorManager — PROVISIONAL vtable-anchored name ("A" in the
 // hierarchy pass). Vtable 0x11b3808 (GOT 0x12fbd40), typeinfo 0x58568
-// (predicate on this+0x9c). Ctor 0x71005876c — base ctor 0x7b98bc is NOT
+// (predicate on this+0x9c). Ctor 0x710005876c — base ctor 0x7b98bc is NOT
 // the Actor chain: it is RaceDirectorManagerBase (vtable 0x12c5638,
 // size 0x68 — see RaceDirectorManagerBase.hpp); this class overwrites the
 // vptr at offset 0 and starts its own fields at 0x68. Kept flat here (the

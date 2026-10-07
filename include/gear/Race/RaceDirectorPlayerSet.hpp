@@ -6,7 +6,7 @@
 
 // RaceDirectorPlayerSet — PROVISIONAL vtable-anchored name ("C"). Per-player
 // child-director set/factory: vtable 0x11b4810 (GOT 0x12fbfd8, cell holds vptr-0x10), ctor
-// 0x71006eb5c (the director factory; the 0x7c2938 call is the primary
+// 0x710006eb5c (the director factory; the 0x7c2938 call is the primary
 // base RaceDirectorPlayerSetBase, vtable 0x12c59b0, size 0x58 — see
 // RaceDirectorPlayerSetBase.hpp; this ctor overwrites the vptr at 0 and
 // starts its own fields at 0x58), secondary vtable

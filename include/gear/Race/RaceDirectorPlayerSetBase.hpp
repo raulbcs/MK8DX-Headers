@@ -6,7 +6,7 @@
 
 // RaceDirectorPlayerSetBase — PROVISIONAL vtable-anchored name. Vtable
 // 0x12c59b0 (GOT cell 0x130fee0), far-family gap member reclassified: the
-// PRIMARY BASE of RaceDirectorPlayerSet. The factory ctor (0x71006eb5c)
+// PRIMARY BASE of RaceDirectorPlayerSet. The factory ctor (0x710006eb5c)
 // calls 0x7c2938 at offset 0 — it runs ctor 0x7b976c (RaceDirectorBase38),
 // zeroes 0x38..0x57 and stores this vptr; the factory then overwrites the
 // vptr with its own (0x12fbd48 cell) and starts its fields at 0x58.

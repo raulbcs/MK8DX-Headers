@@ -8,7 +8,7 @@ namespace object
 {
     // Root physics body of the item/kart physics family (32 vtables share
     // the KartPhysicsBody_shapePos_710001299c slot). Vtable .data 0x11ada60
-    // (GOT cell 0x12fb050), ctor 0x7100116a4(this, x1 = param block, w2).
+    // (GOT cell 0x12fb050), ctor 0x71000116a4(this, x1 = param block, w2).
     //
     // Concrete size 0x328: the intermediate base (KartPhysicsBodyMid,
     // ctor 0x3703c) starts its own fields at 0x328. Ctor-proven writes
@@ -69,20 +69,20 @@ namespace object
         uint8_t mField118;     // 0x118 — zeroed on ctor
         char mPad119[7];       // 0x119 — unproven padding
         // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
-        // the isSurfaceValid slot 0x710013190: pos + vel*t + 0.5*accel*t^2)
+        // the isSurfaceValid slot 0x7100013190: pos + vel*t + 0.5*accel*t^2)
         uint8_t mPad120[0xc];  // 0x120 — unproven padding
         float mPosX12c;        // 0x12c — position xyz (written by the
-        float mPosY130;        // 0x130 — shapePos calc integration 0x7100137a0+;
+        float mPosY130;        // 0x130 — shapePos calc integration 0x71000137a0+;
         float mPosZ134;        // 0x134 — ==2 state branch copies them raw)
         uint8_t mPad138[0x1c]; // 0x138 — unproven padding
         float mVelX154;        // 0x154 — velocity xyz (written by the physics
-        float mVelY158;        // 0x158 — integration 0x7100142d0-0x148e0)
+        float mVelY158;        // 0x158 — integration 0x71000142d0-0x148e0)
         float mVelZ15c;        // 0x15c
         uint8_t mPad160[0x18]; // 0x160 — unproven padding
         uint16_t mField178;    // 0x178 — 1 on ctor
         char mPad17a[2];       // 0x17a — unproven padding
         float mAccX17c;        // 0x17c — acceleration xyz (written by fn
-        float mAccY180;        // 0x180 — 0x710012e20-0x13190; ctor zeroes via
+        float mAccY180;        // 0x180 — 0x7100012e20-0x13190; ctor zeroes via
         float mAccZ184;        // 0x184 — unaligned u64 stores, split here)
         float mAccW188;        // 0x188
         float mF18c;           // 0x18c — ctor 0.05f (drag/damping constant?)
@@ -118,7 +118,7 @@ namespace object
         uint64_t mField218;    // 0x218 — zeroed on ctor
         uint64_t mField220;    // 0x220 — zeroed on ctor; runtime: rigid-body
                                // state enum (RigidBodyUpdate dispatches on
-                               // cmp #7, fn 0x710013b2c)
+                               // cmp #7, fn 0x7100013b2c)
         char mPad228[6];       // 0x228 — ctor zeroes u16 0x228, u8 0x22a
 
         // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
@@ -136,7 +136,7 @@ namespace object
         uint16_t mField274;    // 0x274
         uint8_t mPad276[0x2]; // 0x276 — unproven gap
         uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
-                               // helper object (CollisionScale 0x710013338
+                               // helper object (CollisionScale 0x7100013338
                                // vcalls its slots 0x98/0xa8)
         uint64_t mField280;    // 0x280 — zeroed on ctor
         uint32_t mField288;    // 0x288 — zeroed on ctor
@@ -146,11 +146,11 @@ namespace object
         uint32_t mField2d8;    // 0x2d8 — zeroed on ctor
         char mPad2dc[0xc];     // 0x2dc — unproven padding
         uint32_t mCur2e8;      // 0x2e8 — current/previous value pair: the
-        uint32_t mPrev2ec;     // 0x2ec — setter fn 0x710013278 moves the old
+        uint32_t mPrev2ec;     // 0x2ec — setter fn 0x7100013278 moves the old
                                // value to 0x2ec (guard byte 0x1f3), same
                                // pattern as the axis-scale cache. 0x2fc-0x310
                                // is the rigid-body update record
-                               // (RigidBodyUpdate 0x710013adc stores the
+                               // (RigidBodyUpdate 0x7100013adc stores the
                                // input pose u32 quad into
                                // 0x304/0x308/0x30c/0x310).
         uint16_t mField2f0;    // 0x2f0
@@ -164,7 +164,7 @@ namespace object
         uint32_t mField31c;    // 0x31c — zeroed on ctor
         uint16_t mField320;    // 0x320 — -1 on ctor; runtime: rescue/player
                                // state i16 pair, read by RescueBodyStateSet2
-        uint16_t mField322;    // 0x322 — (0x710012ae8), capped against 0xa
+        uint16_t mField322;    // 0x322 — (0x7100012ae8), capped against 0xa
                                // (player index bound)
         uint8_t mPad324[4];    // 0x324 — to end of root (0x328); the ctor's
                                // tail only fills the three 0xb0 arrays

@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // RaceDirectorSetStatePod — PROVISIONAL vtable-anchored name. 0x3C-byte
-// POD state record (ctor 0x7100585c4, NO vtable). Two instances per
+// POD state record (ctor 0x71000585c4, NO vtable). Two instances per
 // RaceDirectorPlayerSet (at +0xB8 and +0xC0; the second is also stored into
 // [[set+0xB0]+0x78], i.e. shared with the RaceDirectorSetLanePool child).
 // Carries a hardcoded 0.25f ratio at +0x24.

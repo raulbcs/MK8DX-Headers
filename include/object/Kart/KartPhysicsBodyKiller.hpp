@@ -5,7 +5,7 @@
 namespace object
 {
     // Slot names carry ItemKillerS evidence (bullet bill body). 96 slots.
-    // Vtable .data 0x11afcb0 (GOT cell 0x12fba90), ctor 0x710029e10, size 0x340
+    // Vtable .data 0x11afcb0 (GOT cell 0x12fba90), ctor 0x7100029e10, size 0x340
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
     class KartPhysicsBodyKiller : public KartPhysicsBody

@@ -6,9 +6,9 @@
 
 // RaceDirectorVt4 — PROVISIONAL vtable-anchored name. Vtable 0x11b3328
 // (.data anchor; GOT 0x12fbce0), typeinfo 0x4fc94 (per-object predicate on
-// this+0x9c). Derives from RaceDirectorVt2 (ctor 0x71004fd6c). Size 0xC0,
-// proven by the allocation site 0x71006ee7c. Built by the director factory
-// 0x71006eb5c (dispatches on getRaceCheckManager [x0+8]/[x0+0xc] == 3) and
+// this+0x9c). Derives from RaceDirectorVt2 (ctor 0x710004fd6c). Size 0xC0,
+// proven by the allocation site 0x710006ee7c. Built by the director factory
+// 0x710006eb5c (dispatches on getRaceCheckManager [x0+8]/[x0+0xc] == 3) and
 // stored at [parent+0xa8].
 // Baptism audit 2026-10-07: predicate (this+0x9c) selector built when getRaceCheckManager flags == 3; no name evidence.
 // the ELF carries no name for this class (strings and the method-tree

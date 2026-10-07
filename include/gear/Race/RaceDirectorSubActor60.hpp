@@ -5,7 +5,7 @@
 #include "RaceDirector.hpp"
 
 // RaceDirectorSubActor60 — PROVISIONAL vtable-anchored name. The first
-// sub-actor RaceDirector creates at +0x60 (ctor 0x710066448, base
+// sub-actor RaceDirector creates at +0x60 (ctor 0x7100066448, base
 // 0x7b9a18). Size 0xB0, proven by the allocation site inside the
 // RaceDirector ctor (0x4d8c0 `mov w0,#0xb0` — corrects the earlier
 // "0xB8" note). Vtable 0x11b41c8 (GOT 0x12fbeb0). Owns one same-size

@@ -54,18 +54,18 @@ namespace gear
                 // each created child at mActors[cursor] and increments (0x4d8e8-0x4d9b8)
             object::RaceCheckerBase* mRaceCheckerBase; //0x50 — ctor arg x1 (0x4d808)
             gear::LapRankChecker* mLapRankChecker;     //0x58
-            Actor* mSubActor60;  //0x60 — new(0xB0), ctor 0x710066448
+            Actor* mSubActor60;  //0x60 — new(0xB0), ctor 0x7100066448
                 // (gear/Race/RaceDirectorSubActor60.hpp, vtable 0x11b41c8),
                 // registered as child
-            Actor* mSubActor68;  //0x68 — new(0x1C8), ctor 0x7100490fc (vtable
+            Actor* mSubActor68;  //0x68 — new(0x1C8), ctor 0x71000490fc (vtable
                 // [0x12fbc00]+0x10; u16 +0x40 and byte +0x42 zeroed), registered
-            Actor* mSubActor70;  //0x70 — new(0x160), ctor 0x71005c7f0 (vtable
+            Actor* mSubActor70;  //0x70 — new(0x160), ctor 0x710005c7f0 (vtable
                 // [0x12fbdb0]+0x10; bytes +0x41/+0x42 zeroed), registered
             uint8_t mPad78[8];   //0x78 — gap: ctor writes nothing here
-            void* mConfig80;     //0x80 — new(0x2C), ctor 0x7100585e8: five u32s +
+            void* mConfig80;     //0x80 — new(0x2C), ctor 0x71000585e8: five u32s +
                 // flag byte copied from the default block [0x12fb168]
             void* mConfig88;     //0x88 — second 0x2C config object, same ctor
             // Class ends at 0x90: derived RaceDirectorVt2 is 0xA0 with fields
-            // only at 0x90-0x9F (allocation proof 0x71006f108).
+            // only at 0x90-0x9F (allocation proof 0x710006f108).
     };
 }

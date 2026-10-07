@@ -7,7 +7,7 @@
 // RaceDirectorManagerBase — PROVISIONAL vtable-anchored name. Vtable
 // 0x12c5638 (GOT cell 0x130fea8, holds vptr-0x10), far-family gap member
 // reclassified: it is the PRIMARY BASE of RaceDirectorManager, not a
-// member. The manager ctor (0x71005876c) calls 0x7b98bc at offset 0 — it
+// member. The manager ctor (0x710005876c) calls 0x7b98bc at offset 0 — it
 // runs ctor 0x7b976c (RaceDirectorBase38), zeroes 0x38..0x67 and stores
 // this vptr; the manager then overwrites the vptr with its own and starts
 // its fields at 0x68.

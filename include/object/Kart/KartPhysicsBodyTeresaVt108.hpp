@@ -5,7 +5,7 @@
 namespace object
 {
     // Address-anchored suffix. TS_ItemTeresa evidence; 108 slots.
-    // Vtable .data 0x11b2310 (GOT cell 0x12fc270), ctor 0x71003bfe0, size 0x390
+    // Vtable .data 0x11b2310 (GOT cell 0x12fc270), ctor 0x710003bfe0, size 0x390
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
     class KartPhysicsBodyTeresaVt108 : public KartPhysicsBody

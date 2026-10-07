@@ -5,7 +5,7 @@
 namespace object
 {
     // Slot names carry ItemPackunS evidence (Pakkun/plant body). 96 slots.
-    // Vtable .data 0x11b1770 (GOT cell 0x12fbde0), ctor 0x71003940c, size 0x340
+    // Vtable .data 0x11b1770 (GOT cell 0x12fbde0), ctor 0x710003940c, size 0x340
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
     class KartPhysicsBodyPackun : public KartPhysicsBody

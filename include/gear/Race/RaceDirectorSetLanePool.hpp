@@ -5,7 +5,7 @@
 #include "RaceDirector.hpp"
 
 // RaceDirectorSetLanePool — PROVISIONAL vtable-anchored name. Per-lane
-// entry-pool manager of RaceDirectorPlayerSet: ctor 0x7100702e0 (Actor
+// entry-pool manager of RaceDirectorPlayerSet: ctor 0x71000702e0 (Actor
 // base), primary vtable 0x11b4980 (GOT 0x12fc010), secondary at +0x38
 // (0x11b4a00, GOT 0x12fc018). Size 0xA8 (factory alloc 0x6f380). Holds
 // three 0x30 entry pools; entries are {fn, ctx} callback pairs filled from
