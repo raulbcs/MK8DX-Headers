@@ -30,8 +30,11 @@ namespace object
         uint64_t mZeroA0;      // 0xa0 — ctor zero
         uint32_t mIdA8;        // 0xa8 — ctor arg w1
         uint32_t mIdAc;        // 0xac — ctor: (w1<<8)+0x100+(w2+1)
-        char mChanB0[0x20];    // 0xb0 — channel-pair member (cells 0x130d908)
-        char mChanD0[0x20];    // 0xd0 — channel-pair member
+        char mChanB0[0x20];    // 0xb0 — channel-pair member (cells 0x130d908;
+                               // ctor zeroes a flag byte at 0xc8 = chan+0x18 —
+                               // the +0x18 field here is a byte, NOT the float
+                               // seen in the Vt3130 instances)
+        char mChanD0[0x20];    // 0xd0 — channel-pair member (flag byte at 0xe8)
         char mChanF0[0x18];    // 0xf0 — channel-pair member (to 0x108)
         int32_t mFffF108;      // 0x108 — ctor sets -1
         // (0x110 total)
