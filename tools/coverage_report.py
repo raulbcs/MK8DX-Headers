@@ -187,13 +187,14 @@ function layout(items,x,y,w,h){
   const horiz=ww<hh;
   while(i<items.length){
    const cur=worstOf(row,horiz?ww:hh,total);
-   row.push(items[i]);
+   const cand=items[i], testSum=rowSum+cand.w;
+   row.push(cand);
    if(worstOf(row,horiz?ww:hh,total)>cur){row.pop();break;}
-   rowSum+=items[i].w;i++;
+   rowSum=testSum;i++;
   }
   const frac=rowSum/rest;
-  if(horiz){const rh=hh*frac;let rx=xx;for(const r of row){const rw=ww*r.w/rowSum;out.push({it:r.it,x:rx,y:yy,w:rw,h:rh});rx+=rw;}yy+=rh;hh-=rh;}
-  else{const rw=ww*frac;let ry=yy;for(const r of row){const rh=hh*r.w/rowSum;out.push({it:r.it,x:xx,y:ry,w:rw,h:rh});ry+=rh;}xx+=rw;ww-=rw;}
+  if(horiz){const rh=hh*frac;let rx=xx;for(const r of row){const rw=ww*r.w/rowSum;out.push({it:r,x:rx,y:yy,w:rw,h:rh});rx+=rw;}yy+=rh;hh-=rh;}
+  else{const rw=ww*frac;let ry=yy;for(const r of row){const rh=hh*r.w/rowSum;out.push({it:r,x:xx,y:ry,w:rw,h:rh});ry+=rh;}xx+=rw;ww-=rw;}
   rest-=rowSum;
  }
  return out;
