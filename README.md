@@ -48,8 +48,8 @@ python3 tools/check_extents.py
 
 ### Coverage report (`tools/coverage_report.py`)
 
-Generates `COVERAGE.md` and `coverage.html` summarizing which headers have
-proven extents, field maps, and vtable anchors. Regenerate with:
+Generates a local `COVERAGE.md`/`coverage.html` summary (gitignored) of which
+headers have proven extents, field maps, and vtable anchors. Regenerate with:
 
 ```sh
 python3 tools/coverage_report.py
