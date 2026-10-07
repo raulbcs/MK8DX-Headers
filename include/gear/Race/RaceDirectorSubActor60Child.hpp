@@ -19,6 +19,6 @@ namespace gear
     class RaceDirectorSubActor60Child : public Actor
     {
         public:
-            uint8_t pad38[0x78]; //0x38 - 0xAF
+            uint8_t pad38[0x78]; //0x38 - 0xAF — unproven padding
     };
 }

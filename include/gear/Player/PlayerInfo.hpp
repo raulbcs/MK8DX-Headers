@@ -14,9 +14,9 @@ namespace gear
         // extent fixed by mCountry at 0x70.
         uint8_t mPad00[0x70]; // unproven - extent fixed by mCountry at 0x70
         uint8_t mCountry[2]; // 0x70
-        uint8_t mPad72[0x5E]; // 0x72
+        uint8_t mPad72[0x5E]; // 0x72 — unproven padding
         char16_t mPlayerName[21]; // 0xD0
-        uint8_t mPadFA[0x06]; // 0xFA
+        uint8_t mPadFA[0x06]; // 0xFA — unproven padding
 
     };
 }

@@ -14,8 +14,8 @@ namespace enl {
     public:
         uint64_t mStationId; // 0x00
         uint8_t mPlayerId; // 0x08
-        uint8_t mPad09; // 0x09
-        uint8_t mPad0A[0x6]; // 0x0A
+        uint8_t mPad09; // 0x09 — unproven padding
+        uint8_t mPad0A[0x6]; // 0x0A — unproven padding
 
     public:
         inline bool isStationValid() {

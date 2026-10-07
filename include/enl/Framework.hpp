@@ -17,7 +17,7 @@ namespace enl
         // extent fixed by mPeerManager at 0x28.
         uint8_t mPad00[0x28]; // unproven - extent fixed by mPeerManager at 0x28
         PeerManagerCommon* mPeerManager; // 0x28
-        uintptr_t mPad30; // 0x30
+        uintptr_t mPad30; // 0x30 — unproven padding
         TransportManager* mTransportManager; // 0x38
         SendManager* mSendManager; // 0x40
     };

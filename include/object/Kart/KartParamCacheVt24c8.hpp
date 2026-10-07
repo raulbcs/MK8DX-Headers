@@ -21,7 +21,7 @@ namespace object
     public:
         uint8_t pad40[8];      // 0x40 — untouched by the ctors
         uint32_t mField48;     // 0x48 — factory zero
-        uint8_t pad4c[4];      // 0x4c
+        uint8_t pad4c[4];      // 0x4c — unproven padding
         void* mPtr50;          // 0x50 — factory zero
         // (0x58 total)
     };

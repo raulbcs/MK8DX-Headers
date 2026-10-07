@@ -48,7 +48,7 @@ namespace gear
                 // (ctor: 3 after the child array allocation succeeds)
             Actor** mActors;     //0x40 — Actor array walked by calc/exit/enter
                 // (ctor allocs 0x18 = 3 slots, 0x4d818-0x4d830)
-            uint8_t mPad48[4];   //0x48
+            uint8_t mPad48[4];   //0x48 — unproven padding
             uint32_t mInsertCursor4C; //0x4C — child insertion cursor: ctor registers
                 // each created child at mActors[cursor] and increments (0x4d8e8-0x4d9b8)
             object::RaceCheckerBase* mRaceCheckerBase; //0x50 — ctor arg x1 (0x4d808)

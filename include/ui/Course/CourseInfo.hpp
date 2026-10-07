@@ -13,7 +13,7 @@ namespace ui
         int32_t mCourseMSBT; // 0x08
 
         bool mIsDLC; // 0x0C
-        uint8_t mPad0D[0x3]; // 0x0D
+        uint8_t mPad0D[0x3]; // 0x0D — unproven padding
 
         inline CourseInfo(void) : mCourseId(-1) {
             mPrefixMSBT = -1;

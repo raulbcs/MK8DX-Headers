@@ -29,7 +29,7 @@ namespace gear
     {
     public:
         uint32_t mZero38;      // 0x38 — ctor zero
-        uint8_t pad3c[4];      // 0x3c
+        uint8_t pad3c[4];      // 0x3c — unproven padding
         uint64_t mZero40;      // 0x40 — ctor zero
         uint64_t mZero48;      // 0x48 — ctor zero
         uint8_t mGap50[0x30];  // 0x50 — untouched by ctor
@@ -44,7 +44,7 @@ namespace gear
         void* mVtableB8;       // 0xb8 — cell 0x12fb038 (+0x10), vptr-shaped
         uint64_t mZeroC0;      // 0xc0 — ctor zero
         uint8_t mZeroC8;       // 0xc8 — ctor zero
-        uint8_t padC9[7];      // 0xc9
+        uint8_t padC9[7];      // 0xc9 — unproven padding
         uint64_t mZeroD0;      // 0xd0 — ctor zero
         uint64_t mZeroD8;      // 0xd8 — ctor zero
         uint64_t mZeroE0;      // 0xe0 — ctor zero
@@ -54,7 +54,7 @@ namespace gear
         uint32_t mZero12c;     // 0x12c — ctor zero
         uint16_t mZero130;     // 0x130 — ctor zero
         uint8_t mZero132;      // 0x132 — ctor zero
-        uint8_t pad133;        // 0x133
+        uint8_t pad133;        // 0x133 — unproven padding
         int32_t mMinus150134;  // 0x134 — ctor sets -150
         // (0x138 total)
     };

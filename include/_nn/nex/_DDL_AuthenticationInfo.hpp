@@ -20,14 +20,14 @@ namespace nn::nex
         void* vtable;          // 0x00 — 0x12f9058
         uint8_t mPad08[0x58];  // 0x08 — unproven gap
         uint32_t mField58;     // 0x58 — status (2 = authenticated branch)
-        uint8_t mPad5c[0x68];  // 0x5c
+        uint8_t mPad5c[0x68];  // 0x5c — unproven padding
         uint32_t mEntriesC4[32]; // 0xc4 — 32 dwords scanned by the consumer
         uint16_t mFielde8;     // 0xe8 — flags checked by the consumer
-        uint8_t mPadea[0x2];   // 0xea
+        uint8_t mPadea[0x2];   // 0xea — unproven padding
         uint16_t mFieldec;     // 0xec — flags checked by the consumer
-        uint8_t mPadee[0xa];   // 0xee
+        uint8_t mPadee[0xa];   // 0xee — unproven padding
         uint16_t mFieldf8;     // 0xf8 — flags checked by the consumer
-        uint8_t mPadfa[0x2];   // 0xfa
+        uint8_t mPadfa[0x2];   // 0xfa — unproven padding
         // (extent beyond 0xfc unproven)
     };
 }

@@ -23,7 +23,7 @@ namespace gear
     {
         public:
             uint32_t mField38;   //0x38 — ctor zero (the child-array cursor)
-            uint8_t pad3c[4];    //0x3c
+            uint8_t pad3c[4];    //0x3c — unproven padding
             void* mField40;      //0x40 — ctor zero (child array base)
             uint64_t mZero48;    //0x48 — ctor zero
             uint64_t mZero50;    //0x50 — ctor zero

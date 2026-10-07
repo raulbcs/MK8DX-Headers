@@ -25,10 +25,10 @@ namespace nn::nex
         void* vtable;          // 0x00 — 0x128c000
         uint8_t mBase08[0x18]; // 0x08 — Log/LockChecker base region
         void* mField20;        // 0x20 — vptr+caller qword stored by the writer
-        uint8_t mPad28[0x8];   // 0x28
+        uint8_t mPad28[0x8];   // 0x28 — unproven padding
         uint64_t mFlag30;      // 0x30 — stlr 1 at site 0x583254
         uint8_t mZero34;       // 0x34 — ctor zero
-        uint8_t mPad35[0x3];   // 0x35
+        uint8_t mPad35[0x3];   // 0x35 — unproven padding
         // (writer objects are 0x50 bytes; tail unmapped)
     };
 }

@@ -19,7 +19,7 @@ namespace nn::ae
     public:
         uint8_t mOwn08[0xec];  // 0x08
         uint8_t mFlagF4;       // 0xf4 — ctor zero
-        uint8_t padF5[7];      // 0xf5
+        uint8_t padF5[7];      // 0xf5 — unproven padding
         // (0xfc total)
     };
 }

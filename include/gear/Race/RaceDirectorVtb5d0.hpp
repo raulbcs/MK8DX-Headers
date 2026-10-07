@@ -37,19 +37,19 @@ namespace gear
     {
     public:
         uint32_t mZero38;      // 0x38 — ctor zero
-        uint8_t pad3c[4];      // 0x3c
+        uint8_t pad3c[4];      // 0x3c — unproven padding
         uint64_t mZero40;      // 0x40 — ctor zero
         uint64_t mZero48;      // 0x48 — ctor zero
         uint8_t mZero50;       // 0x50 — ctor zero
-        uint8_t pad51[7];      // 0x51
+        uint8_t pad51[7];      // 0x51 — unproven padding
         void* mObj58;          // 0x58 — new 0x98 (ctor 0x81e65c from the 0x61a5f0 singleton); null partner at 0x60
         void* mNull60;         // 0x60 — ctor null
         uint8_t mBig68[0x4d8]; // 0x68 — memset 0x4e8 region minus head (sub-ctor 0x81ec70)
         uint32_t mZero540;     // 0x540 — ctor zero
-        uint32_t pad544;       // 0x544
+        uint32_t pad544;       // 0x544 — unproven padding
         uint64_t mZero548;     // 0x548 — ctor zero
         uint32_t mZero550;     // 0x550 — ctor zero
-        uint32_t pad554;       // 0x554
+        uint32_t pad554;       // 0x554 — unproven padding
         uint64_t mZero558;     // 0x558 — ctor zero
         uint8_t mSub560[0x40]; // 0x560 — sub-object (ctor 0x628628)
         uint32_t mZero5a0;     // 0x5a0 — ctor zero

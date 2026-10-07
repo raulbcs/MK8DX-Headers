@@ -31,7 +31,7 @@ namespace nn::ae
     public:
         uint64_t mZero00;        // 0x00 — ctor zero
         uint16_t mZero08;        // 0x08 — ctor zero (strh)
-        uint32_t pad0a;          // 0x0a
+        uint32_t pad0a;          // 0x0a — unproven padding
         void* mUserHandlePtr10;  // 0x10 — points at mUserHandle688 after ctor
         uint8_t mSub18[0x68];    // 0x18 — sub-object (ctor 0xb542f0, nn::account cache info)
         uint32_t mZero80;        // 0x80 — ctor zero
@@ -40,7 +40,7 @@ namespace nn::ae
         uint32_t mZero484;       // 0x484 — ctor zero
         uint64_t mZero488;       // 0x488 — ctor zero
         uint8_t mWork490;        // 0x490 — ctor zero; work counter
-        uint8_t pad491[3];       // 0x491
+        uint8_t pad491[3];       // 0x491 — unproven padding
         void* mFns494[6];        // 0x494 — 6 fn ptrs (init 0x630f64)
         uint32_t mZero4b0;       // 0x4b0 — ctor zero
         uint8_t mSub4b8[8];      // 0x4b8 — sub-object (ctor 0x63115c), extent to 0x4c0
@@ -54,7 +54,7 @@ namespace nn::ae
         uint64_t mZero670;       // 0x670 — ctor zero
         uint64_t mZero678;       // 0x678 — ctor zero
         uint16_t mZero680;       // 0x680 — ctor zero (strh)
-        uint8_t pad682[6];       // 0x682
+        uint8_t pad682[6];       // 0x682 — unproven padding
         void* mUserHandle688;    // 0x688 — OpenPreselectedUser out-param
         uint8_t pad690[0x10];    // 0x690 — to alloc size (unmapped tail)
         // (0x6a0 total)

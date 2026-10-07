@@ -14,28 +14,28 @@ namespace ui
             class Item
             {
                 public:
-                    uint8_t mPad00[0x18]; //0x00
+                    uint8_t mPad00[0x18]; //0x00 — unproven padding
                     void set(uint8_t, unsigned long long, bool, bool);
             };
 
-            uint32_t mPadB4; // 0xB4
+            uint32_t mPadB4; // 0xB4 — unproven padding
             uint32_t mItemStride; // 0xB8
             uint32_t mCounterBC; //0xBC
             Item* mItemList; //0xC0
-            uint8_t mPadC8[0x172]; //0xC8
-            uint8_t mPad23A; // 0x23A
-            uint8_t mPad23B; // 0x23B
-            uint8_t mPad23C[0x9C]; // 0x23C
+            uint8_t mPadC8[0x172]; //0xC8 — unproven padding
+            uint8_t mPad23A; // 0x23A — unproven padding
+            uint8_t mPad23B; // 0x23B — unproven padding
+            uint8_t mPad23C[0x9C]; // 0x23C — unproven padding
             uint32_t* mTitleList; //0x2D8
             int32_t mSize; // 0x2E0
             int32_t mCapacity; // 0x2E4
             uintptr_t** mContentList; //0x2E8
             int32_t mTitleCount; //0x2F0
             int32_t mOptionCount; //0x2F4 #
-            uint32_t mPad2F8; //0x2F8
+            uint32_t mPad2F8; //0x2F8 — unproven padding
             uint32_t mCounter1; //0x2FC
             uint32_t mCounter2; //0x300
-            uint8_t mPad304[0x14]; //0x304
+            uint8_t mPad304[0x14]; //0x304 — unproven padding
 
             // u32 pad_68; //0x68
             // u32 m_counter_6C; //0x6C

@@ -23,7 +23,7 @@ namespace nn::atk
     {
     public:
         void* vtable;          // 0x00 — base table outside the cluster
-        uint8_t mPad08[0x8];   // 0x08
+        uint8_t mPad08[0x8];   // 0x08 — unproven padding
         // (base extent unproven)
     };
 }

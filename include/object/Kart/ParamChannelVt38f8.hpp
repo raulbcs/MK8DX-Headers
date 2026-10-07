@@ -31,10 +31,10 @@ namespace object
     public:
         char mOwn20[0xe8];       // 0x20 — own-field region
         uint32_t mCount108;      // 0x108 — element count
-        uint8_t pad10c[4];       // 0x10c
+        uint8_t pad10c[4];       // 0x10c — unproven padding
         void** mElems110;        // 0x110 — element pointer array
         uint8_t mBlob11c[0x10];  // 0x11c — copied from ctx+0xc0
-        uint8_t pad12c[0x34];    // 0x12c
+        uint8_t pad12c[0x34];    // 0x12c — unproven padding
         uint8_t mBlob160[0x10];  // 0x160 — copied from ctx+0xc0
         // (0x170 total, tail unmapped)
     };

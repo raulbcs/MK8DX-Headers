@@ -12,7 +12,7 @@
 
 struct BoostSlot
 {
-    uint8_t pad_00[8]; // 0x00
+    uint8_t pad_00[8]; // 0x00 — unproven padding
     uint64_t owner_kart_vehicle; //0x08 — owner (flags +0x1cc, counter +0x254, timer +0x298)
     uint8_t boost_active; //0x10
     uint8_t impulse_flag; //0x11 — 0 if drift/state 2, else (owner+0x100 != 2)
@@ -26,17 +26,17 @@ struct BoostSlot
     uint32_t last_boost_type; //0x80
     uint32_t prev_boost_type; //0x84
     uint32_t last_boost_type_2; //0x88
-    uint8_t pad_8c[4]; // 0x8c
+    uint8_t pad_8c[4]; // 0x8c — unproven padding
     uint32_t custom_duration_a; //0x90 — custom duration types 4/8/16/256
     float case3_profile_a; //0x94 — setters GliderB4WriterA..
     float case3_profile_b; //0x98
     uint32_t custom_duration_b; //0x9c
-    uint8_t pad_a0[8]; // 0xa0
+    uint8_t pad_a0[8]; // 0xa0 — unproven padding
     uint32_t custom_duration_c; //0xa8
-    uint8_t pad_ac[8]; // 0xac
+    uint8_t pad_ac[8]; // 0xac — unproven padding
     float case6_profile_a; //0xb4 — out0 x +0xb4
     float case6_profile_b; //0xb8 — +0xc4: (b8-1)*0.5+1
     uint32_t custom_duration_d; //0xbc
-    uint8_t pad_c0[0x194]; // 0xc0
+    uint8_t pad_c0[0x194]; // 0xc0 — unproven padding
     uint32_t counter_mirror; //0x254 — mirror of the real counter (KartVehicle+0x254)
 };

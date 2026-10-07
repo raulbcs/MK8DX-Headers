@@ -15,7 +15,7 @@ namespace object
 				// Net method 0x19026c reads owner mKartStatusBits through it
 			uint8_t mFlag18; //0x18 — enable/level flag written by
 				// setKartVehicleLevelMode (FUN_7100172e90), ctor-zeroed
-			uint8_t mPad19[3]; //0x19
+			uint8_t mPad19[3]; //0x19 — unproven padding
 			uint32_t m1c; //0x1C — ctor zero (unaligned u64 store 0x1c)
 			uint32_t m20; //0x20 — upper half
 			float mF24[2]; //0x24 — ctor/reset set {1.0, 1.0} (also reset 0x7100179f44)
@@ -33,7 +33,7 @@ namespace object
 			float mF5c; //0x5C — 25.0f
 			void* mOwned60; //0x60 — owned subobject, destroyed via 0x71001470ec
 			uint8_t mBool68; //0x68 — result of a call to 0x710013d578
-			uint8_t mPad69[3]; //0x69
+			uint8_t mPad69[3]; //0x69 — unproven padding
 			uint32_t mU6c; //0x6C — zeroed by both the Cpu and Net ctors
 	};
 }

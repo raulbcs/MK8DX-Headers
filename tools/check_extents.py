@@ -513,7 +513,12 @@ def parse_fields(text):
             size = type_size(base, bool(ptrs.strip()))
         note = ""
         tail = line.split("//", 1)[1] if "//" in line else ""
-        if EVIDENCE.search(tail) or EVIDENCE.search(prev_comment):
+        # A note is explanatory prose beyond the bare offset
+        # ("// 0x38 - 0x3F" alone is NOT a note).
+        after = re.sub(r"[-\u2014]?\s*0x[0-9a-fA-F]{1,5}\b", "", tail, count=1)
+        after = re.sub(r"^[\s\-\u2014.,:;()]*", "", after)
+        if (re.search(r"[A-Za-z]", after) or EVIDENCE.search(tail)
+                or EVIDENCE.search(prev_comment)):
             note = "yes"
         fields.append(dict(line=i, name=name, off=off, size=size,
                            is_pad=is_pad, has_note=bool(note), raw=line,
@@ -625,7 +630,8 @@ def analyze(path: Path):
 
 def main():
     check_allow = set(
-        l.strip() for l in NO_EXTENT_ALLOWLIST.splitlines() if l.strip()
+        l.strip()[2:].strip() for l in NO_EXTENT_ALLOWLIST.splitlines()
+        if l.strip().startswith("#   ")
     )
     violations = 0
     warn_count = 0

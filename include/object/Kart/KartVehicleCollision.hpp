@@ -25,7 +25,7 @@ namespace object
         uint32_t u68[12]; //0x68..0x97 — twelve u32s copied from global 0x12fb188
             // (ctor 0x1398d8-0x139928)
         uint16_t u98; //0x98 — ctor zero
-        uint8_t pad_9a[2]; //0x9A
+        uint8_t pad_9a[2]; //0x9A — unproven padding
         uint8_t cells_9c[0xc]; //0x9C — global pair 0x12fb148 (u64+u32)
         uint8_t cells_a8[0xc]; //0xA8 — same global pair
         uint8_t cells_b4[0xc]; //0xB4 — global pair 0x12fb168

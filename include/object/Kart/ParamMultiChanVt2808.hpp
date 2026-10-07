@@ -12,7 +12,7 @@ namespace object
     {
     public:
         void* vtable;         // 0x00
-        uint8_t pad08[0x28];  // 0x08
+        uint8_t pad08[0x28];  // 0x08 — unproven padding
         char mChan30[0x20];   // 0x30 — first channel-pair member
         char mMid50[0xc0];    // 0x50 — fields/channel region
         char mTail110[0xa8];  // 0x110 — channel array region (to 0x1b8)

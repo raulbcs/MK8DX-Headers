@@ -14,7 +14,7 @@ namespace object
         uint8_t pad_00[8]; // 0x00 — vtable ptr (global 0x12fd100+0x10)
         uint32_t u08; //0x08 — ctor zero
         KartVehicle* kart_vehicle; //0x10 — ctor arg
-        uint8_t pad_018[0x70]; //0x18 - 0x87
+        uint8_t pad_018[0x70]; //0x18 - 0x87 — unproven padding
         // Five 0x200-stride slots (loop x8 = 0,0x200,..,0x800; ctor 0x114324-
         // 0x1143a0). Within each slot base +N*0x200 the ctor touches:
         //   +0x88/+0x98/+0xA8 u64 zeros; twelve {void* -> global 0x12fb038+0x10,
@@ -38,7 +38,7 @@ namespace object
         uint32_t m9c; //0xA9C — ctor zero (unaligned u64 store 0xa9c)
         uint32_t ma0; //0xAA0
         uint8_t baa8; //0xAA8 — ctor zero
-        uint8_t pad_aa9[3]; //0xAA9
+        uint8_t pad_aa9[3]; //0xAA9 — unproven padding
         uint32_t s_aac; //0xAAC — ctor sets -1 (unaligned u64 store 0xaac)
         uint32_t mab0; //0xAB0 — upper half of the -1 store
         uint32_t s_ab4; //0xAB4 — ctor sets -1; 0xAB4+4 = 0xAB8

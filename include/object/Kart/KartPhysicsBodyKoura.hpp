@@ -46,7 +46,7 @@ namespace object
         uint64_t mField3b8;    // 0x3b8 — zeroed on ctor
         uint32_t mField3c0;    // 0x3c0 — zeroed on ctor
         uint16_t mField3c4;    // 0x3c4 — zeroed on ctor
-        char mPad3c6[6];       // 0x3c6
+        char mPad3c6[6];       // 0x3c6 — unproven padding
         uint16_t mField3cc;    // 0x3cc
         uint16_t mField3ce;    // 0x3ce
         uint16_t mField3d0;    // 0x3d0

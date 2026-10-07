@@ -30,22 +30,22 @@ namespace object
     class KartDirector
 	{
 		public:
-            uint8_t pad_00[0x50]; // 0x00
+            uint8_t pad_00[0x50]; // 0x00 — unproven padding
             void* mUnits50[12]; // 0x50 — per-unit object pointers, indexed by unit
                 // idx clamped < 12 (FUN_710013f430 0x13f468-0x13f478, read before
                 // each KartUnitHolder is destroyed)
-            uint8_t pad_80[0x30]; // 0x80
+            uint8_t pad_80[0x30]; // 0x80 — unproven padding
             void* mB0; // 0xB0 — passed to the unit getter along with the index
-            uint8_t pad_B8[0x8]; // 0xB8
+            uint8_t pad_B8[0x8]; // 0xB8 — unproven padding
             int mUnitCount; // 0xC0
-            uint8_t pad_C4[0x4]; // 0xC4
+            uint8_t pad_C4[0x4]; // 0xC4 — unproven padding
             KartUnitHolder** mKartUnitHolders; // 0xC8
-            uint8_t pad_D0[0x8]; // 0xD0
+            uint8_t pad_D0[0x8]; // 0xD0 — unproven padding
             void* mD8; // 0xD8 — when set, CalcPosition runs the KartRadar branch instead of CalcApply
-            uint8_t pad_E0[0x8]; // 0xE0
+            uint8_t pad_E0[0x8]; // 0xE0 — unproven padding
             uint8_t mFlagE8; // 0xE8 — run the post-calc hook (arg: m6F8)
             uint8_t mFlagE9; // 0xE9 — run the per-unit pre-reset
-            uint8_t pad_EA[0x86]; // 0xEA
+            uint8_t pad_EA[0x86]; // 0xEA — unproven padding
 
             // Job buffers (0xC8 each), reset by CalcAI before accumulation:
             // pointer at +0x00 zeroed, object at +0x28 re-initialized.
@@ -56,9 +56,9 @@ namespace object
             char mWork490[0xC8]; // 0x490 — job block (reset by CalcAI)
             char mWork558[0xC8]; // 0x558 — job block (reset by CalcAI)
             char mWork620[0xC8]; // 0x620 — KartRadar job block
-            uint8_t pad_6E8[0x10]; // 0x6E8
+            uint8_t pad_6E8[0x10]; // 0x6E8 — unproven padding
             void* m6F8; // 0x6F8 — argument of the post-calc hook
-            uint8_t pad_700[0x90]; // 0x700
+            uint8_t pad_700[0x90]; // 0x700 — unproven padding
             int mPhase790; // 0x790 — current CalcPhase (1..5)
 
             // AI calc phase: resets the work blocks, accumulates the eligible

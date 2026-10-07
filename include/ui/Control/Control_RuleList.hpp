@@ -34,7 +34,7 @@ namespace ui
                     ~EType() {}
             };
 
-            char mPad318[0x10]; // 0x328
+            char mPad318[0x10]; // 0x328 — unproven padding
 
             void updateList(ui::Control_RuleList::EType);
 

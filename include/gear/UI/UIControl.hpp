@@ -51,24 +51,24 @@ namespace gear
         eui::ControlBase* mControlBase; //0x08
         eui::LayoutEx* mLayout; //0x10
         uint32_t mUUID; //0x18
-        uint32_t mPad1C; //0x1C
+        uint32_t mPad1C; //0x1C — unproven padding
         UIPage* mPage; //0x20
-        uintptr_t mPad18; //0x28
+        uintptr_t mPad18; //0x28 — unproven padding
         UILoader* mUILoader; //0x30
         sead::Buffer<gear::UIAnimator*> mAnimators; // 0x38
         sead::PtrArrayImpl mInputBuff; // 0x48
         uint32_t mInteractionStatus; //0x58
-        uint32_t mPad5C; //0x5C
+        uint32_t mPad5C; //0x5C — unproven padding
         UICursor* mCursor; // 0x60
         uint32_t mCursorIndex; //0x68
-        uint32_t mPad6C; // 0x6C
-        uint32_t mPad70; //0x70
-        uint32_t mPad74; //0x74
-        bool mPad78; //0x78
-        uint8_t mPad79; //0x79
-        uint16_t mPad7A; //0x7A
-        int32_t mPad7C; //0x7C
-        int32_t mPad80; //0x80
+        uint32_t mPad6C; // 0x6C — unproven padding
+        uint32_t mPad70; //0x70 — unproven padding
+        uint32_t mPad74; //0x74 — unproven padding
+        bool mPad78; //0x78 — unproven padding
+        uint8_t mPad79; //0x79 — unproven padding
+        uint16_t mPad7A; //0x7A — unproven padding
+        int32_t mPad7C; //0x7C — unproven padding
+        int32_t mPad80; //0x80 — unproven padding
 
         
         UIControl();

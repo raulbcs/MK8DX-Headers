@@ -30,9 +30,9 @@ namespace object
         float fb8[2]; //0xB8 — ctor sets {1.0f, 0.0f}
         uint64_t uc0; //0xC0 — ctor zero
         uint32_t uc8; //0xC8 — ctor sets (arg2 & 1) ? 2 : 0
-        uint8_t pad_0cc[4]; //0xCC
+        uint8_t pad_0cc[4]; //0xCC — unproven padding
         uint8_t zero_d0[0x48]; //0xD0 - 0x117 — ctor zeroes
         uint16_t u118[3]; //0x118/0x11A/0x11C — ctor sets all three to 0xFFFF
-        uint8_t pad_11e[0x12]; //0x11E - 0x12F
+        uint8_t pad_11e[0x12]; //0x11E - 0x12F — unproven padding
     };
 }

@@ -21,11 +21,11 @@ namespace gear
     {
         public:
             uint32_t mField38;   //0x38 — ctor zero
-            uint8_t pad3c[4];    //0x3c
+            uint8_t pad3c[4];    //0x3c — unproven padding
             uint64_t mZero40;    //0x40 — ctor zero
             uint64_t mZero48;    //0x48 — ctor zero
             uint32_t mField50;   //0x50 — ctor sets 4
-            uint8_t pad54[4];    //0x54
+            uint8_t pad54[4];    //0x54 — unproven padding
             uint64_t mZero58;    //0x58 — ctor zero
             uint8_t bFlag60;     //0x60 — ctor sets 1
             uint8_t bZero61;     //0x61 — ctor zero

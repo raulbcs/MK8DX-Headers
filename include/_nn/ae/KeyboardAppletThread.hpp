@@ -22,7 +22,7 @@ namespace nn::ae
         void* mBuf520;         // 0x520 — swkbd string buffer copy (0x870)
         void* mBuf528;         // 0x528 — text-check work (0x878)
         void* mBuf530;         // 0x530 — swkbd work (0x880)
-        uint8_t pad538[0xc];   // 0x538
+        uint8_t pad538[0xc];   // 0x538 — unproven padding
         uint32_t mBufSize544;  // 0x544 — GetRequiredStringBufferSize()
         // (0x548 total)
     };

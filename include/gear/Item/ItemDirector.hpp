@@ -18,7 +18,7 @@ namespace gear
         public:
             sead::FixedPtrArray<ItemObjManagerBase, 19> mItemManagers; // 0x38
             sead::PtrArray<ItemOwner> mItemOwners; // 0xE0
-            uintptr_t mPadF0; // 0xF0
+            uintptr_t mPadF0; // 0xF0 — unproven padding
             ItemEventManager* mItemEventManager; //0xF8
 
             ItemDirector();

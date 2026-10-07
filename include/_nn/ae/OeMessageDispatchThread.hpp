@@ -37,7 +37,7 @@ namespace nn::ae
 
         void* vptr;          // 0x00 — cell 0x1311f68
         uint32_t mZero08;    // 0x08 — ctor zero
-        uint32_t pad0c;      // 0x0c
+        uint32_t pad0c;      // 0x0c — unproven padding
         Block mBlocks[20];   // 0x10 — 20 x 0x98 (to 0xbf0)
         uint64_t mZeroBf0;   // 0xbf0 — ctor zero
         uint64_t mZeroBf8;   // 0xbf8 — ctor zero

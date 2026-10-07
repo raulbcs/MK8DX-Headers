@@ -22,9 +22,9 @@ namespace gear
         float mRatio25;       //0x24 — ctor sets 0.25f
         uint32_t mZero28;     //0x28
         uint16_t mZero2c;     //0x2C
-        uint8_t pad2e[2];     //0x2E
+        uint8_t pad2e[2];     //0x2E — unproven padding
         uint32_t mZero30;     //0x30
-        uint8_t pad34[4];     //0x34
+        uint8_t pad34[4];     //0x34 — unproven padding
         uint32_t mZero38;     //0x38
         // (0x3C total)
     };

@@ -12,7 +12,7 @@ namespace object
     {
     public:
         uint32_t mField328;    // 0x328 — zeroed on ctor
-        char mPad32c[4];       // 0x32c
+        char mPad32c[4];       // 0x32c — unproven padding
         uint64_t mField330;    // 0x330 — zeroed on ctor; runtime: target
                                // object ptr (slot 0x710032324, fns
                                // 0x710037158/0x710039490)
@@ -22,13 +22,13 @@ namespace object
                                // 0x7100315a0/0x710033434/0x710037348)
         uint32_t mField368;    // 0x368 — zeroed on ctor; runtime: target
                                // state (cmp #1 in slot 0x710032384)
-        char mPad36c[4];       // 0x36c
+        char mPad36c[4];       // 0x36c — unproven padding
         uint64_t mField370;    // 0x370 — zeroed on ctor; runtime: target
                                // ptr pair with 0x368 (slot 0x710032384,
                                // fns 0x7100371ac/0x710037990)
-        char mPad378[8];       // 0x378
+        char mPad378[8];       // 0x378 — unproven padding
         uint32_t mField380;    // 0x380 — zeroed on ctor
-        char mPad384[4];       // 0x384
+        char mPad384[4];       // 0x384 — unproven padding
         uint64_t mField388;    // 0x388 — zeroed on ctor
     };
 }

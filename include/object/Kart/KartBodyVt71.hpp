@@ -56,9 +56,9 @@ namespace object
         uint64_t mField150;    // 0x150 — zeroed on ctor
         uint64_t mField158;    // 0x158 — zeroed on ctor
         uint32_t mField160;    // 0x160 — zeroed on ctor
-        char mPad164[0x2];     // 0x164
+        char mPad164[0x2];     // 0x164 — unproven padding
         uint8_t mFlag166;      // 0x166 — flag read by slot 0xa0
-        char mPad167[0x41];    // 0x167
+        char mPad167[0x41];    // 0x167 — unproven padding
         void* mField1a8;       // 0x1a8 — cleared by the re-init slot 0x18
         char mPad1b0[0x58];    // 0x1b0 — to end (0x208)
 };

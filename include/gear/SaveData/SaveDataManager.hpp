@@ -24,8 +24,8 @@ namespace gear
             bool mIsDownloaded; // 0x08
             bool mIsFastGhost; // 0x09
             bool mSkipCreate; // 0x0A
-            uint8_t mPad0B; // 0x0B
-            uint8_t mPad0C[4]; // 0x0C
+            uint8_t mPad0B; // 0x0B — unproven padding
+            uint8_t mPad0C[4]; // 0x0C — unproven padding
 
             void getFileName(sead::BufferedSafeStringBase<char> *)const;
 
@@ -39,8 +39,8 @@ namespace gear
             int32_t mCourseId; // 0x04
             uint8_t mIsDL; // 0x08
             uint8_t mIsFastGhost; // 0x09
-            uint8_t mPad0A; // 0x0A
-            uint8_t mPad0B; // 0x0B
+            uint8_t mPad0A; // 0x0A — unproven padding
+            uint8_t mPad0B; // 0x0B — unproven padding
 
             LoadGhostParam() {}
         };
@@ -51,8 +51,8 @@ namespace gear
             int32_t mCourseId; // 0x00
             uint8_t mIsDL; // 0x04;
             uint8_t mIsFastGhost; // 0x05
-            uint8_t mPad06; // 0x06
-            uint8_t mPad07; // 0x07
+            uint8_t mPad06; // 0x06 — unproven padding
+            uint8_t mPad07; // 0x07 — unproven padding
             RemoveGhostParam() {}
         };
 
@@ -64,7 +64,7 @@ namespace gear
 
             T* mEntries[N]; // 0x08
             uint32_t mCurrentIndex; // 0x18
-            uint32_t mPad1C; // 0x1C
+            uint32_t mPad1C; // 0x1C — unproven padding
 
             inline T* peek() {
                 return mEntries[mCurrentIndex];

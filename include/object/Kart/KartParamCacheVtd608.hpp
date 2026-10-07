@@ -34,7 +34,7 @@ namespace object
     {
     public:
         KartParamCacheNode mNode48;        // 0x48 — 0x30 (same node type as Mid 0x68)
-        uint8_t pad78[0x18];               // 0x78
+        uint8_t pad78[0x18];               // 0x78 — unproven padding
         ParamChannelVt32b8 mChan78;        // 0x78 — channel pair (0x20)
         uint32_t mZero90;                  // 0x90 — ctor zero
         uint8_t mString98[0x20];           // 0x98 — named-string member (ptr @0x98 = this+0xac SSO buf)

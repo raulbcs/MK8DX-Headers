@@ -25,7 +25,7 @@ namespace gear
     {
     public:
         uint32_t mField38;     // 0x38 — zeroed on ctor
-        uint8_t mPad3c[4];     // 0x3c
+        uint8_t mPad3c[4];     // 0x3c — unproven padding
         char mPad40[0x40];     // 0x40 — zeroed on ctor (to 0x80)
         char mPad80[0x68];     // 0x80 — untouched by ctor (to 0xe8)
 

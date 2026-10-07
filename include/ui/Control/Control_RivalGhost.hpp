@@ -29,12 +29,12 @@ namespace ui
         mush::EBodyID mBodyId; // 0x190
         mush::ETireID mTireId; // 0x194
         mush::EWingID mWingId; // 0x198
-        uint32_t mPad19C; // 0x19C
+        uint32_t mPad19C; // 0x19C — unproven padding
         mush::ECourseID mCourseId; // 0x1A0
         uint32_t mLapTimeMs[7]; // 0x1A4
-        uint8_t mPad1C0[0x1D]; // 0x1C0
+        uint8_t mPad1C0[0x1D]; // 0x1C0 — unproven padding
         uint8_t mIsSelected; // 0x1DD
-        uint8_t mPad1DE[0x02]; // 0x1DE
+        uint8_t mPad1DE[0x02]; // 0x1DE — unproven padding
         sead::FixedSafeString<256> mGhostFilePath; // 0x1E0
         uint32_t mDownloadSlot; // 0x2F8
 

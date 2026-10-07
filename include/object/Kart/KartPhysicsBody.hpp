@@ -59,27 +59,27 @@ namespace object
         float mScaleWf4;       // 0xf4 — re-applies it via 0x71006a1194
                                // (all zeroed on ctor; 1.0 = no override)
         uint32_t mFieldF8;     // 0xf8 — zeroed on ctor
-        char mPadFc[4];        // 0xfc
+        char mPadFc[4];        // 0xfc — unproven padding
 
         // Embedded member at 0x100 (ctor 0x8dbc50; vptr 0x12d5b98, n=14)
         char mSub100[0xc];     // 0x100..0x10c
         float mF10c;           // 0x10c — 1.0f
         uint64_t mField110;    // 0x110 — zeroed on ctor
         uint8_t mField118;     // 0x118 — zeroed on ctor
-        char mPad119[7];       // 0x119
+        char mPad119[7];       // 0x119 — unproven padding
         // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
         // the isSurfaceValid slot 0x710013190: pos + vel*t + 0.5*accel*t^2)
-        uint8_t mPad120[0xc];  // 0x120
+        uint8_t mPad120[0xc];  // 0x120 — unproven padding
         float mPosX12c;        // 0x12c — position xyz (written by the
         float mPosY130;        // 0x130 — shapePos calc integration 0x7100137a0+;
         float mPosZ134;        // 0x134 — ==2 state branch copies them raw)
-        uint8_t mPad138[0x1c]; // 0x138
+        uint8_t mPad138[0x1c]; // 0x138 — unproven padding
         float mVelX154;        // 0x154 — velocity xyz (written by the physics
         float mVelY158;        // 0x158 — integration 0x7100142d0-0x148e0)
         float mVelZ15c;        // 0x15c
-        uint8_t mPad160[0x18]; // 0x160
+        uint8_t mPad160[0x18]; // 0x160 — unproven padding
         uint16_t mField178;    // 0x178 — 1 on ctor
-        char mPad17a[2];       // 0x17a
+        char mPad17a[2];       // 0x17a — unproven padding
         float mAccX17c;        // 0x17c — acceleration xyz (written by fn
         float mAccY180;        // 0x180 — 0x710012e20-0x13190; ctor zeroes via
         float mAccZ184;        // 0x184 — unaligned u64 stores, split here)
@@ -92,7 +92,7 @@ namespace object
         uint16_t mField1b0;    // 0x1b0 — -1 on ctor
         uint16_t mField1b2;    // 0x1b2 — -1 on ctor
         uint8_t mField1b4;     // 0x1b4 — 1 on ctor
-        char mPad1b5[3];       // 0x1b5
+        char mPad1b5[3];       // 0x1b5 — unproven padding
         uint64_t mField1b8;    // 0x1b8 — zeroed on ctor
         uint64_t mField1c0;    // 0x1c0 — zeroed on ctor
         char mPad1c8[4];       // 0x1c8 — ctor zeroes u64 at unaligned 0x1c6
@@ -101,17 +101,17 @@ namespace object
         uint64_t mField1e0;    // 0x1e0 — zeroed on ctor
         float mF1e8;           // 0x1e8 — 3.5f
         uint8_t mField1ec;     // 0x1ec — zeroed on ctor
-        char mPad1ed[1];       // 0x1ed
+        char mPad1ed[1];       // 0x1ed — unproven padding
         uint16_t mField1ee;    // 0x1ee — -1 on ctor
         uint32_t mField1f0;    // 0x1f0 — zeroed on ctor
         uint16_t mField1f4;    // 0x1f4 — zeroed on ctor
-        char mPad1f6[2];       // 0x1f6
+        char mPad1f6[2];       // 0x1f6 — unproven padding
         uint32_t mField1f8;    // 0x1f8 — 1 on ctor
         uint8_t mField1fc;     // 0x1fc — 1 on ctor
-        char mPad1fd[3];       // 0x1fd
+        char mPad1fd[3];       // 0x1fd — unproven padding
         uint64_t mField200;    // 0x200 — zeroed on ctor
         uint64_t mField208;    // 0x208 — zeroed on ctor
-        char mPad210[8];       // 0x210
+        char mPad210[8];       // 0x210 — unproven padding
         uint64_t mField218;    // 0x218 — zeroed on ctor
         uint64_t mField220;    // 0x220 — zeroed on ctor; runtime: rigid-body
                                // state enum (RigidBodyUpdate dispatches on
@@ -134,11 +134,11 @@ namespace object
                                // vcalls its slots 0x98/0xa8)
         uint64_t mField280;    // 0x280 — zeroed on ctor
         uint32_t mField288;    // 0x288 — zeroed on ctor
-        char mPad28c[0x30];    // 0x28c
+        char mPad28c[0x30];    // 0x28c — unproven padding
         uint32_t mField2bc;    // 0x2bc — zeroed on ctor
-        char mPad2c0[0x18];    // 0x2c0
+        char mPad2c0[0x18];    // 0x2c0 — unproven padding
         uint32_t mField2d8;    // 0x2d8 — zeroed on ctor
-        char mPad2dc[0xc];     // 0x2dc
+        char mPad2dc[0xc];     // 0x2dc — unproven padding
         uint32_t mCur2e8;      // 0x2e8 — current/previous value pair: the
         uint32_t mPrev2ec;     // 0x2ec — setter fn 0x710013278 moves the old
                                // value to 0x2ec (guard byte 0x1f3), same
@@ -150,9 +150,9 @@ namespace object
         uint16_t mField2f0;    // 0x2f0
         int32_t mField2f4;     // 0x2f4 — -1 on ctor (update-record field)
         int32_t mField2f8;     // 0x2f8 — -1 on ctor (update-record field)
-        char mPad2fc[0x18];    // 0x2fc
+        char mPad2fc[0x18];    // 0x2fc — unproven padding
         uint32_t mField314;    // 0x314 — zeroed on ctor
-        char mPad318[2];       // 0x318
+        char mPad318[2];       // 0x318 — unproven padding
         uint16_t mField31a;    // 0x31a — -1 on ctor
         uint32_t mField31c;    // 0x31c — zeroed on ctor
         uint16_t mField320;    // 0x320 — -1 on ctor; runtime: rescue/player

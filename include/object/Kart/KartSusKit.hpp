@@ -29,6 +29,6 @@ namespace object
             // (0xD4..0x110), 0x114..0x117 zero
         float f118; //0x118 — course-conditional float from tables 0xf20860/0x68/
             // 0x870 (index 4 when course ID == 0x46, else 0) (0x15de84-0x15deac)
-        uint8_t pad_11c[0xc]; //0x11C - 0x127
+        uint8_t pad_11c[0xc]; //0x11C - 0x127 — unproven padding
     };
 }

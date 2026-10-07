@@ -20,9 +20,9 @@ namespace object
         uint8_t pad_00[8]; // 0x00 — vtable ptr (global 0x1307890+0x10)
         uint32_t state08; //0x08 — int state, ==2 gate in FUN_7100173140
         uint32_t u0c; //0x0C
-        uint8_t pad_010[0x100]; //0x10
+        uint8_t pad_010[0x100]; //0x10 — unproven padding
         uint8_t flag110; //0x110 — setup writes 1
-        uint8_t pad_111[0x167]; //0x111 - 0x277
+        uint8_t pad_111[0x167]; //0x111 - 0x277 — unproven padding
         void* parent_278; //0x278 — first pointer of the 0x40-byte param block
             // copied from the KartVehicle init stack; the setup then registers
             // this under it: recorderAddChannel(parent, this, 0)

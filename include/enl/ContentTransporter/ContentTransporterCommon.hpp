@@ -31,16 +31,16 @@ namespace enl
         sead::PtrArray<enl::DoubleBuffer> mMessageBuffers; // 0x10
         bool mNeedsUpdate; // 0x20
         bool mIsIdleState; // 0x21
-        bool mPad22; // 0x22
-        bool mPad23; // 0x23
-        uint32_t mPad24; // 0x24
+        bool mPad22; // 0x22 — unproven padding
+        bool mPad23; // 0x23 — unproven padding
+        uint32_t mPad24; // 0x24 — unproven padding
         uint32_t mReceivedAIDBmp; // 0x28
-        uint32_t mPad2C; // 0x2C
+        uint32_t mPad2C; // 0x2C — unproven padding
         uint8_t mSendInterval; // 0x30
-        uint8_t mPad31[0x3]; // 0x31
+        uint8_t mPad31[0x3]; // 0x31 — unproven padding
         uint32_t mPad34; // 0x34;
         uint32_t mReceiveFlagsCount; // 0x38
-        uint32_t mPad3C; // 0x3C
+        uint32_t mPad3C; // 0x3C — unproven padding
         uint8_t* mReceiveFlags; // 0x40
         uint32_t mHandleCount; // 0x48
         uintptr_t mHandles; // 0x50

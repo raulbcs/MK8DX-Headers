@@ -11,7 +11,7 @@ namespace nn::nex
     class ProtocolCallContext : public CallContext
     {
     public:
-        uint8_t mPad30[0x88];         //0x30
+        uint8_t mPad30[0x88];         //0x30 — unproven padding
         Credentials* mCredentials;    //0xB8
 
         ProtocolCallContext(Credentials* creds);

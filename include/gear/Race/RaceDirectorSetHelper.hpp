@@ -24,7 +24,7 @@ namespace gear
             void* mOwner20;      //0x20 — ctor arg x1 (the PlayerSet)
             uint64_t m28;        //0x28 — ctor zero
             uint32_t m30;        //0x30 — ctor zero
-            uint8_t pad34[4];    //0x34
+            uint8_t pad34[4];    //0x34 — unproven padding
             uint32_t m38;        //0x38 — ctor zero
     };
 }

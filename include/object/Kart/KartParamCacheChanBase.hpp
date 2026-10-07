@@ -13,7 +13,7 @@ namespace object
     public:
         void* vptr;            // 0x00
         uint32_t mField8;      // 0x08 — ctor arg w0
-        uint8_t pad0c[4];      // 0x0c
+        uint8_t pad0c[4];      // 0x0c — unproven padding
         void* mZero10;         // 0x10 — ctor zero
         // (0x18 total)
     };

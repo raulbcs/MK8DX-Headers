@@ -18,13 +18,13 @@ namespace gear
     class RaceDirectorSetChainMid : public RaceDirectorSetChain
     {
         public:
-            uint8_t padC0[0x20]; //0xC0
+            uint8_t padC0[0x20]; //0xC0 — unproven padding
             uint32_t mZeroE0;    //0xE0 — ctor zero
             uint32_t mZeroE4;    //0xE4
             uint32_t mZeroE8;    //0xE8
             uint16_t mZeroEc;    //0xEC
             uint8_t mZeroEf;     //0xEF
-            uint8_t padF0[8];    //0xF0
+            uint8_t padF0[8];    //0xF0 — unproven padding
             // (0xF8 total)
     };
 }

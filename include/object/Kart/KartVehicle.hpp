@@ -39,9 +39,9 @@ namespace object
     public:
         struct ControlInfo
         {
-            uint32_t mKeyPadState; //0x00
-            uint32_t mPad04; //0x04
-            uint32_t mPad08; //0x08
+            uint32_t mKeyPadState; //0x00 — unproven padding
+            uint32_t mPad04; //0x04 — unproven padding
+            uint32_t mPad08; //0x08 — unproven padding
             float controlStickX; //0x0C
             float controlStickY; //0x10
         };
@@ -81,21 +81,21 @@ namespace object
         KartJugemRecover* mKartJugemRecover; //0x90 — size 0x1D8 (new @ 0x71001704dc,
             // ctor 0x142a60 with mPlayerID); 8-byte thunks ldr x0,[x0,#0x90]
             // (FUN_7100175a28 / FUN_7100175a30)
-        uintptr_t mPad98; //0x98
+        uintptr_t mPad98; //0x98 — unproven padding
         KartSteerAssist* mKartSteerAssist; //0xA0
         uint32_t mPlayerID; //0xA8
-        uint32_t mPadAC; //0xAC
+        uint32_t mPadAC; //0xAC — unproven padding
         uint32_t mBodyID; //mush::EBodyID 0xB0
         uint32_t mDriverID; //mush::EDriverID 0xB4
-        uint8_t mPadB8[0x10]; //0xB8 - 0xC7
+        uint8_t mPadB8[0x10]; //0xB8 - 0xC7 — unproven padding
         uint32_t mTeamType; //gear::ETeamType 0xC8
-        uint32_t mPadCC; //0xCC
+        uint32_t mPadCC; //0xCC — unproven padding
         bool mIsMaster; //0xD0
-        uint8_t mPadD1; //0xD1
+        uint8_t mPadD1; //0xD1 — unproven padding
         bool mIsCpu; //0xD2
         bool mIsCpuOrKiller; //0xD3
         bool mIsGhost; //0xD4
-        uint8_t mPadD5[3]; //0xD5-0xD7
+        uint8_t mPadD5[3]; //0xD5-0xD7 — unproven padding
         bool mIsBike; //0xD8 — INIT: mirrored from isKartUnitState24Eq1 by
             // FUN_7100170090 (0x1700d0); suggests KartUnit mode_24==1 encodes bike
         bool mIsHangOnBike; //0xD9 — INIT: isKartUnitField28Eq2 mirror (0x1700e0)
@@ -104,9 +104,9 @@ namespace object
         bool mIsATVRideType; //0xDC — INIT: isKartUnitState28Eq3 mirror (0x170110)
         bool mIsTrike; //0xDD — INIT: isKartUnitField24Eq2 mirror (0x170120)
         bool mIsTrikeR; //0xDE — INIT: isKartUnitField24Eq3 mirror (0x170130)
-        uint8_t mPadDF[2]; //0xDF-0xE0
+        uint8_t mPadDF[2]; //0xDF-0xE0 — unproven padding
         bool mIsEnableRun; //0xE1
-        uint8_t mPadE2[3]; //0xE2 - 0xE4
+        uint8_t mPadE2[3]; //0xE2 - 0xE4 — unproven padding
         bool mIsNetVS; //0xE5 — INIT: bit3 of the manager global at 0x87fcd0->+0x24 (0x17014c)
         bool mIsNetSend; //0xE6 — INIT: mIsNetVS && (param+0xd54 != 2) (0x17015c-0x17016c)
         bool mIsNetRecv; //0xE7 — INIT: mIsNetVS && (param+0xd54 == 2) (0x170184); on
@@ -117,36 +117,36 @@ namespace object
         bool mIsThief; //0xEA
         bool mIsEndTeresaTrigger; //0xEB
         bool mIsGoalGhostAlone; //0xEC
-        uint8_t mPadED[7]; //0xED - 0xF3
+        uint8_t mPadED[7]; //0xED - 0xF3 — unproven padding
         float mF_f4; //0xF4 — float; multiplied with getKartUnitF32F90 and stored
             // to +0x26C by the ctor helper 0x170548 (0x170588-0x1705a4)
-        uint8_t mPadF8[0xC]; //0xF8 - 0x103
+        uint8_t mPadF8[0xC]; //0xF8 - 0x103 — unproven padding
         uint32_t mChassisMirror19C; //0x104 — copied to KartChassis+0x19C by helper
             // 0x170548 (0x1705b8)
         uint32_t mChassisMirror1A0; //0x108 — -> KartChassis+0x1A0
         uint32_t mChassisMirror1A4; //0x10C — -> KartChassis+0x1A4
         sead::Vector3f mKartScaleVec; //0x110
         float mKartScaleMultiplier; //0x11C
-        uint8_t mPad120[0x0C]; //0x120 - 0x12B
+        uint8_t mPad120[0x0C]; //0x120 - 0x12B — unproven padding
         float mCameraShownHeight; //0x12C
-        uint8_t mPad130[0x20]; //0x130 - 0x14F
+        uint8_t mPad130[0x20]; //0x130 - 0x14F — unproven padding
         float mWaterDepth; //0x150
-        uint8_t mPad154[0x10]; //0x154 - 0x163
+        uint8_t mPad154[0x10]; //0x154 - 0x163 — unproven padding
         float mBikeConst164; //0x164 — ctor picks from table 0xf20898 indexed by
             // mIsHangOnBike (0x1704f4-0x17051c)
         float mBikeConst168; //0x168 — same, table 0xf208a0[mIsHangOnBike]
-        uint8_t mPad16C[4]; //0x16C - 0x16F
+        uint8_t mPad16C[4]; //0x16C - 0x16F — unproven padding
         ControlInfo kartControlInfo; //0x170 - 0x183
-        uint8_t mPad184[0x40]; //0x184 - 0x1C3
+        uint8_t mPad184[0x40]; //0x184 - 0x1C3 — unproven padding
         float mAntiGEmissionFrame; //0x1C4
-        uint32_t mPad1C8; //0x1C8
+        uint32_t mPad1C8; //0x1C8 — unproven padding
         uint32_t mKartStatusBits; //0x1CC — evidenced bits: 4 (FUN_7100174ec8),
             // 6 (FUN_7100174f5c), 14+21 volatile 0x204000 gate (FUN_710017a830),
             // 29 (FUN_7100177400, byte 0x1CF >>5)
         uint32_t mKartFrames; //0x1D0 — zeroed per-frame (FUN_7100173df4)
-        uint8_t mPad1D4[5]; //0x1D4 - 0x1D8
+        uint8_t mPad1D4[5]; //0x1D4 - 0x1D8 — unproven padding
         bool mFlag1D9; //0x1D9 — set true by FUN_7100173204 (SusKit call path)
-        uint8_t mPad1DA[2]; //0x1DA - 0x1DB
+        uint8_t mPad1DA[2]; //0x1DA - 0x1DB — unproven padding
         float mAntiGTransFrame; //0x1DC
         float mStartCharge; //0x1E0
         uint32_t mStarFrames; //0x1E4 — zeroed by FUN_7100175af4
@@ -154,51 +154,51 @@ namespace object
         int32_t mTeresaFrames; //0x1EC — compared ==0x258/600 by FUN_7100174ce8
         float mUnknown1F0; //0x1F0 — float (FUN_710017842c: ldr s)
         int mJumpActionType; //0x1F4
-        uint8_t mPad1F8[8]; //0x1F8 - 0x1FF
+        uint8_t mPad1F8[8]; //0x1F8 - 0x1FF — unproven padding
         uint32_t mTrickFramesLeft; //0x200
         uint32_t mTrickFrames; //0x204
-        uint8_t mPad208[0x14]; //0x208 - 0x21B
+        uint8_t mPad208[0x14]; //0x208 - 0x21B — unproven padding
         uint32_t mPressFrames; //0x21C
         float mPressScale; //0x220
         uint32_t mThunderFrames; //0x224
         float mThunderScale; //0x228
-        uint32_t mPad22C; //0x22C
+        uint32_t mPad22C; //0x22C — unproven padding
         uint32_t mSlipstreamChargeFrames; //0x230
         uint32_t mSlipstreamDashFrames; //0x234
-        uint8_t mPad238[0xC]; //0x238 - 0x243
+        uint8_t mPad238[0xC]; //0x238 - 0x243 — unproven padding
         uint32_t mControlLockFrames; //0x244
         uint32_t mBattleInvincibilityFrames; //0x248
-        uint32_t mPad24C; //0x24C
+        uint32_t mPad24C; //0x24C — unproven padding
         uint32_t mBlinkVisualFrames; //0x250
         bool mIsDontSearch; //0x254
-        uint8_t mPad255[3]; //0x255 - 0x257
+        uint8_t mPad255[3]; //0x255 - 0x257 — unproven padding
         uint32_t mAirFramesForJugem; //0x258
         uint32_t mPrisonIndex; //0x25C
         float mKillerEndRatio; //0x260
-        uint8_t mPad264[8]; //0x264 - 0x26B
+        uint8_t mPad264[8]; //0x264 - 0x26B — unproven padding
         float mF26c; //0x26C — ctor helper 0x170548: getKartUnitF32F90(kartParameter)
             // * mF_f4 (0x170588-0x1705a4)
         bool mIsAfterOnResetPosition; //0x270
-        uint8_t mPad271[3]; //0x271 - 0x273
+        uint8_t mPad271[3]; //0x271 - 0x273 — unproven padding
         float mUnknown274; //0x274 — float (FUN_710017842c)
         float mXluAlpha; //0x278 — float, verified (FUN_710017842c ldr/str s on a
             // base with mKartStatusBits/mKartFrames); matches recorder channel
             // "p_xlu_alpha". The strb users at +0x278 are the boost-envelope
             // struct (its own bytes 0x250-0x253), NOT this field.
-        uint8_t mPad27C[0x1C]; //0x27C - 0x297
+        uint8_t mPad27C[0x1C]; //0x27C - 0x297 — unproven padding
         uint32_t mRaceInvincibilityFrames; //0x298
-        uint8_t mPad29C[0x24]; //0x29C - 0x2BF
+        uint8_t mPad29C[0x24]; //0x29C - 0x2BF — unproven padding
         uint8_t mFlag2C0; //0x2C0 — zeroed by FUN_7100173204
-        uint8_t mPad2C1[0x63]; //0x2C1 - 0x323
+        uint8_t mPad2C1[0x63]; //0x2C1 - 0x323 — unproven padding
         uint32_t mRenegadeCaughtFrames; //0x324
         uint32_t mCaughtRenegadeToPrisonTime; //0x328
-        uint8_t mPad32C[8]; //0x32C - 0x333
+        uint8_t mPad32C[8]; //0x32C - 0x333 — unproven padding
         uint32_t mJugemStuckCount; //0x334
-        uint32_t mPad338; //0x338
+        uint32_t mPad338; //0x338 — unproven padding
         bool mIsNeedToSendJugemHang; //0x33C
-        uint8_t mPad33D[3]; //0x33D - 0x33F
+        uint8_t mPad33D[3]; //0x33D - 0x33F — unproven padding
         sead::Vector2f mStickVolForKiller; //0x340 — zeroed via 8-byte store in FUN_7100173c40
-        uint8_t mPad348[0x28]; //0x348 - 0x36F
+        uint8_t mPad348[0x28]; //0x348 - 0x36F — unproven padding
         
         ControlInfo getControlInfo();
 

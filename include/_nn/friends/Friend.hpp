@@ -16,8 +16,8 @@ namespace nn::friends
         FriendPresence mPresence; // 0x40
         bool mIsFavorite; // 0x120
         bool mIsNewly; // 0x121
-        uint8_t mPad122[6]; // 0x122
+        uint8_t mPad122[6]; // 0x122 — unproven padding
         bool isValid; // 0x128
-        uint8_t mPad129[0xD7]; // 0x129
+        uint8_t mPad129[0xD7]; // 0x129 — unproven padding
     };
 }

@@ -13,30 +13,30 @@ namespace gear
     class ItemSlot : public Actor 
     {
         public:
-            uint8_t mPad38[8]; //0x38
+            uint8_t mPad38[8]; //0x38 — unproven padding
             uint8_t mPermissionFlags; //0x40
             uint8_t mSlotState; //0x41
             uint8_t mPreviousSlotState; //0x42
             bool mIsSlotStateChange; //0x43
             uint32_t mCurrentStateTimer; //0x44
             gear::ItemSlot* mCurrentSlot; //0x48
-            uint8_t mPad50[0x18]; //0x50
+            uint8_t mPad50[0x18]; //0x50 — unproven padding
             uint32_t mSlotIndex; //0x68
-            uint32_t mPad6C; //0x6C
+            uint32_t mPad6C; //0x6C — unproven padding
             gear::ItemOwner* mItemOwner; //0x70
             object::KartInfoProxy* mKartInfoProxy; //0x78
             uintptr_t* mSerialBuffer; //0x80
             uint32_t mSerialTotalCount; //0x88
             uint32_t mSerialCurrentCount; //0x8C
             uint32_t mSerialCountLeft; //0x90
-            uint32_t mPad94; //0x94
+            uint32_t mPad94; //0x94 — unproven padding
             uint32_t mUseCountLeft; //0x98
             gear::EItemSlot mStockItem; //0x9C
             uint32_t mStockItemNum; //0xA0
             bool mIsNetRequestOK; //0xA4
-            uint8_t mPadA5[3]; //0xA5
+            uint8_t mPadA5[3]; //0xA5 — unproven padding
             uint32_t mNetPermissionTableCapacity; //0xA8
-            uint32_t mPadAC; //0xAC
+            uint32_t mPadAC; //0xAC — unproven padding
             uintptr_t* mNetPermissionTable; //0xB0
             uint8_t mNetRetrySequenceCounter; //0xB8
             // Unproven content — pure alignment padding aligning
@@ -46,7 +46,7 @@ namespace gear
             bool mIsSlotDecide; //0xC0
             bool mIsSlotFlash; // 0xC1
             bool mIsSlotDebug; // 0xC2
-            uint8_t mPadC3; //0xC3
+            uint8_t mPadC3; //0xC3 — unproven padding
             gear::EItemSlot mNextItem; //0xC4
             gear::EItemSlot mCurrentItem; //0xC8
             int32_t mRotateFrames; //0xCC

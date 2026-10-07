@@ -35,7 +35,7 @@ namespace nn::ae
         void* vptr;             // 0x00 — 0x12b0a58 for the base class
         uint8_t mOwn08[0xec];   // 0x08 — SDK-internal (thread/event/queue), map pending
         uint8_t mFlagF4;        // 0xf4 — shared ctor strb zero
-        uint8_t padF5[3];       // 0xf5
+        uint8_t padF5[3];       // 0xf5 — unproven padding
         // (0xf8 total)
     };
 }

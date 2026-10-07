@@ -17,7 +17,7 @@ namespace object
         char mChan110[0x18];   // 0x110 — channel-pair member (ctor pair
                                // 0x7100662f30/0x7100662f70, cell 0x130d9b8)
         uint32_t mField128;    // 0x128 — factory zero
-        uint8_t pad12c[4];     // 0x12c
+        uint8_t pad12c[4];     // 0x12c — unproven padding
         char mChan130[0x20];   // 0x130 — channel-pair member (names
                                // 0xef9d06/0xef9d13)
 

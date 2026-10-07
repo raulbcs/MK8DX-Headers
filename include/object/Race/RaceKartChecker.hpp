@@ -23,7 +23,7 @@ namespace object
         // lapTotal byte@0x64) by kart index; mLap is compared to lapTotal.
 
         uint16_t mFlags3c;     // 0x3c — zeroed on ctor/enter; bit 2 checked by calc
-        uint16_t mPad3e;       // 0x3e
+        uint16_t mPad3e;       // 0x3e — unproven padding
         uint32_t mField40;     // 0x40 — ctor stores 1; reset on enter, gets kart index
         uint32_t mLap;         // 0x44 — compared against lapTotal
 
@@ -48,7 +48,7 @@ namespace object
         uint32_t mPad50;       // 0x50 — zeroed on ctor (pre-index store)
         TimeRecord mTime[7];   // 0x54 — records 1..7 (0x54..0x8c)
         uint16_t mField8c;     // 0x8c — zeroed on ctor/enter
-        uint16_t mPad8e;       // 0x8e
+        uint16_t mPad8e;       // 0x8e — unproven padding
 
         void* mRecorderChannel; // 0x90 — recorder::Binder built by the ctor
         uint16_t mFlags98;     // 0x98 — zeroed on ctor/enter; byte 0x99 zero

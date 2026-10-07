@@ -110,9 +110,9 @@ namespace gear
         public:
             uint8_t mSkeletalAnimNum; // 0x00
             uint8_t mMaterialAnimNum; // 0x01
-            uint8_t mPad02[0x02]; // 0x02
-            float mPad04; // 0x04
-            float mPad08; // 0x08
+            uint8_t mPad02[0x02]; // 0x02 — unproven padding
+            float mPad04; // 0x04 — unproven padding
+            float mPad08; // 0x08 — unproven padding
 
             ClassParam(uint8_t, uint8_t);
             ClassParam(uint8_t, uint8_t, float, float);
@@ -120,12 +120,12 @@ namespace gear
 
 
         ClassParam* mClassParam;
-        uint8_t mPad138[0x78]; // 0x128
+        uint8_t mPad138[0x78]; // 0x128 — unproven padding
         MapObjDrawManager* mDrawManager; // 0x1B0
         int32_t mDrawManagerIndex; // 0x1B8
-        int32_t mPad1BC; // 0x1BC
+        int32_t mPad1BC; // 0x1BC — unproven padding
         sead::FixedRingBuffer<int16_t, 8> mRouteGroup; // 0x1C0
-        uint8_t mPad1E8[0x10]; // 0x1B8
+        uint8_t mPad1E8[0x10]; // 0x1B8 — unproven padding
 
         MapObjBase(gear::MapObjCreateArg const&);
     };

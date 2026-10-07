@@ -42,9 +42,9 @@ namespace object
         uint64_t mFieldC8;     // 0xc8 — zeroed on ctor
         uint64_t mFieldD0;     // 0xd0 — zeroed on ctor
         uint32_t mFieldD8;     // 0xd8 — zeroed on ctor (also by 0x881c00)
-        char mPadDc[0x30];     // 0xdc
+        char mPadDc[0x30];     // 0xdc — unproven padding
         uint32_t mField10c;    // 0x10c — zeroed on ctor
         uint16_t mField110;    // 0x110 — zeroed on ctor (u16; also by 0x881c00)
-        char mPad112[0x6];     // 0x112
+        char mPad112[0x6];     // 0x112 — unproven padding
     };
 }

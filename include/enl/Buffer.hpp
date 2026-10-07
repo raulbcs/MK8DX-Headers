@@ -34,7 +34,7 @@ namespace enl {
         uintptr_t mPtrs[2]; // 0x10
         int32_t mCurrentIndex; // 0x20
         uint8_t mComitted; //0x24
-        uint8_t mPad25[0x3]; // 0x28
+        uint8_t mPad25[0x3]; // 0x28 — unproven padding
 
         DoubleBuffer(int32_t numBuf, uint32_t sizeBuf) {
             this->mArray.setBuffer(numBuf, this->mPtrs);

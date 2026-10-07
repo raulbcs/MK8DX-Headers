@@ -15,10 +15,10 @@ namespace object
     // mKartParameter; layout below is the verified part only.
     struct KartParameter
     {
-        uint8_t pad_000[8]; // 0x00
+        uint8_t pad_000[8]; // 0x00 — unproven padding
         KartUnit* kart_unit; //0x08 — target of the 45 wrapper accessors
             // (KartUnit+0x08 points back to the owning KartVehicle)
-        uint8_t pad_010[0x34]; // 0x10
+        uint8_t pad_010[0x34]; // 0x10 — unproven padding
         float arr_44[28]; //0x44 — f32 array indexed by the wrapper idx arg
                           // (FUN_710014c734: fallback value for the stance calc)
         uint8_t pad_b0[0xC]; // to 0xb8

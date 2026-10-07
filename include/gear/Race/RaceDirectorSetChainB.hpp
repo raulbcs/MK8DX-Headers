@@ -21,7 +21,7 @@ namespace gear
             uint32_t mZeroF8;    //0xF8 — ctor zero
             uint32_t mLimit30FC; //0xFC — ctor sets 30 (0x1E)
             uint8_t mZero100[9]; //0x100 - 0x108 — ctor zeroes (+0x104 skipped)
-            uint8_t pad109[7];   //0x109
+            uint8_t pad109[7];   //0x109 — unproven padding
             // (0x110 total)
     };
 }
