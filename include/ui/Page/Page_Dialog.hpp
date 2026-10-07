@@ -20,6 +20,9 @@ namespace ui
     class Page_Dialog : public gear::UIPage
     {
         public:
+            // Unproven — Switch ctor not identified (no RTTI, stripped
+            // binary); all offsets in this class are Wii U (32-bit) relics.
+            // Extent fixed by isDialogOpen at 0x12C.
             uint8_t pad_120[0xC];
             bool isDialogOpen;
             uint8_t pad_12D;

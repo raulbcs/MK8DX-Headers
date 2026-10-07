@@ -18,6 +18,8 @@ namespace ui
     class Control_RivalGhost : public gear::UIControlT<eui::ControlBase>
     {
     public:
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extent fixed by mTotalTime at 0x178.
         uint8_t mPadB4[0xC4];
         gear::RaceTime mTotalTime; // 0x178
         uint32_t mTotalTimeMs; // 0x180
