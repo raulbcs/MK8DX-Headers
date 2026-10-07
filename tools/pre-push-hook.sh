@@ -14,7 +14,7 @@ cd "$(git rev-parse --show-toplevel)"
 is_allowlisted() {
  case "$1" in
  # BEGIN ALLOWLIST (generated; mirrors .github/workflows/syntax.yml)
- # (empty as of -Ivendor/sead/include + -DNNSDK fixed all 204)
+ # (empty: -Ivendor/sead/include + -DNNSDK fixed all 204)
  # END ALLOWLIST
  *) return 1 ;;
  esac

@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-// Baptism audit the family itself is real (rodata thread names
+// Baptism audit: the family itself is real (rodata thread names
 // ControllerAppletThread/KeyboardAppletThread/... prove nn::ae), but the binary never names the base. SDK-glue name kept.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
