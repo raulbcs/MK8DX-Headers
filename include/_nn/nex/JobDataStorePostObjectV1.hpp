@@ -93,6 +93,6 @@ namespace nn::nex
         uint8_t  mInit388;       // 0x388 — member-init call (subobject starts here) (size unknown)
         uint8_t  mPad390[0x10];      // 0x390 — unproven gap
         uint64_t mZero3a0;    // 0x3a0 — ctor zero
-    // Object size 0xa0 (allocation size at the factory new preceding ctor 0xb2acdc).
+    // Object size 0x3a8 (allocation size at the factory new preceding ctor 0xb2acdc).
     };
 }

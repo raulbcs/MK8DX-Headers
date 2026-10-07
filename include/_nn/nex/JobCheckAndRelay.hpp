@@ -55,6 +55,6 @@ namespace nn::nex
         uint64_t mField1b8;   // 0x1b8 — ctor zero (stp high half)
         uint16_t mField1c0;   // 0x1c0 — ctor-written
         uint8_t  mZero1c2;    // 0x1c2 — ctor zero
-    // Object size 0x90 (allocation size at the factory new preceding ctor 0x9f10e8).
+    // Object size 0x1c8 (allocation size at the factory new preceding ctor 0x9f10e8).
     };
 }

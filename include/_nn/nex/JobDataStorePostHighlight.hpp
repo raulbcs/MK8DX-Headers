@@ -94,6 +94,6 @@ namespace nn::nex
         uint8_t  mPad390[0x10];      // 0x390 — unproven gap
         uint64_t mZero3a0;    // 0x3a0 — ctor zero
         uint32_t mZero3a8;    // 0x3a8 — ctor zero
-    // Object size 0xa0 (allocation size at the factory new preceding ctor 0xb28b24).
+    // Object size 0x3b0 (allocation size at the factory new preceding ctor 0xb28b24).
     };
 }

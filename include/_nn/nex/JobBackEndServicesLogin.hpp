@@ -30,6 +30,6 @@ namespace nn::nex
         uint64_t mField508;   // 0x508 — ctor-written
         uint64_t mField510;   // 0x510 — ctor-written
         uint64_t mField518;   // 0x518 — ctor-written
-    // Object size 0x48 (allocation size at the factory new preceding ctor 0xa39964).
+    // Object size 0x520 (allocation size at the factory new preceding ctor 0xa39964).
     };
 }

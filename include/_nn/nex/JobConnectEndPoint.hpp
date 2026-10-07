@@ -92,6 +92,6 @@ namespace nn::nex
         uint64_t mZero338;    // 0x338 — ctor zero
         uint64_t mZero340;    // 0x340 — ctor zero
         uint64_t mZero348;    // 0x348 — ctor zero
-    // Object size 0x90 (allocation size at the factory new preceding ctor 0x9e66c4).
+    // Object size 0x350 (allocation size at the factory new preceding ctor 0x9e66c4).
     };
 }

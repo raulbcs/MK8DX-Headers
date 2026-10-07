@@ -41,6 +41,6 @@ namespace nn::nex
         uint8_t  mPad144[0x4];      // 0x144 — unproven gap
         uint64_t mZero148;    // 0x148 — ctor zero
         uint64_t mField150;   // 0x150 — ctor zero (stp high half)
-    // Object size 0xe8 (allocation size at the factory new preceding ctor 0xa3c8e0).
+    // Object size 0x158 (allocation size at the factory new preceding ctor 0xa3c8e0).
     };
 }

@@ -63,6 +63,6 @@ namespace nn::nex
         uint64_t mField2d0;   // 0x2d0 — ctor-written
         uint64_t mField2d8;   // 0x2d8 — ctor-written
         uint64_t mField2e0;   // 0x2e0 — ctor-written
-    // Object size 0xb0 (allocation size at the factory new preceding ctor 0xa343d0).
+    // Object size 0x2e8 (allocation size at the factory new preceding ctor 0xa343d0).
     };
 }

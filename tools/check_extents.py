@@ -38,6 +38,9 @@ SLACK = 0x10
 OFFSET_COMMENT = re.compile(r"//\s*[-—]?\s*0x([0-9a-fA-F]{1,5})\b")
 PAD_NAME = re.compile(r"\bpad[_]?0*([0-9a-fA-F]{1,5})\b")
 FIXED_BY = re.compile(r"fixed by\s+\S+\s+at\s+0x([0-9a-fA-F]+)\b", re.I)
+# Offset comments on virtual-declaration lines are VTABLE SLOT offsets
+# (//0xb8 — exit() tail call), not field offsets. Never count them.
+VIRTUAL_DECL = re.compile(r"\bvirtual\b")
 
 EXTENT_PATTERNS = [
     re.compile(r"extent\s+(?:is\s+|from\s+|of\s+|=|fixed by\s+\S+\s+at)?0x([0-9a-fA-F]+)", re.I),
@@ -64,10 +67,13 @@ def h(s):
 def analyze(path: Path):
     text = path.read_text(errors="replace")
     max_off = 0
-    for m in OFFSET_COMMENT.finditer(text):
-        v = h(m.group(1))
-        if v < OFFSET_LIMIT:
-            max_off = max(max_off, v)
+    for line in text.splitlines():
+        if VIRTUAL_DECL.search(line):
+            continue  # vtable slot offsets, not field offsets
+        for m in OFFSET_COMMENT.finditer(line):
+            v = h(m.group(1))
+            if v < OFFSET_LIMIT:
+                max_off = max(max_off, v)
     for m in PAD_NAME.finditer(text):
         start = h(m.group(1))
         if start < OFFSET_LIMIT:
