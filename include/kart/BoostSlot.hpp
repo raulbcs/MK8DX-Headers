@@ -4,6 +4,12 @@
 
 // BoostSlot (size 0x258) — kart boost slot. PROVISIONAL: name has no
 // MethodTree string. Embedded in KartVehicleMove at +0x118 (pointer there).
+// Baptism audit 2026-10-07: no MethodTree string; consumers are the FUN_710017a* boost helpers and KartVehicleMove+0x118; behavior-rich, name-less.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 struct BoostSlot
 {
     uint8_t pad_00[8]; // 0x00

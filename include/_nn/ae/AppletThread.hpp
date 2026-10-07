@@ -2,6 +2,13 @@
 
 #include <cstdint>
 
+// Baptism audit 2026-10-07: the family itself is real (rodata thread names
+// ControllerAppletThread/KeyboardAppletThread/... prove nn::ae), but the binary never names the base. SDK-glue name kept.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace nn::ae
 {
     // AppletThread — PROVISIONAL name (SDK/glue). Base of the applet-thread

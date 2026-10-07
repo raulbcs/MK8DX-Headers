@@ -11,6 +11,12 @@
 #include "_nn/ae/NSAAppletThread.hpp"
 #include "_nn/ae/OfflineWebAppletThread.hpp"
 
+// Baptism audit 2026-10-07: sole ctor 0x872004 builds all seven named applet threads but the host object itself has no rodata name and no MethodTree entry.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace nn::err
 {
     // fwd — SDK type, no header in nnheaders vendor; ctor C1 via plt

@@ -5,6 +5,12 @@
 // SteeringX (size 0x106; unpadded tail-pads to 0x108) — steering/start-dash
 // object. Owned by KartDirector (kart_vehicle_ptr +0xc0). PROVISIONAL: name
 // has no MethodTree string.
+// Baptism audit 2026-10-07: no MethodTree string; start-dash/countdown semantics from the KartDirector consumer; name-less.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 struct SteeringX
 {
     uint8_t pad_000[0x28]; // 0x00
