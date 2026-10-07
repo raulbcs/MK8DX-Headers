@@ -28,6 +28,7 @@ namespace eui
 namespace gear
 {
     class UIPage;
+    class UIEvent;
     class UIControl
     {
     public:

@@ -32,5 +32,5 @@ namespace gear
         uint16_t mPad2C6; // 0x2C6
     };
 
-    UIPlayer* GetUIPlayer(uint);
+    UIPlayer* GetUIPlayer(unsigned int);
 }

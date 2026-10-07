@@ -1,5 +1,5 @@
 #pragma once
-#include "EUIPageID.hpp"
+#include "gear/UI/Page/EUIPageID.hpp"
 #include "DialogReq.hpp"
 
 #include "gear/UI/Page/UIPage.hpp"

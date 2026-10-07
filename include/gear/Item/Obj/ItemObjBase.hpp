@@ -22,8 +22,8 @@ namespace gear
     class ItemObjBase : public Actor
     {
         public:
-            virtual void checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*)const {}; // 0x00
-            virtual void getRuntimeTypeInfo(void)const {}; // 0x08
+            virtual bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*) const { return false; } // 0x00
+            virtual sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo(void) const { return nullptr; } // 0x08
             virtual ~ItemObjBase() {}; // 0x10, 0x18
             virtual void prepare(gear::ArgumentObj const*) {}; // 0x20
             virtual void enter() {}; // 0x28

@@ -1,5 +1,9 @@
 #pragma once
 
+#include <cstdint>
+
+#include <math/seadVector.h>
+
 namespace gear
 {
     class RaceKartCheckerBattle

@@ -113,7 +113,7 @@ namespace enl
 
         virtual uint64_t getLastReceiveTime(signed char const&) = 0; // VTable - 0xE0
 
-        virtual void calcSendInterval(sead::BitFlag<ulong long> const&) = 0; // VTable - 0xE8
+        virtual void calcSendInterval(sead::BitFlag<unsigned long long> const&) = 0; // VTable - 0xE8
 
         virtual bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*)const = 0; // VTable - 0xF0
         virtual sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo(void)const = 0; // VTable - 0xF8
@@ -131,10 +131,10 @@ namespace enl
 
         virtual void postInit_() {}; // VTable - 0x138
 
-        virtual void onReceivedCore_(signed char const&,T*,uint) {}; // VTable - 0x140
+        virtual void onReceivedCore_(signed char const&,T*,unsigned int) {}; // VTable - 0x140
 
         // VTable - 0x148
-        virtual bool onCheckReceiveCore_(signed char const&,T*,uint) {
+        virtual bool onCheckReceiveCore_(signed char const&,T*,unsigned int) {
             return true;
         }
 

@@ -40,8 +40,8 @@ namespace gear
     {
     public:
         // gear::Actor overrides
-        virtual void checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*)const override; //0x00
-        virtual void getRuntimeTypeInfo(void)const override; //0x08
+        virtual bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*) const override; //0x00
+        virtual sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo(void) const override; //0x08
         virtual ~MapObjBase();
         virtual void prepare(gear::ArgumentObj const*) override;
         virtual void enter() override;
