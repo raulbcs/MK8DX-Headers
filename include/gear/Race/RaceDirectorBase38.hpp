@@ -10,6 +10,12 @@
 // (0x7c2938), RaceDirectorPlayerBase (0x7c2a90), RaceListItemG's base
 // (0x7ee400), and the three singletons 0x12601e8 (0x3995d4), 0x12c5758
 // (0x7b9a2c), 0x12ca260 (0x7fd3d4).
+// Baptism audit 2026-10-07: 0x38 POD base with no vtable slots beyond slot 0; identity is purely structural (shared ctor 0x7b976c). Nothing in-binary to baptize.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     class RaceDirectorBase38

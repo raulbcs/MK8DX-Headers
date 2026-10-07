@@ -10,6 +10,12 @@
 // (Actor base 0x7b976c). Size 0xB00. Wired by its manager: child+0x18=self,
 // +0x20 intrusive node, +0x28=&manager+0x178, +0x30=[manager+0x1A8];
 // manager+0x1C0++.
+// Baptism audit 2026-10-07: manager list item wired by the per-mode dispatcher (mgr+0x178/+0x1a8/+0x1c0); mode id selects ctor and size; no binary name.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     class RaceListItemE : public Actor

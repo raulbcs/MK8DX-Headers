@@ -10,6 +10,12 @@
 // RaceDirectorVt2 (ctor 0x71005377c). Size 0xD8, proven by the allocation
 // site 0x71006ef64. Seeds 0xb8 with the rodata constant 11 and copies two
 // rodata tables ([0xf57b7c] u64 + u32) into 0xc0/0xc8.
+// Baptism audit 2026-10-07: rodata-seeded config (11 at 0xb8, two tables at 0xc0/0xc8); no name.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     class RaceDirectorVt6 : public RaceDirectorVt2

@@ -4,6 +4,12 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
+// Baptism audit 2026-10-07: no consumers beyond the allocation site 0x820ff0 examined (mii::Database calls nearby but unlinked); no binary name evidence.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     // RaceDirectorVtb5d0 — PROVISIONAL vtable-anchored name (vptr written by

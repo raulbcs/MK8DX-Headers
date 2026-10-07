@@ -4,6 +4,12 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
+// Baptism audit 2026-10-07: consumer proven: ctor 0x501c54 is the mode-id-4 branch of the per-mode list-node dispatcher 0x398c00-0x398e98 (new 0x138 at 0x398e28, wired to mgr+0x178/+0x1b0 like RaceListItemE); the dispatcher never names it.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     // RaceDirectorVt3240 — PROVISIONAL vtable-anchored name (vptr written by

@@ -11,6 +11,12 @@
 // 0..0xa, jump table rodata 0xf210438) with RaceInfo distance checks and
 // item-box tables ([child+0x150..0x188]) in its slot-0x70-family logic
 // (0x51200+).
+// Baptism audit 2026-10-07: state machine 0..0xa with item-box tables and RaceInfo distance checks; the state jump-table rodata carries no label.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     class RaceDirectorVt5 : public RaceDirectorVt2
