@@ -53,6 +53,7 @@ namespace gear
         uint64_t mZero558;     // 0x558 — ctor zero
         uint8_t mSub560[0x40]; // 0x560 — sub-object (ctor 0x628628)
         uint32_t mZero5a0;     // 0x5a0 — ctor zero
+        uint8_t mPad5A4[0x4]; // 0x5A4 — unproven gap
         void* mVptr5a8;        // 0x5a8 — cell 0x1310790 (+0x10), vptr-shaped
         void* mSelf5b0;        // 0x5b0 — ctor sets this
         void* mVptr5b8;        // 0x5b8 — cell 0x1310798 (+0x10), vptr-shaped
@@ -61,6 +62,7 @@ namespace gear
         void* mNext6c8;        // 0x6c8 — ctor sets this+0x6e0
         uint64_t mOne6d0;      // 0x6d0 — ctor sets 1
         uint32_t mZero6d8;     // 0x6d8 — ctor zero
+        uint8_t mPad6DC[0x104]; // 0x6DC — unproven gap (region unmapped by ctor analysis)
         uint8_t mSub7e0[0x40]; // 0x7e0 — sub-object (ctor 0x628628)
         uint8_t mTail820[0x60]; // 0x820 — memset 0x60
         // (0x880 total)

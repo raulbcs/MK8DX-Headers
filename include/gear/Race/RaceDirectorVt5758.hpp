@@ -29,8 +29,10 @@ namespace gear
             uint8_t pad3c[4];    //0x3c — unproven padding
             void* mArray40;      //0x40 — new[] of [global 0x12fb168]+8 entries,
                                  // zero-filled loop
+            uint8_t mPad48[0x4]; // 0x48 — unproven gap
             uint32_t mZero4c;    //0x4c — ctor zero
             uint8_t pad50[0x10]; //0x50 — unproven padding
+            uint8_t mPad60[0x8]; // 0x60 — unproven gap
             void* mObj68;        //0x68 — new(0x18), ctor 0x71007c27bc
             void* mObj70;        //0x70 — new(0x18), ctor 0x71007c27bc
             void* mObj78;        //0x78 — new(0x70), virtual factory on the ctor

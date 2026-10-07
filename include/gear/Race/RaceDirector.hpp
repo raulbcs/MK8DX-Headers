@@ -46,6 +46,7 @@ namespace gear
 
             uint32_t mActorCount; //0x38 — Actor element count for calc/exit/enter
                 // (ctor: 3 after the child array allocation succeeds)
+            uint8_t mPad3C[0x4]; // 0x3C — unproven gap
             Actor** mActors;     //0x40 — Actor array walked by calc/exit/enter
                 // (ctor allocs 0x18 = 3 slots, 0x4d818-0x4d830)
             uint8_t mPad48[4];   //0x48 — unproven padding

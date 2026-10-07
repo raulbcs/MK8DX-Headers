@@ -7,8 +7,8 @@
 // RaceDirectorVt01e8 — PROVISIONAL vtable-anchored name (vptr 0x12601e8,
 // GOT cell 0x1307588). Far-family singleton: ctor 0x71003995d4 (cxa_guard
 // getter in the same init region) runs ctor 0x71007b976c
-// (RaceDirectorBase38) then its own fields. Extent 0x62; size 0x68
-// (rounded to the 8-byte vptr alignment).
+// (RaceDirectorBase38) then its own fields. Extent 0x62 mapped;
+// concrete size 0x68 (rounded to the 8-byte vptr alignment).
 // Baptism audit 2026-10-07: sole getter caller is the per-mode list-node dispatcher 0x398c00-0x398e98 (wired like RaceListItemE: +0x18 self, +0x28 &mgr+0x178, +0x30 [mgr+0x1a8]); the dispatcher never names it.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the

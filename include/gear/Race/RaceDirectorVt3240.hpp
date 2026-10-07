@@ -50,6 +50,7 @@ namespace gear
         uint64_t mZeroE0;      // 0xe0 — ctor zero
         uint8_t mSubE8[0x34];  // 0xe8 — sub-object (vptr cell 0x12fd480, init 0x7c355c)
         uint64_t mZero11c;     // 0x11c — ctor zero
+        uint8_t mPad124[0x4]; // 0x124 — unproven gap
         uint32_t mTwelve128;   // 0x128 — ctor sets 12
         uint32_t mZero12c;     // 0x12c — ctor zero
         uint16_t mZero130;     // 0x130 — ctor zero

@@ -34,9 +34,11 @@ namespace gear
             RaceDirectorSetHelper* mHelper50; //0x50 — new(0x40), ctor 0x689c8
             void* mSecondary58;  //0x58 — secondary vptr (0x11b3c78)
             uint8_t mB60;        //0x60 — ctor 0, later 6
+            uint8_t mPad61[0x1]; // 0x61 — unproven gap
             uint8_t mB62;        //0x62 — ctor 0
             uint8_t mB63;        //0x63 — ctor 1
             uint8_t mB64;        //0x64 — ctor 0
+            uint8_t mPad65[0x3]; // 0x65 — unproven gap
             void* mChild68;      //0x68 — self (0x6f3fc)
             void* mSub70;        //0x70 — alloc(0x60) via 0x60b04c (member-offset
                                  // table entries {offset,1} for 0xc8-0x120, 0x6f4a8+)
