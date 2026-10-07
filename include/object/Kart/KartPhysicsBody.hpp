@@ -32,6 +32,7 @@ namespace object
         uint32_t mField60;     // 0x60 — ctor arg w2
 
         // Embedded member at 0x68 (ctor stores vptr 0x11addf8, n=4)
+        uint8_t mPad64[0x4]; // 0x64 — unproven gap
         char mSub68[8];        // 0x68 — extent to next write
         uint8_t mField70;      // 0x70 — 0 on ctor, then 0xb
         uint8_t mPad71;        // 0x71 — runtime: body-state enum read all over
@@ -89,6 +90,7 @@ namespace object
         const char* mName198;  // 0x198 — rodata 0xf20eac
         const char* mName1a0;  // 0x1a0 — rodata 0xf20eb0 (name pair 1)
         const char* mName1a8;  // 0x1a8 — rodata 0xf20eb4
+        uint8_t mPad190[0x20]; // 0x190 — unproven gap
         uint16_t mField1b0;    // 0x1b0 — -1 on ctor
         uint16_t mField1b2;    // 0x1b2 — -1 on ctor
         uint8_t mField1b4;     // 0x1b4 — 1 on ctor
@@ -96,6 +98,7 @@ namespace object
         uint64_t mField1b8;    // 0x1b8 — zeroed on ctor
         uint64_t mField1c0;    // 0x1c0 — zeroed on ctor
         char mPad1c8[4];       // 0x1c8 — ctor zeroes u64 at unaligned 0x1c6
+        uint8_t mPad1CC[0x4]; // 0x1CC — unproven gap
         uint64_t mField1d0;    // 0x1d0 — zeroed on ctor
         uint64_t mField1d8;    // 0x1d8 — zeroed on ctor
         uint64_t mField1e0;    // 0x1e0 — zeroed on ctor
@@ -120,15 +123,18 @@ namespace object
 
         // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
         // channel: fn cell 0x12fae28, empty-string name, owner back-ptr)
+        uint8_t mPad22E[0x2]; // 0x22E — unproven gap
         void* mChan230;        // 0x230 — cell 0x12fb108+0x10
         void* mChan238;        // 0x238 — fn (cell 0x12fae28+0x10)
         const char* mChan240;  // 0x240 — ""
+        uint8_t mPad240[0x8]; // 0x240 — unproven gap
         void* mChan248;        // 0x248 — cell 0x12fb110+0x10
         void* mChan250;        // 0x250 — owner = this
         void* mChan258;        // 0x258 — cell 0x12fb110+0x10 (ctor also
                                // stores cell 0x12fb118 at 0x260)
         char mPad260[0x14];    // 0x260 — ctor zeroes + stores more cells
         uint16_t mField274;    // 0x274
+        uint8_t mPad276[0x2]; // 0x276 — unproven gap
         uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
                                // helper object (CollisionScale 0x710013338
                                // vcalls its slots 0x98/0xa8)
@@ -148,6 +154,7 @@ namespace object
                                // input pose u32 quad into
                                // 0x304/0x308/0x30c/0x310).
         uint16_t mField2f0;    // 0x2f0
+        uint8_t mPad2F2[0x2]; // 0x2F2 — unproven gap
         int32_t mField2f4;     // 0x2f4 — -1 on ctor (update-record field)
         int32_t mField2f8;     // 0x2f8 — -1 on ctor (update-record field)
         char mPad2fc[0x18];    // 0x2fc — unproven padding

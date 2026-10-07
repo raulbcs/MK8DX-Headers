@@ -47,3 +47,5 @@ namespace object
         uint8_t mPad4c0;        // 0x4c0 — ctor zero
     };
 }
+
+        uint8_t mPad4C1[0x7]; // 0x4C1 — unproven gap

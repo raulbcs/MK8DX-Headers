@@ -87,8 +87,10 @@ namespace object
         uint32_t mPadAC; //0xAC — unproven padding
         uint32_t mBodyID; //mush::EBodyID 0xB0
         uint32_t mDriverID; //mush::EDriverID 0xB4
+        uint8_t mPadB0[0x8]; // 0xB0 — unproven gap
         uint8_t mPadB8[0x10]; //0xB8 - 0xC7 — unproven padding
         uint32_t mTeamType; //gear::ETeamType 0xC8
+        uint8_t mPadC8[0x4]; // 0xC8 — unproven gap
         uint32_t mPadCC; //0xCC — unproven padding
         bool mIsMaster; //0xD0
         uint8_t mPadD1; //0xD1 — unproven padding
@@ -208,3 +210,5 @@ namespace object
         KartVehicle();
 	};
 }
+
+        uint8_t mPad370[0x748]; // 0x370 — unproven gap (region unmapped by ctor analysis)

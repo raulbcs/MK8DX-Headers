@@ -42,3 +42,5 @@ namespace object
 }
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+
+        uint8_t mPad10C[0x4]; // 0x10C — unproven gap

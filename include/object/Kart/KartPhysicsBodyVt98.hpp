@@ -14,11 +14,11 @@ namespace object
     public:
         uint8_t mPad328[0x4];   // 0x328 — unproven gap
         uint32_t mZero32c;      // 0x32c — ctor zero
-        uint64_t mField330;     // 0x330 — ctor-written
+        uint32_t mField330;     // 0x330 — ctor-written (u32: mField334 is written separately at +0x4)
         uint32_t mField334;     // 0x334 — ctor-written
         uint32_t mField338;     // 0x338 — ctor-written
         uint32_t mField33c;     // 0x33c — ctor-written
-        uint64_t mField340;     // 0x340 — ctor-written
+        uint32_t mField340;     // 0x340 — ctor-written (u32: mField344 is written separately at +0x4)
         uint32_t mField344;     // 0x344 — ctor-written
         uint32_t mField348;     // 0x348 — ctor-written
         uint32_t mField34c;     // 0x34c — ctor-written
@@ -26,7 +26,7 @@ namespace object
         uint32_t mField354;     // 0x354 — ctor-written
         uint32_t mField358;     // 0x358 — ctor-written
         uint32_t mField35c;     // 0x35c — ctor-written
-        uint64_t mZero360;      // 0x360 — ctor zero
+        uint32_t mZero360;      // 0x360 — ctor zero (u32: mField364 is written separately at +0x4)
         uint32_t mField364;     // 0x364 — ctor-written
         uint64_t mZero368;      // 0x368 — ctor zero
         uint32_t mZero370;      // 0x370 — ctor zero
