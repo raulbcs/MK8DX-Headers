@@ -5,7 +5,7 @@
 // RaceDirectorSetHelper — PROVISIONAL vtable-anchored name. 0x40-byte
 // helper bound to RaceDirectorPlayerSet: ctor 0x71000689c8 (minimal base
 // 0x7c2920), vtable 0x11b4408 (GOT 0x12fbf40). Stored at set+0x50.
-// Baptism audit 0x40 helper ctor 0x689c8 off minimal base 0x7c2920, stored at set+0x50; no binary name.
+// Baptism audit: 0x40 helper ctor 0x689c8 off minimal base 0x7c2920, stored at set+0x50; no binary name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

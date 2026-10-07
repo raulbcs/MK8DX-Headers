@@ -13,7 +13,7 @@
 // 0x38/0x40/0x4C. Size 0x1A0, proven by the allocation site 0x710013d994.
 // Top-level race director manager: owns the per-player directors
 // (RaceDirectorPlayer) and ~14 per-player data tables.
-// Baptism audit consumers: allocation site 0x13d994 and the per-player loop 0x58c44-0x58cd8; the class owns the per-player RaceDirectorPlayer vector, but no string or method-tree entry names it.
+// Baptism audit: consumers: allocation site 0x13d994 and the per-player loop 0x58c44-0x58cd8; the class owns the per-player RaceDirectorPlayer vector, but no string or method-tree entry names it.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

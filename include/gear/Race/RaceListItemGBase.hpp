@@ -14,7 +14,7 @@
 // 0x48 + the -1/ptr block), so the base is 0x9b0 of the 0xa10 total.
 // (The out-of-line copy at 0x878f94 belongs to RaceDirectorVt10's graph,
 // not to this class.)
-// Baptism audit 0x9b0 base-subobject gap member (ctor 0x7ee400); identity from the derived ctor only.
+// Baptism audit: 0x9b0 base-subobject gap member (ctor 0x7ee400); identity from the derived ctor only.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

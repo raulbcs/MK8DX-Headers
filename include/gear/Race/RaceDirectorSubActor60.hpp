@@ -10,7 +10,7 @@
 // RaceDirector ctor (0x4d8c0 `mov w0,#0xb0` — corrects the earlier
 // "0xB8" note). Vtable 0x11b41c8 (GOT 0x12fbeb0). Owns one same-size
 // child (ctor 0x66ba8) registered in its own child array.
-// Baptism audit RaceDirector child at +0x60 (ctor 0x66448, size 0xB0); parent ctor is the only consumer; no name.
+// Baptism audit: RaceDirector child at +0x60 (ctor 0x66448, size 0xB0); parent ctor is the only consumer; no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

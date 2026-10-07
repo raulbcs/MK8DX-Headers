@@ -8,7 +8,7 @@
 // child director of RaceDirectorPlayerSet: ctor 0x710006ded4 (Actor base),
 // vtable 0x11b4650 (GOT 0x12fbf88). Size 0x80 (factory alloc 0x6f184).
 // Owner back-pointer at +0x58.
-// Baptism audit abstract-style child (ctor 0x6ded4, owner at +0x58); factory branch context only, no name.
+// Baptism audit: abstract-style child (ctor 0x6ded4, owner at +0x58); factory branch context only, no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

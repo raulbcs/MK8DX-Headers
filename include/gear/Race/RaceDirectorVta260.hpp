@@ -10,7 +10,7 @@
 // (RaceDirectorBase38), zeroes 0x38 and 0x40..0x4f, then zeroes
 // 0xb0..0xbf. Everything between 0x50 and 0xaf is untouched by the ctor.
 // Extent 0xc0.
-// Baptism audit sole getter caller 0x13cfa4 sits in the nn::ldn/LAN init region (MakeIpv4Address + ErrorResultVariant setup) but never names the singleton; near-zero ctor gives no semantics.
+// Baptism audit: sole getter caller 0x13cfa4 sits in the nn::ldn/LAN init region (MakeIpv4Address + ErrorResultVariant setup) but never names the singleton; near-zero ctor gives no semantics.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

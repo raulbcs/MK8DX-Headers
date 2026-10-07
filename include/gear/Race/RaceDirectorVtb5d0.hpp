@@ -4,7 +4,7 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
-// Baptism audit no consumers beyond the allocation site 0x820ff0 examined (mii::Database calls nearby but unlinked); no binary name evidence.
+// Baptism audit: no consumers beyond the allocation site 0x820ff0 examined (mii::Database calls nearby but unlinked); no binary name evidence.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

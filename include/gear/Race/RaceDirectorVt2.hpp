@@ -9,7 +9,7 @@
 // 0x4e268. Mid-level base of the primary derived-director set: Vt4/Vt5/Vt6/
 // Vt7 and Vt3 all chain through its ctor 0x710004e2f4. Size 0xA0, proven by
 // the sole plain allocation site 0x710006f108 (new 0xA0).
-// Baptism audit mid-level base of the primary director set; typeinfo 0x4e268 is a predicate function, not a name.
+// Baptism audit: mid-level base of the primary director set; typeinfo 0x4e268 is a predicate function, not a name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

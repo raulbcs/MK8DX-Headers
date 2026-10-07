@@ -11,7 +11,7 @@
 // site 0x710006ed94 (new 0xC0, then shared actor-registration tail 0x6f348).
 // The per-frame calc hook is the slot-0x108 override 0x4e7dc (reads [0x50]
 // config and [0x58], RaceInfo lookup, then slot-0x138 vcall on the 0x58 child).
-// Baptism audit 600-tick timer + -1 sentinels; per-frame calc 0x4e7dc reads config and calls a child vcall; no rodata name in the TU.
+// Baptism audit: 600-tick timer + -1 sentinels; per-frame calc 0x4e7dc reads config and calls a child vcall; no rodata name in the TU.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

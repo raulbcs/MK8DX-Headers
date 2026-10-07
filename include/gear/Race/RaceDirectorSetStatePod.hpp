@@ -7,7 +7,7 @@
 // RaceDirectorPlayerSet (at +0xB8 and +0xC0; the second is also stored into
 // [[set+0xB0]+0x78], i.e. shared with the RaceDirectorSetLanePool child).
 // Carries a hardcoded 0.25f ratio at +0x24.
-// Baptism audit POD state record (ctor 0x585c4, 0.25f ratio); two instances per PlayerSet; no name.
+// Baptism audit: POD state record (ctor 0x585c4, 0.25f ratio); two instances per PlayerSet; no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

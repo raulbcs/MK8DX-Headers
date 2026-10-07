@@ -4,7 +4,7 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
-// Baptism audit RECLASSIFIED by consumer evidence: ctor 0x7d5450 is the primary base of RaceListItemF (same chain cited in RaceListItemF.hpp); far-family base-subobject, not an independent director. Name stays PROVISIONAL.
+// Baptism audit: RECLASSIFIED by consumer evidence: ctor 0x7d5450 is the primary base of RaceListItemF (same chain cited in RaceListItemF.hpp); far-family base-subobject, not an independent director. Name stays PROVISIONAL.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

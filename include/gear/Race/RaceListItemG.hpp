@@ -11,7 +11,7 @@
 // RaceListItemGBase.hpp); this ctor overwrites the vptr and starts its own
 // fields at 0x9B0. Kept flat here (the m108/m10C/m110 writes sit inside
 // the base extent).
-// Baptism audit alloc 0xa10 at 0x3989cc inside the per-mode dispatcher, registered at mgr+0x218; no name.
+// Baptism audit: alloc 0xa10 at 0x3989cc inside the per-mode dispatcher, registered at mgr+0x218; no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

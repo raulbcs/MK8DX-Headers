@@ -10,7 +10,7 @@
 // proven by the allocation site 0x710006ee7c. Built by the director factory
 // 0x710006eb5c (dispatches on getRaceCheckManager [x0+8]/[x0+0xc] == 3) and
 // stored at [parent+0xa8].
-// Baptism audit predicate (this+0x9c) selector built when getRaceCheckManager flags == 3; no name evidence.
+// Baptism audit: predicate (this+0x9c) selector built when getRaceCheckManager flags == 3; no name evidence.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

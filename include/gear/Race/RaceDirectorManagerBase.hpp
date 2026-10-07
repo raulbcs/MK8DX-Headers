@@ -11,7 +11,7 @@
 // runs ctor 0x7b976c (RaceDirectorBase38), zeroes 0x38..0x67 and stores
 // this vptr; the manager then overwrites the vptr with its own and starts
 // its fields at 0x68.
-// Baptism audit base-subobject gap member: identity is defined by the derived ctor 0x7b98bc alone; no consumer names it.
+// Baptism audit: base-subobject gap member: identity is defined by the derived ctor 0x7b98bc alone; no consumer names it.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

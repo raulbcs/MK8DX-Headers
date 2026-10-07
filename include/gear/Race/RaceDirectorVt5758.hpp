@@ -13,7 +13,7 @@
 // ctor 0x71007c27bc), 0x70 (new 0x18, ctor 0x71007c27bc) and 0x78 (new
 // 0x70, virtual factory on arg x20 + init 0x71007c55cc). Extent 0xae;
 // size 0xb0.
-// Baptism audit lazy singleton in the 0x7b98bc init region; consumers unexamined beyond the ctor; no name.
+// Baptism audit: lazy singleton in the 0x7b98bc init region; consumers unexamined beyond the ctor; no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

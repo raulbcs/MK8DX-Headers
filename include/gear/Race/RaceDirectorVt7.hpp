@@ -11,7 +11,7 @@
 // site 0x710006f06c (guarded by the race-check-manager flag at 0x6efac).
 // Overrides both slot 0xd0 (0x58374) and 0xd8 (0x58338) — the only one of
 // the set that does.
-// Baptism audit predicate accepts state 0/1; only member overriding slots 0xd0/0xd8; no name.
+// Baptism audit: predicate accepts state 0/1; only member overriding slots 0xd0/0xd8; no name.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name

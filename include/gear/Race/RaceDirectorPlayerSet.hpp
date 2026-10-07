@@ -15,7 +15,7 @@
 // 0x38/0x40/0x4C cursor -> store into a set field), dispatching on
 // getRaceCheckManager [x0+8]/[x0+0xc] == 3. Named fields hold the
 // RaceDirectorVt* chain members.
-// Baptism audit factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceCheckerBase flags; no rodata name, no method-tree entry.
+// Baptism audit: factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceCheckerBase flags; no rodata name, no method-tree entry.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
