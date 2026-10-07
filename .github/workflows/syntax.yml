@@ -1,8 +1,9 @@
 name: syntax
 
+# Local-first CI: run with `act workflow_dispatch` (or tools/pre-push-hook.sh,
+# installable via tools/hooks). Never auto-runs on GitHub.
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   syntax:
