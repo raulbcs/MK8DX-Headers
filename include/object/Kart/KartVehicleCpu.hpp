@@ -21,6 +21,6 @@ namespace object
 			//   0x080 f32 = 0.25f, 0x084 u32 = 0 (x store pair)
 			// Only 0x070..0x073 stays unproven (may be written by base ctor
 			// 0x179660); extent from factory alloc 0x90 at 0x71001701b4.
-			uint8_t mPad70[0x20];
+			uint8_t mPad70[0x20]; // proven sub-offset map above (ctor 0x7100179f5c)
 	};
 }

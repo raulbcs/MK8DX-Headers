@@ -23,11 +23,11 @@ namespace ui
             // Unproven — Switch ctor not identified (no RTTI, stripped
             // binary); all offsets in this class are Wii U (32-bit) relics.
             // Extent fixed by isDialogOpen at 0x12C.
-            uint8_t pad_120[0xC];
+            uint8_t pad_120[0xC]; // unproven - Wii U relic offsets
             bool isDialogOpen;
-            uint8_t pad_12D;
-            uint16_t pad_12E;
-            uint8_t pad_130[0x34];
+            uint8_t pad_12D; // unproven - Wii U relic
+            uint16_t pad_12E; // unproven - Wii U relic
+            uint8_t pad_130[0x34]; // unproven - Wii U relic offsets
             EDialogResult m_dialogResult;
 
             void open_(ui::UIDialogReq &, gear::EUIPageID);

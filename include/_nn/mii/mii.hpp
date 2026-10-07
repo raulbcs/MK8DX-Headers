@@ -8,6 +8,6 @@ namespace nn::mii
     {
     public:
         // SDK-internal; no game-side ctor evidence (nn SDK lib layout).
-        uint8_t mPad[0x5C];
+        uint8_t mPad[0x5C]; // SDK-internal; no game-side ctor evidence (nn SDK lib layout)
     };
 }

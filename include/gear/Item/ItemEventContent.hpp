@@ -12,6 +12,6 @@ namespace gear
         // Unproven — Switch ctor not identified (no RTTI, stripped binary);
         // extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference
         // layout preserved).
-        char mPad04[0xFC];
+        char mPad04[0xFC]; // unproven - extent from sizeof(ItemEventContent) = 0x100 (32-bit reference)
     };
 }

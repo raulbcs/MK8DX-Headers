@@ -15,15 +15,15 @@ namespace sead::hostio
             virtual const RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const;
             virtual ~Node()
             {
-                mPad28 = nullptr;
-                mPad30 = nullptr;
+                mPad28 = nullptr; // code (ctor), not padding
+                mPad30 = nullptr; // code (ctor), not padding
             }
 
-            void* mPad08;
-            void* mPad10;
-            void* mPad18;
-            void* mPad20;
-            void* mPad28;
-            void* mPad30;
+            void* mPad08; // real field (ptr), not padding
+            void* mPad10; // real field (ptr), not padding
+            void* mPad18; // real field (ptr), not padding
+            void* mPad20; // real field (ptr), not padding
+            void* mPad28; // real field (ptr), not padding
+            void* mPad30; // real field (ptr), not padding
     };
 }

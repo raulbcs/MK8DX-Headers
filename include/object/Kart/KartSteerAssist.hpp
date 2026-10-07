@@ -49,6 +49,6 @@ namespace object
 			// 0x090..0x093, 0x0fc..0x107, 0x10f, 0x11c..0x11f. The trailing call
 			// to 0x15042c may initialize more; extent from factory alloc 0x120
 			// at 0x710017025c.
-			uint8_t pad_00[0x120];
+			uint8_t pad_00[0x120]; // proven sub-offset map above (ctor 0x71001502a8); gaps listed there
 	};
 }

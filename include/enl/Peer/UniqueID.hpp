@@ -23,11 +23,11 @@ namespace enl {
         }
 
         inline bool isFullyEqual(const UniqueID& rhs) const {
-            return (this->mStationId == rhs.mStationId) && (this->mPlayerId == rhs.mPlayerId) && (this->mPad09 == rhs.mPad09);
+            return (this->mStationId == rhs.mStationId) && (this->mPlayerId == rhs.mPlayerId) && (this->mPad09 == rhs.mPad09); // code, not padding: mPad09 is a real compared field
         }
 
         friend bool operator==(const UniqueID& lhs, const UniqueID& rhs) {
-            return (lhs.mStationId == rhs.mStationId) && (lhs.mPlayerId == rhs.mPlayerId) && (lhs.mPad09 == rhs.mPad09);
+            return (lhs.mStationId == rhs.mStationId) && (lhs.mPlayerId == rhs.mPlayerId) && (lhs.mPad09 == rhs.mPad09); // code, not padding: mPad09 is a real compared field
         }
 
         UniqueID() = default;

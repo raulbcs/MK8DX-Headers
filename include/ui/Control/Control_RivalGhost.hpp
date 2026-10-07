@@ -20,7 +20,7 @@ namespace ui
     public:
         // Unproven — Switch ctor not identified (no RTTI, stripped binary);
         // extent fixed by mTotalTime at 0x178.
-        uint8_t mPadB4[0xC4];
+        uint8_t mPadB4[0xC4]; // unproven - extent fixed by mTotalTime at 0x178
         gear::RaceTime mTotalTime; // 0x178
         uint32_t mTotalTimeMs; // 0x180
         uint32_t mCountryId; // 0x184

@@ -8,6 +8,6 @@ namespace nn::nex
     {
     public:
         // SDK-internal; no game-side ctor evidence (nn::nex lib layout).
-        uint8_t mPad00[0x10];
+        uint8_t mPad00[0x10]; // SDK-internal; no game-side ctor evidence (nn::nex lib layout)
     };
 }

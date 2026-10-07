@@ -19,7 +19,7 @@ namespace gear
         // Total size 0xA0
         // Unproven — Switch ctor is in the binary but not yet located (no
         // RTTI, stripped binary); extent fixed by mTextureMap at 0x30.
-        uint8_t mPad00[0x30];
+        uint8_t mPad00[0x30]; // unproven - extent fixed by mTextureMap at 0x30
         sead::StrTreeMap<64, void*> mTextureMap; //0x30
         uint32_t mTextureCount; //0x50
         uint32_t mMaxTextures; //0x54

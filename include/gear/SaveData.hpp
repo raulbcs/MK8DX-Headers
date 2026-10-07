@@ -10,7 +10,7 @@ namespace gear
     public:
         // Unproven — Switch ctor not identified (no RTTI, stripped binary);
         // extent fixed by mFlagAccessor at 0x190.
-        uint8_t mPad00[0x190];
+        uint8_t mPad00[0x190]; // unproven - extent fixed by mFlagAccessor at 0x190
         FlagAccessor mFlagAccessor;
     };
 

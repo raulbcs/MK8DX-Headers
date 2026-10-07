@@ -41,7 +41,7 @@ namespace gear
             uint8_t mNetRetrySequenceCounter; //0xB8
             // Unproven content — pure alignment padding aligning
             // mManualStopTimeUntilDecide to 0xBC.
-            uint8_t mPadB9[3];
+            uint8_t mPadB9[3]; // alignment padding to mManualStopTimeUntilDecide at 0xBC; content unproven
             int32_t mManualStopTimeUntilDecide; //0xBC
             bool mIsSlotDecide; //0xC0
             bool mIsSlotFlash; // 0xC1

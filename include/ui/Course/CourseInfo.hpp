@@ -20,9 +20,9 @@ namespace ui
             mCourseMSBT = -1;
 
             mIsDLC = false;
-            mPad0D[0] = 0;
-            mPad0D[1] = 0;
-            mPad0D[2] = 0;
+            mPad0D[0] = 0; // code (ctor), not padding
+            mPad0D[1] = 0; // code (ctor), not padding
+            mPad0D[2] = 0; // code (ctor), not padding
         }
     };
 }
