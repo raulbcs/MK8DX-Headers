@@ -27,6 +27,7 @@ namespace nn::nex
         uint64_t mFielde8;    // 0xe8 — ctor-written (stp high half)
         uint64_t mZerof0;     // 0xf0 — ctor zero
         uint8_t  mInitf8;       // 0xf8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPadF9[0x7]; // 0xF9 — unproven gap
         uint8_t  mPad100[0xb8];      // 0x100 — unproven gap
         uint64_t mZero1b8;    // 0x1b8 — ctor zero
         uint64_t mField1c0;   // 0x1c0 — ctor zero (stp high half)
@@ -66,3 +67,5 @@ namespace nn::nex
     // Object size 0x2b0 (allocation size at the factory new preceding ctor 0xb1974c).
     };
 }
+
+        uint8_t mPad2A9[0x7]; // 0x2A9 — unproven gap

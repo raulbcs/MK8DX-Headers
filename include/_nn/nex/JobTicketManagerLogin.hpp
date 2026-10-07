@@ -32,6 +32,7 @@ namespace nn::nex
         uint64_t mFieldf8;    // 0xf8 — ctor zero (stp high half)
         uint64_t mZero100;    // 0x100 — ctor zero
         uint8_t  mInit108;       // 0x108 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad109[0x7]; // 0x109 — unproven gap
         uint8_t  mPad110[0x10];      // 0x110 — unproven gap
         uint64_t mZero120;    // 0x120 — ctor zero
         uint32_t mZero128;    // 0x128 — ctor zero
@@ -39,8 +40,10 @@ namespace nn::nex
         uint64_t mZero130;    // 0x130 — ctor zero
         uint64_t mField138;   // 0x138 — ctor zero (stp high half)
         uint8_t  mInit140;       // 0x140 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad141[0x7]; // 0x141 — unproven gap
         uint8_t  mPad148[0x20];      // 0x148 — unproven gap
         uint8_t  mInit168;       // 0x168 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad169[0x7]; // 0x169 — unproven gap
         uint8_t  mZero170;    // 0x170 — ctor zero
         uint8_t  mPad171[0xf];      // 0x171 — unproven gap
         uint64_t mField180;   // 0x180 — ctor-written
@@ -51,6 +54,7 @@ namespace nn::nex
         uint64_t mField1a8;   // 0x1a8 — ctor-written (stp high half)
         uint64_t mField1b0;   // 0x1b0 — ctor-written
         uint8_t  mInit1b8;       // 0x1b8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad1B9[0x7]; // 0x1B9 — unproven gap
         uint8_t  mPad1c0[0xb8];      // 0x1c0 — unproven gap
         uint64_t mField278;   // 0x278 — ctor-written
         uint8_t  mPad280[0x4];      // 0x280 — unproven gap
@@ -58,6 +62,7 @@ namespace nn::nex
         uint8_t  mPad285[0x2b];      // 0x285 — unproven gap
         uint64_t mField2b0;   // 0x2b0 — ctor-written
         uint8_t  mInit2b8;       // 0x2b8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad2B9[0x7]; // 0x2B9 — unproven gap
         uint8_t  mZero2c0;    // 0x2c0 — ctor zero
         uint8_t  mPad2c1[0xf];      // 0x2c1 — unproven gap
         uint64_t mField2d0;   // 0x2d0 — ctor-written

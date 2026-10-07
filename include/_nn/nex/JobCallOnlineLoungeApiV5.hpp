@@ -33,6 +33,7 @@ namespace nn::nex
         uint64_t mField108;   // 0x108 — ctor zero (stp high half)
         uint64_t mZero110;    // 0x110 — ctor zero
         uint8_t  mInit118;       // 0x118 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad119[0x7]; // 0x119 — unproven gap
         uint8_t  mPad120[0x10];      // 0x120 — unproven gap
         uint64_t mZero130;    // 0x130 — ctor zero
         uint32_t mZero138;    // 0x138 — ctor zero
@@ -47,6 +48,7 @@ namespace nn::nex
         uint64_t mField170;   // 0x170 — ctor-written
         uint64_t mField178;   // 0x178 — ctor-written (stp high half)
         uint8_t  mInit180;       // 0x180 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad181[0x7]; // 0x181 — unproven gap
         uint64_t mField188;   // 0x188 — ctor-written
         uint64_t mField190;   // 0x190 — ctor-written (stp high half)
         uint64_t mZero198;    // 0x198 — ctor zero

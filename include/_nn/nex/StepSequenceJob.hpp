@@ -14,8 +14,8 @@ namespace nn::nex
     public:
         void* vtable;          // 0x00
         uint8_t mBase08[0x98]; // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
-        uint64_t mFlag08;          // 0x08 — ctor stlr 1 (atomic flag)
-        uint8_t  mPad0c;           // 0x0c — ctor zero
+        uint32_t mFlag08;          // 0x08 — ctor stlr 1 (atomic flag)
+        uint8_t  mPad0c[0x4];      // 0x0c — ctor zero
         uint64_t mPtr10;           // 0x10 — ctor zero
         uint64_t mPtr18;           // 0x18 — ctor zero
         uint8_t  mFlag20;          // 0x20 — ctor zero

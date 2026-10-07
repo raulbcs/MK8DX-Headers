@@ -32,6 +32,7 @@ namespace nn::nex
         uint8_t  mZero110;    // 0x110 — ctor zero
         uint8_t  mPad111[0x7];      // 0x111 — unproven gap
         uint8_t  mInit118;       // 0x118 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad119[0x7]; // 0x119 — unproven gap
         uint8_t  mPad120[0xb8];      // 0x120 — unproven gap
         uint64_t mZero1d8;    // 0x1d8 — ctor zero
     // Object size 0x1e0 (allocation size at the factory new preceding ctor 0xb1ac00).

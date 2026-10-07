@@ -28,6 +28,7 @@ namespace nn::nex
         uint64_t mZeroe8;     // 0xe8 — ctor zero
         uint64_t mFieldf0;    // 0xf0 — ctor zero (stp high half)
         uint8_t  mInitf8;       // 0xf8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPadF9[0x7]; // 0xF9 — unproven gap
         uint8_t  mPad100[0xb8];      // 0x100 — unproven gap
         uint64_t mZero1b8;    // 0x1b8 — ctor zero
         uint64_t mField1c0;   // 0x1c0 — ctor zero (stp high half)
@@ -40,12 +41,14 @@ namespace nn::nex
         uint64_t mField1f0;   // 0x1f0 — ctor-written (stp high half)
         uint8_t  mPad1f8[0x8];      // 0x1f8 — unproven gap
         uint8_t  mInit200;       // 0x200 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad201[0x7]; // 0x201 — unproven gap
         uint8_t  mPad208[0x30];      // 0x208 — unproven gap
         uint64_t mField238;   // 0x238 — ctor-written
         uint8_t  mZero240;    // 0x240 — ctor zero
         uint8_t  mField241;   // 0x241 — ctor-written
         uint8_t  mPad242[0x6];      // 0x242 — unproven gap
         uint8_t  mInit248;       // 0x248 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad249[0x7]; // 0x249 — unproven gap
         uint64_t mZero250;    // 0x250 — ctor zero
         uint64_t mZero258;    // 0x258 — ctor zero
         uint64_t mField260;   // 0x260 — ctor-written
@@ -53,6 +56,7 @@ namespace nn::nex
         uint8_t  mField269;   // 0x269 — ctor-written
         uint8_t  mPad26a[0x6];      // 0x26a — unproven gap
         uint8_t  mInit270;       // 0x270 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad271[0x7]; // 0x271 — unproven gap
         uint64_t mZero278;    // 0x278 — ctor zero
         uint64_t mZero280;    // 0x280 — ctor zero
         uint8_t  mPad288[0x10];      // 0x288 — unproven gap
@@ -91,9 +95,12 @@ namespace nn::nex
         uint64_t mZero378;    // 0x378 — ctor zero
         uint64_t mZero380;    // 0x380 — ctor zero
         uint8_t  mInit388;       // 0x388 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad389[0x7]; // 0x389 — unproven gap
         uint8_t  mPad390[0x10];      // 0x390 — unproven gap
         uint64_t mZero3a0;    // 0x3a0 — ctor zero
         uint32_t mZero3a8;    // 0x3a8 — ctor zero
     // Object size 0x3b0 (allocation size at the factory new preceding ctor 0xb28b24).
     };
 }
+
+        uint8_t mPad3AC[0x4]; // 0x3AC — unproven gap

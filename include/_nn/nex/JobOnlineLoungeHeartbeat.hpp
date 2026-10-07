@@ -21,3 +21,5 @@ namespace nn::nex
     // Object size 0x190 (allocation size at the factory new preceding ctor 0x902d00).
     };
 }
+
+        uint8_t mPad101[0x8F]; // 0x101 — unproven gap (region unmapped by ctor analysis)

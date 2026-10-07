@@ -557,10 +557,11 @@ def merge(ranges):
 def analyze(path: Path):
     text = path.read_text(errors="replace")
     fields = [f for f in parse_fields(text) if not f["base_region"]]
-    # Base-region fields only set the coverage start (embedded base extent).
-    for f in parse_fields(text):
-        if f["base_region"]:
-            text += f"\n// subobject at 0x{f['off'] + (f['size'] or 0):X}"
+    # Base-region fields do not join the overlap check (they are overlaid by
+    # the per-field map below them) but DO count as coverage.
+    base_cov = [[f["off"], f["off"] + (f["size"] or 0)]
+                for f in parse_fields(text)
+                if f["base_region"] and f["size"]]
     if not fields:
         return None  # docblock-only / no layout data
     extent = extract_extent(text)
@@ -599,7 +600,7 @@ def analyze(path: Path):
             cov_start = base_extent
         else:
             cov_start = min(f["off"] for f in fields)
-    intervals = [list(x) for x in known]
+    intervals = [list(x) for x in known] + base_cov
     unknown = [f for f in fields if not f["size"]]
     unknown.sort(key=lambda f: f["off"])
     known_starts = sorted(s for s, _ in known)

@@ -25,6 +25,7 @@ namespace nn::nex
         uint64_t mField4b8;   // 0x4b8 — ctor-written
         uint64_t mField4c0;   // 0x4c0 — ctor-written
         uint8_t  mInit4c8;       // 0x4c8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad4C9[0x7]; // 0x4C9 — unproven gap
         uint8_t  mPad4d0[0x30];      // 0x4d0 — unproven gap
         uint64_t mZero500;    // 0x500 — ctor zero
         uint64_t mField508;   // 0x508 — ctor-written

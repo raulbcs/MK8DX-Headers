@@ -15,9 +15,11 @@ namespace nn::nex
         void* vtable;          // 0x00
         uint8_t mBase08[0x98]; // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
         uint8_t  mInita0;       // 0xa0 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPadA1[0x7]; // 0xA1 — unproven gap
         uint8_t  mPada8[0x18];      // 0xa8 — unproven gap
         uint64_t mZeroc0;     // 0xc0 — ctor zero
         uint8_t  mInitc8;       // 0xc8 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPadC9[0x7]; // 0xC9 — unproven gap
         uint8_t  mPadd0[0x10];      // 0xd0 — unproven gap
         uint64_t mFielde0;    // 0xe0 — ctor-written
         uint64_t mFielde8;    // 0xe8 — ctor-written (stp high half)
@@ -43,6 +45,7 @@ namespace nn::nex
         uint64_t mField160;   // 0x160 — ctor zero (stp high half)
         uint64_t mZero168;    // 0x168 — ctor zero
         uint8_t  mInit170;       // 0x170 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad171[0x7]; // 0x171 — unproven gap
         uint8_t  mPad178[0x10];      // 0x178 — unproven gap
         uint64_t mZero188;    // 0x188 — ctor zero
         uint32_t mZero190;    // 0x190 — ctor zero
@@ -64,6 +67,7 @@ namespace nn::nex
         uint64_t mField1f0;   // 0x1f0 — ctor zero (stp high half)
         uint64_t mZero1f8;    // 0x1f8 — ctor zero
         uint8_t  mInit200;       // 0x200 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad201[0x7]; // 0x201 — unproven gap
         uint8_t  mPad208[0x10];      // 0x208 — unproven gap
         uint64_t mZero218;    // 0x218 — ctor zero
         uint32_t mZero220;    // 0x220 — ctor zero
@@ -80,6 +84,7 @@ namespace nn::nex
         uint8_t  mZero278;    // 0x278 — ctor zero
         uint8_t  mPad279[0x7];      // 0x279 — unproven gap
         uint8_t  mInit280;       // 0x280 — member-init call (subobject starts here) (size unknown)
+        uint8_t mPad281[0x7]; // 0x281 — unproven gap
         uint8_t  mPad288[0x88];      // 0x288 — unproven gap
         uint16_t mZero310;    // 0x310 — ctor zero
         uint8_t  mPad312[0x6];      // 0x312 — unproven gap
