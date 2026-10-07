@@ -14,6 +14,9 @@ namespace gear
     class LapRankChecker
     {
     public:
+        // Unproven (0x00..0x63) — the enclosing RaceKartChecker ctor is not
+        // yet located (no RTTI, stripped binary); extent fixed by the proven
+        // mLapTotal byte at 0x64 (compared by RaceKartChecker::calc).
         uint8_t mPad00[0x64];
         uint8_t mLapTotal;
     };

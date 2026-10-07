@@ -18,6 +18,8 @@ namespace gear
         public:
             virtual void test1();
             virtual void test2();
+            // Unproven — ctor is in the binary but not yet located (no RTTI,
+            // stripped binary); extent fixed by mCurrentBufferSize at 0x1C.
             uint8_t pad_04[0x18];
             uint32_t mCurrentBufferSize; //0x1C
             uint32_t mBufferMaximum; //0x20

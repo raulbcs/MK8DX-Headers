@@ -9,6 +9,8 @@ namespace gear
     class Player
     {
     public:
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extent fixed by mKartInfo at 0x210.
         uint8_t mPad00[0x210];
         RaceKartInfo mKartInfo;
 

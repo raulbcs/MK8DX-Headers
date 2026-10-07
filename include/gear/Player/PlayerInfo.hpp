@@ -10,6 +10,8 @@ namespace gear
     class PlayerInfo
     {
     public:
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extent fixed by mCountry at 0x70.
         uint8_t mPad00[0x70];
         uint8_t mCountry[2]; // 0x70
         uint8_t mPad72[0x5E]; // 0x72

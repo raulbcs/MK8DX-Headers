@@ -9,6 +9,9 @@ namespace gear
         uint8_t mPad00; //0x00
         uint8_t mPad01; //0x01
         uint16_t mItemSerial; //0x02
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference
+        // layout preserved).
         char mPad04[0xFC];
     };
 }

@@ -39,6 +39,8 @@ namespace gear
             uint32_t mPadAC; //0xAC
             uintptr_t* mNetPermissionTable; //0xB0
             uint8_t mNetRetrySequenceCounter; //0xB8
+            // Unproven content — pure alignment padding aligning
+            // mManualStopTimeUntilDecide to 0xBC.
             uint8_t mPadB9[3];
             int32_t mManualStopTimeUntilDecide; //0xBC
             bool mIsSlotDecide; //0xC0

@@ -71,15 +71,17 @@ namespace gear
             }
         };
 
-        uint8_t mPad00[0x138];
+        // Unproven — Switch ctor not identified (no RTTI, stripped binary);
+        // extents fixed by the proven fields around each gap.
+        uint8_t mPad00[0x138]; // extent fixed by mGhostSaveDataFile at 0x138
         SaveDataFile* mGhostSaveDataFile; // 0x138
-        uint8_t mPad140[0x20]; // 0x140
+        uint8_t mPad140[0x20]; // 0x140 — extent fixed by mGhostListFile at 0x160
         SaveDataGhostListFile* mGhostListFile; // 0x160
-        uintptr_t mPad168; // 0x168
+        uintptr_t mPad168; // 0x168 — unproven single word
         sead::NinSaveFileDevice* mSaveFileDevice; // 0x170;
-        uint8_t mPad178[0x350]; // 0x178
+        uint8_t mPad178[0x350]; // 0x178 — extent fixed by mRemoveGhostParamBuffer at 0x4C8
         ParamBuffer<RemoveGhostParam, 2>* mRemoveGhostParamBuffer; // 0x4C8
-        uint8_t mPad4D0[0x18]; // 0x4D0
+        uint8_t mPad4D0[0x18]; // 0x4D0 — extent fixed by mLoadGhostResult at 0x4E8
         bool mLoadGhostResult; // 0x4E8
         bool mLoadGhostDone; // 0x4E9
         bool mSaveGhostResult; // 0x4EA
