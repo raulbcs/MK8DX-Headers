@@ -28,7 +28,7 @@ namespace gear
  int32_t mMinus1ac; //0xAC — ctor sets -1
  uint32_t mZerob0; //0xB0
  uint32_t mZerob4; //0xB4
- uint32_t mCount11b8; //0xB8 — ctor copies *(u32*)rodata 0xf73bb4 (== 11)
+ uint32_t mCount11b8; //0xB8 — ctor copies *(u32*)rodata 0xf73bb4 (== 11); slot 0xd0 override getter returns this word
  uint32_t mZerobc; //0xBC
  uint64_t mTableC0; //0xC0 — ctor copies *(u64*)rodata 0xf57b7c
  uint32_t mTableC8; //0xC8 — ctor copies *(u32*)(0xf57b7c+8)

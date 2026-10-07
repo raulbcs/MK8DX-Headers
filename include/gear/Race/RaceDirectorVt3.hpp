@@ -29,8 +29,9 @@ namespace gear
  int32_t mMinus1ac; //0xAC — ctor sets -1
  int32_t mMinus1b0; //0xB0 — ctor sets -1
  int32_t mMinus1b8; //0xB8 — ctor copies *(u32*)rodata 0xf73bb4
+        // slot 0xc0 override getter returns this word
  // (== 0xFFFFFFFF); rodata cell also holds 11 for Vt6/Vt7
- uint32_t mZerobc; //0xBC
+ uint32_t mZerobc; //0xBC — slot 0xc8 override getter returns this word
  // (0xC0 total)
  };
 }

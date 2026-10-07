@@ -28,8 +28,9 @@ namespace gear
  int32_t mMinus1ac; //0xAC — ctor sets -1
  uint32_t mZerob0; //0xB0
  uint16_t mFfffb8; //0xB8 — ctor sets 0xFFFF
+ // slot 0xd0 override getter returns the word at 0xB8
  uint16_t mFfffba; //0xBA — ctor sets 0xFFFF
- uint32_t mZerobc; //0xBC
+ uint32_t mZerobc; //0xBC — slot 0xd8 override getter returns this word
  // (0xC0 total)
  };
 }

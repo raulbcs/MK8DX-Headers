@@ -33,7 +33,7 @@ namespace gear
  uint8_t pad_b6[8]; //0xB6 - 0xBD — unproven padding
  uint16_t mUbe; //0xBE — ctor packs *(u32*)rodata 0xf73bb4 (== 11,
  // unaligned 4-byte store) over 0xbe..0xc1
- uint16_t mUc0; //0xC0 — upper half of the same rodata copy
+ uint16_t mUc0; //0xC0 — upper half of the same rodata copy; slot 0xd0 override getter returns the byte at 0xBE
  uint32_t mZeroc4; //0xC4
  // (0xC8 total)
  };
