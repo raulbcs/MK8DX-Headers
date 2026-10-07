@@ -13,6 +13,12 @@
 // (0x7c2a90) is the primary base RaceDirectorPlayerBase (vtable 0x12c5a88,
 // size 0x58 — see RaceDirectorPlayerBase.hpp); this ctor overwrites the
 // vptr at 0 and starts its own fields at 0x58.
+// Baptism audit 2026-10-07: one-per-player construction loop in RaceDirectorManager (0x58c60 news 0x2B0); behavior is clear, a binary name is not. MethodTree has no entry.
+// the ELF carries no name for this class (strings and the method-tree
+// registrations at 0x6327a8 cover only graphics/profiling and the
+// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
+// string), so the name stays PROVISIONAL.
+
 namespace gear
 {
     struct RaceDirectorPlayerSet; // RaceDirectorPlayerSet.hpp
