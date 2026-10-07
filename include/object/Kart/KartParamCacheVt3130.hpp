@@ -13,6 +13,6 @@ namespace object
     class KartParamCacheVt3130 : public KartParamCacheMid2
     {
     public:
-                               // ctor 0x7100651ae4 writes documented in the wip notes)
+                               // additional writes by ctor 0x7100651ae4
     };
 }

@@ -9,19 +9,19 @@ namespace object
     // PROVISIONAL vtable-anchored name ("Vt71"). Base of the kart body
     // family: 665 vtables of 71-101 slots sharing PrePass20_7100197798 /
     // GetCurrentSpeed_7100197c90 / CoinItemInteraction_71001981ec — the
-    // per-kart+driver-combination body classes. Re-census (see wip):
+    // per-kart+driver-combination body classes. Full-family vtable analysis:
     // ALL 665 live (one cell + one construction site each), 327 distinct
     // slot-diff fingerprints, ctors SHARED across classes (vtable passed
     // as arg — data-parametrized at construction).
     //
-    // Construction pattern (census): base ctor 0x710019888 runs for ALL
+    // Construction pattern: base ctor 0x710019888 runs for ALL
     // 665 combos; a tiny per-combo block then stores the class vptr and
     // writes the per-combo data (fields 0x38, 0x128) — the same trio the
     // slot 0x18 re-init hook rewrites (0x38/0x128/0x1a8-clear). Per-combo
     // BEHAVIOR is compiled per class (348 distinct slot-0x80 impls) — the 665 are
-    // not worth per-class headers; the census is the combo map.
+    // not worth per-class headers; the analysis is the combo map.
     //
-    // Slot semantics (hot override band, census evidence):
+    // Slot semantics (hot override band, analysis evidence):
     // - slot 0x18 (0x7100198ac8): re-init hook — base impl stores the
     //   vptr cell 0x12fd6a8 pair, writes 0x38/0x128, clears 0x1a8;
     //   differs in 664/665 classes.

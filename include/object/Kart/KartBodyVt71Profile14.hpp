@@ -7,13 +7,12 @@ namespace object
     // KartBodyVt71Profile14 — PROVISIONAL behavioral-profile name in the KartBodyVt71
     // family.
     // Profile = the set of band slots 0x80/0x88/0x90/0x98/0xa0 a member overrides
-    // vs the family base 0x11bb5c0 (census slot_diff); per-slot semantics are
+    // vs the family base 0x11bb5c0 (slot-diff analysis); per-slot semantics are
     // documented in KartBodyVt71.hpp. No layout beyond the base is implied: the
     // per-combo behavior lives in each member's vtable, not in new fields.
     //
-    // All addresses are census VMA (dump-relative; runtime = +0x7100000000).
-    // alloc=none: no alloc call adjacent to the construction site was found by
-    // the census (in-place or other alloc path).
+    // All addresses are dump-relative VMAs (runtime = +0x7100000000).
+    // alloc=none: no alloc call adjacent to the construction site (in-place or other alloc path).
     //
     // Band overrides: 0x80, 0x98.
     // Covers 13 of the 665 family vtables; member vtable sizes n=73..73.

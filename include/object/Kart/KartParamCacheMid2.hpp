@@ -25,6 +25,6 @@ namespace object
         uint64_t mFieldb8;      // 0xb8 — ctor-written
         uint8_t mPadc0[0x108];  // 0xc0 — unproven gap
         uint64_t mZero1c8;      // 0x1c8 — ctor zero
-                               // ctor 0x7100668d40 writes documented in the wip notes)
+                               // additional writes by ctor 0x7100668d40
     };
 }

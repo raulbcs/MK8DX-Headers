@@ -13,6 +13,6 @@ namespace object
     class KartParamCacheContainer : public KartParamCacheMid2
     {
     public:
-                               // ctor 0x710071db70 writes documented in the wip notes)
+                               // additional writes by ctor 0x710071db70
     };
 }

@@ -25,7 +25,7 @@ namespace object
     {
     public:
         void* mSecVt390;       // 0x390 — secondary vtable (GOT cell +0x10)
-        // Field-usage evidence (item behavior machines, see wip):
+        // Field-usage evidence (item behavior machines):
         // 0x398 = counter (fn 0x710030ee0 str / 0x710030f34 ldr);
         // 0x399/0x39a = state flags swapped by the reset slot 0x7100325ac;
         // 0x39c = state counter (slot 0x710031624/0x710031cd4);
