@@ -8,7 +8,7 @@
 // (GOT 0x12fbcf8), typeinfo 0x5114c ("*(u32*)(this+0x9c) == 0"). Derives
 // from RaceDirectorVt2 (ctor 0x71000511a8). Size 0xC8, proven by the
 // allocation site 0x710006f32c. Carries a state machine on +0x9c (states
-// 0..0xa, jump table rodata 0xf210438) with RaceInfo distance checks and
+// 0..0xa, jump table rodata 0xf21438) with RaceInfo distance checks and
 // item-box tables ([child+0x150..0x188]) in its slot-0x70-family logic
 // (0x51200+).
 // Baptism audit: state machine 0..0xa with item-box tables and RaceInfo distance checks; the state jump-table rodata carries no label.

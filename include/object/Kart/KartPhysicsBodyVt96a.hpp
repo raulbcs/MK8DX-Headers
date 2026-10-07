@@ -5,7 +5,7 @@
 namespace object
 {
     // Address-anchored name. 96 slots.
-    // Vtable .data 0x11af298 (GOT cell 0x12fb8d0), ctor 0x7100025a4c, size 0x340
+    // Vtable .data 0x11af298 (GOT cell 0x12fb4f8), ctor 0x7100025a4c, size 0x340
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
     class KartPhysicsBodyVt96a : public KartPhysicsBody

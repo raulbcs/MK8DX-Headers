@@ -5,7 +5,7 @@
 namespace object
 {
     // Slot names carry UseItemCaller evidence. Derives Vt96b (ctor 0x2b444 calls 0x2a7c8).
-    // Vtable .data 0x11b03f0 (GOT cell 0x12fbc30), ctor 0x710002b428, size 0x358
+    // Vtable .data 0x11b03f0 (GOT cell 0x12fb718), ctor 0x710002b428, size 0x358
     // (factory allocation immediately before the ctor call). Root-derived
     // (ctor calls 0x116a4);
     class KartPhysicsBodyUseItem : public KartPhysicsBodyVt96b

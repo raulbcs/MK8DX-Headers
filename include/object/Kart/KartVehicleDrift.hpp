@@ -27,11 +27,11 @@ namespace object
         uint8_t pad_014[0x10]; //0x14 — unproven padding
         float f24; //0x24 — scaled by a KartUnit wheel stat (0x17c0f8/0x17c154)
         float f28; //0x28
-        float f2c; //0x2C — accumulates rodata [0xed50a5c] per frame, resets to 1.5625f
+        float f2c; //0x2C — accumulates rodata [0xed5a5c] per frame, resets to 1.5625f
         uint8_t pad_030[8]; //0x30 — unproven padding
         uint64_t zero_38; //0x38 — zeroed each calc (0x17c180)
         uint8_t pad_040[8]; //0x40 — unproven padding
-        float f48; //0x48 — steer-related, clamped by rodata [0xed50c4c]
+        float f48; //0x48 — steer-related, clamped by rodata [0xed5c4c]
         uint8_t pad_04c[8]; //0x4C — unproven padding
         int32_t s54; //0x54 — zeroed in calc
         float f58; //0x58 — zeroed on drift-state change; ratio num in 0x17b9e4
@@ -59,7 +59,7 @@ namespace object
         uint8_t pad_0c1[3]; //0xC1 — unproven padding
         float fc4; //0xC4 — charge: fC4 += fC8, clamps, saturates at 1.0 (0x17bea0)
         float fc8; //0xC8 — charge increment
-        float fcc; //0xCC — clamped by rodata [0xed508a8]/[0xed508ec], mirrored to
+        float fcc; //0xCC — clamped by rodata [0xed58a8]/[0xed58ec], mirrored to
             // KartVehicleBody+0x114
         uint8_t pad_0d0[0x30]; //0xD0 — unproven padding
         uint8_t f100; //0x100 — cleared by FUN_710017b9dc
