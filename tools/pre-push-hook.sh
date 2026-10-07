@@ -42,9 +42,9 @@ done < <(find include -name '*.hpp' | sort)
 
 echo "syntax pre-push: checked $checked headers, $allowlisted allowlisted failures"
 
-# Advisory extent check (same as CI continue-on-error step).
+# Blocking extent/layout check (same as CI blocking step).
 if [ -f tools/check_extents.py ]; then
-  python3 tools/check_extents.py || echo "WARNING: extent violations exist (advisory; see tools/check_extents.py)"
+  python3 tools/check_extents.py
 fi
 
 exit $fail

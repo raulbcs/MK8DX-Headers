@@ -14,37 +14,57 @@ The `vendor/` submodules are the work of the open-ead team — thank you all for
 
 ## CI and pre-push checks
 
-### Syntax CI (`.github/workflows/syntax.yml`)
+### Syntax workflow (`.github/workflows/syntax.yml`)
 
-On every push/PR, GitHub Actions runs `clang++ -fsyntax-only -std=c++17`
-over **every** `include/**/*.hpp` (with `submodules: recursive` so the
-`vendor/` SDK headers are present). Headers that fail today due to missing
-includes are in an explicit allowlist inside the workflow; a failure in any
-**non-allowlisted** file breaks CI. Stale allowlist entries (files that now
-compile) produce a warning — remove them.
+The workflow is **`workflow_dispatch`-only**: it never runs automatically on
+GitHub. Run it locally with [act](https://github.com/nektos/act):
 
-### Extent checker (`tools/check_extents.py`)
+```sh
+act workflow_dispatch --container-architecture linux/amd64 \
+  -P ubuntu-latest=catthehacker/ubuntu:act-latest
+```
 
-Mechanical validation: for every header with a provable class extent in its
-docblock, the largest cited field offset must fit within `extent + 0x10`.
-Currently advisory (CI step is `continue-on-error`) until the existing
-violations are fixed:
+It runs `clang++ -fsyntax-only -std=c++17` over **every** `include/**/*.hpp`
+(with `submodules: recursive` so the `vendor/` SDK headers are present).
+Headers that fail today due to missing includes are in an explicit allowlist
+inside the workflow; a failure in any **non-allowlisted** file breaks the run.
+Stale allowlist entries (files that now compile) produce a warning — remove
+them.
+
+### Layout/extent linter (`tools/check_extents.py`) — BLOCKING
+
+Mechanical layout validation, run by both the workflow and the pre-push hook
+as a **blocking** step (violations fail the check):
+
+- field overlap detection, byte-by-byte,
+- coverage: every cited offset covered by a field or an annotated pad,
+- pads must carry an `unproven padding/gap` note,
+- every header with fields needs a cited extent (small embedded allowlist),
+- alignment advisory warnings (non-blocking).
 
 ```sh
 python3 tools/check_extents.py
 ```
 
+### Coverage report (`tools/coverage_report.py`)
+
+Generates `COVERAGE.md` and `coverage.html` summarizing which headers have
+proven extents, field maps, and vtable anchors. Regenerate with:
+
+```sh
+python3 tools/coverage_report.py
+```
+
 ### Pre-push hook (`tools/pre-push-hook.sh`)
 
-Same syntax gate + advisory extent check, run locally before each push.
-Install (one-time, pick one):
+Same syntax gate + blocking layout/extent check, run locally before each
+push. Install (one-time):
 
 ```sh
 git config core.hooksPath tools/hooks
-# or
-ln -sf ../../tools/pre-push-hook.sh .git/hooks/pre-push
 ```
 
+`tools/hooks/pre-push` is a committed symlink to `../pre-push-hook.sh`.
 The hook expects `clang++` on PATH and the `vendor/nnheaders` submodule
 checked out (`git submodule update --init vendor/nnheaders`).
 
