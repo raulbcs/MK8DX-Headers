@@ -11,18 +11,16 @@
 
 #include "ItemEventManager.hpp"
 
-namespace gear
-{
-    class ItemDirector : public Actor
-    {
-        public:
-            sead::FixedPtrArray<ItemObjManagerBase, 19> mItemManagers; // 0x38
-            sead::PtrArray<ItemOwner> mItemOwners; // 0xE0
-            uintptr_t mPadF0; // 0xF0 — unproven padding
-            ItemEventManager* mItemEventManager; //0xF8
+namespace gear {
+class ItemDirector : public Actor {
+ public:
+  sead::FixedPtrArray<ItemObjManagerBase, 19> mItemManagers;  // 0x38
+  sead::PtrArray<ItemOwner> mItemOwners;                      // 0xE0
+  uintptr_t mPadF0;                                           // 0xF0 — unproven padding
+  ItemEventManager* mItemEventManager;                        //0xF8
 
-            ItemDirector();
+  ItemDirector();
 
-            void emitItemKinoko(sead::Vector3<float> const&, sead::Vector3<float> const&, int32_t);
-    };
-}
+  void emitItemKinoko(sead::Vector3<float> const&, sead::Vector3<float> const&, int32_t);
+};
+}  // namespace gear

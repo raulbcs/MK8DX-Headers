@@ -11,20 +11,18 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorSetHelper
- {
+namespace gear {
+class RaceDirectorSetHelper {
  public:
- void* vtable; //0x00
- uint32_t u08; //0x08 — ctor zero
- uint32_t u0c; //0x0C — ctor zero
- void* m10; //0x10 — ctor zero
- void* m18; //0x18 — ctor zero
- void* mOwner20; //0x20 — ctor arg x1 (the PlayerSet)
- uint64_t m28; //0x28 — ctor zero
- uint32_t m30; //0x30 — ctor zero
- uint8_t pad34[4]; //0x34 — unproven padding
- uint32_t m38; //0x38 — ctor zero
- };
-}
+  void* vtable;      //0x00
+  uint32_t u08;      //0x08 — ctor zero
+  uint32_t u0c;      //0x0C — ctor zero
+  void* m10;         //0x10 — ctor zero
+  void* m18;         //0x18 — ctor zero
+  void* mOwner20;    //0x20 — ctor arg x1 (the PlayerSet)
+  uint64_t m28;      //0x28 — ctor zero
+  uint32_t m30;      //0x30 — ctor zero
+  uint8_t pad34[4];  //0x34 — unproven padding
+  uint32_t m38;      //0x38 — ctor zero
+};
+}  // namespace gear

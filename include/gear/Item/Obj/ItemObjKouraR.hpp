@@ -4,7 +4,6 @@
 
 #include "ItemObjKouraG.hpp"
 
-namespace gear
-{
-    class ItemObjKouraR : public ItemObjKouraG {};
-}
+namespace gear {
+class ItemObjKouraR : public ItemObjKouraG {};
+}  // namespace gear

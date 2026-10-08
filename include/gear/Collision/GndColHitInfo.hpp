@@ -1,6 +1,5 @@
 #pragma once
 
-namespace gear
-{
-    class GndColHitInfo;
+namespace gear {
+class GndColHitInfo;
 }

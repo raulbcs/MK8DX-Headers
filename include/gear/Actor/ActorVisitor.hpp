@@ -1,6 +1,5 @@
 #pragma once
 
-namespace gear
-{
-    class ActorVisitor;
+namespace gear {
+class ActorVisitor;
 }

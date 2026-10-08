@@ -11,29 +11,27 @@
 #include <gear/UI/UIArchive.hpp>
 #include <filedevice/seadFileDevice.h>
 
-namespace gear
-{
-    class UILoader
-    {
-    public:
-        // Total size 0xA0
-        // Unproven — Switch ctor is in the binary but not yet located (no
-        // RTTI, stripped binary); extent fixed by mTextureMap at 0x30.
-        uint8_t mPad00[0x30]; // unproven - extent fixed by mTextureMap at 0x30
-        sead::StrTreeMap<64, void*> mTextureMap; //0x30
-        uint32_t mTextureCount; //0x50
-        uint32_t mMaxTextures; //0x54
-        nn::ui2d::ResourceTextureInfo** mTextureArray; //0x58
-        UIArchive* mUIArchive; //0x60
-        sead::Heap* mHeap; // 0x68
+namespace gear {
+class UILoader {
+ public:
+  // Total size 0xA0
+  // Unproven — Switch ctor is in the binary but not yet located (no
+  // RTTI, stripped binary); extent fixed by mTextureMap at 0x30.
+  uint8_t mPad00[0x30];                           // unproven - extent fixed by mTextureMap at 0x30
+  sead::StrTreeMap<64, void*> mTextureMap;        //0x30
+  uint32_t mTextureCount;                         //0x50
+  uint32_t mMaxTextures;                          //0x54
+  nn::ui2d::ResourceTextureInfo** mTextureArray;  //0x58
+  UIArchive* mUIArchive;                          //0x60
+  sead::Heap* mHeap;                              // 0x68
 
-        UILoader();
+  UILoader();
 
-        void loadSarc(sead::SafeStringBase<char> const&);
-        void loadSzs_(sead::SafeStringBase<char> const&,uint32_t,sead::FileHandle *,uint8_t *,uint32_t,bool);
+  void loadSarc(sead::SafeStringBase<char> const&);
+  void loadSzs_(sead::SafeStringBase<char> const&, uint32_t, sead::FileHandle*, uint8_t*, uint32_t, bool);
 
-        nn::ui2d::TextureInfo* loadTexture(sead::SafeStringBase<char> const&,bool,gear::EResourceCategory);
+  nn::ui2d::TextureInfo* loadTexture(sead::SafeStringBase<char> const&, bool, gear::EResourceCategory);
 
-        static void* findArc(const sead::SafeStringBase<char>&);
-    };
-}
+  static void* findArc(const sead::SafeStringBase<char>&);
+};
+}  // namespace gear

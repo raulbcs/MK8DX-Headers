@@ -13,19 +13,17 @@
 //
 // Runtime cross-evidence: FUN_7100173140 (Path2Gate cluster) reads the int
 // at +0x8 (==2 gate).
-namespace object
-{
-    struct KartRecorderChannels
-    {
-        uint8_t pad_00[8]; // 0x00 — vtable ptr (global 0x1307890+0x10)
-        uint32_t state08; //0x08 — int state, ==2 gate in FUN_7100173140
-        uint32_t u0c; //0x0C
-        uint8_t pad_010[0x100]; //0x10 — unproven padding
-        uint8_t flag110; //0x110 — setup writes 1
-        uint8_t pad_111[0x167]; //0x111 - 0x277 — unproven padding
-        void* parent_278; //0x278 — first pointer of the 0x40-byte param block
-            // copied from the KartVehicle init stack; the setup then registers
-            // this under it: recorderAddChannel(parent, this, 0)
-        uint8_t block_280[0x38]; //0x280 — rest of the 0x40-byte param copy
-    };
-}
+namespace object {
+struct KartRecorderChannels {
+  uint8_t pad_00[8];        // 0x00 — vtable ptr (global 0x1307890+0x10)
+  uint32_t state08;         //0x08 — int state, ==2 gate in FUN_7100173140
+  uint32_t u0c;             //0x0C
+  uint8_t pad_010[0x100];   //0x10 — unproven padding
+  uint8_t flag110;          //0x110 — setup writes 1
+  uint8_t pad_111[0x167];   //0x111 - 0x277 — unproven padding
+  void* parent_278;         //0x278 — first pointer of the 0x40-byte param block
+                            // copied from the KartVehicle init stack; the setup then registers
+                            // this under it: recorderAddChannel(parent, this, 0)
+  uint8_t block_280[0x38];  //0x280 — rest of the 0x40-byte param copy
+};
+}  // namespace object

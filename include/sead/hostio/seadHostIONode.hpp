@@ -6,24 +6,21 @@
 
 #include "prim/seadRuntimeTypeInfo.h"
 
-namespace sead::hostio
-{
-    class Node
-    {
-        public:
-            virtual bool checkDerivedRuntimeTypeInfo(const RuntimeTypeInfo::Interface* typeInfo) const;
-            virtual const RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const;
-            virtual ~Node()
-            {
-                mPad28 = nullptr; // code (ctor), not padding
-                mPad30 = nullptr; // code (ctor), not padding
-            }
+namespace sead::hostio {
+class Node {
+ public:
+  virtual bool checkDerivedRuntimeTypeInfo(const RuntimeTypeInfo::Interface* typeInfo) const;
+  virtual const RuntimeTypeInfo::Interface* getRuntimeTypeInfo() const;
+  virtual ~Node() {
+    mPad28 = nullptr;  // code (ctor), not padding
+    mPad30 = nullptr;  // code (ctor), not padding
+  }
 
-            void* mPad08; // real field (ptr), not padding
-            void* mPad10; // real field (ptr), not padding
-            void* mPad18; // real field (ptr), not padding
-            void* mPad20; // real field (ptr), not padding
-            void* mPad28; // real field (ptr), not padding
-            void* mPad30; // real field (ptr), not padding
-    };
-}
+  void* mPad08;  // real field (ptr), not padding
+  void* mPad10;  // real field (ptr), not padding
+  void* mPad18;  // real field (ptr), not padding
+  void* mPad20;  // real field (ptr), not padding
+  void* mPad28;  // real field (ptr), not padding
+  void* mPad30;  // real field (ptr), not padding
+};
+}  // namespace sead::hostio

@@ -16,7 +16,6 @@
 // Consumers: 10 materialization sites in the atk sound-driver region
 // 0x5e483c..0x5e7xxx (FUN_71005e483c and the BasicSound method family
 // behind it — Pause/Mute/Start helpers operate on these objects).
-namespace nn::atk::detail
-{
-    struct BasicSoundVtablePlaceholder;
+namespace nn::atk::detail {
+struct BasicSoundVtablePlaceholder;
 }

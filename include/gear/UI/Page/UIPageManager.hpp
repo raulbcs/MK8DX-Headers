@@ -6,15 +6,13 @@
 #include "EUIPageID.hpp"
 #include "UIPage.hpp"
 
-namespace gear
-{
-    class UIPageManager : public eui::ScreenMgr
-    {
-    public:
-        void set(gear::EUIPageID, eui::Screen *);
+namespace gear {
+class UIPageManager : public eui::ScreenMgr {
+ public:
+  void set(gear::EUIPageID, eui::Screen*);
 
-        gear::UIPage* get(gear::EUIPageID);
-    };
+  gear::UIPage* get(gear::EUIPageID);
+};
 
-    UIPageManager* GetUIPageManager();
-}
+UIPageManager* GetUIPageManager();
+}  // namespace gear

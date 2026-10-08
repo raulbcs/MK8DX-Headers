@@ -1,6 +1,5 @@
 #pragma once
 
-namespace enl
-{
-    class PeerInfo {};
-}
+namespace enl {
+class PeerInfo {};
+}  // namespace enl

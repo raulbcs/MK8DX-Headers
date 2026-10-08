@@ -4,12 +4,10 @@
 
 #include "ItemEventContent.hpp"
 
-namespace gear
-{
-    class ItemEvent
-    {
-    public:
-        char header[0x8];
-        ItemEventContent m_eventContent; //0x08
-    };
-}
+namespace gear {
+class ItemEvent {
+ public:
+  char header[0x8];
+  ItemEventContent m_eventContent;  //0x08
+};
+}  // namespace gear

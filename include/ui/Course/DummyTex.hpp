@@ -2,7 +2,6 @@
 
 #include <_nn/ui2d/TextureInfo.h>
 
-namespace ui
-{
-    nn::ui2d::TextureInfo* GetDummyTex();
+namespace ui {
+nn::ui2d::TextureInfo* GetDummyTex();
 }

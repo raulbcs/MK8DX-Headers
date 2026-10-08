@@ -1,0 +1,18 @@
+---
+# Google C++ style for the headers tree (include/ only).
+# vendor/, tools/, shims are NOT formatted — upstream or tooling.
+BasedOnStyle: Google
+Language: Cpp
+Standard: c++17
+ColumnLimit: 0  # never wrap: the layout linter regex-parses single-line declarations
+
+# The factual comments ARE the product; never reflow or rewrap them.
+ReflowComments: false
+
+# Keep include order as authored (formatting must not change semantics).
+SortIncludes: Never
+
+# The project keeps #pragma once (no header guards).
+InsertNewlineAtEOF: true
+LineEnding: LF
+...

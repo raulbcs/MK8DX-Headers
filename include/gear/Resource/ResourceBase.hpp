@@ -5,14 +5,11 @@
 
 #include <resource/seadResource.h>
 
-namespace gear
-{
-    class ResourceBase : public sead::DirectResource
-    {
-    public:
-
-        inline void* getRawData() {
-            return mRawData;
-        }
-    };
-}
+namespace gear {
+class ResourceBase : public sead::DirectResource {
+ public:
+  inline void* getRawData() {
+    return mRawData;
+  }
+};
+}  // namespace gear

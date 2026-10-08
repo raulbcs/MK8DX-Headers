@@ -3,13 +3,11 @@
 #include <mush/Course/EGrandPrixID.hpp>
 #include <ui/Cup/DLCStatus.hpp>
 
-namespace gear
-{
-    class DLCManager
-    {
-    public:
-        ui::DLCStatus getCupStatus(mush::EGrandPrixID);
-    };
+namespace gear {
+class DLCManager {
+ public:
+  ui::DLCStatus getCupStatus(mush::EGrandPrixID);
+};
 
-    DLCManager* GetDLCManager();
-}
+DLCManager* GetDLCManager();
+}  // namespace gear

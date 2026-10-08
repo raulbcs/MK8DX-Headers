@@ -2,10 +2,8 @@
 
 #include <cstdint>
 
-namespace gear
-{
-    class MapObjCreateArg
-    {
-    public:
-    };
-}
+namespace gear {
+class MapObjCreateArg {
+ public:
+};
+}  // namespace gear

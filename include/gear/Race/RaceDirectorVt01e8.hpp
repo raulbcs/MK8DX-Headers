@@ -15,21 +15,19 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorVt01e8 : public RaceDirectorBase38
- {
+namespace gear {
+class RaceDirectorVt01e8 : public RaceDirectorBase38 {
  public:
- uint32_t mField38; //0x38 — ctor zero
- uint8_t pad3c[4]; //0x3c — unproven padding
- uint64_t mZero40; //0x40 — ctor zero
- uint64_t mZero48; //0x48 — ctor zero
- uint32_t mField50; //0x50 — ctor sets 4
- uint8_t pad54[4]; //0x54 — unproven padding
- uint64_t mZero58; //0x58 — ctor zero
- uint8_t bFlag60; //0x60 — ctor sets 1
- uint8_t bZero61; //0x61 — ctor zero
- uint8_t pad62[6]; //0x62 — tail padding (extent 0x62)
- // (0x68 total, binary extent 0x62)
- };
-}
+  uint32_t mField38;  //0x38 — ctor zero
+  uint8_t pad3c[4];   //0x3c — unproven padding
+  uint64_t mZero40;   //0x40 — ctor zero
+  uint64_t mZero48;   //0x48 — ctor zero
+  uint32_t mField50;  //0x50 — ctor sets 4
+  uint8_t pad54[4];   //0x54 — unproven padding
+  uint64_t mZero58;   //0x58 — ctor zero
+  uint8_t bFlag60;    //0x60 — ctor sets 1
+  uint8_t bZero61;    //0x61 — ctor zero
+  uint8_t pad62[6];   //0x62 — tail padding (extent 0x62)
+  // (0x68 total, binary extent 0x62)
+};
+}  // namespace gear

@@ -11,17 +11,15 @@
 #include "MapObjCreateArg.hpp"
 #include "EMapObjID.hpp"
 
-namespace gear
-{
-    class MapObjDirector : public Actor
-    {
-    public:
-        uint8_t mPad38[0x18]; // 0x38
-        sead::PtrArray<MapObjParameter> mMapObjParams; // 0x50
+namespace gear {
+class MapObjDirector : public Actor {
+ public:
+  uint8_t mPad38[0x18];                           // 0x38
+  sead::PtrArray<MapObjParameter> mMapObjParams;  // 0x50
 
-        void reactThunder();
-        void loadParameter_();
+  void reactThunder();
+  void loadParameter_();
 
-        static bool append(gear::EMapObjID, gear::MapObjBase * (*)(gear::MapObjCreateArg &));
-    };
-}
+  static bool append(gear::EMapObjID, gear::MapObjBase* (*)(gear::MapObjCreateArg&));
+};
+}  // namespace gear

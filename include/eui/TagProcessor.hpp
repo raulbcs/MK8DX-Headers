@@ -2,7 +2,6 @@
 
 #include "TagProcessorBase.hpp"
 
-namespace eui
-{
-    class TagProcessor : public TagProcessorBase<short> {};
-}
+namespace eui {
+class TagProcessor : public TagProcessorBase<short> {};
+}  // namespace eui

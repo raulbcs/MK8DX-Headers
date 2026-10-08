@@ -16,19 +16,17 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorVta260 : public RaceDirectorBase38
- {
+namespace gear {
+class RaceDirectorVta260 : public RaceDirectorBase38 {
  public:
- uint32_t mField38; //0x38 — ctor zero
- uint8_t pad3c[4]; //0x3c — unproven padding
- uint64_t mZero40; //0x40 — ctor zero
- uint64_t mZero48; //0x48 — ctor zero
- uint8_t mPad50[0x60]; //0x50 — untouched by ctor
- uint64_t mZeroB0; //0xb0 — ctor zero (final stp covers
- // 0xb0..0xbf, so extent 0xc0)
- uint64_t mZeroB8; //0xb8 — ctor zero
- // (0xc0 total)
- };
-}
+  uint32_t mField38;     //0x38 — ctor zero
+  uint8_t pad3c[4];      //0x3c — unproven padding
+  uint64_t mZero40;      //0x40 — ctor zero
+  uint64_t mZero48;      //0x48 — ctor zero
+  uint8_t mPad50[0x60];  //0x50 — untouched by ctor
+  uint64_t mZeroB0;      //0xb0 — ctor zero (final stp covers
+  // 0xb0..0xbf, so extent 0xc0)
+  uint64_t mZeroB8;  //0xb8 — ctor zero
+  // (0xc0 total)
+};
+}  // namespace gear

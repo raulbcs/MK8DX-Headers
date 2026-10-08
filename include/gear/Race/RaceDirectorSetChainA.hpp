@@ -13,12 +13,10 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorSetChainA : public RaceDirectorSetChainMid
- {
+namespace gear {
+class RaceDirectorSetChainA : public RaceDirectorSetChainMid {
  public:
- uint64_t mListF8; //0xF8 — ctor zero; list/map head
- // (0x100 total)
- };
-}
+  uint64_t mListF8;  //0xF8 — ctor zero; list/map head
+  // (0x100 total)
+};
+}  // namespace gear

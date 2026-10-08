@@ -1,28 +1,25 @@
 #pragma once
 #include <cstdint>
 
-namespace ui
-{
-    class DLCState
-    {
-        public:
-            enum DLCState_ : int32_t
-            {
-                NotSale = 0,
-                NotSaleReserve = 1,
-                NotBuy = 2,
-                NotBuyReserve = 3,
-                Locked = 4,
-                Unlocked = 5
-            };
+namespace ui {
+class DLCState {
+ public:
+  enum DLCState_ : int32_t {
+    NotSale = 0,
+    NotSaleReserve = 1,
+    NotBuy = 2,
+    NotBuyReserve = 3,
+    Locked = 4,
+    Unlocked = 5
+  };
 
-            DLCState_ mValue;
-            
-            const char* text_(int);
+  DLCState_ mValue;
 
-            DLCState(DLCState_ item) : mValue(item) {}
-            DLCState(int32_t item) : mValue(static_cast<DLCState_>(item)) {}
+  const char* text_(int);
 
-            ~DLCState() {}
-    };
-}
+  DLCState(DLCState_ item) : mValue(item) {}
+  DLCState(int32_t item) : mValue(static_cast<DLCState_>(item)) {}
+
+  ~DLCState() {}
+};
+}  // namespace ui

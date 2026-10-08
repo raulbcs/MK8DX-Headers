@@ -1,25 +1,22 @@
 #pragma once
 #include <cstdint>
 
-namespace ui
-{
-    class EDialogType
-    {
-        public:
-            enum EDialogType_ : int32_t 
-            {
-                None=-1,
-                Unknown,
-                YesNo
-            };
+namespace ui {
+class EDialogType {
+ public:
+  enum EDialogType_ : int32_t {
+    None = -1,
+    Unknown,
+    YesNo
+  };
 
-            EDialogType_ mValue;
-            
-            const char* text_(int);
+  EDialogType_ mValue;
 
-            EDialogType(EDialogType_ item) : mValue(item) {}
-            EDialogType(int32_t item) : mValue(static_cast<EDialogType_>(item)) {}
+  const char* text_(int);
 
-            ~EDialogType() {}
-    };
-}
+  EDialogType(EDialogType_ item) : mValue(item) {}
+  EDialogType(int32_t item) : mValue(static_cast<EDialogType_>(item)) {}
+
+  ~EDialogType() {}
+};
+}  // namespace ui

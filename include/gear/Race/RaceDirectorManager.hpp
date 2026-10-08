@@ -19,29 +19,27 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorManager
- {
+namespace gear {
+class RaceDirectorManager {
  public:
- void* vtable; //0x00 — vtable ptr (ctor 0x5879c)
- void* mObj8; //0x08 — object built by 0x62ee28
- uint8_t pad10[0x40]; //0x10 — unproven padding
- void* mTable50; //0x50 — new(0x59C0) via ctor 0x66940 (0x58bd4)
- uint32_t mVec58lo; //0x58 — per-player director vector: the loop
- uint32_t mVec5c; //0x5C — bound is loaded from [this+0x5C]
- // (0x58c44-0x58cd8); 0x58/0x5C form a
- // non-8-aligned pair — declare as raw u32s
- void* mVec60; //0x60 — vector end/cap
- uint8_t pad68[0x28]; //0x68 — unproven padding
- void* mObj90; //0x90 — ctor writes (0x588c0 region)
- uint8_t pad98[0x14]; //0x98 — unproven padding
- uint32_t mFieldAc; //0xAC — ctor writes
- uint8_t padB0[0x10]; //0xB0 — unproven padding
- // +0xC0..+0x198: ~14 allocated arrays (0x60b3fc + memset 0xb52770),
- // per-player data tables (ctor 0x58d7c-0x59244)
- uint8_t mTablesC0[0xd8]; //0xC0 - 0x197
- uint8_t pad198[8]; //0x198 — unproven padding
- // (0x1A0 total)
- };
-}
+  void* vtable;         //0x00 — vtable ptr (ctor 0x5879c)
+  void* mObj8;          //0x08 — object built by 0x62ee28
+  uint8_t pad10[0x40];  //0x10 — unproven padding
+  void* mTable50;       //0x50 — new(0x59C0) via ctor 0x66940 (0x58bd4)
+  uint32_t mVec58lo;    //0x58 — per-player director vector: the loop
+  uint32_t mVec5c;      //0x5C — bound is loaded from [this+0x5C]
+  // (0x58c44-0x58cd8); 0x58/0x5C form a
+  // non-8-aligned pair — declare as raw u32s
+  void* mVec60;         //0x60 — vector end/cap
+  uint8_t pad68[0x28];  //0x68 — unproven padding
+  void* mObj90;         //0x90 — ctor writes (0x588c0 region)
+  uint8_t pad98[0x14];  //0x98 — unproven padding
+  uint32_t mFieldAc;    //0xAC — ctor writes
+  uint8_t padB0[0x10];  //0xB0 — unproven padding
+  // +0xC0..+0x198: ~14 allocated arrays (0x60b3fc + memset 0xb52770),
+  // per-player data tables (ctor 0x58d7c-0x59244)
+  uint8_t mTablesC0[0xd8];  //0xC0 - 0x197
+  uint8_t pad198[8];        //0x198 — unproven padding
+  // (0x1A0 total)
+};
+}  // namespace gear

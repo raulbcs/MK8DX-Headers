@@ -3,34 +3,32 @@
 #include <cstdint>
 #include <prim/seadSafeString.h>
 
-namespace gear
-{
-    class UIAnimator
-    {
-    public:
-        virtual void nullsub0();
-        uint32_t mElementAmount; //0x08
-        uint8_t mPad0C[0x10]; //0x0C
-        UIAnimator();
+namespace gear {
+class UIAnimator {
+ public:
+  virtual void nullsub0();
+  uint32_t mElementAmount;  //0x08
+  uint8_t mPad0C[0x10];     //0x0C
+  UIAnimator();
 
-        void play(int, float);
-        void playContinue(float);
-        void playOnOff(int, float);
-        void playOnOff(int, int, int, float);
+  void play(int, float);
+  void playContinue(float);
+  void playOnOff(int, float);
+  void playOnOff(int, int, int, float);
 
-        void stop(int, float);
-        void stopMax(int);
-        void stopMin(int);
+  void stop(int, float);
+  void stopMax(int);
+  void stopMin(int);
 
-        void bind(int,sead::SafeStringBase<char> const&);
+  void bind(int, sead::SafeStringBase<char> const&);
 
-        bool isPlay(void)const;
-        bool isFrameMin(void)const;
-        bool isFrameMax(void)const;
+  bool isPlay(void) const;
+  bool isFrameMin(void) const;
+  bool isFrameMax(void) const;
 
-        float getFrame(void)const;
-        float getFrameMax(int)const;
+  float getFrame(void) const;
+  float getFrameMax(int) const;
 
-        int getFrameMaxInt(int)const;
-    };
-}
+  int getFrameMaxInt(int) const;
+};
+}  // namespace gear

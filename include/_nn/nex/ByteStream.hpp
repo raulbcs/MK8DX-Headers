@@ -2,11 +2,9 @@
 
 #include <cstdint>
 
-namespace nn::nex
-{
-    class ByteStream
-    {
-    public:
-        void AppendRaw(const void* data, uint32_t size);
-    };
-}
+namespace nn::nex {
+class ByteStream {
+ public:
+  void AppendRaw(const void* data, uint32_t size);
+};
+}  // namespace nn::nex

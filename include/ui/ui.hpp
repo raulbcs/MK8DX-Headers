@@ -2,7 +2,6 @@
 
 #include <gear/Player/RacePlayerType.hpp>
 
-namespace ui
-{
-    void SetPlayerType(int, gear::RacePlayerType);
+namespace ui {
+void SetPlayerType(int, gear::RacePlayerType);
 }

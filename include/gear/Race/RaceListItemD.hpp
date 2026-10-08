@@ -17,12 +17,10 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceListItemD : public RaceListItemE
- {
+namespace gear {
+class RaceListItemD : public RaceListItemE {
  public:
- // Same layout as E (0xB00); D adds behavior via vtable override,
- // no extra fields observed at create time.
- };
-}
+  // Same layout as E (0xB00); D adds behavior via vtable override,
+  // no extra fields observed at create time.
+};
+}  // namespace gear

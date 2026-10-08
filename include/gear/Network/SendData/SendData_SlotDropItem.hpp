@@ -1,6 +1,5 @@
 #pragma once
 
-namespace gear
-{
-    class SendData_SlotDropItem;
+namespace gear {
+class SendData_SlotDropItem;
 }

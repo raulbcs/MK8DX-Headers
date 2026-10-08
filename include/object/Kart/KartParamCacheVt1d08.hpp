@@ -4,17 +4,15 @@
 
 #include "object/Kart/KartParamCacheMid2.hpp"
 
-namespace object
-{
-    // KartParamCacheVt1d08 — address-anchored name (vptr 0x12b1d08,
-    // GOT cell 0x130d858). Mid2-derived variant (ctor 0x710063c87c calls the Mid2 overload
-    // 0x7100668fc4): float constants 2.0f/-1.0f/3.0f/0.0906f at 0x1d8-0x1f4,
-    // u32 at 0x204. Extent 0x208.
-    class KartParamCacheVt1d08 : public KartParamCacheMid2
-    {
-    public:
-        // (0x208 total)
-    };
-}
+namespace object {
+// KartParamCacheVt1d08 — address-anchored name (vptr 0x12b1d08,
+// GOT cell 0x130d858). Mid2-derived variant (ctor 0x710063c87c calls the Mid2 overload
+// 0x7100668fc4): float constants 2.0f/-1.0f/3.0f/0.0906f at 0x1d8-0x1f4,
+// u32 at 0x204. Extent 0x208.
+class KartParamCacheVt1d08 : public KartParamCacheMid2 {
+ public:
+  // (0x208 total)
+};
+}  // namespace object
 
 // Naming closure: only ctor string is the debug icon 'Icon=EFFECT' (0xef8b50); group tag only, no role evidence. Address-anchored name retained.

@@ -2,7 +2,6 @@
 
 #include "CourseInfo.hpp"
 
-namespace ui
-{
-    void SetNextCourse(ui::CourseInfo const&);
+namespace ui {
+void SetNextCourse(ui::CourseInfo const&);
 }

@@ -4,19 +4,17 @@
 
 #include "_nn/ae/AppletThread.hpp"
 
-namespace nn::ae
-{
-    // MiiEditAppletThread — rodata-named (0xf0cc3e). Vtable 0x12d0488
-    // (cell 0x1310fc8). Ctor attr 0x1000. Extent 0x100: strb @0xf4, s32
-    // -1 @0xf8.
-    class MiiEditAppletThread : public AppletThread
-    {
-    public:
-        uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
-        uint8_t mFlagF4;       // 0xf4 — ctor zero
-        uint8_t mPadF5[0x3];   // 0xf5 — unproven padding
-        int32_t mFffF8;        // 0xf8 — ctor sets -1
-        uint8_t mPadFc[0x4];   // 0xfc — unproven padding
-        // (0x100 total)
-    };
-}
+namespace nn::ae {
+// MiiEditAppletThread — rodata-named (0xf0cc3e). Vtable 0x12d0488
+// (cell 0x1310fc8). Ctor attr 0x1000. Extent 0x100: strb @0xf4, s32
+// -1 @0xf8.
+class MiiEditAppletThread : public AppletThread {
+ public:
+  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
+  uint8_t mFlagF4;       // 0xf4 — ctor zero
+  uint8_t mPadF5[0x3];   // 0xf5 — unproven padding
+  int32_t mFffF8;        // 0xf8 — ctor sets -1
+  uint8_t mPadFc[0x4];   // 0xfc — unproven padding
+                         // (0x100 total)
+};
+}  // namespace nn::ae

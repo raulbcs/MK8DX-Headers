@@ -1,6 +1,5 @@
 #pragma once
 
-namespace eui
-{
-    class AnimButton {};
-}
+namespace eui {
+class AnimButton {};
+}  // namespace eui

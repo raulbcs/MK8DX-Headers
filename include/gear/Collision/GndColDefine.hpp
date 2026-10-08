@@ -1,10 +1,8 @@
 #pragma once
 
-namespace gear
-{
-    class GndColDefine
-    {
-    public:
-        struct GndInfo {};
-    };
-}
+namespace gear {
+class GndColDefine {
+ public:
+  struct GndInfo {};
+};
+}  // namespace gear

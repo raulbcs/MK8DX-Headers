@@ -1,7 +1,6 @@
 #pragma once
 
-namespace ui
-{
-    bool IsLoginProcess();
-    bool IsLogin();
-}
+namespace ui {
+bool IsLoginProcess();
+bool IsLogin();
+}  // namespace ui

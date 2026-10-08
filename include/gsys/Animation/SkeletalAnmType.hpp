@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-namespace gsys
-{
-    class SkeletalAnmType {};
-}
+namespace gsys {
+class SkeletalAnmType {};
+}  // namespace gsys

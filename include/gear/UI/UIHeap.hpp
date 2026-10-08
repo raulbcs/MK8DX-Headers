@@ -10,26 +10,24 @@
 
 #include <gear/UI/Page/EUIPageID.hpp>
 
-namespace gear
-{
-    class UIHeap
-    {
-    public:
-        uint8_t mPad00[0x10]; //0x00
-        sead::Heap* mHeap; // 0x10
-        UILoader* mUILoader;  //0x18
-        uint8_t mPad20[0x10]; //0x20
+namespace gear {
+class UIHeap {
+ public:
+  uint8_t mPad00[0x10];  //0x00
+  sead::Heap* mHeap;     // 0x10
+  UILoader* mUILoader;   //0x18
+  uint8_t mPad20[0x10];  //0x20
 
-        void setID(gear::EUIHeapID);
+  void setID(gear::EUIHeapID);
 
-        void load();
-        void create();
-        void init();
+  void load();
+  void create();
+  void init();
 
-        void freeImpl_(bool);
+  void freeImpl_(bool);
 
-        void createPageImpl_(gear::EUIPageID,unsigned char);
-    };
+  void createPageImpl_(gear::EUIPageID, unsigned char);
+};
 
-    UIHeap* GetUIHeap(gear::EUIHeapID);
-}
+UIHeap* GetUIHeap(gear::EUIHeapID);
+}  // namespace gear

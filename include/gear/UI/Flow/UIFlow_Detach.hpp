@@ -6,14 +6,12 @@
 
 #include "UIFlow.hpp"
 
-namespace gear
-{
-    class UIFlow_Detach : public UIFlow
-    {
-    public:
-        virtual void onStart_() override;
-        virtual void onPrevExit_() override;
+namespace gear {
+class UIFlow_Detach : public UIFlow {
+ public:
+  virtual void onStart_() override;
+  virtual void onPrevExit_() override;
 
-        static void doFlow(gear::EUIPageID pageId);
-    };
-}
+  static void doFlow(gear::EUIPageID pageId);
+};
+}  // namespace gear

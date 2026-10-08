@@ -5,22 +5,19 @@
 #include "gear/UI/Page/UIPage.hpp"
 #include "gear/UI/UIControl.hpp"
 
-namespace ui
-{
-    class Page_Bg : public gear::UIPage
-    {
-    public:
-        gear::UIControl* mRootControl; // 0x1D0
+namespace ui {
+class Page_Bg : public gear::UIPage {
+ public:
+  gear::UIControl* mRootControl;  // 0x1D0
 
-        static const sead::RuntimeTypeInfo::Interface** sInfo;
-        static inline const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {
-            return reinterpret_cast<sead::RuntimeTypeInfo::Interface*>(
-                *reinterpret_cast<uintptr_t*>(sInfo)
-            );
-        }
+  static const sead::RuntimeTypeInfo::Interface** sInfo;
+  static inline const sead::RuntimeTypeInfo::Interface* getRuntimeTypeInfoStatic() {
+    return reinterpret_cast<sead::RuntimeTypeInfo::Interface*>(
+        *reinterpret_cast<uintptr_t*>(sInfo));
+  }
 
-        // NOTE: animation currently undocumented.
-        // Expect this function name to change.
-        void playDLCBgChange(bool forward);
-    };
-}
+  // NOTE: animation currently undocumented.
+  // Expect this function name to change.
+  void playDLCBgChange(bool forward);
+};
+}  // namespace ui

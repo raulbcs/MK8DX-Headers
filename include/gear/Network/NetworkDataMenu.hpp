@@ -2,11 +2,9 @@
 
 #include "NetworkDataMenuCourseVote.hpp"
 
-namespace gear
-{
-    class NetworkDataMenu
-    {
-    public:
-        NetworkDataMenuCourseVote mCouresVotes[12];
-    };
-}
+namespace gear {
+class NetworkDataMenu {
+ public:
+  NetworkDataMenuCourseVote mCouresVotes[12];
+};
+}  // namespace gear

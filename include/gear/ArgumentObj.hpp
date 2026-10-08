@@ -1,6 +1,5 @@
 #pragma once
 
-namespace gear
-{
-    class ArgumentObj;
+namespace gear {
+class ArgumentObj;
 }

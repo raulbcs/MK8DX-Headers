@@ -2,10 +2,8 @@
 
 #include <cstdint>
 
-namespace gear
-{
-    class MapObjReactProxy
-    {
-    public:
-    };
-}
+namespace gear {
+class MapObjReactProxy {
+ public:
+};
+}  // namespace gear

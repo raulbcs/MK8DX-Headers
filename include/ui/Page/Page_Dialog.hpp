@@ -4,37 +4,33 @@
 
 #include "gear/UI/Page/UIPage.hpp"
 
-namespace ui
-{
-    enum EDialogResult
-    {
-        NONERES,
-        YES,
-        NO
-    };
+namespace ui {
+enum EDialogResult {
+  NONERES,
+  YES,
+  NO
+};
 
-    /* Field offsets below came from the Wii U (32-bit) layout and are NOT
+/* Field offsets below came from the Wii U (32-bit) layout and are NOT
      * valid on Switch. Field order is kept as a placeholder until the
      * offsets are re-derived from the 64-bit binary.
      */
-    class Page_Dialog : public gear::UIPage
-    {
-        public:
-            // Unproven — Switch ctor not identified (no RTTI, stripped
-            // binary); all offsets in this class are Wii U (32-bit) relics.
-            // Extent fixed by isDialogOpen at 0x12C.
-            uint8_t pad_120[0xC]; // unproven - Wii U relic offsets
-            bool isDialogOpen;
-            uint8_t pad_12D; // unproven - Wii U relic
-            uint16_t pad_12E; // unproven - Wii U relic
-            uint8_t pad_130[0x34]; // unproven - Wii U relic offsets
-            EDialogResult m_dialogResult;
+class Page_Dialog : public gear::UIPage {
+ public:
+  // Unproven — Switch ctor not identified (no RTTI, stripped
+  // binary); all offsets in this class are Wii U (32-bit) relics.
+  // Extent fixed by isDialogOpen at 0x12C.
+  uint8_t pad_120[0xC];  // unproven - Wii U relic offsets
+  bool isDialogOpen;
+  uint8_t pad_12D;        // unproven - Wii U relic
+  uint16_t pad_12E;       // unproven - Wii U relic
+  uint8_t pad_130[0x34];  // unproven - Wii U relic offsets
+  EDialogResult m_dialogResult;
 
-            void open_(ui::UIDialogReq &, gear::EUIPageID);
-    };
-}
+  void open_(ui::UIDialogReq&, gear::EUIPageID);
+};
+}  // namespace ui
 
-namespace gear
-{
-    ui::Page_Dialog* GetUIDialog();
+namespace gear {
+ui::Page_Dialog* GetUIDialog();
 }

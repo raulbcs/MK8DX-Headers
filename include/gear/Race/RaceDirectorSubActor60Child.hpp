@@ -14,11 +14,9 @@
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
 // string), so the name stays PROVISIONAL.
 
-namespace gear
-{
- class RaceDirectorSubActor60Child : public Actor
- {
+namespace gear {
+class RaceDirectorSubActor60Child : public Actor {
  public:
- uint8_t pad38[0x78]; //0x38 - 0xAF — unproven padding
- };
-}
+  uint8_t pad38[0x78];  //0x38 - 0xAF — unproven padding
+};
+}  // namespace gear
