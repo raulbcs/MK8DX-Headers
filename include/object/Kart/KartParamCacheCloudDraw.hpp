@@ -97,6 +97,18 @@ class KartParamCacheCloudDraw : public KartParamCache {
   uint8_t mPad7f58[0x30];    // 0x7f58 — unproven gap
   uint64_t mField7f88;       // 0x7f88 — ctor-written
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/cloudDrawDtorSlot0_7100a969d4.cpp):
+// stamps vptr 0x13151d8(+0x10); if byte +0x8270 set, calls the companion reset
+// 0x7100a96c08; frees the pooled array at +0x620 (count at -8, stride 0x1258, element
+// reset 0x7100a96ecc), zeroing +0x620/+0x618; resets containers 0x71006375a0 on
+// +0x7b80/+0x7bb8/+0x7f50/+0x7f88, 0x7100654ae0 on +0x1d0, 0x71006469c4 on +0x7fc0,
+// re-stamps and finalizes +0x7f88/0x130d838 and +0x7f50/0x13151e8, 0x710063ea80 on
+// +0x7ef0/+0x7b20, 0x71006462c4 on +0x7d10/+0x7940, 0x71006469c4 on +0x7bf0; runs the
+// KartParamCacheCloudTex slot-0 dtor on +0x5f20/+0x4500/+0x2ae0 and 0x7100a96ecc on
+// +0x1880/+0x628; re-stamps cell 0x130d918(+0x10) into +0x5a0..+0x438 (0x20 stride,
+// 12 slots), cell 0x130d920(+0x10) into +0x408, cell 0x130d830(+0x10) into +0x1d0 with
+// 0x7100654ae0/0x71006156b4; finally stamps cell 0x130d848(+0x10) into +0x0. True
+// function size 0x230 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

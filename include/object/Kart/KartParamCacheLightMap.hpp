@@ -34,6 +34,17 @@ class KartParamCacheLightMap : public KartParamCache {
   uint64_t mZero8e8;       // 0x8e8 — ctor zero
   uint32_t mZero8f0;       // 0x8f0 — ctor zero
 };
+// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - slot 0 (+0x10) dtor/reset (lightMapDtorResetSlot0_7100678b78.cpp): runs
+//   0x71006373a4 (cold fragment) on the +0x33e8 block, frees the pooled array at +0x1d8
+//   (stride 0xad8, 0x7100695e90 element dtor), clears +0x1e0 via 0x710060b984, re-inits
+//   the +0x3408 container, and runs a 32-iteration pass (offsets 0x2000 down to 0x100,
+//   step 0x100) resetting each node (+0xb90 vptr, +0xb40 vptr) through 0x710062fe44;
+//   re-stamps the +0x8d8..+0x2d8 blocks and the +0x0 vptr. function size 0x17c bytes.
+// - slot 5 (0x38) release tiles (lightMapSlot5ReleaseTilesAndSetFlag_710067ab40.cpp):
+//   ORs byte +0x3401 with 0x28; for each of *(u32*)(+0x1d0) entries calls
+//   0x7100699b44 on successive pointers from +0x1d8 (stride 0xad8); tail-calls
+//   0x710067a474(self). function size 0x5c bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

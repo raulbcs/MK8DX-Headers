@@ -60,6 +60,15 @@ class KartParamCacheSky : public KartParamCache {
   uint8_t mPadda4[0x4];    // 0xda4 — unproven gap
   uint64_t mZeroda8;       // 0xda8 — ctor zero
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/skyDtorSlot0_7100aae71c.cpp):
+// stamps vptr 0x1315270(+0x10) into +0x0; cell 0x130d848(+0x10) into +0x8f58; cell
+// 0x130d918(+0x10) into +0x8f38/0x8f18/0x8ef8/0x8ea8/0x8e88/0x8e68/0x8e18/0x8df8/
+// 0x8dd0/0x8da8/0x8d88; cell 0x130d920(+0x10) into +0x8ec8/0x8e38/0x8d58. Then calls
+// the KartParamCacheCloud slot-0 dtor (cloudDtorSlot0_7100aac7e4) on self, 0x71006374e4
+// on +0xc88/0x1315268, +0xc50/0x130de90, +0xc18/0x130e620, 0x7100639f38 on
+// +0xb48/+0x9c8/+0x848/+0x6c8, 0x710063ea80 on +0x5b8, 0x71006374e4 on +0x580/0x130d838,
+// 0x71006469c4 on +0x460, 0x71006462c4 on +0x280, 0x71006374e4 on +0x248/0x130dc40,
+// 0x7100645970 on +0x1d0; finally re-stamps 0x130d848(+0x10) into +0x0. function size 0x198 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

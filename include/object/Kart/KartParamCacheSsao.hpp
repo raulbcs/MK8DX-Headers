@@ -176,6 +176,15 @@ class KartParamCacheSsao : public KartParamCache {
   uint8_t mPad3ce0[0x10];   // 0x3ce0 — unproven gap
   uint32_t mField3cf0;      // 0x3cf0 — ctor-written
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/ssaoDtorSlot0_7100ae85d8.cpp):
+// stamps vptr 0x1315480(+0x10); frees the pooled array at +0x1d8 (count at -8, stride
+// 0xc08, 0x7100ae7a94 element dtor), zeroing +0x1d8/+0x1d0; 0x71006373a4 on 16 optional
+// sub-objects +0x3a98..+0x3c00 (0x18/0x10 pitch per pointer-header flags); 0x7100654ae0
+// on +0x3d0; re-stamps cell 0x130d918(+0x10) into +0x3cd8..+0x3c18 (0x20 stride, 7
+// slots); 0x7100ae8834 on +0x1e18, 0x7100ae8984 on +0x618; re-stamps cell 0x130d830(+0x10)
+// into +0x3d0 with 0x7100654ae0/0x71006156b4; finally cell 0x130d918(+0x10) into
+// +0x2f8..+0x218 (0x20 stride, 7 slots), cell 0x130d920(+0x10) into +0x1e0, cell
+// 0x130d848(+0x10) into +0x0. function size 0x258 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

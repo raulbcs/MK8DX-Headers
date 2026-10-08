@@ -110,6 +110,19 @@ class KartParamCacheOfx : public KartParamCache {
   uint8_t mPad26e8[0x150];  // 0x26e8 — unproven gap
   uint64_t mField2838;      // 0x2838 — ctor-written
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/ofxDtorSlot0_7100af5b40.cpp):
+// stamps vptr 0x1315530(+0x10); frees *(+0x1008) and *(+0x1368) via 0x71005b0260 +
+// 0x710063d6a0, clearing bytes +0x1148/+0x14a8; virtual vt[0x8/8] dtor on each of the
+// *(+0xde4) pointers in *(+0xde8), 0x710060b984 on +0xde0; frees *(+0xb90) via delete[]
+// (zero +0xb90/+0xb88), 0x710060b984 on +0xba0; pool +0xb70 (0x48 elements): stamps
+// 0x130d848(+0x10) at el-0x48, delete[], zero +0xb70/+0xb68; 0x71006375a0 on
+// +0x2110/+0x2268/+0x2300/+0x2458/+0x24f0/+0x2648/+0x26e0/+0x2838, then interleaved
+// resets/finalizes re-stamping +0x2838 (0x130d838), +0x26e0/+0x24f0/+0x2300/+0x2110
+// (0x1315540), +0x2648/+0x2458/+0x2268 (0x130d838) with 0x6469c4 on +0x2718/+0x2528/
+// +0x2338/+0x2148 and 0x63ea80 on +0x2680/+0x2490/+0x22a0; pools +0x1380 and +0x1020
+// (stride 0x460): 0x7100639f38 at -0x1e8, 0x710063a384 at -0x2e0, 0x7100639f38 at
+// -0x3b0 per element, delete[], zero pairs; finally stamps cell 0x130d848(+0x10) into
+// +0xb20 and +0x0. function size 0x33c bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

@@ -62,6 +62,22 @@ class KartParamCacheProjShadow : public KartParamCache {
   uint8_t mPad539[0x7];   // 0x539 — unproven gap
   uint8_t mPad540;        // 0x540 — ctor zero
 };
+// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - slot 0 (0x10) dtor, returns self (projShadowDtorSlot0_7100ade9a8.cpp): vptr from
+//   cell 0x7101315460+0x10, resets the nine member sub-vptrs at +0x420..+0x520 to
+//   [0x710130d918]+0x10 and +0x3e8 to [0x710130d920]+0x10, calls 0x710063a384(self)
+//   and 0x7100639f38(self+0x280), installs [0x710130d848]+0x10 as outer vptr.
+//   function size 0x8c bytes.
+// - slot 1 (0x18) deleting dtor (projShadowDeletingDtorSlot1_7100adea34.cpp): same
+//   reset sequence, then operator delete(self). function size 0x80 bytes.
+// - slot 5 (0x38) per-frame update (projShadowUpdateSlot5_7100adee10.cpp): recomputes
+//   shadow projection: k = rodata[0xed59c0]; +0x544 = *(+0x518)*k, +0x548 = *(+0x4f8)*k;
+//   bytes +0x387/+0x388/+0x389 := (*(+0x538) ? 1 : 7); word +0x390 exclusive rmw
+//   (clear/set 0x2, later clear 0x2 set 0x4); +0x384/+0x385 := 1, +0x386 := 1 or 2 by
+//   byte +0x540; +0x3d0 := 0; vptr cell *(0x12fbb00) dereferenced into +0x3c8 and the
+//   +0x3d4/+0x3dc pair; trig block with sinf/cosf(*(+0x518)) writing the tangent/bias
+//   terms +0x398..+0x3c4 and +0x3a4/+0x3b4 = *(+0x4d8)+0.5+... / *(+0x4dc)+0.5+...
+//   function size 0x1b8 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

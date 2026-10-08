@@ -10,6 +10,11 @@ namespace object {
 // 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare).
 // Own fields mapped from the inlined construction at the quoted site
 // (vptr stores at +0x0/+0x30, tail count block); interior array region unproven.
+// Vtable slot facts (evidence TU under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - Slot 10 (0x60): guard-protected static singleton getter. Guard cell
+//   0x710130e4a0; instance cell 0x710130e4a8 initialised to
+//   [0x7101305868]+0x10. true function size 0x60 bytes (gap-split artifact).
+//   [paramContainerVtb578StaticInstanceSlot10_71006fbf64.cpp]
 class ParamContainerVtb578 {
  public:
   void* vtable;            // 0x00

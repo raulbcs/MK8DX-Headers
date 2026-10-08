@@ -38,6 +38,10 @@ class KartParamCacheMid : public KartParamCache {
   uint8_t mPad10C[0x4];  // 0x10C — unproven gap
                          // (0x110 total)
 };
+// Vtable slot 0 (0x10) vtable-init ctor stub (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/kartParamCacheMidInitVt_710065ef7c.cpp):
+// no base call; fans cell 0x710130d918(+0x10) vptr into 0xb0/0xd0/0xf0, cell
+// 0x710130d920(+0x10) into 0x68, cell 0x710130d848(+0x10) into +0x0. function size 0x3c bytes
+// (file_list function-size field is a gap-split artifact).
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

@@ -36,6 +36,9 @@ class ParamChannelVt38f8 : public KartParamCacheChan {
   uint8_t mBlob160[0x10];  // 0x160 — copied from ctx+0xc0
                            // (0x170 total, tail unmapped)
 };
+// vtable fact (TU vtInitParamChannel_7100660e90.cpp): slot 0 (0x10) is the
+// vtable-init — stores the class vtable pointer (global pointer at
+// 0x710130918, +0x10) into *this.
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

@@ -16,6 +16,10 @@ class ParamMultiChanVt2c40 {
   char mTail5b0[0x40];  // 0x5b0 — channel array region (to 0x5f0)
                         // (~0x5f0 total, APPROXIMATE)
 };
+// vtable fact (TU paramMultiChanVt2c40StaticInstanceSlot10_7100890944.cpp):
+// slot 10 (0x60) is a guard-protected static singleton getter — guard cell
+// 0x7101311618, instance cell 0x7101311628 initialised to
+// [0x7101311620]+0x10; returns the instance pointer.
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.

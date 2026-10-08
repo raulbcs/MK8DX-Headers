@@ -30,6 +30,12 @@ namespace object {
 // Ctor-evidence correction: recorded "ctor 0x710064eea8" is a float-vector
 // normalize helper (square/add/fsqrtf/reciprocal-scale of the triple at
 // [x19..x19+0x8]); it performs no vptr store and is not a ctor.
+// Vtable slot facts (evidence TU under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - Slot 22 (0xc0): ID getter. Returns the signed halfword at offset 0 of
+//   the object pointed to by the global pointer cell at 0x130da18 (deref of
+//   the cell, then deref of that pointer); self is unused.
+//   true function size 0x10 bytes (gap-split artifact).
+//   [paramNode2b90IdGetterSlot22_710064f1ec.cpp]
 class ParamNodeVt2b90 {
  public:
   void* vtable;  // 0x00

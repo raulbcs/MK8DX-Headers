@@ -7,6 +7,11 @@ namespace object {
 // Node class of the 0x647f40 hook-band cluster (shared trivial band
 // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
 // [this+0x1c]).
+// Vtable slot facts (evidence TU under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - Slot 10 (0x60): guard-initialised static vtable getter. On first call
+//   stores descriptor cell 0x710130e300 (+0x10) into cache cell
+//   0x710130e530 (guard byte 0x710130e528) and returns the cached pointer.
+//   true function size 0x58 bytes. [vt47a0VtGetterSlot10_7100af48f8.cpp]
 class ParamNodeVt47a0 {
  public:
   void* vtable;           // 0x00

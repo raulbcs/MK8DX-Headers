@@ -107,6 +107,18 @@ class KartParamCacheColorCorrectionSub : public KartParamCache {
   uint64_t mZero1a20;       // 0x1a20 — ctor zero
   uint32_t mZero1a28;       // 0x1a28 — ctor zero
 };
+// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - slot 0 (0x10) complete-object dtor (colorCorrectionCompleteDtorSlot0_7100650520.cpp):
+//   vptr from cell 0x710130da78+0x10; calls 0x710065063c(self); releases sub-objects at
+//   +0x17a0 (0x71006918a8), +0x1698 (0x710063a384), +0x4b0 (0x710063ed3c) and
+//   +0x15c8/0x1448/0x1278/0x10a8/0xed8/0xd08/0xb38/0x968/0x798/0x5c8 (0x7100639f38);
+//   re-vptrs +0x400..0x200 (cell 0x710130d918+0x10) and +0x1d0 (0x710130d920+0x10);
+//   final vptr from cell 0x710130d848+0x10. function size 0x11c bytes.
+// - slot 5 (0x38) dirty-flag refresh (colorCorrectionUpdateDirtyBitsSlot5_7100651814.cpp):
+//   word +0x1a28: sets 0x20000, calls 0x7100651674(self), then conditionally
+//   sets/clears 0x4 if float +0x238 != 0, 0x8 if +0x258 != 1.0f, 0x10 if +0x278 !=
+//   1.0f, 0x20 if +0x298 != 1.0f, 0x80 if byte +0x2d8 != 0, 0x100 if byte +0x2b8 != 0;
+//   finally ORs in 3. function size 0xbc bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

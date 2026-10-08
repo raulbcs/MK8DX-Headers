@@ -16,6 +16,22 @@ class KartParamCacheMultiFilterFormat : public KartParamCacheMid {
   char mChanPair110[0xa0];  // 0x110 — five 0x20 channel pairs (ChanBase ctor 0x7100662f30), w32 tail fields at 0x128/0x148/0x168/0x188/0x1a8
                             // (0x1b0 total)
 };
+// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - slot 0 (0x10) vtable-init ctor stub (multiFilterFormatVtInitCtor_7100660b24.cpp):
+//   fans cell 0x710130d918(+0x10) vptr into 0x80..0xc0 (nine qwords), cell
+//   0x710130d920(+0x10) into 0x30, cell 0x710130d848(+0x10) into +0x0. function size 0x4c bytes.
+// - slot 11 (0x68) write params (multiFilterFormatWriteParamsSlot11_7100660b78.cpp):
+//   (self, unused, dst): maps +0x128 via table 0x7100f6f150 (index < 5, else keeps
+//   dst+0x10) and +0x148/0x168/0x1a8 via table 0x7100f6f130 (index < 5, else defaults
+//   2/3/4) into dst+0x10 and dst+0x1d4..0x1d7; sets bit 1 of byte dst+0x1dc, atomically
+//   ORs bit 0 of word dst+0x1d8, calls 0x710064556c(dst+0x18), sets byte dst+0x41c = 1.
+//   function size 0x100 bytes.
+// - slot 12 (0x70) lookup format (lookupFormatWriteOut_7100660c78.cpp): if
+//   (unsigned)+0x128 <= 4, *out = table[0x7100f6f150][idx], else *out untouched.
+//   True extent 28.
+// - slot 13 (0x78) reset counts (multiFilterFormatResetCounts_7100660c98.cpp):
+//   +0x128=4, +0x168=1, +0x188=2, +0x148=0, +0x1a8=3 (per-tap sample counts/offsets).
+//   function size 0x28 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

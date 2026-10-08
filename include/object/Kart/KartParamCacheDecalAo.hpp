@@ -31,6 +31,13 @@ class KartParamCacheDecalAo : public KartParamCache {
   uint64_t mZero1998;       // 0x1998 — ctor zero
   uint64_t mZero19a0;       // 0x19a0 — ctor zero
 };
+// Vtable slot 0 (0x10) complete-object dtor (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/decalAoCompleteDtorSlot0_7100a9a3dc.cpp):
+// vptr from cell 0x71013151f0+0x10; runs the base dtor 0x7100654ae0 on +0x1d8; releases
+// the optional sub-objects at +0x1560 and +0x1578 (0x71006373a4 — virtual release via
+// vtable +8), the fixed sub-objects at +0x1950/0x1880/0x16b0/0x1490/0x1308 (0x7100639f38),
+// +0x1598 (0x710063ed3c) and +0x410 (0x7100b00100); re-vptrs +0x1d8 from cell
+// 0x710130d830, runs 0x7100654ae0 and 0x71006156b4 on it again; final vptr from cell
+// 0x710130d848+0x10. function size 0xe0 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

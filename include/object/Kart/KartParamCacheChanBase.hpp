@@ -15,6 +15,9 @@ class KartParamCacheChanBase {
   void* mZero10;     // 0x10 — ctor zero
                      // (0x18 total)
 };
+// Vtable slot 0 (0x10) vtable-init ctor stub (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtInitChanBase_7100664f50.cpp):
+// stores the class vtable pointer (global pointer at 0x710130918, +0x10) into *this.
+// True extent 20 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

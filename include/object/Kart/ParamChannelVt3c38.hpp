@@ -15,6 +15,9 @@ namespace object {
 class ParamChannelVt3c38 : public ParamChannelVt38f8 {
   // (same shape; extent >= 0x170, tail unmapped)
 };
+// vtable fact (TU vtInitParamChannel_7100664f74.cpp): slot 0 (0x10) is the
+// vtable-init — stores the class vtable pointer (global pointer at
+// 0x710130918, +0x10) into *this.
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

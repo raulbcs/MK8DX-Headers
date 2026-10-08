@@ -62,6 +62,11 @@ class KartParamCacheVt3df8 : public KartParamCache {
   uint8_t mPad5b0[0x10];   // 0x5b0 — unproven gap
   uint32_t mZero5c0;       // 0x5c0 — ctor zero
 };
+// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vt3df8DtorResetSlot0_7100ad0b20.cpp):
+// frees the pooled array at +0x1d8 (stride 0x678, count at -8) running six element
+// destructors per entry, re-stamps default vptr fields +0x5a8/+0x580/+0x328/+0x308/
+// +0x2e0/+0x2c0/+0x2a0/+0x280/+0x260/+0x240/+0x210 and +0x0, re-inits the +0x348
+// container. function size 0x128 bytes.
 }  // namespace object
 
 // Naming closure: ctor strings found (pref, start/end, blur_type/kernel, clear color) but no engine tag and no unambiguous role; kept address-anchored.

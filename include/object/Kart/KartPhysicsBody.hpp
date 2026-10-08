@@ -38,6 +38,64 @@ namespace object {
 // 0x154-0x15c. Koura slot
 // 0x338 (101) writes the (0x428, 0x4c8) word pair only while 0x4c8
 // has bit 31 set; slot 0x1f8 reads the byte at 0x4cc.
+//
+// Additional slot facts (root vtable):
+// slot 28 (0xf0, bodySpawnObjSlot28_7100036aec): object spawn/update —
+//   visibility-gated; submits the position (0x150 * basis 0x344-0x34c
+//   + 0x350-0x358) to the object manager and raises the +0x118 virtual
+//   callback on accept; reads the 0x370/0x388 setup selection.
+// slot 51 (0x1a8, kartBodyReleaseResSlot51_7100014200): gated on flags
+//   0x214/0x215; decrements a refcount at [result+0x80] for the word
+//   id at 0x58; when guard byte 0x1f3 is clear copies word 0x2e8 to
+//   0x2ec, then always sets 0x2e8 = 3 and 0x1f3 = 1.
+// slot 64 (0x210, kartBodyResetSlot64_710003127c): copies the driving
+//   params (0x7100037e10), stores -1 at +0x428, tail-calls
+//   FUN_7100044410([this+0x40], 0).
+// slot 82 (0x2a0, kartBodySlot82JudgeSpinReset_7100019954): state byte
+//   0x71 must be 3 or 4; "allow" requires 0x130 >= 0 and 0x12c/0x134
+//   inside rodata bounds (0x7100ed5948/0x7100ed594c); flagging the
+//   spin reset (byte 0x228 = 1, halfword 0x1ee = 0xffff) fires when
+//   the frame word 0x50 reaches the count at [this+0x1a8], when the
+//   allow bit is clear with byte 0x1fc set, or when state == 4 and
+//   word 0x1c0 is 0xf or 0x10 and word 0x74 >= 0xb4; the saturating
+//   halfword 0x1ee increments with cap 0xb otherwise, bypassed when
+//   byte 0x1fc is set.
+// slot 86 (0x2c0, kartBodySlot86DebugDraw_7100011de0): debug-draw
+//   dispatch on the collector at [this+0x278] with [this+0x68].
+// slot 88 (0x2d0, kartPhysicsBodySlot88SpawnSubBody_7100038700):
+//   allocates a 0x280 sub-object bound to [this+0x37c].
+// slot 89 (0x2d8, bodyInitObjAndSoundsSlot89_71000322c0): binds two
+//   name-tagged resources onto 0x98 / 0xd0 and stores the resolved
+//   name id through the pointer at [this+0x330].
+// slot 90 (0x2e0, bodyCopyDriverSetupsSlot90_7100032384): copies 4
+//   wheel entries (count 0x368, array 0x370, stride 0x18) and 7 driver
+//   entries (count 0x380, array 0x388, stride 0x18) into the collector
+//   at [this+0x278].
+// slot 91 (0x2e8, kartBodyResetStateSlot91_71000325ac): wide runtime
+//   reset — rotates the 0x399/0x39a state ring, sets 0x39b = 1, zeroes
+//   0x39c; resets the 0x35c-0x3d2 cluster and copies 0x12c-0x134 to
+//   0x434-0x43c; sets 0x428 = -1 and 0x361 = 1 (all past this root;
+//   see the derived-class headers).
+// slot 92 (0x2f0, kartBodySlot92AdvanceTick_7100037d28): when state
+//   0x71 == 5 fires 0x7100011468; when byte 0x360 is set, clamps
+//   [this+0x128] into [1.0, vt+0x320 result] after subtracting the
+//   vt+0x318 value.
+// slot 98 (0x320, kouraSpinDriftSlot98_71000326b4, Koura override):
+//   spin/drift item reaction gated on state 0x399 == 3; drives the
+//   spinning flag byte 0x360, the basis coefficients 0x450/0x454/
+//   0x458, counter 0x45c (threshold 0x257) and cap float 0x430.
+// slot 108 (0x370, physBodySlot108ComputeDriftFactor_7100032110):
+//   stores a drift factor into [this+0x33c], selected by race-manager
+//   mode (0x7a/0x74 vs other) and [this+0x150] vs rodata 0x7100ed58bc.
+// slot 109 (0x378, bodyUpdateShortPairSlot109_710003216c): invokes own
+//   slots 0x3b8/0x3c8/0x3d0, then refreshes the signed halfword pair
+//   0x3cc/0x3ce (skip when either is -1) via perCorePairBfs_710081a51c
+//   with limit 0xc.
+// slot 118 (0x3c0, bodyRespawnHandlerSlot118_710003387c): respawn /
+//   start-position pick — backward scan of the manager pool entries,
+//   filtered by FUN_71000312b4 over this+0x12c/0x3cc/0x3c0 vs rodata
+//   500.0f/150.0f gates and an atan2 angle test against [this+0x42c]
+//   degrees; fires the item trigger table on accept.
 class KartPhysicsBody : public gear::Actor {
  public:
   uint64_t mField38;  // 0x38 — zeroed on ctor
@@ -121,7 +179,9 @@ class KartPhysicsBody : public gear::Actor {
   const char* mName198;   // 0x198 — rodata 0xf20eac
   const char* mName1a0;   // 0x1a0 — rodata 0xf20eb0 (name pair 1)
   const char* mName1a8;   // 0x1a8 — rodata 0xf20eb4
-  uint8_t mPad190[0x20];  // 0x190 — unproven gap
+  uint8_t mPad190[0x20];  // 0x190 — unproven gap; [this+0x1a8] points
+                          // at the per-player count word (slot 82 frames
+                          // word 0x50 against it)
   uint16_t mField1b0;     // 0x1b0 — -1 on ctor
   uint16_t mField1b2;     // 0x1b2 — -1 on ctor
   uint8_t mField1b4;      // 0x1b4 — 1 on ctor
@@ -173,7 +233,10 @@ class KartPhysicsBody : public gear::Actor {
   uint64_t mField220;     // 0x220 — zeroed on ctor; runtime: rigid-body
                           // state enum (RigidBodyUpdate dispatches on
                           // cmp #7, fn 0x7100013b2c)
-  char mPad228[6];        // 0x228 — ctor zeroes u16 0x228, u8 0x22a
+  char mPad228[6];        // 0x228 — ctor zeroes u16 0x228, u8 0x22a;
+                          // byte 0x228 = 1 flags a spin reset (slot 82
+                          // kartBodySlot82JudgeSpinReset_7100019954 and
+                          // the Koura slot 82 kouraStateSlot82_710002f374)
 
   // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
   // channel: fn cell 0x12fae28, empty-string name, owner back-ptr)

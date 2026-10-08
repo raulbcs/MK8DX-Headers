@@ -25,6 +25,11 @@ class KartParamCacheLref : public KartParamCache {
   uint8_t mPadce0[0x238];  // 0xce0 — unproven gap
   uint8_t mPadf18;         // 0xf18 — ctor zero
 };
+// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/lrefDtorResetSlot0_7100aa3d7c.cpp):
+// runs 0x7100aa3f0c first (releases the per-item lref payloads), re-inits the +0xce0
+// container, runs 0x710063a384 on +0xc68 and 0x7100639f38 on +0xb98/+0xa18, then
+// re-stamps the long default vptr ladder +0x948..+0x210 (cell 0x710130d918), +0x2f0/
+// +0x1e0 (0x710130d920), +0xce0 (0x710130d830), +0x0 (0x710130d848). function size 0x18c bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

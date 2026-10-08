@@ -10,6 +10,25 @@ namespace object {
 // 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare).
 // Own fields mapped from the inlined construction at the quoted site
 // (vptr stores at +0x0/+0x30, tail count block); interior array region unproven.
+// Vtable slot facts (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - Slot 10 (0x60): one-time-guarded static singleton getter. Guard cell
+//   0x7101305880; instance cell 0x7101305888 initialised to
+//   [0x71012fd3d0]+0x10. true function size 0x5c bytes.
+//   [paramContainerVtb1e8StaticInstanceSlot10_71006fb2c8.cpp]
+// - Slot 14 (0x80): notifies every registered object. Registry list: head =
+//   *(self+0x268) - stride, anchor = (self+0x260) - stride, stride =
+//   *(int*)(self+0x274); entry +0x8 next, +0x18 holder. Per entry with
+//   non-null holder: obj = [holder+0x10]; sets obj+0xe28 halfword |= 0x80;
+//   then calls the object's vtable method at 0xb8 (slot 23) with (x1, w4).
+//   true function size 0x94 bytes. [containerB1e8NotifySlot14_71006fb500.cpp]
+// - Slot 24 (0xd0): pooled object spawn. Pool cell at *(*(x1+0xf0))+0x3fc8:
+//   pop a free object from the stack (count +0x8, array +0x10; null when
+//   empty) and push it into the active ring (head +0x18, cap +0x1c, array
+//   +0x20) if room. Reinitializes the object: +0x48 = 0xffff, +0x4a = 0,
+//   +0x40 = owner (x1 arg), +0x18 = 0, +0x20 = x19 (x1 arg), +0x28 = *x2.
+//   Registers via FUN_710060b618(self+0x260, *(self+0x274)+obj) and bumps
+//   *(self+0x270); tail-calls FUN_71006a24e8(x1arg, (short)*x2, obj).
+//   true function size 0xb8 bytes. [containerB1e8SpawnSlot24_71006fab64.cpp]
 class ParamContainerVtb1e8 {
  public:
   void* vtable;           // 0x00

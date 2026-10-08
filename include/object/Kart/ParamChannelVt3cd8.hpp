@@ -14,6 +14,12 @@ class ParamChannelVt3cd8 : public KartParamCacheChan {
   char mOwn20[0x8];  // 0x20 — own-field region (factory alloc 0x28)
                      // (0x28 total)
 };
+// vtable fact (TU paramChannelVt3cd8AllocFilterArraySlot14_71006651dc.cpp):
+// slot 14 (0x80) allocates 0x70 bytes via 0x710060b234, then constructs it
+// with 0x7100665264(newObj, self+0x18, &sp, &sp+0x10, &sp+0x20, arg) — the
+// three stack records carry a tag pair ({[0x710012fae28]+0x10, string
+// record} / filter pointer from [0x71012fc190]+8) — and returns the new
+// object.
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.

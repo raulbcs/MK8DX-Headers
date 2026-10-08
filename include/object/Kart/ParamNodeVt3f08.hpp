@@ -10,6 +10,17 @@ namespace object {
 // tail to 0x50 (array stride 0x50 evidence, site 0xa8fd08).
 // Shares the trivial hook band 0x647f40-0x647f6c (return-1/ret/slot-0x78
 // thunk/ID compare vs [this+0x1c]).
+// Vtable slot facts (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// - Slot 0 (0x10): destructor (returns self, no operator delete). Installs
+//   the static vptr from cell 0x7101315430 (+0x10), calls member cleanup
+//   0x7100ae1308 on self+0xa8, self+0x90 and self+0x78, sets self+0x50 to
+//   [0x710130d918]+0x10, then installs the outer vptr from cell
+//   0x710130d920 (+0x10). true function size 0x74 bytes.
+//   [paramNodeVt3f08DtorSlot0_7100adb5d0.cpp]
+// - Slot 1 (0x18): deleting destructor. Installs cell 0x710151430 (+0x10)
+//   into self+0x0 and self+0x90, calls 0x7100ae1308 on self+0xa8,
+//   self+0x120 and self+0x78, then tail-calls operator delete(self).
+//   true function size 0x58 bytes. [vt3f08DeletingDtorSlot1_7100adb644.cpp]
 class ParamNodeVt3f08 {
  public:
   void* vtable;          // 0x00

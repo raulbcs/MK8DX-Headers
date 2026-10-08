@@ -73,6 +73,20 @@ class KartParamCacheCubeMap : public KartParamCache {
   uint64_t mZero448;       // 0x448 — ctor zero
   uint32_t mField450;      // 0x450 — ctor-written
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/cubeMapDtorSlot0_7100ab8aa4.cpp):
+// stamps vptr 0x13152a0(+0x10); frees the pooled array at +0x208 (count at -8, stride
+// 0x2258); per element (last to first): stamps cell 0x1315298(+0x10) at el-0x378, cell
+// +0x78 at el-0x190, cell 0x130d918(+0x10) at +0x1eb0/+0x1a58/+0x1a30/-0x20/-0x40/-0x60/
+// -0x88/-0xf8, runs the KartParamCacheColorCorrectionSub slot-0 dtor on the element,
+// stamps 0x130d920(+0x10) at el-0x128, 0x130d848(+0x10) at el-0x190, 0x1315290(+0x10)
+// at el-0x378; if byte el-0x1e0 set and *(el-0x368) non-null, deletes it via
+// 0x7100b00714 + operator delete; 0x7100639f38 on el-0x2b0; then operator delete[],
+// zeroing +0x208/+0x200. Frees *(+0x298) via 0x7100b00714/delete; virtual vt[0x8/8]
+// dtors on *(+0x240) and *(+0x248); 0x71006373a4/0x71006373bc pairs on +0x250/+0x270
+// (when pointed); frees arrays *(+0x2d0) and *(+0x2e8) via delete[] (zeroing
+// +0x2c8/+0x2e0); 0x71006286a4 on +0x8b0/+0x870; stamps 0x130d830(+0x10) into +0x638
+// with 0x7100654ae0/0x71006156b4; 0x71006462c4 on +0x458; stamps 0x130d920(+0x10) into
+// +0x1d0 and 0x130d848(+0x10) into +0x0. function size 0x280 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

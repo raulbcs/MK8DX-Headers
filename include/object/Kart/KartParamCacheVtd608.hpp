@@ -45,6 +45,15 @@ class KartParamCacheVtd608 : public KartParamCache {
                                //        extent; variant touches 0x310 rel)
                                // (extent >= 0x318, tail unmapped)
 };
+// Vtable slot 0 (0x10) reset/dtor (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtd608ResetSlot0_710072875c.cpp):
+// runs the +0x88 vtable method on sub-objects +0x238 and +0x310; on a set bit0 it frees
+// *(+0x250) / *(+0x328) via operator delete[] and clears byte +0x25c / +0x334; zeros
+// counters +0x1f0/+0x210/+0x230/+0x2e8; re-stamps vptr cells 0x130e8a8+0x10 -> +0x0,
+// 0x130e898+0x10 -> +0x260, 0x130dbe0+0x10 -> +0x310, 0x130d918+0x10 -> +0x310/+0x2f0/
+// +0x2d0/+0x2b0/+0x290, 0x130e890+0x10 -> +0x1a8, 0x130d920+0x10 -> +0x260,
+// 0x130dbf0+0x10 -> +0x238, then 0x130d918+0x10 -> +0x238/+0x218/+0x1f8/+0x1d8/+0x158/
+// +0x130/+0x108/+0xb8/+0x78, 0x130d920+0x10 -> +0x1a8/+0xd8, 0x130d848+0x10 -> +0x48
+// and +0x0. The +0x88 check/free sequence on both sub-objects runs twice. function size 0x204 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

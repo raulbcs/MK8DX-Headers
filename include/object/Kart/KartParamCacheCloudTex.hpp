@@ -304,6 +304,12 @@ class KartParamCacheCloudTex : public KartParamCache {
   uint8_t mPadae8[0x10];  // 0xae8 — unproven gap
   uint8_t mPadaf8;        // 0xaf8 — ctor zero
 };
+// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/cloudTexDtorSlot0_7100a96cc0.cpp):
+// stamps vptr 0x13151d0(+0x10) into +0x0; runs 0x710063a384 on +0x19a0/+0x17d8/+0x1610/
+// +0x1148/+0xf80 and 0x7100639f38 on +0x18d0/+0x1708/+0x1540/+0x13c0/+0x1240/+0x1078/
+// +0xeb0/+0xd30/+0xbb0; stamps cell 0x130d918(+0x10) into vptr fields from +0xae0 down
+// to +0x200 (0x20 stride, 0x28/0x30 pitch around +0x780..+0x700; 68 slots); finally
+// stamps 0x130d920(+0x10) into +0x1d0 and 0x130d848(+0x10) into +0x0. function size 0x20c bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

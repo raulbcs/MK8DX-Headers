@@ -25,6 +25,9 @@ class KartParamCacheMid2 : public KartParamCache {
   uint64_t mZero1c8;      // 0x1c8 — ctor zero
                           // additional writes by ctor 0x7100668d40
 };
+// Vtable slot 0 (0x10) vtable-init ctor stub (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtInitMid2_710066993c.cpp):
+// stores the class vtable pointer (global pointer at 0x710130848, +0x10) into *this.
+// True extent 20 bytes (file_list function-size field is a gap-split artifact).
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

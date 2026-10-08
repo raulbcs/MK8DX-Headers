@@ -34,6 +34,13 @@ class KartParamCacheVt33b0 : public KartParamCache {
   uint64_t mField1b8;     // 0x1b8 — ctor-written
   uint64_t mField1c0;     // 0x1c0 — ctor: call result
 };
+// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vt33b0DtorResetSlot0_7100abc240.cpp):
+// runs 0x71006373a4 (cold fragment) on four sub-blocks of each 0x1a20-byte entry of the
+// +0x1d8 pooled array, frees the array (0x7100abd8f4 element dtor), re-stamps default
+// vptr fields +0x948..+0x828 (cell 0x710130d918), +0x7f8 (0x710130d920), +0x760
+// (0x710130d838), +0x608 (cell 0x713152d8), +0x1e8 (0x710130d830), +0x0 (0x710130d848)
+// interleaved with 0x710063ea80 / 0x71006374e4 / 0x71006469c4 / 0x71006462c4 resets.
+// function size 0x1a4 bytes.
 }  // namespace object
 
 // Naming closure: docblock ctor anchor yields only nvn init strings (nvnDeviceInitialize/nvnDeviceGetProcAddress) — anchor misquote suspected; needs re-verification. Address-anchored name retained.

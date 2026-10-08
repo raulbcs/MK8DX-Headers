@@ -24,6 +24,11 @@ class KartParamCacheNormalDrawer : public KartParamCache {
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
 };
+// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/normalDrawerDtorResetSlot0_7100a9bc80.cpp):
+// frees the pooled array at +0x1d8 (stride 0x9f8) running ten element destructors per
+// entry, re-inits both +0x1e8 and the drawer container, and re-stamps default vptr
+// fields +0x470/+0x450 (cell 0x710130d918), +0x420 (0x710130d920), +0x1e8
+// (0x710130d830), +0x0 (0x710130d848). function size 0x130 bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

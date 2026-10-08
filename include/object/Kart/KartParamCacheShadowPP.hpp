@@ -170,6 +170,10 @@ class KartParamCacheShadowPP : public KartParamCache {
   uint32_t mField900;      // 0x900 — ctor-written
   uint8_t mPad904;         // 0x904 — ctor zero
 };
+// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/shadowPPDtorResetSlot0_7100ae3b00.cpp):
+// frees the pooled array at +0x1d8 (stride 0x2070, 0x7100ae6d60 per entry), re-inits the
+// +0x1e8 container, re-stamps default vptr fields +0x8d0..+0x450 (cell 0x710130d918),
+// +0x420 (0x710130d920), +0x1e8 (0x710130d830), +0x0 (0x710130d848). function size 0x16c bytes.
 }  // namespace object
 
 // Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.

@@ -15,6 +15,11 @@ namespace object {
 class ParamChannelVt39d8 : public ParamChannelVt38f8 {
   // (same shape; extent >= 0x170, tail unmapped)
 };
+// vtable fact (TU paramChannelVt39d8DtorSlot1_7100661d30.cpp): slot 1 (0x18)
+// is the deleting dtor — installs the vptr from cell 0x710130db40 (+0x10); if
+// the linked node at self+0x70 is set, unlinks it: calls
+// FUN_710060b630(self + *(s32*)(node+0x4c)) and decrements the node's
+// refcount word at node+0x48; then operator delete(self).
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.
