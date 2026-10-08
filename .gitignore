@@ -7,3 +7,6 @@ usage.json
 DECOMP_BRIDGE.md
 COVERAGE.md
 COMMENT_AUDIT.md
+
+# generated coverage artifact (regenerable via tools/)
+coverage.html
