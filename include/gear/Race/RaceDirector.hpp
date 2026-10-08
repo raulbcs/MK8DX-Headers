@@ -14,6 +14,13 @@ namespace gear {
 // RaceDirector walks an element array every frame (calc) and tears it
 // down (exit). The element count/array live at 0x38/0x40; the race
 // checkers and the lap rank checker are installed at 0x50/0x58.
+// Slot facts (vtable 0x11b2f28, default impls shared by derived directors):
+// slot 0xa8 is a no-op returning void; slot 0xc0 returns the 32-bit word at
+// *sCell12fbc10 (isolated singleton pointer cell, .orig_bss_iso; no
+// decompiled code writes the cell — derived directors override it with
+// getters of their own 0xB8-0xC4 config words); slot 0xc8 returns 0.
+// (Evidence: RaceDirector__slotA8.cpp, RaceDirector__slotC0.cpp,
+// RaceDirector__slotC8.cpp; slots 0xc0/0xc8 are not declared below.)
 // Signatures below match the 4.0.0 binary. Actor's slots 0x00/0x08 were
 // corrected to return bool / const sead::RuntimeTypeInfo::Interface*
 // accordingly.
@@ -30,7 +37,7 @@ class RaceDirector : public Actor {
   virtual void onCalcStart();   //0x90 — calc() opens with this before the child walk
   virtual void onCalcEnd();     //0x98 — calc() tail call
   virtual void slotA0();        //0xa0 — unknown
-  virtual void slotA8();        //0xa8 — unknown
+  virtual void slotA8();        //0xa8 — no-op (ret void)
   virtual void onExitStart();   //0xb0 — exit() opens with this before the child walk
   virtual void onExitEnd();     //0xb8 — exit() tail call
 

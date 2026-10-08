@@ -22,7 +22,20 @@ namespace object {
 // (operator delete); slots 0x340-0x3a8 (102-115) = no-ops; slot 0x120
 // = no-op; slot 0x3f8 (125) = returns 40.0f; slot 0x1f8 (61) =
 // sead::SharcArchiveRes::setCurrentDirectoryImpl (shared archive-
-// interface band; Koura overrides it at 0x710002ffc4). Koura slot
+// interface band; Koura overrides it at 0x710002ffc4). Slot 52
+// (vt+0xa0) = per-core physics integration (bodyPhysicsCoreSlot52_
+// 71000142d0): gate on bytes 0x1c9/0x1ca/0x1cb, applies a quarter of
+// the stored impulse 0x1dc-0x1e4 to the velocity 0x160-0x168 and
+// integrates position with the per-frame delta 0x154-0x15c; velocity
+// is zeroed after the per-wheel integration. Slot 69 (vt+0x238) =
+// driver up/basis update (bodyDriverUpBasisSlot69_7100037ff0): copies
+// the driver record's rec+0x40/44/48 into 0x1dc-0x1e4 and rebuilds the
+// basis vector at 0x344-0x34c (past this root; KartPhysicsBodyMid).
+// Slot 96 (vt+0x310) = boost speed update (bodyBoostSpeedSlot96_
+// 7100038a44): accumulates into the scalar speed at 0x150 (clamps
+// 2.5f low; 15.0f upper when byte +0x216 set, 40.0f when clear) and
+// writes basis*speed into 0x204-0x20c and the per-frame delta
+// 0x154-0x15c. Koura slot
 // 0x338 (101) writes the (0x428, 0x4c8) word pair only while 0x4c8
 // has bit 31 set; slot 0x1f8 reads the byte at 0x4cc.
 class KartPhysicsBody : public gear::Actor {
@@ -41,12 +54,14 @@ class KartPhysicsBody : public gear::Actor {
   uint8_t mPad64[0x4];  // 0x64 — unproven gap
   char mSub68[8];       // 0x68 — extent to next write
   uint8_t mField70;     // 0x70 — 0 on ctor, then 0xb
-  uint8_t mPad71;       // 0x71 — runtime: body-state enum read all over
-                        // the shapePos calc 0x7100012784 (==1 branch,
-                        // bitmask 0x62, dispatch 9..0xa, >6 test)
-  uint8_t mField72;     // 0x72 — zeroed on ctor
-  uint8_t mField73;     // 0x73 — 1 on ctor
-  uint32_t mField74;    // 0x74 — zeroed on ctor
+  uint8_t mField71;     // 0x71 — body-state enum ring (read all over
+                        // the shapePos calc 0x7100012784); on a basis
+                        // reset (bytes +0x214/+0x215, slot 69) the old
+                        // value moves to +0x72, this becomes 4
+  uint8_t mField72;     // 0x72 — previous body-state byte of the ring
+  uint8_t mField73;     // 0x73 — set to 1 alongside the ring rotation on
+                        // a basis reset
+  uint32_t mField74;    // 0x74 — cleared to 0 on a basis reset
   void* mSelf78;        // 0x78 — ctor stores `this` here
   void* mArray80;       // 0x80 — new[](0xb0), zeroed head
   void* mArray88;       // 0x88 — new[](0xb0)
@@ -80,11 +95,21 @@ class KartPhysicsBody : public gear::Actor {
   float mPosX12c;         // 0x12c — position xyz (written by the
   float mPosY130;         // 0x130 — shapePos calc integration 0x71000137a0+;
   float mPosZ134;         // 0x134 — ==2 state branch copies them raw)
-  uint8_t mPad138[0x1c];  // 0x138 — unproven padding
-  float mVelX154;         // 0x154 — velocity xyz (written by the physics
-  float mVelY158;         // 0x158 — integration 0x71000142d0-0x148e0)
-  float mVelZ15c;         // 0x15c
-  uint8_t mPad160[0x18];  // 0x160 — unproven padding
+  uint8_t mPad138[0x18];  // 0x138 — unproven padding
+  float mSpeed150;        // 0x150 — scalar speed accumulator: slot 96
+                          // accumulates into it with a 2.5f low clamp,
+                          // upper bound 15.0f when byte +0x216 is set,
+                          // 40.0f when clear
+  float mDeltaX154;       // 0x154 — per-frame position delta xyz: slot 52
+  float mDeltaY158;       // 0x158 — integrates position as pos += velocity
+  float mDeltaZ15c;       // 0x15c — + delta (mode 0xd samples a direction
+                          // into it, scaled by 70.0); slot 96 tail writes
+                          // basis * speed here
+  float mVelX160;       // 0x160 — velocity xyz: slot 52 subtracts a
+  float mVelY164;       // 0x164 — quarter of the stored impulse
+  float mVelZ168;       // 0x168 — (0x1dc-0x1e4) per core step and zeroes
+                        // the triple after the per-wheel integration
+  char mPad16c[0xc];    // 0x16c — unproven padding
   uint16_t mField178;     // 0x178 — 1 on ctor
   char mPad17a[2];        // 0x17a — unproven padding
   float mAccX17c;         // 0x17c — acceleration xyz (written by fn
@@ -101,14 +126,28 @@ class KartPhysicsBody : public gear::Actor {
   uint16_t mField1b2;     // 0x1b2 — -1 on ctor
   uint8_t mField1b4;      // 0x1b4 — 1 on ctor
   char mPad1b5[3];        // 0x1b5 — unproven padding
-  uint64_t mField1b8;     // 0x1b8 — zeroed on ctor
-  uint64_t mField1c0;     // 0x1c0 — zeroed on ctor
-  char mPad1c8[4];        // 0x1c8 — ctor zeroes u64 at unaligned 0x1c6
-  uint8_t mPad1CC[0x4];   // 0x1CC — unproven gap
+  uint64_t mField1b8;     // 0x1b8 — per-core control-block table pointer
+                          // (slot 52): u32 array stride 4 at +0x40,
+                          // pointer array stride 8 at +0x20
+  uint32_t mField1c0;     // 0x1c0 — direction-candidate bitfield, low 5
+                          // bits decoded from the global candidate table
+                          // winner halfword (slot 52); tested == 0xd
+  uint32_t mField1c4;     // 0x1c4 — direction-candidate bitfield, low 3
+                          // bits (winner halfword >> 5, slot 52)
+  char mPad1c8[1];        // 0x1c8 — unproven gap (ctor zeroes u64 at
+                          // unaligned 0x1c6)
+  uint8_t mGate1c9;       // 0x1c9 — physics gate flag: slot 52 skips the
+  uint8_t mGate1ca;       // 0x1ca — core step when all three of these are
+  uint8_t mGate1cb;       // 0x1cb — clear
+  char mPad1cc[0x4];      // 0x1cc — unproven gap
   uint64_t mField1d0;     // 0x1d0 — zeroed on ctor
-  uint64_t mField1d8;     // 0x1d8 — zeroed on ctor
-  uint64_t mField1e0;     // 0x1e0 — zeroed on ctor
-  float mF1e8;            // 0x1e8 — 3.5f
+  uint32_t mField1d8;     // 0x1d8 — zeroed on ctor
+  float mImpulseX1dc;     // 0x1dc — stored impulse/driver-basis xyz:
+  float mImpulseY1e0;     // 0x1e0 — slot 69 copies the driver record's
+  float mImpulseZ1e4;     // 0x1e4 — rec+0x40/44/48 here; slot 52 applies
+                          // a quarter of it to the velocity per step
+  float mF1e8;            // 0x1e8 — 3.5f; also read as the manager/mode
+                          // word by slot 52
   uint8_t mField1ec;      // 0x1ec — zeroed on ctor
   char mPad1ed[1];        // 0x1ed — unproven padding
   uint16_t mField1ee;     // 0x1ee — -1 on ctor
@@ -119,8 +158,17 @@ class KartPhysicsBody : public gear::Actor {
   uint8_t mField1fc;      // 0x1fc — 1 on ctor
   char mPad1fd[3];        // 0x1fd — unproven padding
   uint64_t mField200;     // 0x200 — zeroed on ctor
-  uint64_t mField208;     // 0x208 — zeroed on ctor
-  char mPad210[8];        // 0x210 — unproven padding
+  uint64_t mField208;     // 0x208 — best direction-candidate entry
+                          // (threshold 0.08; published by slot 52);
+                          // slot 96 also stores basis*speed into
+                          // 0x204/0x208/0x20c
+  char mPad210[4];        // 0x210 — best candidate score float (slot 52)
+  uint8_t mFlag214;       // 0x214 — basis-reset trigger flag (slot 69)
+  uint8_t mFlag215;       // 0x215 — basis-reset trigger flag (slot 69)
+  uint8_t mFlag216;       // 0x216 — boost dir selector: set picks the alt
+                          // path in slot 96 (speed clamp 15.0f instead
+                          // of 40.0f)
+  char mPad217[1];        // 0x217 — unproven gap
   uint64_t mField218;     // 0x218 — zeroed on ctor
   uint64_t mField220;     // 0x220 — zeroed on ctor; runtime: rigid-body
                           // state enum (RigidBodyUpdate dispatches on

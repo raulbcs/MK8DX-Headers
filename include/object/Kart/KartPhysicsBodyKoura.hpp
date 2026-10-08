@@ -20,6 +20,43 @@ namespace object {
 // flags 0x399/0x39a). The root's getVelocity3D (slot 0x68) forwards
 // to slot 0x28 = pure ret on the root — items override to expose
 // their velocity.
+//
+// State machine block (evidence: bodyRespawnHandlerSlot118_710003387c,
+// kouraSlot107HandleStateTwo_710002cdb8, kouraHandleDriverInputSlot28_
+// 710002c6c0, kouraDriftAlignSlot111_710002dbc4, kouraSlot117ClampAnd-
+// Respawn_710002e768, kouraResetFlagsAndTrailer_710002ce60, kouraReset-
+// ChaseSlotsSlot127_710002fd14, clearFlag4ccResetRef_710002cd60,
+// kouraGetFloatByState_710002fc78, kouraBuildDriverSetupsSlot90_710002ec0c):
+// 0x399 = shell state byte, 2 <-> 3 transitions; state-3 tested with
+//   ==3 (kouraGetFloatByState picks table entry by it); basis reset
+//   paths save the old value to 0x39a and zero 0x39c;
+// 0x39a = saved-state byte (previous 0x399 on every transition);
+// 0x39c = hop/lifetime counter, zeroed on transitions; thresholds:
+//   >= 0x12d hop reset (slot 111), >= 0x12 driver-hit path (slot 28),
+//   >= 0x23 respawn path (slot 117), 0x3c lifetime gate;
+// 0x428 = target/hit word, paired with 0x4c8: -1 means unset (set on
+//   respawn), only written when negative ("first target wins"); the
+//   Koura vtable slot 101 writes the (0x428, 0x4c8) pair only while
+//   0x4c8 has bit 31 set;
+// 0x470 = effect/media sub-object pointer (FUN_71006a00c4 calls in
+//   slots 102/117/127; collector build in slot 90);
+// 0x478 = media/sound sub-object pointer (FUN_71006a5b50/6a6238 in
+//   slot 117, object calls in slot 127);
+// 0x4ac/0x4bc/0x4c0/0x4ce/0x4cf/0x4d0 = trailer cluster: 0x4ac u32 and
+//   0x4bc u32 zeroed by the reset slots (0x710002ce60, 0x710002fd14);
+//   0x4c0 pointer zeroed by slot 127; 0x4c8 = current driver-slot idx
+//   (slot 28 compares the hit idx against it); 0x4ce gate byte (slot 28
+//   early-return when set); 0x4cf flag gates the 0x4c4 counter in slot
+//   107 and is cleared by 0x710002ce60; 0x4d0 mode byte written by
+//   slots 111/127 (also read from the manager cell in slot 118
+//   0x710002f6c4).
+//
+// EXTENT NOTE (contradiction, unresolved): the ctor/operator-new
+// allocation at 0x35f10 is 0x460, but kouraResetFlagsAndTrailer_
+// 710002ce60 writes +0x4cf and kouraDriftAlignSlot111_710002dbc4 /
+// kouraResetChaseSlotsSlot127_710002fd14 write +0x4d0, implying an
+// extent >= 0x4d4. The 0x460 claim and the >= 0x4d4 evidence conflict;
+// re-prove before changing the extent either way.
 class KartPhysicsBodyKoura : public KartPhysicsBodyMid {
  public:
   void* mSecVt390;  // 0x390 — secondary vtable (GOT cell +0x10)

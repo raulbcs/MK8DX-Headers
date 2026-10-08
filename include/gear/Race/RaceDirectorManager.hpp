@@ -33,7 +33,11 @@ class RaceDirectorManager {
   void* mVec60;         //0x60 — vector end/cap
   uint8_t pad68[0x28];  //0x68 — unproven padding
   void* mObj90;         //0x90 — ctor writes (0x588c0 region)
-  uint8_t pad98[0x14];  //0x98 — unproven padding
+  // 0x98 — slot 0x98 guards on this+0x68: when set, runs the callee at
+  // 0x710005a01c, then dispatches 0x710005a1e0 with flag 1
+  // (slot98_dispatch_7100059fe8.cpp). Slots 0xa0/0xa8 are tails of
+  // FUN_710005a1e0 — same dispatch, other flag values.
+  uint8_t pad98[0x14];
   uint32_t mFieldAc;    //0xAC — ctor writes
   uint8_t padB0[0x10];  //0xB0 — unproven padding
   // +0xC0..+0x198: ~14 allocated arrays (0x60b3fc + memset 0xb52770),

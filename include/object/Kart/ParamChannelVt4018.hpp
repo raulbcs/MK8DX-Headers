@@ -10,6 +10,7 @@ namespace object {
 // place inside the headered containers (ctor family 0x7100668528 /
 // in-place vptr store), derived from KartParamCacheChan via
 // ChanBase (0x12b3af0). Byte flag at 0x24 (extent 0x28).
+// Slot 0x48 returns 13 (family ID) — Slot48_ret13_7100668500.cpp.
 class ParamChannelVt4018 : public KartParamCacheChan {
  public:
   uint8_t mFlag24;  // 0x24 — zeroed on init

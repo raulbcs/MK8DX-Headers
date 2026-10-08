@@ -11,6 +11,7 @@ namespace object {
 // at runtime by the shared lazy-init method 0x7100646850(this, ctx).
 // Same proven layout (extent >= 0x170); see Vt38f8 for the full
 // resolver map. Shares the ctor region 0x710065e178 with Vt38f8.
+// Slot 0x48 returns 5 (family ID) — Slot48_ret5_7100664f8c.cpp.
 class ParamChannelVt3c38 : public ParamChannelVt38f8 {
   // (same shape; extent >= 0x170, tail unmapped)
 };
