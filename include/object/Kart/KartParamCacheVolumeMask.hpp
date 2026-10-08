@@ -7,6 +7,8 @@
 namespace object {
 // KartParamCacheVolumeMask — named from ctor string evidence: ctor string tag 'aglvolm' + param volume_mask (0xf1aa11-0xf01d00) (was address-anchored KartParamCacheVt2d18) (vptr 0x12f2d18, cell 0x1315208, n=14, site 0xa9cad8, ctor 0xa9ca94).
 // Variant of the 0x63c6f8 param-cache cluster.
+// Vtable slot facts (evidence TU: src/unknown/volumeMaskDtorSlot0_7100a9cc14.cpp):
+// slot 0 = complete dtor (nested pools 0x1b8/0xa80 freed).
 class KartParamCacheVolumeMask : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

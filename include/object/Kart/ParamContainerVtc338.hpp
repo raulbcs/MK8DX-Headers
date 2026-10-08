@@ -16,6 +16,12 @@ namespace object {
 //   [0x71012fd3d0]+0x10; returns the instance pointer.
 //   true function size 0x5c bytes (gap-split artifact).
 //   [paramContainerVtc338StaticInstanceSlot10_7100712e64.cpp]
+// Vtable slot facts (evidence TUs: src/unknown/spotLightRigUpdateSlot24_7100712ed4.cpp,
+// maskedSpotLightRigUpdateSlot32_710072f618.cpp — SpotLightRig::Obj identity):
+// slot 24 (vt+0xd0) = spot light update (light node *(self+0x358), id +0x360,
+// angle accumulators +0x364/0x368, mask +0x36c; hue/palette modes on
+// *(lt+0x290)); slot 32 (vt+0x210) = byte-identical masked variant (light ptr
+// +0x470, id +0x478, mask +0x484; 5 differing insns total).
 class ParamContainerVtc338 {
  public:
   void* vtable;           // 0x00
