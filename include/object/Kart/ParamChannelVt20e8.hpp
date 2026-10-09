@@ -15,7 +15,10 @@ namespace object {
 // +0x598, +0x618, +0x698; the next sub-object at +0x718 carries a
 // different vptr from cell 0x130d918 — same pattern at 0x710069600c:
 // +0x978 -> +0x9f8). Member writes reach +0x78 (slots 18/19), inside
-// the 0x80 stride.
+// the 0x80 stride. Slots 8/9 (0x50/0x58): identical forwarders
+// 0x7100647c7c/0x7100647cac — advance to the child at +0x18, call child
+// vtable+0x18, return the u64 at child+8
+// [paramChannelChildVt0x18ForwardA/B].
 class ParamChannelVt20e8 : public KartParamCacheChan {
  public:
   // (no own fields)

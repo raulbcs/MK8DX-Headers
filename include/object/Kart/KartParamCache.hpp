@@ -25,7 +25,9 @@ class KartParamCache {
   uint64_t mZero20;     // 0x20 — ctor zero
   uint32_t mParamId28;  // 0x28 — ctor: 0x7100663050([global 0x12fc190]) =
                         // slot-0x18 vcall on the dictionary object +
-                        // hash 0x710062fd48 (named-parameter id)
+                        // hash 0x710062fd48 (named-parameter id).
+                        // Shared Equals 0x710063c710 compares this u32 vs
+                        // the other object's (paramCacheSharedTypeIdEquals)
   uint8_t pad2c[4];     // 0x2c — unproven padding
   uint64_t mZero30;     // 0x30 — ctor zero
   uint64_t mZero38;     // 0x38 — ctor zero

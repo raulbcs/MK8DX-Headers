@@ -21,7 +21,14 @@ struct KartVehicleDrift {
                               // pre-drift (0x17bc48), 4 = drift LEFT (0x17bae4), 5 = drift RIGHT
                               // (0x17baf4), 6 glide+drift (0x17bc28), 7 (0x17bc38).
                               // drifting family = (state|3)==7; glide = (state|1)==5.
-                              // Setter 0x710017bd14: target = (arg&1)?5:4
+                              // Setter 0x710017bd14: target = (arg&1)?5:4; it also
+                              // resets +0x58/+0x70/+0x8c, writes +0x6c = ±1.0 and
+                              // KartVehicleMove+0x3c4 = 0.0392f (dis 17bd14..17bdac).
+                              // 6/7 are read by predicates but have NO located
+                              // producer (only store to +0x10 is the setter's 4/5;
+                              // hop-release 17cc08 passes 4/5 via csel) — UNCERTAIN.
+                              // State open is event-driven via the kart body
+                              // trigger queue.
   uint8_t pad_014[0x10];      //0x14 — unproven padding
   float f24;                  //0x24 — scaled by a KartUnit wheel stat (0x17c0f8/0x17c154)
   float f28;                  //0x28
@@ -55,10 +62,13 @@ struct KartVehicleDrift {
   uint8_t fc0;                //0xC0 — flag: clears itself + Body floats (+0x10c/+0x58/+0x60)
                               // when [Move+0x5DC] < 1 or [Move subobj +0x201] (0x17bfb4)
   uint8_t pad_0c1[3];         //0xC1 — unproven padding
-  float fc4;                  //0xC4 — charge: fC4 += fC8, clamps, saturates at 1.0 (0x17bea0)
+  float fc4;                  //0xC4 — charge: fC4 += fC8, saturating at 1.0 (0x17bea0,
+                              // dis 17bea0..17beb8); gate fC4 >= 0.6f releases the
+                              // mini-turbo (rodata [0xed5930] = 0.6)
   float fc8;                  //0xC8 — charge increment
-  float fcc;                  //0xCC — clamped by rodata [0xed58a8]/[0xed58ec], mirrored to
-                              // KartVehicleBody+0x114
+  float fcc;                  //0xCC — fCC += [0xed5934] (= -0.2), clamped to
+                              // [rodata 0xed58ec = 0.1, rodata 0xed58a8 = 0.8]
+                              // (dis 17bec4..17bef8); mirrored to KartVehicleBody+0x114
   uint8_t pad_0d0[0x30];      //0xD0 — unproven padding
   uint8_t f100;               //0x100 — cleared by FUN_710017b9dc
   uint8_t b101;               //0x101 — read by getter FUN_71001423d8

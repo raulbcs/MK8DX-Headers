@@ -6,7 +6,10 @@ namespace object {
 // Size 0x120: operator new(0x120) in the KartVehicle ctor (v400
 // 0x710017025c), allocated only when KartVehicle+0xD0 mIsMaster != 0 (else
 // nullptr at KartVehicle+0xA0). Ctor 0x71001502a8; evidenced: +0xC0 stores
-// the KartVehicle*, +0xC8 the KartVehicleMove*.
+// the KartVehicle*, +0xC8 the KartVehicleMove*. Assist level (u32) at +0x28
+// (ctor arg *x3, overridden by global u32 [0x12fd548] when nonzero); auto
+// level s32 at +0x2c; active flag at +0x3c; steering target f32 at +0x50;
+// decay timer f32 at +0xf4.
 class KartSteerAssist {
  public:
   // Proven sub-offset map from ctor 0x71001502a8 (everything listed is
@@ -48,5 +51,29 @@ class KartSteerAssist {
   // to 0x15042c may initialize more; extent from factory alloc 0x120
   // at 0x710017025c.
   uint8_t pad_00[0x120];  // proven sub-offset map above (ctor 0x71001502a8); gaps listed there
+
+  // Runtime facts (2026-10-09 TA campaign, all proven in dis):
+  // - Setter 0x7100150a40(assist, bool): bool==0 -> +0x28=0 (off); bool!=0
+  //   and +0x28==0 -> re-init via 0x710015042c and +0x28 = +0x2c (auto
+  //   level). Sole caller 0x71001726b0 gates on kartList[idx]+0x20C
+  //   (via KartVehicle+0xA8 -> 0x710087edf8) and mirrors it into
+  //   KartVehicle+0x1CC bit 0x2000. One-bit setter 0x7100150a80 sets
+  //   +0x43 = arg&1 (constant 1 from wrappers 0x1925fc..0x192644).
+  // - Auto level 0x710015090c (stored +0x2c by 0x710015042c): 3 if
+  //   courseInfoSingleton+0x8 == 3; else 1 + (0x710087eb54() != 0);
+  //   fallback 2 if courseId <= 0x37 has a bit in 0x1220_0810_0D02_0000,
+  //   else 1. 0x710015042c also sets +0x114 (courseId <= 0x2D with bit in
+  //   0x4040_0240_1000_0000, or courseId in [0x4C,0x7B)) and
+  //   +0x116 = (courseId == 0x79).
+  // - Per-frame calc 0x7100150a8c (KartVehicle drive calc, dis 1835e4,
+  //   x1 = stack {u32, u32 speed=[kart+0x37C], f32, u8=0}, result written
+  //   back to x1+0xC): kart+0x1CF bit0 -> hard reset (+0x3C, +0xD8/+0xD0
+  //   = 0). +0x50 = Body+0x130-derived + (-8.12f) (course 0x6E or
+  //   negative -> 0). +0xF4 += -0.025f clamped >= 0; +0xF0 = -1.0f/frame.
+  //   CPUs run the same entry (mIsCpu branch copies the 0x18-byte input).
+  //   Activation (dis 1518c4..151900): +0x3C = 1 only if +0x28 != 0 AND
+  //   (target - [+0x50]) > 15.0f AND 0x7100186e24(KartVehicleMove) bit0
+  //   == 0. Dispatch: level 1 -> 0x7100158c8c (+ 0x7100159394 +
+  //   0x71001596ec); level 2 -> 0x7100158c8c + 0x71001596ec.
 };
 }  // namespace object

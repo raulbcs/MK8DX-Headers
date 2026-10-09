@@ -9,7 +9,7 @@ namespace object {
 // channel-pair member at 0x30 (ctor pair 0x7100662f30/0x7100662f70),
 // tail to 0x50 (array stride 0x50 evidence, site 0x727a84).
 // Shares the trivial hook band 0x647f40-0x647f6c (return-1/ret/slot-0x78
-// thunk/ID compare vs [this+0x1c]).
+// thunk/ID compare vs [this+0x1c] — compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables).
 class ParamNodeVtd500 {
  public:
   void* vtable;          // 0x00
