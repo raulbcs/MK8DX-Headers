@@ -27,9 +27,13 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint8_t pad_130[8];                 //0x130 — unproven padding
   float f138;                         //0x138 — ctor sets 1.0f
   uint8_t pad13c[4];                  //0x13C — unproven padding
-  uint8_t zero_140[0xd0];             //0x140 - 0x20F — memset 0
+  uint8_t zero_140[0xd0];             //0x140 - 0x20F — memset 0; +0x201 = trick-air flag
+                                      // (landing gate, cleared by FUN_71001744a4 cleanup)
   uint8_t flag210;                    //0x210 — ctor sets 1
-  uint8_t pad_211[5];                 //0x211 - 0x215 — ctor zeroes
+  uint8_t pad_211[5];                 //0x211 - 0x215 — ctor zeroes; +0x212 = trick anim
+                                      // active (success-bit path vs mTrickFrames++),
+                                      // +0x213 = landing boost tier-1 selector; both
+                                      // cleared by FUN_71001744a4 cleanup
   uint8_t course_flag216;             //0x216 — 0 on course IDs 0x61/0x5E, else 1 (0x181520)
   uint8_t course_flag217;             //0x217 — 1 on course 0x6E (0x18156c)
   uint8_t course_flag218;             //0x218 — 1 on course 0x71 (0x181584)
@@ -108,7 +112,9 @@ struct KartVehicleMove : public object::KartRigidBody {
   float f594;                         //0x594 — default 1.0f; 1.24742f on body-type 3
   uint8_t zero_598[4];                //0x598 — unproven padding
   float f59c;                         //0x59C — default 1.0f; 0.9f on body-type 3
-  uint8_t zero_5a0[0x3c];             //0x5A0 - 0x5DB — memset 0
+  uint8_t zero_5a0[0x3c];             //0x5A0 - 0x5DB — memset 0; +0x5D8 >= 1 gates the
+                                      // trick trigger FUN_7100175f5c (and > 0 is an
+                                      // alternate landing escape)
   uint8_t driftGate5dc;               //0x5DC — drift flag byte +0xC0 path: clears +0xC0 and
                                       // Body floats when this < 1 or [subobj +0x201]
                                       // (drift 0x17bfb4)

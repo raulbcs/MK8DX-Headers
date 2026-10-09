@@ -152,7 +152,12 @@ class KartVehicle {
   uint8_t mPad1DA[2];                       //0x1DA - 0x1DB — unproven padding
   float mAntiGTransFrame;                   //0x1DC — UNCERTAIN: no access site found in the
                                             // KartVehicle accessor cluster; do not rely on it
-  float mStartCharge;                       //0x1E0
+  float mStartCharge;                       //0x1E0 — rocket-start charge 0..1 (FUN_7100173df4
+                                            // cascade, 173ec0..173ef4): held throttle ramps
+                                            // x = 0.985x + 0.017, released decays x *= 0.96;
+                                            // at GO strict > tiers: >0.95 item-kick effect,
+                                            // >0.935 -> tier 0x4000 (70f, level 5), lower
+                                            // tiers at 0.92/0.90 (0x2000/0x1000)
   uint32_t mStarFrames;                     //0x1E4 — zeroed by FUN_7100175af4
   uint32_t mGessoFrames;                    //0x1E8 — set to 1 by FUN_7100175afc (min-1 semantics)
   int32_t mTeresaFrames;                    //0x1EC — compared ==0x258/600 by FUN_7100174ce8
@@ -161,7 +166,13 @@ class KartVehicle {
   uint8_t mPad1F8[8];                       //0x1F8 - 0x1FF — unproven padding
   uint32_t mTrickFramesLeft;                //0x200
   uint32_t mTrickFrames;                    //0x204
-  uint8_t mPad208[0x14];                    //0x208 - 0x21B — unproven padding
+  uint8_t mPad208[4];                       //0x208 - 0x20B — unproven padding
+  uint32_t mTrickSubstate20C;               //0x20C — trick pose id set at trick start
+                                            // (values 4/5/6/7/8/0x23); +0x208 = sub-state
+                                            // timer (5 or 35); +0x1CC bit 0x40000 set while
+                                            // mTrickFramesLeft > 0 (FUN_7100175f5c /
+                                            // FUN_71001744a4 landing tick)
+  uint8_t mPad210[0xc];                     //0x210 - 0x21B — unproven padding
   uint32_t mPressFrames;                    //0x21C
   float mPressScale;                        //0x220
   uint32_t mThunderFrames;                  //0x224

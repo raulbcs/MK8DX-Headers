@@ -18,5 +18,12 @@ class KartVehicleTrick : public KartRigidBody {
   float mF100[3];                  //0x100..0x10B — ctor sets all three to 1.0f
   uint8_t mPad10C[0x94];           //0x10C - 0x19F — tail zeroed in ctor blocks
                                    // (+0x10C/+0x114/... u64 zeros, +0x14C=1.0f, memset 0x150..0x19B)
+
+  // Trick lifetime (FUN_7100175f5c start / FUN_71001744a4 air tick):
+  // trick start writes the rotation triples +0x11C/+0x120/+0x124 and
+  // +0x134/+0x138/+0x13C, selects the anim id (0xE/0xA/0x10 by stick sign)
+  // and calls the anim method FUN_71001961b4. Landing boost gate: needs
+  // mTrickFrames >= 21 when Move+0x201 != 0 and Move+0x212 == 0; dispatch
+  // FUN_710017a830(boostSlot, 0x100, 0) (or tier 1 when Move+0x213 != 0).
 };
 }  // namespace object
