@@ -81,7 +81,12 @@ namespace recorder {
      */
 struct Mgr {
   uint8_t pad00[0x21];
-  uint8_t enabled;  // 0x021 — calc gate; 0 disables all binders
+  uint8_t enabled;  // 0x021 — calc gate; 0 disables all binders.
+                    // Playback campaign (see block below the struct): +0x20
+                    // armed gate, +0x22 enabled gate set by the director,
+                    // +0x28 binder count / +0x30 binder list, +0x58 stream,
+                    // +0xd8 state {0,1,5,6}, +0xdc substate, +0x100 frame
+                    // time f32 decoded to +0x108 key / +0x110 frac
   uint8_t pad22[0x5e];
   void* dataTable;  // 0x080 — base added to per-channel idx for cb args 1
   uint8_t pad88[0x58];
@@ -95,6 +100,26 @@ struct Mgr {
   float seed;  // 0x110 — float seed for cb arg 4 when binder+0x1b8 is clear
   uint8_t pad114[0xfc];
 };
+/*
+ * Playback campaign facts (2026-10-08/09, FUN_71007b8480 + FUN_71007b78b4):
+ * - Tick chain: director 0x71003ab8d0 holds 14 Mgr pointers at +0x40..0xa0;
+ *   sets each Mgr gate +0x22 (0x71003ab90c..0x3ab96c) and calls
+ *   FUN_71007b77b0 per Mgr; the tick requires gates +0x20 (armed) and
+ *   +0x22 (enabled), zeroes +0xdc, then runs FUN_71007b8480.
+ * - FUN_71007b8480: state mgr+0xd8 ∈ {0,1,5,6}, substate +0xdc; reads the
+ *   frame from stream mgr+0x58, decodes float time mgr+0x100 into int key
+ *   mgr+0x108 / frac mgr+0x110, calls FUN_71007b7a74 (pre-step), then
+ *   FUN_71007abd78 notifies the binders (count mgr+0x28, list mgr+0x30,
+ *   tag w20 = 2 when state == 6, else 1) and dispatches binder calc via
+ *   vtable slot +0x100 of the context *(mgr+0x00) (context assembled by
+ *   FUN_71007b78b4, which arms the Mgr).
+ * - Pose application has NO special warp path: the single WRITE path is
+ *   recorderBinderCalc_71007aaf68 writing the decoded values into the
+ *   owner's bytes — playback reuses the recording calc with the stream as
+ *   source. The 0x499xxx/0x539xxx/0x53exxx callers are menu/trial state
+ *   machines (4a8978 loader tick, 4a8a10 states 0x68/0x69/0x6a, 4a8ce0
+ *   cleanup, 539af8 external gating).
+ */
 
 /*
      * Channel binder (ctor FUN_71007aae24; size 0x288; calc

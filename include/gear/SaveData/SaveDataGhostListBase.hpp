@@ -21,6 +21,14 @@ class SaveDataGhostListBase {
     uint8_t mPad7D[3];                     // 0x7D
     sead::FixedSafeString<256> mFileName;  // 0x80
     uint8_t mPad184[4];                    // 0x18C
+    // NOTE (2026-10-09): the on-disk trial record block (CTR0) also stores
+    // the collected COIN COUNT (runtime-confirmed via the replay UI); the
+    // exact field offset inside CTR0 was not isolated statically. Any
+    // simulator/imported ghost must carry it. TA coin rules:
+    // FUN_710087c9b4 zeroes coins when RaceInfo+8 ∈ {TimeAttack, Battle};
+    // start coins from table 0x7100F6F384; live mCoinNum mirror at
+    // vehicle+0x184 (checker chain RaceSystem+0x1B0 → +0x218 → +0x68 →
+    // idx*8 → +0x50).
 
     Data() {}
   };

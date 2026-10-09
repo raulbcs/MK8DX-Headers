@@ -39,3 +39,15 @@ struct BoostSlot {
   uint8_t pad_c0[0x194];            // 0xc0 — unproven padding
   uint32_t counter_mirror;          //0x254 — mirror of the real counter (KartVehicle+0x254)
 };
+
+// Course-trigger boost entry (2026-10-09): FUN_710017af90(BoostSlot* x0,
+// w1 = trigger type, w2 passed through), tail-called from the body calc at
+// 189534. If w1 <= 0xb it indexes word table 0xf24460 (12 entries, data —
+// NOT a code jump table) and tail-calls FUN_710017a870 with the resulting
+// boost tier; w1 > 0xb falls back to tier 1 (same fallback as the
+// trick-landing +0x213 variant).
+//   type:  0     1    2      3    4    5     6     7    8     9     10    11
+//   tier: 0x10000 0x2 0x200 0x4  0x8  0x10  0x100 0x80 0x40 0x8000 0x20  0x1
+//   id:   default t1  antigrav pad-w pad-m pad-s trick  ?    ?     ?    dash  mushroom-class
+// Details (durations, obj-param classes, provenance): docs/MECHANICS_101.md
+// "Course triggers — the 12 types" and gear/Course/TriggerRegistry.hpp.
