@@ -185,7 +185,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartChassis.hpp
 #   include/object/Kart/KartChassisAnim.hpp
 #   include/object/Kart/KartDirector.hpp
-#   include/object/Kart/KartJugemRecover.hpp
 #   include/object/Kart/KartModelBackgroundLoadThread.hpp
 #   include/object/Kart/KartParamCacheChan.hpp
 #   include/object/Kart/KartParamCacheChanBase.hpp

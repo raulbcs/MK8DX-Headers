@@ -129,7 +129,10 @@ class KartVehicle {
   uint8_t mPad120[0x0C];                    //0x120 - 0x12B — unproven padding
   float mCameraShownHeight;                 //0x12C
   uint8_t mPad130[0x20];                    //0x130 - 0x14F — unproven padding
-  float mWaterDepth;                        //0x150
+  float mWaterDepth;                        //0x150 — UNCERTAIN: no ldr/str with
+                                            // displacement #0x150 exists in the KartVehicle
+                                            // accessor range; runtime writer not located.
+                                            // The real water state is +0x29C/+0x2A4 (below)
   uint8_t mPad154[0x10];                    //0x154 - 0x163 — unproven padding
   float mBikeConst164;                      //0x164 — ctor picks from table 0xf20898 indexed by
                                             // mIsHangOnBike (0x1704f4-0x17051c)
@@ -137,7 +140,8 @@ class KartVehicle {
   uint8_t mPad16C[4];                       //0x16C - 0x16F — unproven padding
   ControlInfo kartControlInfo;              //0x170 - 0x183
   uint8_t mPad184[0x40];                    //0x184 - 0x1C3 — unproven padding
-  float mAntiGEmissionFrame;                //0x1C4
+  float mAntiGEmissionFrame;                //0x1C4 — UNCERTAIN: no access site found in the
+                                            // KartVehicle accessor cluster; do not rely on it
   uint32_t mPad1C8;                         //0x1C8 — unproven padding
   uint32_t mKartStatusBits;                 //0x1CC — evidenced bits: 4 (FUN_7100174ec8),
                                             // 6 (FUN_7100174f5c), 14+21 volatile 0x204000 gate (FUN_710017a830),
@@ -146,7 +150,8 @@ class KartVehicle {
   uint8_t mPad1D4[5];                       //0x1D4 - 0x1D8 — unproven padding
   bool mFlag1D9;                            //0x1D9 — set true by FUN_7100173204 (SusKit call path)
   uint8_t mPad1DA[2];                       //0x1DA - 0x1DB — unproven padding
-  float mAntiGTransFrame;                   //0x1DC
+  float mAntiGTransFrame;                   //0x1DC — UNCERTAIN: no access site found in the
+                                            // KartVehicle accessor cluster; do not rely on it
   float mStartCharge;                       //0x1E0
   uint32_t mStarFrames;                     //0x1E4 — zeroed by FUN_7100175af4
   uint32_t mGessoFrames;                    //0x1E8 — set to 1 by FUN_7100175afc (min-1 semantics)
@@ -186,7 +191,18 @@ class KartVehicle {
                                             // struct (its own bytes 0x250-0x253), NOT this field.
   uint8_t mPad27C[0x1C];                    //0x27C - 0x297 — unproven padding
   uint32_t mRaceInvincibilityFrames;        //0x298
-  uint8_t mPad29C[0x24];                    //0x29C - 0x2BF — unproven padding
+  uint8_t mWaterState29C;                   //0x29C — water state: 0 idle, 1 in-water,
+                                            // 2 forced (writer: rule == 5 -> 2, via
+                                            // getRaceCheckManager_710087fcd0 then [x0+8])
+  uint8_t mPad29D[7];                                     //0x29D - 0x2A3 — unproven padding
+  float mSubmergeFactor2A4;                 //0x2A4 — water submersion accumulator 0..1
+                                            // (FUN_7100173df4): state 0 + sink flag ramps
+                                            // x = x*0.985 + 0.017 (sink event at > 0.95, sets
+                                            // state 1); state 1: += 0.1 clamped <= 1; state 2:
+                                            // forced 1.0; leaving water decays by +0x1D4.
+                                            // Blend weight for the float-vs-sink velocity
+                                            // target in FUN_7100172ac8
+  uint8_t mPad2A8[0x18];                    //0x2A8 - 0x2BF — unproven padding
   uint8_t mFlag2C0;                         //0x2C0 — zeroed by FUN_7100173204
   uint8_t mPad2C1[0x63];                    //0x2C1 - 0x323 — unproven padding
   uint32_t mRenegadeCaughtFrames;           //0x324
