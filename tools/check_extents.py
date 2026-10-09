@@ -263,7 +263,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamContainerVtdcd8.hpp
 #   include/object/Kart/ParamMultiChanVt2808.hpp
 #   include/object/Kart/ParamMultiChanVt2c40.hpp
-#   include/object/Kart/ParamMultiChanVt2da0.hpp
 #   include/object/Kart/ParamMultiChanVtb318.hpp
 #   include/object/Kart/ParamMultiChanVtba40.hpp
 #   include/object/Kart/ParamMultiChanVtbb50.hpp

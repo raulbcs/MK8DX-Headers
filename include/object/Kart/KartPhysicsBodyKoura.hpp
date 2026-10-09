@@ -3,9 +3,11 @@
 #include "KartPhysicsBodyMid.hpp"
 
 namespace object {
-// Koura (shell) physics body. Vtable .data 0x11b0d98 (GOT cell
-// 0x12fb828), ctor 0x7100030d50(w1 = item id ptr), allocation 0x460
-// (operator new at 0x35f10). Slot names carry ItemKoura_* evidence.
+// Koura (shell) physics body. Vtable .data 0x11b0d98, primary vptr from
+// GOT cell 0x12fb838 (+0x10; vtable 0x11b0d88), ctor 0x7100030d50 (w1 =
+// item id ptr). EXTENT PROVEN: operator new(0x460) at 0x7100035f10 (spawn
+// wrapper 0x7100035f00) immediately before the ctor call at 0x7100035f30.
+// Slot names carry ItemKoura_* evidence.
 //
 // TogezoBomb (vtable 0x11b0898, n=128) derives from this class — its
 // inlined ctor calls 0x30d50.
@@ -51,12 +53,17 @@ namespace object {
 //   slots 111/127 (also read from the manager cell in slot 118
 //   0x710002f6c4).
 //
-// EXTENT NOTE (contradiction, unresolved): the ctor/operator-new
-// allocation at 0x35f10 is 0x460, but kouraResetFlagsAndTrailer_
-// 710002ce60 writes +0x4cf and kouraDriftAlignSlot111_710002dbc4 /
-// kouraResetChaseSlotsSlot127_710002fd14 write +0x4d0, implying an
-// extent >= 0x4d4. The 0x460 claim and the >= 0x4d4 evidence conflict;
-// re-prove before changing the extent either way.
+// EXTENT RESOLVED (was: contradiction vs >= 0x4d4): the allocation is
+// exactly 0x460 (operator new(0x460) at 0x7100035f10, ctor 0x7100030d50
+// at 0x7100035f30). The trailer-cluster writers (kouraResetFlagsAnd-
+// Trailer_710002ce60 +0x4cf, kouraDriftAlignSlot111_710002dbc4 and
+// kouraResetChaseSlotsSlot127_710002fd14 +0x4d0) are slots of the
+// KartPhysicsBodyKouraTogezo subclass, not of this class: both sit in
+// the Togezo vtable (vptr cell 0x12fb7c0 -> 0x11b0888; Togezo ctor
+// 0x2c5cc stores it) and are absent from this class's primary vtable
+// (cell 0x12fb838 -> 0x11b0d88). Togezo is allocated new(0x4d8) at
+// 0x7100030b10 (see KartPhysicsBodyKouraTogezo.hpp), which covers the
+// +0x4d0 writes. Extent stays 0x460.
 //
 // Additional slot facts (Koura vtable, evidence TUs under
 // /Users/raul/projects/mk8dx-400/src/unknown/):
@@ -207,6 +214,7 @@ class KartPhysicsBodyKoura : public KartPhysicsBodyMid {
   char mPad3d4[0x24];  // 0x3d4 (state cluster 0x35c-0x3d2 is reset
                        // by slot 0x71000325ac per race)
   uint64_t mField3f8;  // 0x3f8
-  char mPad400[0x60];  // 0x400 — to end (0x460)
+  char mPad400[0x60];  // 0x400 — to end (0x460 total; proven by
+                       // operator new(0x460) at 0x7100035f10)
 };
 }  // namespace object

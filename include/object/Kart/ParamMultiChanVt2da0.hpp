@@ -6,7 +6,10 @@ namespace object {
 // ParamMultiChanVt2da0 — address-anchored name (vptr 0x12b2da0). Multi-channel
 // class of the 0x647f40 hook-band cluster: channel-pair members
 // (ctor 0x7100662f30/0x7100662f70) at 0x110, 0x138, 0x160, 0x188,
-// constructed in place at 0x64d7e4. EXTENT APPROXIMATE: last channel
+// constructed in place at 0x64d7e4. EXTENT PROVEN 0x248: heap-allocation
+// wrapper 0x710064f918 calls the allocator-heap virtual (helper
+// 0x60b234) with size 0x248 at 0x710064f928, then constructs in place
+// with the complete ctor 0x710064d7b0 at 0x710064f93c.
 class ParamMultiChanVt2da0 {
  public:
   void* vtable;         // 0x00
@@ -14,7 +17,10 @@ class ParamMultiChanVt2da0 {
   char mChan30[0x20];   // 0x30 — first channel-pair member
   char mMid50[0xc0];    // 0x50 — fields/channel region
   char mTail110[0x98];  // 0x110 — channel array region (to 0x1a8)
-                        // (~0x1a8 total, APPROXIMATE)
+  char mTail1a8[0xa0];  // 0x1a8 — sub-vptrs 0x1a8/0x1d0, count 0x1f0,
+                        // row array ptr 0x1f8, flag 0x1e8, vec3 0x1c0,
+                        // aim angles 0x23c/0x240 (slot 15)
+  // (0x248 total; proven by allocation size 0x248 at 0x710064f928)
 };
 // vtable facts (TUs paramMultiChanVt2da0CompleteDtorSlot0_710064dc0c.cpp,
 // paramMultiChanVt2da0DeletingDtorSlot1_710064dcec.cpp,
@@ -46,10 +52,11 @@ class ParamMultiChanVt2da0 {
 //   slot 15 (0x88): computes aim angles from the vec3 at self+0x1c0 (NaN
 //     guarded); yaw (atan2-style) at self+0x23c, pitch (acos-style of
 //     inv*y clamped to [-1,1]) at self+0x240.
-// NOTE (extent): the header above claims ~0x1a8 (APPROXIMATE), but the dtor
-// resets a sub-vptr at 0x1d0, and slots 13/15 write self+0x1f0/0x1f8/0x23c/
-// 0x240 — implying extent >= 0x244. Contradiction unresolved; the higher
-// offsets rest on the TU evidence above.
+// EXTENT RESOLVED (was: ~0x1a8 vs >= 0x244): true extent is 0x248, proven
+// by the heap allocation of size 0x248 at 0x710064f928 (wrapper
+// 0x710064f918: allocator-heap virtual call, align 8) immediately before
+// the complete ctor 0x710064d7b0 at 0x710064f93c. Covers the dtor's
+// +0x1f8 array free and slot 15's +0x23c/+0x240 angle writes.
 }  // namespace object
 
 // Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.
