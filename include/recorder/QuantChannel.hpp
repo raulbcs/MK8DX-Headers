@@ -25,21 +25,62 @@
  * Field offsets below are proven by factory stores (object size is the
  * allocation size passed to operator new, 0x280/0x288/0x290/0x298 by
  * class). 0x71007aae24 initializes the shared head of every variant.
+ *
+ * Read-side quant object layout (setup FUN_71007b100c /
+ * factory FUN_71007b9400): +0x1c0 = numValues (e.g. 12 for
+ * p_move_mtx, 4 for scalar channels), +0x1c4 = token format in bytes
+ * (1/4/6), +0x1f0/+0x1f4/+0x1f8 = min / step / 1/step, +0x278 = back
+ * reference to the owning mgr, +0x288 = channel index,
+ * +0x220/+0x228 = delta once-changed state (two u64s). Decoded value
+ * = min + token*step (mod span); the per-block record reloads step
+ * when its key matches the frame time key (FUN_71007aa490): that
+ * record is the 12 B file entry { u32 key; u32 packed; float step }
+ * of the channel directory (see recorder/Recorder.hpp) — the float
+ * step at entry+0x8 is what lands in +0x1f4 (+0x1f8 = 1/step),
+ * overwriting the setup-time values below for that block.
+ *
+ * Per-point quantizer implementations (structure-faithful ports of
+ * the channel-quantizer group; each returns [ch+0x1c4] = substream
+ * width so the caller can advance the cursor):
+ *
+ *   FUN_71007b424c — 2-component byte quantizer (scalar/u8 channels):
+ *     per component, v = in[j] * [+0x1f4]; clamp to [+0x280, +0x284]
+ *     (the `b.gt` skips the clamp only when v > max, so NaN falls
+ *     through to the min/max branches); fcvtzs; store one byte (strb).
+ *     Two bytes total per sampled point.
+ *
+ *   FUN_71007b45a4 — 3-component packer into ONE u32 token (three
+ *     10-bit fields; used by wide float channels):
+ *       comp0 -> bits 0-9   (clamp [-0x3ff, +0x3ff]; q <= -0x400
+ *                 saturates to 0xfffffc00 and is cut by the 10-bit
+ *                 field mask)
+ *       comp1 -> bits 11-20 (clamp [-0x1ff, +0x1ff]; ubfiz #11,#10)
+ *       comp2 -> bits 21-30 (clamp [-0x3ff, +0x3ff], <<21)
+ *     Bits 10 and 31 stay zero. Each component is fcvtzs(in[j] *
+ *     [+0x1f4]). The `+0x280/+0x284` clamp floats are only used by
+ *     the byte quantizer above; the packer clamps to the field
+ *     half-ranges directly.
  */
 namespace recorder {
 
 struct QuantChannelCommon {
   uint8_t pad_00[0x1c0];
-  uint32_t type_1c0;       //0x1C0 — 4 = scalar-ish, 8 = vec2/raw
+  uint32_t type_1c0;       //0x1C0 — numValues (12 = p_move_mtx 3x vec4,
+                           //      4 = scalar channels; factory: 4/8/12)
   uint32_t width_1c4;      //0x1C4 — token bytes consumed per fresh tick
                            //      (readers: 0x1cb584 u16, 0x1cb0cc vec2 s16,
-                           //       0xa1404 raw memmove, 0x26a00 u8)
+                           //       0xa1404 raw memmove, 0x26a00 u8);
+                           //      formats seen: 1 (u8), 4 (u32), 6
   uint8_t pad_1c8[0x28];   //0x1C8
   float step_1f0;          //0x1F0 — step (s2 argument)
   float inv_step_1f4;      //0x1F4 — quantization multiplier (1/step-derived)
   float step2_1f8;         //0x1F8 — secondary step (1/inv when step != 0)
-  uint8_t pad_1fc[0x7c];   //0x1FC
-  void* owner_278;         //0x278 — x19 argument (owning hub object)
+  uint8_t pad_1fc[0x24];   //0x1FC
+  uint64_t deltaOnce_220;  //0x220 — delta once-changed state (u64 pair
+  uint64_t deltaOnce_228;  //0x228   with the slot below)
+  uint8_t pad_230[0x48];   //0x230
+  void* owner_278;         //0x278 — x19 argument (owning hub object /
+                           //      backref to the mgr on read-side objects)
 };
 
 struct RawVec2Channel {    // 0x280-byte variant (no-quant fallback)

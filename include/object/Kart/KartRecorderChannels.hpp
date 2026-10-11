@@ -11,6 +11,21 @@
 // recorder::Binder (0x288) and a quantized-float channel (0x280).
 // Previously misnamed "KartPathJob".
 //
+// recorderSetupKartStateChannels_71003aed50 registration order (
+// decomp; quant params = factory args min,max,step):
+//   1. self        — NULL name, memcpy 0x40 of [x20+0] into +0x278 block
+//   2. 0x288 u8    — p_anti_gravity_rate (0xee5e3a); +0x1f8 = 1/128,
+//                    +0x284 = 255.0
+//   3. 0x280 pair  — p_state_flag (0xee5e4e); type pair {4,4}
+//   4. quant       — p_xlu_alpha (0xee5e5b); (0, 1, 0.1)
+//   5. 0x280 w2    — p_control_flag (0xee5e67)
+//   6. quant       — p_killer_end_ratio (0xee5e76); (0, 1, 0.1)
+//   7. quant       — mSteerX (0xee5e89); (-1, 1, 0.1)
+//   8. quant       — p_start_dash_charge (0xee5e91); (-1, 1, 0.05;
+//                    tokens 0..40, idle = 20)
+// Ghost channel ch15 (lap counter 3->2->1->0) matches NONE of these —
+// its registration call-site is elsewhere (unlocated).
+//
 // Runtime cross-evidence: FUN_7100173140 (Path2Gate cluster) reads the int
 // at +0x8 (==2 gate).
 namespace object {
