@@ -4,29 +4,34 @@
 
 #include "object/Kart/KartRigidBody.hpp"
 
-// KartVehicleMove — size 0x5F8, proven by operator new(0x5F8) in the KartVehicle
+// KartVehicleMove — size 0x5F8 (operator new(0x5F8) in the KartVehicle
 // ctor 0x71001701e4, stored at KartVehicle+0x28). Derives from
 // KartRigidBody (ctor 0x71001812b4 calls 0x710014ddb4 first). Name
 // confirmed by the recorder channel string "RecorderKartVehicleMove".
 //
 // MISATTRIBUTED FIELDS: earlier revisions declared fields at +0x1680
 // (flag bitfield) and +0x2288/+0x2298 (float pairs) — those lie beyond
-// the proven 0x5F8 allocation and belong to another, unnamed class.
+// the 0x5F8 allocation and belong to another, unnamed class.
 namespace object {
 struct KartVehicle;
 }  // namespace object
 
 struct KartVehicleMove : public object::KartRigidBody {
   void* static_table_e0;              //0xE0 — ctor overwrites with (0x12fd668+0x40)
-  uint8_t pad_e8[0x10];               //0xE8 - 0xF7 — unproven padding
+  //0xE8/0xF0 — pose-holder list links {prev, next}. The KartMove manager
+  // ctor 0x710016f868 links the KartVehicleMove group (KartMove+0x28,
+  // +0x30, +0x38) through these fields at 0x170284..0x1702a4; several
+  // instances are cross-linked per player.
+  KartVehicleMove* poseListPrev;      //0xE8
+  KartVehicleMove* poseListNext;      //0xF0
   object::KartVehicle* kart_vehicle;  //0xF8 — ctor arg (0x1812d0); object whose +0x1cc
                                       // flags word gates the antigrav spin
-  uint8_t pad_100[8];                 //0x100 — unproven padding
+  uint8_t pad_100[8];                 //0x100
   uint8_t pad_108[0x20];              //0x108 - 0x127 — ctor zeroes
   float f128[2];                      //0x128 — ctor sets {1.0f, 1.0f}
-  uint8_t pad_130[8];                 //0x130 — unproven padding
+  uint8_t pad_130[8];                 //0x130
   float f138;                         //0x138 — ctor sets 1.0f
-  uint8_t pad13c[4];                  //0x13C — unproven padding
+  uint8_t pad13c[4];                  //0x13C
   uint8_t zero_140[0xd0];             //0x140 - 0x20F — memset 0; +0x201 = trick-air flag
                                       // (landing gate, cleared by FUN_71001744a4 cleanup)
   uint8_t flag210;                    //0x210 — ctor sets 1
@@ -37,15 +42,15 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint8_t course_flag216;             //0x216 — 0 on course IDs 0x61/0x5E, else 1 (0x181520)
   uint8_t course_flag217;             //0x217 — 1 on course 0x6E (0x18156c)
   uint8_t course_flag218;             //0x218 — 1 on course 0x71 (0x181584)
-  uint8_t pad_219;                          //0x219 — unproven padding
+  uint8_t pad_219;                          //0x219
   uint16_t course_flag21a;            //0x21A — 0x101 on course 0x65 (0x181558);
                                       // byte +0x21B = 1 on course 0x71 (0x181584/0x18158c)
-  uint8_t pad_21c[3];                       //0x21C — unproven padding
+  uint8_t pad_21c[3];                       //0x21C
   uint8_t zero_220[0xc];              //0x220 - 0x22B — ctor zeroes
   uint8_t antigravSpinTimer22c;       //0x22C — body calc requests boost tier 0x200
                                       // (trigger type 2) when mbAntiGColSpin (+0x3EC)
                                       // is set and this < 1.0 (0x18b9f4)
-  uint8_t pad_22d[7];                       //0x22D — unproven padding
+  uint8_t pad_22d[7];                       //0x22D
   uint32_t surfaceKind234;            //0x234 — surface kind: bits 0..4 of the wheel-hit
                                       // hword+0x4 (0x18a200..0x18a220); read by the
                                       // 12-byte getter FUN_7100142588. gear::ESurfaceType
@@ -64,7 +69,7 @@ struct KartVehicleMove : public object::KartRigidBody {
   float glideThreshold380;            //0x380 — glide decision: compare vs Drift+0x64
                                       // (0x17bab4)
   float f388;                         //0x388 — ctor sets 1.0f
-  uint8_t pad_38c[0x14];              //0x38C - 0x39F — unproven padding
+  uint8_t pad_38c[0x14];              //0x38C - 0x39F
   float f3a0;                         //0x3A0 — ctor sets 1.0f
   uint8_t pad_3a4[0x10];
   float f3b8;                         //0x3B8 — ctor sets 0.75f
@@ -106,11 +111,11 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint8_t zero_4b8[0xd4];             //0x4B8 - 0x58B — memset 0 EXCEPT the family members
                                       // listed in the +0x4B4 comment
   uint8_t bodyType3Flag58c;           //0x58C — set 1 by the body-type-3 branch (0x1817a4)
-  uint8_t zero_58d[3];                //0x58D - 0x58F — unproven padding
+  uint8_t zero_58d[3];                //0x58D - 0x58F
   float floorClamp590;                //0x590 — derived from the +0x4B4 floor clamp
                                       // (>= 0.65 when mult <= 1.0; 0x181818..0x181874)
   float f594;                         //0x594 — default 1.0f; 1.24742f on body-type 3
-  uint8_t zero_598[4];                //0x598 — unproven padding
+  uint8_t zero_598[4];                //0x598
   float f59c;                         //0x59C — default 1.0f; 0.9f on body-type 3
   uint8_t zero_5a0[0x3c];             //0x5A0 - 0x5DB — memset 0; +0x5D8 >= 1 gates the
                                       // trick trigger FUN_7100175f5c (and > 0 is an
@@ -118,6 +123,6 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint8_t driftGate5dc;               //0x5DC — drift flag byte +0xC0 path: clears +0xC0 and
                                       // Body floats when this < 1 or [subobj +0x201]
                                       // (drift 0x17bfb4)
-  uint8_t zero_5dd[0x17];             //0x5DD - 0x5F3 — unproven padding
+  uint8_t zero_5dd[0x17];             //0x5DD - 0x5F3
   float f5f4;                         //0x5F4 — ctor sets 0.1f (last field)
 };

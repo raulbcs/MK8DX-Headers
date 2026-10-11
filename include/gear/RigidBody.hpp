@@ -19,8 +19,18 @@ class RigidBody {
   // +0x5c/+0x6c/+0x7c as 12 floats and feeds PosFromDots 0x71003af3f8
   // (world = M*dots + T), so it is a matrix, not a Vector3* dereference.
   MtxT mFrame;                                 //0x50 - 0x80
-  uint8_t pad80[0x10];                         //0x80 - 0x8F
-  float unknownArea[0x12];                     //0x90 - 0xD4
+  // +0x80: velocity vec3, maintained together with mFrame by the pose
+  // writers (KartBody member 0x710001732c stores (KartBody+0x128) *
+  // (KartBody+0xd8..0xdc) here; sink 0x710011f2bc copies its +0x1b4..0x1bc;
+  // virtual 0x710019b7e4 copies +0xd0..0xd8).
+  float velocity[3];                           //0x80 - 0x8B; read as vec3 by
+                                               // KartBody member 0x101e4
+  uint8_t pad8c[0xc];                          //0x8C - 0x97
+  uint8_t dirty;                               //0x98 — pose-dirty flag; frame
+                                               // writers do |=1 before
+                                               // overwriting mFrame (0x1736c,
+                                               // 0x11f770, 0x19b95c)
+  uint8_t pad99[0x3c];                         //0x99 - 0xD4
   float mTimeScale;                            //0xD8
   float mTimeScaleFraction;                    //0xDC
 
