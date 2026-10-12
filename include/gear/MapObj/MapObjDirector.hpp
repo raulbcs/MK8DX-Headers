@@ -8,18 +8,32 @@
 #include "MapObjParameter.hpp"
 
 #include "MapObjBase.hpp"
+#include "MapObjManagerBase.hpp"
 #include "MapObjCreateArg.hpp"
+#include "MapObjParameter.hpp"
 #include "EMapObjID.hpp"
 
-namespace gear {
-class MapObjDirector : public Actor {
- public:
-  uint8_t mPad38[0x18];                           // 0x38
-  sead::PtrArray<MapObjParameter> mMapObjParams;  // 0x50
+#include <container/seadBuffer.h>
 
-  void reactThunder();
-  void loadParameter_();
+namespace gear
+{
+    using MapObjCreatorFn = gear::MapObjBase* (*)(gear::MapObjCreateArg &);
 
-  static bool append(gear::EMapObjID, gear::MapObjBase* (*)(gear::MapObjCreateArg&));
-};
-}  // namespace gear
+    class MapObjDirector : public Actor
+    {
+    public:
+        sead::Buffer<MapObjManagerBase*> mManagers; // 0x38
+        uint8_t mPad48[0x08]; // 0x48
+        sead::PtrArray<MapObjParameter> mMapObjParams; // 0x50
+
+        void reactThunder();
+        void loadParameter_();
+
+        MapObjManagerBase* searchManager(gear::EMapObjID);
+        MapObjParameter* getMapObjParameter(gear::EMapObjID);
+        MapObjCreatorFn searchMapObjCreateFunc(gear::MapObjParameter const*);
+
+        static bool append(gear::EMapObjID, gear::MapObjBase* (*)(gear::MapObjCreateArg &));
+        static bool appendMgr(gear::EMapObjID,gear::MapObjManagerBase * (*)(gear::MapObjParameter *));
+    };
+}

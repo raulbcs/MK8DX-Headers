@@ -1,11 +1,15 @@
 #pragma once
 #include <cstdint>
 
-namespace audio {
-class AudSoundObjKart {
- public:
-  enum ETrgKartSE : int {};
+#include <audio/Object/AudSoundObjBase.hpp>
 
-  void requestTrgKartSE(audio::AudSoundObjKart::ETrgKartSE, int, int);
-};
-}  // namespace audio
+namespace audio
+{
+    class AudSoundObjKart : public AudSoundObjBase
+    {
+        public:
+            enum ETrgKartSE  : int {};
+
+            void requestTrgKartSE(audio::AudSoundObjKart::ETrgKartSE,int,int);
+    };
+}
