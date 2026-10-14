@@ -52,7 +52,7 @@ class KartSteerAssist {
   // at 0x710017025c.
   uint8_t pad_00[0x120];  // proven sub-offset map above (ctor 0x71001502a8); gaps listed there
 
-  // Runtime facts (2026-10-09 TA campaign, all proven in dis):
+  // Runtime facts:
   // - Setter 0x7100150a40(assist, bool): bool==0 -> +0x28=0 (off); bool!=0
   //   and +0x28==0 -> re-init via 0x710015042c and +0x28 = +0x2c (auto
   //   level). Sole caller 0x71001726b0 gates on kartList[idx]+0x20C

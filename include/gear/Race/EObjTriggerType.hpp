@@ -33,7 +33,7 @@ enum EObjTriggerType : int32_t {
 };
 
 /*
- * Provenance notes (2026-10-09 sessions):
+ * Provenance notes:
  * - The type byte originates from course-file data (objflow.byaml),
  *   read from descriptor entry+0x8/+0x9 at 0x7100396198/0x71003961c4 —
  *   never an immediate in code. t0/t2/t11 identities therefore live in

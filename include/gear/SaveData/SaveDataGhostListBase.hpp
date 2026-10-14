@@ -21,7 +21,7 @@ class SaveDataGhostListBase {
     uint8_t mPad7D[3];                     // 0x7D
     sead::FixedSafeString<256> mFileName;  // 0x80
     uint8_t mPad184[4];                    // 0x18C
-    // NOTE (2026-10-09): the on-disk trial record block (CTR0) also stores
+    // NOTE: the on-disk trial record block (CTR0) also stores
     // the collected COIN COUNT (runtime-confirmed via the replay UI); the
     // exact field offset inside CTR0 was not isolated statically. Any
     // simulator/imported ghost must carry it. TA coin rules:

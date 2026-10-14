@@ -40,7 +40,7 @@ struct BoostSlot {
   uint32_t counter_mirror;          //0x254 — mirror of the real counter (KartVehicle+0x254)
 };
 
-// Course-trigger boost entry (2026-10-09): FUN_710017af90(BoostSlot* x0,
+// Course-trigger boost entry: FUN_710017af90(BoostSlot* x0,
 // w1 = trigger type, w2 passed through), tail-called from the body calc at
 // 189534. If w1 <= 0xb it indexes word table 0xf24460 (12 entries, data —
 // NOT a code jump table) and tail-calls FUN_710017a870 with the resulting
