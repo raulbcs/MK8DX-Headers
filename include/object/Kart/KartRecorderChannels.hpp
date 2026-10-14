@@ -2,37 +2,13 @@
 
 #include <cstdint>
 
-// Per-kart recorder channel hub — size 0x2B8, proven by operator new(0x2B8)
-// in the KartVehicle init (v400 0x71001704c0, stored at KartVehicle+0x88;
-// setup 0x71003aed50 = recorderSetupKartStateChannels_71003aed50, see
-// recorder/Recorder.hpp). A recorder::Registry subclass: registers child
-// channels by name via recorderAddChannel_71007ac0cc(this, child, name) —
-// the camera float channels "at"/"up"/"back"/"dist"/"fovy" — plus a
-// recorder::Binder (0x288) and a quantized-float channel (0x280).
-// Previously misnamed "KartPathJob".
-//
-// recorderSetupKartStateChannels_71003aed50 registration order (
-// decomp; quant params = factory args min,max,step):
-//   1. self        — NULL name, memcpy 0x40 of [x20+0] into +0x278 block
-//   2. 0x288 u8    — p_anti_gravity_rate (0xee5e3a); +0x1f8 = 1/128,
-//                    +0x284 = 255.0
-//   3. 0x280 pair  — p_state_flag (0xee5e4e); type pair {4,4}
-//   4. quant       — p_xlu_alpha (0xee5e5b); (0, 1, 0.1)
-//   5. 0x280 w2    — p_control_flag (0xee5e67)
-//   6. quant       — p_killer_end_ratio (0xee5e76); (0, 1, 0.1)
-//   7. quant       — mSteerX (0xee5e89); (-1, 1, 0.1)
-//   8. quant       — p_start_dash_charge (0xee5e91); (-1, 1, 0.05;
-//                    tokens 0..40, idle = 20)
-// Ghost channel ch15 (lap counter 3->2->1->0) matches NONE of these —
-// its registration call-site is elsewhere (unlocated).
-//
-// Runtime cross-evidence: FUN_7100173140 (Path2Gate cluster) reads the int
-// at +0x8 (==2 gate).
-// +0x1C4 — int returned by the converter thunks in the recorder band:
-// 0x71003afc74 stores *(u8*)dst = *(int*)src then returns it;
-// 0x71003b0e50 stores *(u16*)dst = *(int*)src then returns it;
-// 0x71003ac03c zeroes the word (receiver class UNCERTAIN — offset fits
-// this hub's 0x2B8 extent, but the thunks' this is not pinned to it).
+// Per-kart recorder channel hub — true size 0x2B8; operator new 0x2B8 @ 0x71001704c0, stored
+// at KartVehicle+0x88; setup recorderSetupKartStateChannels_71003aed50). recorder::Registry
+// subclass registering (via recorderAddChannel_71007ac0cc): self (NULL name, 0x40 copy into
+// +0x278), 0x288 u8 p_anti_gravity_rate, 0x280 pair p_state_flag/p_control_flag, quant
+// p_xlu_alpha/p_killer_end_ratio/mSteerX/p_start_dash_charge. OPEN: ghost ch15 matches none
+// of these — registration call-site unlocated. Runtime: int +0x8, ==2 gate in FUN_7100173140;
+// +0x1C4 — int of converter thunks 0x71003afc74/0x71003b0e50/0x71003ac03c (receiver UNCERTAIN).
 namespace object {
 struct KartRecorderChannels {
   uint8_t pad_00[8];        // 0x00 — vtable ptr (global 0x1307890+0x10)

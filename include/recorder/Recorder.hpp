@@ -3,449 +3,115 @@
 #include <cstdint>
 
 /*
- * Ghost/replay recorder framework (reverse-engineered from the 400
- * binary; this header is the naming/layout authority for the family).
+ * Ghost/replay recorder framework (400 binary; layout authority for
+ * the family). All addresses are original VMAs. Full codec behavior
+ * details live in the decomp TUs / research notes; this header mirrors
+ * LAYOUT only.
  *
- * Family map (all addresses are original VMAs):
+ * Family: object::RecorderDirector (makeGhostData vt slot 0x98);
+ * recorder::Mgr 0x210 (ctor 71007b7634, cell 0x710130f7c8, new
+ * 71007aadd4); recorder::Binder 0x288 (ctor FUN_71007aae24, calc
+ * FUN_71007aaf68, addChannel FUN_71007ac0cc); recorder::Registry;
+ * quant-float factory 71007b9400; QuantChannel factory FUN_71001ca6e8
+ * (see recorder/QuantChannel.hpp).
  *
- *   object::RecorderDirector        scene director; makeGhostData()
- *                                   at vtable slot 0x98 (see
- *                                   object/Directors/RecorderDirector.hpp)
- *   recorder::Mgr                   global manager, 0x210 bytes (ctor
- *                                   recorderMgrCtor_71007b7634); instance
- *                                   pointer in bss cell 0x710130f7c8,
- *                                   created by recorderCreateMgr_71007aadd4
- *   recorder::Binder                ~0x288-byte per-channel binder,
- *                                   ctor FUN_71007aae24, per-frame calc
- *                                   FUN_71007aaf68; registered by
- *                                   addChannel FUN_71007ac0cc; per-kart
- *                                   float/channel setup
- *                                   recorderSetupKartChannels_71003aef8c
- *   recorder::Registry              owner of the two channel lists
- *   recorderCreateQuantChannel_71007b9400
- *                                   quantized-float channel factory
- *                                   (log2/exp2 buckets, 0x280 binder)
+ * Ghost file: per-block substreams of mask+tokens per channel. Decoder
+ * FUN_71007aa86c via bridge vt slot +0xd0 = 0x7acd68; encoder
+ * FUN_71003acb10 (makeGhostData FUN_71003aca18) materializes frames by
+ * calling the same decoder via FUN_71007acc98. Key block = 16x s16
+ * key/offset table (FUN_71007a9c5c) + one u64 mask per substream
+ * (FUN_71007a9cc0, ring 0x3ffff). Substream = mask u64 -> init (bit0)
+ * -> tokens (per set bit 1..63).
  *
- * Ghost file format:
- *   - The per-channel quantized channel objects are created by the
- *     factory FUN_71001ca6e8(s0=min, s1=max, s2=step, w1) ->
- *     QuantChannel (see recorder/QuantChannel.hpp). Selection rule:
- *     span = max(|min|,|max|) (x2 when wrap),
- *     qbits = int(log2(span/step)) + 1 (+1 when wrap); qbits >= 17
- *     -> raw memmove (0x290), 9..16 -> vec2 (0x298), < 9 -> scalar
- *     (0x288), no quant -> raw vec2-s16 (0x280).
- *   - The ghost file is per-block substreams of mask+tokens per
- *     channel. Playback decoder = FUN_71007aa86c (decode64), reached
- *     through bridge vtable slot +0xd0 = 0x7acd68 of each channel
- *     class. The encoder (FUN_71003acb10, called by
- *     RecorderDirector::makeGhostData FUN_71003aca18, slot 0x98 of
- *     vtable 0x7101261ad8) MATERIALIZES THE FRAME BY CALLING THE
- *     SAME DECODER via FUN_71007acc98 — the file format IS the
- *     mask+tokens stream.
- *   - Each key block carries a 16x s16 key/offset table written by
- *     FUN_71007a9c5c and one u64 mask per substream written by
- *     FUN_71007a9cc0 (ring, 0x3ffff wrap). Substream = mask u64 (8B,
- *     0 = idle/hold) -> init (width bytes if bit0) -> tokens (width
- *     bytes per set bit 1..63).
+ * File channel directory (stored uncompressed in the .dat; ctx setup
+ * FUN_71007a8fa8, hdr @file 0xc00): offtbl = hdr+u32[hdr+0x28], nchan =
+ * u32[hdr+0x2c], blob = hdr + 4*ceil(u32[hdr+0x10]/64) + 4*u32[hdr+0x20]
+ * + 4*nchan + 0x48, blob_len = u32[hdr+0x30] - 4*nchan. sg001: offtbl
+ * @0xf04, blob @0xf44..0x1720. dir = {u32 time_key; u16 count; u16 pad;
+ * entries[12 B]}; entry = {u32 key; u32 packed; float step}; packed: w
+ * = >>17, low16 = init/tail bytes, absent = bit16.
  *
- * Channel-object vtable cells (.rela.dyn R_AARCH64_RELATIVE addends,
- * verified with llvm-readelf on the 400 main.elf — these are the
- * authoritative values; the fb10/fb18 pair was once swapped in a stale
- * report):
- *   0x710130fb08 -> 0x71012c4778  async read-thread channel (latch
- *                                 vt[0xa0] = 0x7100628f3c, nn::os
- *                                 StartThread wrapper over this+0xd8)
- *   0x710130fb10 -> 0x71012c50d0  QUANT channel (latch slots +0xa0/
- *                                 +0xa8 NULL — read path goes through
- *                                 FUN_71007aa490 records 0xC, reloading
- *                                 +0x1f4/+0x1f8 per block)
- *   0x710130fb18 -> 0x71012c4c30  large data channel (latch vt[0xa0] =
- *                                 0x71007c2314, 4.5 KB body)
- *   0x710130fb20 -> 0x71012c4528  notify/observer, per player (pumpTag
- *                                 0x71007abd78; vt[0xa0] = 0x71007abca8)
+ * Channel key = zlib CRC32 of the registration name (poly 0xEDB88320,
+ * CRC fn 0x710062fc50, sanitizer FUN_71007a9704); verified 34/34 + 1
+ * hold (key 0x2b78e699, no matching name).
+ *
+ * Vtable cells (.rela.dyn addends, verified on 400 main.elf):
+ *   0x710130fb08 -> 0x71012c4778  async read-thread channel
+ *   0x710130fb10 -> 0x71012c50d0  QUANT channel
+ *   0x710130fb18 -> 0x71012c4c30  large data channel
+ *   0x710130fb20 -> 0x71012c4528  notify/observer, per player
  *   0x710130fb28 -> 0x71012c4650  2nd notify group, per player
- *   0x71013001d8 -> 0x71002037e4  (code) thunk table for the mgr+0x298
- *                                 sub-object (FUN_710020c124 region)
- *   0x71012fb308 -> 0x71012c3c68  generic ctor-array table (NOT a ghost
- *                                 channel; same for 0x71012fae80)
- * Playback-side rot/trans cells (recorderCreateRotTransChannels
- * 0x71007ae16c): 0x710130f908 -> 0x71012c4358, 0x710130f910 ->
- * 0x71012c4108 (trans, +0x1c4 = 4 or 6), 0x710130f918 -> 0x71012c3fe0.
+ *   0x71013001d8 -> 0x71002037e4  (code) thunk table, mgr+0x298 sub-obj
+ *   0x71012fb308 -> 0x71012c3c68  generic ctor-array table (NOT a channel)
+ *   rot/trans (71007ae16c): 0x710130f908 -> 0x71012c4358,
+ *   0x710130f910 -> 0x71012c4108 (trans), 0x710130f918 -> 0x71012c3fe0
  *
- * Position series model:
- *   - The position series is Ramer-Douglas-Peucker simplified:
- *     FUN_71007b37d8 (prepare FUN_71007b3734) walks f32 pairs at
- *     stride 8 with eps = [ch+0x1f0] and SETS ONE BIT PER KEPT POINT
- *     in a u32 bitmap. The substream mask IS the RDP keep-bitmap,
- *     not a tick mask. Values quantize as f * [ch+0x1f4] (trans
- *     channel: +0x1f4 = 16.0 => file scale x16 == x0.0625 empirical)
- *     with clamp [ch+0x280..0x284]; payload = 2x strb, 1 B/component,
- *     count = [ch+0x1c4].
- *   - Frame layout: [mask u64, bit0 = init flag][if bit0: init frame
- *     of the PAIRED channel, read inline and variable-size via
- *     vt[+0xa0] -> 0x7acd68 -> 0x7aa86c][per kept point: payload].
- *     Writer FUN_71007a9cc0 / FUN_71007a9d48; reader FUN_71007aa86c
- *     (read side: vt[+0xb0]/[+0xb8]; quantize pair at vt[+0xf8]).
- *
- *     READER FUN_71007aa86c (structure-faithful port; decode of one
- *     64-bit-mask frame into a 64-slot output array):
- *       - Token payload address = [writer+0x108] +
- *         ((cursor - hdr - hdrLen) & 0x3ffff), with hdr = [writer+0x10]
- *         and hdrLen = s32[hdr+4]. The writer cursor at +0xc8 is
- *         CONTINUOUS across frames: the reader adds 8 for the mask slot
- *         up front, then adds each sub-reader's returned byte count
- *         (init reader and per-point readers alike).
- *       - bit0 (init): dispatched through vtable slot +0xb0 of the
- *         channel — that slot is 0x7acd68, which chains with
- *         x0 = [x3 + 0x78] into the frame reader FUN_71007aa86c again:
- *         the init payload is a full NESTED frame of the PAIRED channel
- *         with variable size (for the trans channel it is 1 B flag +
- *         8 B of rot init data). When bit0 is clear, the "no init"
- *         hook at vtable slot +0xc0 runs instead.
- *       - bits 1..63 (sampled points): per-point reader at vtable slot
- *         +0xb8 writes to out + stride*bit and its return value advances
- *         the cursor.
- *       - Unset bits between two sampled points are filled by the
- *         interpolator at vtable slot +0xe8 (ch, dstElem, prevElem,
- *         curElem, t) with t = j/gap passed as the float register s0.
- *       - When bit63 is set, the init/interp of the tail pass is
- *         SKIPPED and all 64 slots are filled from the tail of the
- *         second cursor at +0xd8: its own mask slot is read, init (bit0
- *         via +0xb0) or no-init (+0xc0) fills the anchor element, the
- *         interpolator (+0xe8) fills the remaining slots, and the tail
- *         cursor advances by width*(popcount(mask)-1) + popcount(low16)
- *         where width = [ch+0x1c4] (plus 8 for its mask slot). In that
- *         case *outCount = 0x40.
- *   - RING-WRITE FACTS (FUN_71007a9cc0 single point, FUN_71007a9d48
- *     full frame): each writes 8 B / the materialized payload into the
- *     token ring at rel = ([writer+0xc8] - hdr - hdrLen) & 0x3ffff.
- *     When a write would cross the 256 KiB window (signed rel <
- *     -0x40000; constants 0xfff9/0x30000 in the compare encoding) the
- *     wrapped head bytes are reconstructed with a memmove from the
- *     staging buffer BEFORE the store, then the writer cursor advances
- *     by the written size.
- *   - e18 "trans" channel: width 6, low16 = 9 (= 1 B flag + 8 B nested
- *     rot init), step 16.0. Its vtable slot +0xa0 is the latch thunk
- *     FUN_71007b394c = a single tail branch (b) to 0x7acd68 (nested
- *     frame latch with x0 = [x3+0x78]); slot +0xa8 is `mov w0, #1; ret`.
- *   - Substreams are INTERLEAVED inside a channel slice, not
- *     concatenated: the per-block directory FUN_71007aa6e0 holds
- *     0xC-byte records {key, packed, flags} and computes the payload
- *     offset as (popcount(a)+popcount(b)-1) * (rec>>17) + (u16)rec
- *     over two u32s pulled from cursors +0xc8/+0xd8 (popcount helper
- *     = 0x710061b7a0). A decoder assuming back-to-back frames will
- *     not close the stream (proven: no constant (init,W) pair closes
- *     all blocks).
- *
- * Channel directory IN THE GHOST FILE (
- * sg001 .dat + 400 ELF):
- *   The 0xC-byte records consumed by the binder FUN_71007aa490 are not
- *   runtime state — they are stored uncompressed in the .dat between the
- *   Yaz0 stream table and the first stream. Setup formulas (ctx setup
- *   FUN_71007a8fa8, hdr = table section at file 0xc00):
- *     offtbl   = hdr + u32[hdr+0x28]        (16 x u32, [ctx+0x70])
- *     nchan    = u32[hdr+0x2c]              (16, [ctx+0x78])
- *     blob     = hdr + 4*ceil(u32[hdr+0x10]/64) + 4*u32[hdr+0x20]
- *                + 4*nchan + 0x48           ([ctx+0x80])
- *     blob_len = u32[hdr+0x30] - 4*nchan
- *   sg001: offtbl @0xf04, blob @0xf44..0x1720 (0x7dc B); dir(ch) =
- *   blob + u32[offtbl + 4*ch]. Playback memcpys the blob (0x7a9fc8) and
- *   the binder 0x7aa490 consults the copy. Layout:
- *     dir   = { u32 time_key; u16 count; u16 pad; entries[12 B] }
- *     entry = { u32 key; u32 packed; float step }
- *     packed: w = packed >> 17 (bytes/token), low16 = packed & 0xffff
- *             (init/tail bytes), absent = bit 16 (the u8[rec+0xE]&1
- *             checked by the reader FUN_71007aa6e0)
- *   Binder: matches u32[dir] == frame time_key, then entry.key == time_key
- *   -> [obj+0x1f4] = step, [obj+0x1f8] = 1/step, [obj+0x19c] = index;
- *   entry is consumed (zeroed).
- *
- * CHANNEL KEY RULE (verified 34/34 + 1 hold on sg001): the key of a
- *   channel record is zlib CRC32 of the registration name (poly
- *   0xEDB88320, standard table init at 0x710130d5a8, CRC function
- *   0x710062fc50); generated at registration by the label sanitizer /
- *   key generator FUN_71007a9704 (called from FUN_71007a98e0 with w1 in
- *   {0,1,2}). The shared hold entry key 0x2b78e699 is the only key with
- *   no matching name.
- *
- * FULL CHANNEL MAP — ch5 kart channel directory, 35 entries, sg001
- *   (key = crc32(name); w = packed>>17; step = f32 of the 12 B record;
- *   order of entries = order of registration):
- *
- *     e00  (hold, shared by all 16 dirs)  0x2b78e699  w0 step 256
- *     e01  RecorderKartUnit               0x8460294b  w0 absent
- *     e02  RecorderKartVehicleDrift       0xe457ff2c  w0 absent
- *     e03  p_state                        0xe96d9091  w1 step 256
- *     e04  p_mini_turbo_level             0x68805871  w1 step 256
- *     e05  p_mini_turbo_counter           0x618b386a  w2 step 16
- *     e06  p_ollie_pos_y                  0x7ae730ab  w2 step 256
- *     e07  RecorderKartVehicleDash        0x1faf9d2b  w0 absent
- *     e08  p_is_on                        0x4efbfd83  w0 step 256
- *     e09  p_level                        0xd0148e79  w1 step 256
- *     e10  p_dash_event                   0xbd1f8cfd  w4 step 256
- *     e11  p_frame                        0xff067ea7  w2 step 32.767
- *     e12  RecorderKartVehicleMove        0x6bff7753  w0 absent
- *     e13  p_drive_speed                  0x9e733007  w1 step 12.7
- *     e14  p_drive_speed_ratio            0x447b4655  w1 step 12.7
- *     e15  p_gravity_vec                  0x246744dc  w4 step 511
- *     e16  p_move_mtx                     0xc47dfeb5  w0 absent
- *     e17  rot                            0x1d39a761  w6 step 10239.7
- *     e18  trans                          0x70211ebd  w6 (low16 9) step 16
- *     e19  p_collided_ground              0xa9931b71  w0 step 256
- *     e20  p_collided_wall                0xbe82dc88  w0 step 256
- *     e21  p_ground_pos                   0x5c964855  w4 step 5.11
- *     e22  p_air_counter                  0x49dad806  w1 step 1
- *     e23  mGndAttr                       0x7424cd65  w1 step 256
- *     e24  mOnDirtRate                    0xac0c0c37  w1 step 255
- *     e25  mbAntiGColSpin                 0x42926a62  w0 step 256
- *     e26  p_collided_wall_object         0xb910eef5  w0 step 256
- *     e27  RecorderKartVehicle            0xf047cdad  w0 absent
- *     e28  p_anti_gravity_rate            0x551b3af0  w1 step 128
- *     e29  p_state_flag                   0x12446453  w4 step 256
- *     e30  p_xlu_alpha                    0x44cf613a  w1 step 255
- *     e31  p_control_flag                 0x4de15b86  w2 step 256
- *     e32  p_killer_end_ratio             0x7207db75  w1 step 255
- *     e33  mSteerX                        0xcb180245  w1 step 127
- *     e34  p_start_dash_charge            0x1db4e28f  w1 step 255
- *
- *   "w0 absent" entries (RecorderKartUnit, RecorderKartVehicleDrift,
- *   RecorderKartVehicleDash, RecorderKartVehicleMove, RecorderKartVehicle,
- *   p_move_mtx) are the raw/large-data channels delivered through a
- *   different mechanism than the mask+token stream (bit16 set, no tokens
- *   in this directory). ch5 count = 35 = substreams el0..el34 of the
- *   blocks; entry e00 is SHARED by all 16 channel dirs (key 0x2b78e699,
- *   packed 0, step 256) = global hold element.
- *
- * Known channel identity map (empirical + decomp, sg001):
- *   ch4 = tick counter u16 (anchor), ch5 = p_move_mtx translation
- *   (RDP, 3x s16, x0.0625), ch14 = mSteerX (-1,1,0.1), ch15 = LAP
- *   COUNTER (laps remaining 3->2->1->0, transitions at exact race
- *   thirds + constant u8 companion 7; the mini-turbo/dash candidate
- *   is refuted by decomp). recorderSetupKartStateChannels_71003aed50
- *   registers, in order: self (NULL name, memcpy 0x40),
- *   p_anti_gravity_rate (u8, 1/128), p_state_flag, p_xlu_alpha
- *   (quant 0,1,0.1), p_control_flag, p_killer_end_ratio (quant
- *   0,1,0.1), mSteerX (quant -1,1,0.1), p_start_dash_charge (quant
- *   -1,1,0.05; idle token 20). ch15 matches none of these — its
- *   registration call-site is still unlocated (search the remaining
- *   addChannel_71007ac0cc sites).
- *   recorderCreateRotChannel_710088ad40
- *                                   "rot" channel factory (0x290/0x288
- *                                   binder pair, 3/9-int writers)
- *   recorderSetupKartChannels_71003aef8c / recorderSetupKartStateChannels_71003aed50
- *                                   per-kart float channel setup
- *                                   (p_drive_speed..., mSteerX, p_*)
- *   recorderCalcKartMatrix_71003afaa4 / recorderUpdateKartInvMatrix_71003b0124
- *   recorderCalcKartPointDots_71003af2f4 / recorderCalcKartPosFromDots_71003af3f8
- *                                   per-kart per-frame float calcs
- *                                   (kart recorder context: mgr at
- *                                   +0x280, out at +0x288)
- *   getRecorderInstance_*           one bss cell per channel descriptor
- *                                   cluster (0x71013078b8..0x71013079xx)
- *   getRecorderKart*Name_*          vtable name getters returning the
- *                                   channel registration strings
- *
- * Channel registration names seen in rodata:
- *   RecorderKartUnit, RecorderKartChassis, RecorderKartChassisPackun,
- *   RecorderKartTire, RecorderKartTireMark, RecorderKartDriver,
- *   RecorderKartEvent, RecorderKartVehicleMove, RecorderKartCamera,
- *   RecorderKartVehicleDrift, RecorderKartVehicleDash,
- *   RecorderKartVehicle, RecorderModelMiiExpression, RecorderAudio,
- *   RecorderVoice, RecorderItem
- * plus float channels: p_drive_speed, p_drive_speed_ratio,
- *   p_gravity_vec, p_move_mtx, _dash_charge, p_collided_ground,
- *   p_collided_wall, p_ground_pos, p_air_counter, mGndAttr,
- *   mOnDirtRate, mbAntiGColSpin, p_collided_wall_object, at/up/back/
- *   dist/fovy.
- *
- * Schema/type tags in rodata (replay frame format):
- *   Recorder, RecorderValid, RecorderWarp, RecorderBool, RecorderKey,
- *   RecorderF32[Comp][Loop], RecorderFlg[Comp],
- *   RecorderVector2f/3f[Comp4/6[Auto]], RecorderLnQuatfComp4/6,
- *   RecorderMatrix33f/34f[Comp4/6], Recorder*MtxT, RecorderObject*,
- *   RecorderSkeletalAnm, RecorderMaterialAnm, RecorderModel[...],
- *   RecorderXLink*, RecorderEffect, RecorderRaceEvent.
- *
- * Per-kart instances live on the KartVehicle itself: the 0x298 key/writer
- * at KartVehicle+0x80 (object/Kart/KartRecorderKey.hpp) and the 0x2B8
- * Registry hub at KartVehicle+0x88 (object/Kart/KartRecorderChannels.hpp,
- * setup recorderSetupKartStateChannels_71003aed50); both only allocated
- * while the recorder is active.
- *
- * NOTE: the 400 binary carries no RTTI typeinfo names for game
- * classes, so "Binder"/"Mgr"/"Registry" are our layout names; the
- * rodata Recorder* strings above are registration/schema tags, not
- * proven class names. Only object::RecorderDirector is upstream named.
+ * NOTE (proven): substream mask = RDP keep-bitmap (FUN_71007b37d8), not
+ * a tick mask; substreams are INTERLEAVED in a channel slice, not
+ * concatenated (no constant (init,W) pair closes all blocks).
+ * NOTE: playback reuses the recording calc (FUN_71007aaf68) as the only
+ * write path — no special warp path.
+ * OPEN: ch15 = lap counter; its registration call-site is unlocated.
+ * NOTE: no RTTI typeinfo names in the 400 binary — "Binder"/"Mgr"/
+ * "Registry" are our layout names; only object::RecorderDirector is
+ * upstream named.
  */
 
 namespace recorder {
 /*
      * Global recorder manager (instance pointer in bss cell
-     * 0x710130f7c8). Layout from Binder ctor/calc reads.
+     * 0x710130f7c8; ctor FUN_71007b7634, 0x210 bytes). Gate/state/stream
+     * offsets proven by the playback tick FUN_71007b8480.
      */
 struct Mgr {
-  uint8_t pad00[0x21];
-  uint8_t enabled;  // 0x021 — calc gate; 0 disables all binders.
-                    // Playback read path (see block below the struct): +0x20
-                    // armed gate, +0x22 enabled gate set by the director,
-                    // +0x28 binder count / +0x30 binder list, +0x58 stream,
-                    // +0xd8 state {0,1,5,6}, +0xdc substate, +0x100 frame
-                    // time f32 decoded to +0x108 key / +0x110 frac
-  uint8_t pad22[0x5e];
+  uint8_t pad00[0x20];
+  uint8_t armed;      // 0x020 — tick gate (with +0x22)
+  uint8_t enabled;    // 0x021 — calc gate; 0 disables all binders
+  uint8_t dirGate;    // 0x022 — gate set by director 0x71003ab8d0
+  uint8_t pad23[0x5];
+  uint32_t binderCount;  // 0x028 — binder count
+  void* binderList;      // 0x030 — binder list
+  void* stream;          // 0x058 — stream (frame source)
+  uint8_t pad60[0x20];
   void* dataTable;  // 0x080 — base added to per-channel idx for cb args 1
-  uint8_t pad88[0x58];
+  uint8_t pad88[0x50];
+  int32_t state;         // 0x0d8 — state ∈ {0,1,5,6}
+  int32_t substate;      // 0x0dc — substate (zeroed at tick)
   int32_t flagOffA;      // 0x0e0 — binder byte offset (added to +0x1bb) for the src gate
   int32_t flagOffB;      // 0x0e4 — binder byte offset (added to +0x1bb) for the s8 seed gate
   uint8_t useMatrixArg;  // 0x0e8 — selects arg layout/seed path in binder calc
   uint8_t padE9[0x7];
   int32_t* tableA;  // 0x0f0 — int table (src read / cb arg 2)
   int32_t* tableB;  // 0x0f8 — int table (dst read / cb arg 3)
-  uint8_t pad100[0x10];
-  float seed;  // 0x110 — float seed for cb arg 4 when binder+0x1b8 is clear
+  float frameTime;  // 0x100 — frame time f32 (decoded by FUN_71007b8480)
+  uint8_t pad104[0x4];
+  uint32_t frameKey;  // 0x108 — int key decoded from frameTime
+  uint8_t pad10c[0x4];
+  float seed;  // 0x110 — frac of frameTime / cb arg 4 seed when binder+0x1b8 clear
   uint8_t pad114[0xfc];
 };
-/*
- * Playback state machine facts (FUN_71007b8480 + FUN_71007b78b4):
- * - Tick chain: director 0x71003ab8d0 holds 14 Mgr pointers at +0x40..0xa0;
- *   sets each Mgr gate +0x22 (0x71003ab90c..0x3ab96c) and calls
- *   FUN_71007b77b0 per Mgr; the tick requires gates +0x20 (armed) and
- *   +0x22 (enabled), zeroes +0xdc, then runs FUN_71007b8480.
- * - FUN_71007b8480: state mgr+0xd8 ∈ {0,1,5,6}, substate +0xdc; reads the
- *   frame from stream mgr+0x58, decodes float time mgr+0x100 into int key
- *   mgr+0x108 / frac mgr+0x110, calls FUN_71007b7a74 (pre-step), then
- *   FUN_71007abd78 notifies the binders (count mgr+0x28, list mgr+0x30,
- *   tag w20 = 2 when state == 6, else 1) and dispatches binder calc via
- *   vtable slot +0x100 of the context *(mgr+0x00) (context assembled by
- *   FUN_71007b78b4, which arms the Mgr).
- * - Pose application has NO special warp path: the single WRITE path is
- *   recorderBinderCalc_71007aaf68 writing the decoded values into the
- *   owner's bytes — playback reuses the recording calc with the stream as
- *   source. The 0x499xxx/0x539xxx/0x53exxx callers are menu/trial state
- *   machines (4a8978 loader tick, 4a8a10 states 0x68/0x69/0x6a, 4a8ce0
- *   cleanup, 539af8 external gating).
- */
+// NOTE: binders notified via FUN_71007abd78 (tag 2 when state == 6, else 1);
+// calc dispatched through vtable slot +0x100 of context *(mgr+0x00).
 
 /*
- * Playback / mgr-side chain (ghost replay setup + per-kart ctx family;
- * ports 2026-10-09..14, addresses verified against the decomp TUs):
- *
- *   FUN_710020c6fc — playback setup on the Mgr (x0):
- *     1. Stack key {mgr+0x38, [mgr+0x40], u8[[mgr+0x130]], 0x01010101
- *        pad, flag 1 (key[0x1e])}; 0x88e23c(mgr+0x38, key) -> [mgr+0xe0].
- *     2. new 0x278 Binder (ctor recorderBinderCtor_71007aae24), stored at
- *        [mgr+0x2f0]; FUN_71007ab1b8(binder, 0); binder+0x208 = rodata
- *        0xedec85.
- *     3. new 0x2e0 playback ctx; name = FUN_710020f3a8(2); idx =
- *        FUN_710069ff88([mgr+0x40], {vt(GOT cell 0x71012fae28)+0x10, name}).
- *     4. FUN_71007b19f4(ctx, stream, idx, flag 1); then
- *        addChannel_71007ac0cc([mgr+0x2f0], ctx, NULL name).
- *     5. t = FUN_71007f7ac0(); slot = [t + min(u32[sp],0xa)*8 + 0x190];
- *        FUN_7100889278([slot+0x230], [mgr+0x2f0]) — ALWAYS called.
- *
- *   FUN_7100889278 (0x34 B) — attach ctx to mgr: if byte [mgr+0x1d0]
- *     != 0 (stream attached), calls FUN_71007b7758([mgr+0x40], child)
- *     (stream-side register, 0x88 B, not decompiled) and zeroes
- *     [child+0x214] (back-pointer slot polled by the tick path).
- *
- *   FUN_710069ff88 (124 B) — registry lookup by name key: walks
- *     items at [reg+0x38] (count u32 [reg+0x30]); each item holds a
- *     handle, entry = *handle; matcher = entry vtable slot 0x38
- *     (entry, key) returning inner index; result = (inner << 16) |
- *     entryIdx, 0xffffffff on miss / empty.
- *
- *   FUN_71006a0080 — push dispatcher: for each entry of the container's
- *     table ([self+0x38], count u32 [self+0x30], stride 8, obj = *e),
- *     tail-calls obj vtable slot +0xa8 — the virtual PUSH slot of the
- *     ghost playback class family. Also invoked by the write-back path
- *     FUN_71007b151c step 5.
- *
- *   streamableRegistryLookup_71006b9394 — NAME -> META lookup used by
- *     the frame-record builder chain (scene montador 0x6bb144 -> meta
- *     -> 0x6ac198 -> 0xa7141c -> ... -> 0xa7b414). Registry: intrusive
- *     list, head sentinel this+0x38, end this+0x40, slot size s32
- *     this+0x4c (negated while walking), list lock this+0x50 (thunks
- *     0x628714/0x628724). Each resource R: R+0x30 = trie root (0 ->
- *     skip), R+0x28 = meta-array base, R+0x174 bit5 = in-use (helper
- *     0x6b6e4c under the resource lock at R+0x188). Critical-bit trie
- *     keyed by [key+8] (vt slot 0x18 of key supplies a name object,
- *     side effects only), read LAST CHARACTER FIRST; 0x10-byte trie
- *     entries (u32 node word, u16 next-slot idx, leaf ptr at +8 ->
- *     {u16 len; char name[len]}). Match: metaOffset =
- *     ((leafEntry - (root+0x18)) >> 4) * 0x78 + [R+0x28]; meta == 0
- *     means "not present".
- *
- *   FUN_710062ee28 (96 B, byte-exact) — xorshift128 state seed
- *     (init_genrand-style): w0 = nn::os::GetSystemTick(); each s(i+1)
- *     = (s(i) ^ (s(i)>>30)) * 0x6c078965 + i+1, four u32s stored at t.
- *     Caller: KartDirector osc timer directorTickSlot17_710013eaec.
- *     (RaceDirectorManager.hpp mentions "object built by 0x62ee28" at
- *     +0x08 — same function, it emits the 16-byte seeded state block.)
- *
- *   Per-kart replay ctx family (the objects the per-tick
- *   FUN_71007b1968/FUN_71007b1cc8/FUN_71007b1f8c run on):
- *
- *   FUN_71007b19f4 — ctor of the 0x2e0 ctx (layout in
- *     recorder::PlaybackKartCtx below). vptr = bss cell 0x710130fb38 +
- *     0x10 (re-set after the seed call); state at +0x2b0 seeded by
- *     recorderCreateRotTransChannels_71007ae16c(ctx, ctx+0x2b0, 0, 0)
- *     = identity. When flag bit0: allocates a 0x280 sibling binder
- *     (vptr cell 0x710130fb10+0x10, +0x1c0=0xc, +0x1c4=4, +0x1f0=
- *     64.0f, +0x1f4=0.01f, +0x1f8=0.015625f, +0x278 = ctx+0x2a4 i.e.
- *     the lens triplet) and registers it under rodata name
- *     0x7100f0589c via addChannel_71007ac0cc (tail call).
- *
- *   FUN_71007b1874 — sibling ctor, DIFFERENT class (vptr cell
- *     0x710130fb30 + 0x10): +0x290 u32 frame idx, +0x294 u8 applyLens,
- *     state at +0x2a4 seeded with selA=1, selB=0; +0x298 cache/link
- *     target. Sibling binder (same 0x280 shape, +0x278 = ctx+0x298)
- *     registered as "scale" (same rodata 0x7100f0589c). Afterwards it
- *     UNCONDITIONALLY stamps the factory-created binder at [ctx+0x280]
- *     with +0x1f0=0.2f, +0x1f4=4.0f, +0x1f8=0.25f.
- *
- *   FUN_71007b1f8c — per-tick state update (variant B, WITH commit):
- *     if second channel (+0x294/+0x296 s16 pair) != -1/-1: evaluates it
- *     via stream table [stream+0x38][idx], obj vtable slot +0x70 (out,
- *     sub), column-normalizes the 3x4 result (eps = rodata 0xed58e0;
- *     zero-norm columns -> 0) and does state = M · state (asm lane
- *     pattern 0x7b2210: out[i][k] = sum_j state[j][k]*M[j][i], lane 3
- *     += M[i][3]). Else: state = state · (cached matrix at +0x298) RAW
- *     (no normalize/invert); null cache skips the multiply entirely.
- *     Then if byte +0x2a0: scales the three rotation COLUMNS of state
- *     by lens[0..2] (+0x2a4/08/0xac). Commit: FUN_71006a0058(stream,
- *     &idx, state) — record vtable slot +0x68.
- *
- *   FUN_71007b1460 — delta-cache ctx PULL (family layout: +0x278
- *     binder link, flag bytes +0x290/0x291/0x292, +0x298 u32 mask,
- *     +0x29c u8 result, +0x2a0/04/08 u32 lens triplet):
- *     byte +0x292 -> rebuild mask from binder entries ([binder+0x38][i],
- *     flag byte entry+0x1e bit 0x20); byte +0x290 -> pull binder lens
- *     [binder+0x80/84/88]; byte +0x291 -> +0x29c = FUN_71006a01ac(
- *     binder, 0) & 1.
- *
- *   FUN_71007b151c — WRITE-BACK path (mirror of the pull): +0x292 ->
- *     apply mask to each entry flag byte (|0x20 / &~0x20); +0x290 ->
- *     binder+0x98 |= 1 and push the lens triplet back; +0x291 ->
- *     FUN_71006a00c4(binder, +0x29c, 0); then two edge-triggered
- *     steps with dirty-byte rotates: (+0x28c >= 1 && +0x2ad &&
- *     !+0x2ac) -> per binder entry drain o->vt[0xb0] count x
- *     o->vt[0x198](o, j) (results discarded; count re-evaluated per
- *     iteration), rotate +0x2ad = +0x2ac, +0x2ac = 0; (+0x288 >= 1 &&
- *     +0x2af && !+0x2ae) -> FUN_71006a0080(binder), rotate +0x2af =
- *     +0x2ae, +0x2ae = 0.
- *
- *   FUN_71007b16d0 / interior commit 0x7b17ac — incremental delta
- *     maintenance between a stream binder and a ctx caching 3 matrix
- *     rows: ctx +0x278 binder link, +0x288 stream binder (stream
- *     matrix rows at stream+0x50/0x60/0x70), +0x290 u64 flag/pointer
- *     to a 0x30 matrix, +0x298 cache A (rows 0/1/2 at +0x298/0x2a8/
- *     0x2b8). Update: if the +0x290 ptr is non-null, invert cache A in
- *     place (invertAffine3x4_71000c9c64) and row-fold the stream
- *     matrix through it; first run caches the stream rows verbatim.
- *     Commit 0x7b17ac (interior — no own symbol in file_list.yml):
- *     stamps stream+0x98 |= 1, then either copies the caches into the
- *     stream rows (ptr null) or computes streamM_row_i =
- *     cacheA*m[0][i] + cacheB*m[1][i] + cacheC*m[2][i] (+ m[i][3] on
- *     lane 3) — the same NEON lane pattern as FUN_71007b1cc8/1f8c.
+ * Playback-side function index (details in the decomp TUs):
+ *   FUN_710020c6fc  mgr playback setup (new 0x278 Binder @mgr+0x2f0;
+ *                   new 0x2e0 PlaybackKartCtx; addChannel)
+ *   FUN_7100889278  attach ctx to mgr (gated on byte mgr+0x1d0)
+ *   FUN_710069ff88  registry lookup by name key: ret (inner<<16)|entryIdx
+ *   FUN_71006a0080  push dispatcher (vt slot +0xa8 = playback PUSH slot)
+ *   FUN_71006b9394  name->meta critical-bit trie lookup (meta==0 = absent)
+ *   FUN_710062ee28  xorshift128 seed (4x u32) from GetSystemTick
+ *   FUN_71007b19f4  PlaybackKartCtx ctor (vptr cell 0x710130fb38+0x10)
+ *   FUN_71007b1874  sibling ctx ctor (vptr cell 0x710130fb30+0x10; state
+ *                   at +0x2a4, applyLens at +0x294, frame idx +0x290)
+ *   FUN_71007b1f8c  per-tick state update + commit (FUN_71006a0058,
+ *                   stream vt slot +0x68)
+ *   FUN_71007b1460 / FUN_71007b151c  delta-cache ctx pull / write-back
+ *                   (flag bytes +0x290/0x291/0x292, mask +0x298, result
+ *                   +0x29c, lens triplet +0x2a0/04/08)
+ *   FUN_71007b16d0  incremental matrix delta (interior commit 0x7b17ac,
+ *                   no own symbol; cache A rows +0x298/0x2a8/0x2b8)
  */
 
 /*
@@ -560,17 +226,10 @@ void recorderBinderCalc_71007aaf68(Binder*);
 void addChannel_71007ac0cc(Registry*, Binder*, const char* name);
 
 // FUN_71007b9400 — quantized-float channel factory (write side; obj
-// 0x280 B). Bucket count from eps over [min,max] via logf/exp2f:
-//   range*inv_res < 1  -> raw channel (cell 0x710130fb10 vtable,
-//                         +0x1c0 = 12, +0x1c4 = 4)
-//   tokens >= 17       -> saturated quant, 12 values, format 6
-//                         (cell 0x710130fe78 + 0x10)
-//   11 <= tokens < 17  -> quant with power-of-two step 2^k
-//   tokens < 11        -> fine quant (cell 0x710130fb10),
-//                         +0x1f4 = (2^ceil-1)/range, +0x1f8 = 1/step
-// Variant FUN_71007b95a8 allocates 0x288 B (extra +0x280 float pair).
-// The playback-side factory FUN_71001ca6e8 (see QuantChannel.hpp) is
-// a different, mirror implementation.
+// 0x280 B). Tokens from eps over [min,max]: <1 -> raw 0x290-class
+// variant, >=17 -> saturated quant (cell 0x710130fe78), 11..16 -> pow2
+// step, <11 -> fine quant (cell 0x710130fb10; +0x1f4/+0x1f8 = step).
+// FUN_71007b95a8 = 0x288 B variant; playback mirror = FUN_71001ca6e8.
 Binder* createQuantChannel_71007b9400(void* owner, float min, float max,
                                       float eps);
 
@@ -584,8 +243,8 @@ void createRotChannel_710088ad40(void* ctx, void* param, int selA, int selB);
 int invertAffine3x4_71000c9c64(void* out /*12 floats*/, const void* in);
 
 /*
-     * Per-kart replay ctx (0x2e0 bytes; ctor FUN_71007b19f4 — see the
-     * playback chain docblock above). Mirrored from the ctor/1f8c reads.
+     * Per-kart replay ctx (0x2e0 bytes; ctor FUN_71007b19f4). Mirrored
+     * from the ctor / FUN_71007b1f8c reads.
      */
 struct PlaybackKartCtx {
   void* vtable;         // 0x000 — bss cell 0x710130fb38 + 0x10
@@ -609,9 +268,8 @@ struct PlaybackKartCtx {
 // FUN_71007b19f4 — playback ctx ctor (0x2e0; see docblock above).
 void playbackKartCtxCtor_71007b19f4(void* ctx, void* stream, int idx, int flag);
 
-// FUN_71007b1874 — sibling playback ctx ctor (different class, vptr cell
-// 0x710130fb30+0x10; state at ctx+0x2a4, applyLens u8 at +0x294; see
-// docblock above).
+// FUN_71007b1874 — sibling playback ctx ctor (vptr cell 0x710130fb30+0x10;
+// state at +0x2a4, applyLens u8 at +0x294).
 void playbackKartCtxCtorScale_71007b1874(void* ctx, void* stream, int idx,
                                           int flag);
 
@@ -620,7 +278,8 @@ void playbackKartCtxCtorScale_71007b1874(void* ctx, void* stream, int idx,
 void playbackKartCtxTick_71007b1f8c(void* ctx);
 
 // FUN_71007b1460 / FUN_71007b151c — delta-cache ctx pull / write-back
-// pair (family layout in the docblock above).
+// pair (family layout: flags +0x290/91/92, mask +0x298, result +0x29c,
+// lens +0x2a0/04/08, binder link +0x278).
 void playbackDeltaPull_71007b1460(void* ctx);
 void playbackDeltaWriteback_71007b151c(void* ctx);
 
@@ -628,7 +287,7 @@ void playbackDeltaWriteback_71007b151c(void* ctx);
 // at 0x7b17ac has no own symbol).
 void playbackDeltaMatrixUpdate_71007b16d0(void* ctx);
 
-// FUN_710020c6fc — mgr-side playback setup (see docblock above).
+// FUN_710020c6fc — mgr-side playback setup.
 void playbackSetupMgr_710020c6fc(void* mgr);
 
 // FUN_7100889278 — attach ctx to mgr (gated on byte mgr+0x1d0;
@@ -647,8 +306,7 @@ void pushDispatcher_71006a0080(void* self);
 // nn::os::GetSystemTick; caller directorTickSlot17_710013eaec.
 void xorshift128Seed_710062ee28(void* t);
 
-// streamableRegistryLookup_71006b9394 — NAME -> META trie lookup
-// (see docblock above); returns the meta pointer or NULL.
+// FUN_71006b9394 — name->meta trie lookup; returns meta ptr or NULL.
 void* streamableRegistryLookup_71006b9394(void* self, void* key);
 
 /*

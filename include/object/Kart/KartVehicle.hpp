@@ -22,15 +22,12 @@
 #include "KartRecorderChannels.hpp"
 #include "KartParameter.hpp"
 
-// Canonical KartVehicle layout (byte-exact offsets verified against the v400 binary).
-//
-// Subobject allocation table (proven by operator new sites in the ctor
-// 0x7100170100-0x7100170460): Control 0x70 @+0x10, Cpu 0x90 @+0x18,
-// Net 0x42D8 @+0x20, Move 0x5F8 @+0x28, Trick 0x1A0 @+0x30, Body 0x160
-// @+0x38, React 0x90 @+0x40, Collision 0x2D0 @+0x48 (ctor 0x139838),
-// Chassis 0x510 @+0x50, ChassisAnim 0x130 @+0x58, HeadLight 0x130 @+0x60
-// (ctor 0x140514), SusKit 0x128 @+0x68 (ctor 0x15dd9c), Balloon 0xAB8
-// @+0x70 (ctor 0x1142e4), SteerAssist 0x120 @+0xA0 (conditional on mIsMaster).
+// Canonical KartVehicle layout (byte-exact offsets, v400).
+// Subobject sizes proven by operator new sites in ctor 0x7100170100-0x7100170460:
+// Control 0x70@0x10, Cpu 0x90@0x18, Net 0x42D8@0x20, Move 0x5F8@0x28, Trick 0x1A0@0x30,
+// Body 0x160@0x38, React 0x90@0x40, Collision 0x2D0@0x48 (ctor 0x139838), Chassis 0x510@0x50,
+// ChassisAnim 0x130@0x58 (ctor 0x12289c), HeadLight 0x130@0x60 (ctor 0x140514),
+// SusKit 0x128@0x68 (ctor 0x15dd9c), Balloon 0xAB8@0x70 (ctor 0x1142e4), SteerAssist 0x120@0xA0.
 namespace object {
 
 class KartVehicle {
@@ -53,8 +50,7 @@ class KartVehicle {
                                             // u8 flag at this subobject's +0x18
   KartVehicleCpu* mKartVehicleCpu;          //0x18 — same +0x18 u8 flag (FUN_7100172e90)
   KartVehicleNet* mKartVehicleNet;          //0x20 — same +0x18 u8 flag (FUN_7100172e90)
-  KartVehicleMove* mKartVehicleMove;        //0x28 — deref +0x118 (boost slot) and +0x37c;
-                                            // FUN_7100173234/324c read its +0x8 subobject
+  KartVehicleMove* mKartVehicleMove;        //0x28 — deref +0x118, +0x37c (FUN_7100173234/324c)
   KartVehicleTrick* mKartVehicleTrick;      //0x30
   KartVehicleBody* mKartVehicleBody;        //0x38
   KartVehicleReact* mKartVehicleReact;      //0x40
@@ -118,8 +114,7 @@ class KartVehicle {
   bool mIsEndTeresaTrigger;                 //0xEB
   bool mIsGoalGhostAlone;                   //0xEC
   uint8_t mPadED[7];                        //0xED - 0xF3 — unproven padding
-  float mF_f4;                              //0xF4 — float; multiplied with getKartUnitF32F90 and stored
-                                            // to +0x26C by the ctor helper 0x170548 (0x170588-0x1705a4)
+  float mF_f4;                              //0xF4 — factor into +0x26C via helper 0x170548
   uint8_t mPadF8[0xC];                      //0xF8 - 0x103 — unproven padding
   uint32_t mChassisMirror19C;               //0x104 — copied to KartChassis+0x19C by helper
                                             // 0x170548 (0x1705b8)
@@ -130,10 +125,7 @@ class KartVehicle {
   uint8_t mPad120[0x0C];                    //0x120 - 0x12B — unproven padding
   float mCameraShownHeight;                 //0x12C
   uint8_t mPad130[0x20];                    //0x130 - 0x14F — unproven padding
-  float mWaterDepth;                        //0x150 — UNCERTAIN: no ldr/str with
-                                            // displacement #0x150 exists in the KartVehicle
-                                            // accessor range; runtime writer not located.
-                                            // The real water state is +0x29C/+0x2A4 (below)
+  float mWaterDepth;                        //0x150 — UNCERTAIN: no accessor found; real water state is +0x29C/+0x2A4
   uint8_t mPad154[0x10];                    //0x154 - 0x163 — unproven padding
   float mBikeConst164;                      //0x164 — ctor picks from table 0xf20898 indexed by
                                             // mIsHangOnBike (0x1704f4-0x17051c)
@@ -141,31 +133,18 @@ class KartVehicle {
   uint8_t mPad16C[4];                       //0x16C - 0x16F — unproven padding
   ControlInfo kartControlInfo;              //0x170 - 0x183
   uint8_t mPad184[0x40];                    //0x184 - 0x1C3 — unproven padding
-  float mAntiGEmissionFrame;                //0x1C4 — UNCERTAIN: no access site found in the
-                                            // KartVehicle accessor cluster; do not rely on it
+  float mAntiGEmissionFrame;                //0x1C4 — UNCERTAIN: no access site found
   uint32_t mPad1C8;                         //0x1C8 — unproven padding
-  uint32_t mKartStatusBits;                 //0x1CC — evidenced bits: 4 (FUN_7100174ec8),
-                                            // 0x200000/0x8000/0x800 (race-start trigger
-                                            // FUN_7100175d18, through 0x175e60: sets +0xD3=1,
-                                            // plays effects 0x2a/0x24/0x25 via *(+0x8)+0x28 when
-                                            // bits 21/15/11 clear, phys-mgr idx-4 slot *(slot+0x238)
-                                            // gets FUN_710013d394 with +0xA8 id, zeroes +0x21C/+0x224,
-                                            // clears bits 12..14/27..31, +0x1EC>=1 -> -10, +0x1F0 =
-                                            // max(+0x1F0 + *(f32*)(0xed5000+0xc20), 0)),
-                                            // 6 (FUN_7100174f5c), 14+21 volatile 0x204000 gate (FUN_710017a830),
-                                            // 29 (FUN_7100177400, byte 0x1CF >>5)
+  uint32_t mKartStatusBits;                 //0x1CC — bits 4 (FUN_7100174ec8), 6 (FUN_7100174f5c), 0x800/0x8000/
+                                            // 0x200000 (race start FUN_7100175d18->0x175e60), 14+21 gate 0x204000
+                                            // (FUN_710017a830), 29 (FUN_7100177400, byte 0x1CF>>5)
   uint32_t mKartFrames;                     //0x1D0 — zeroed per-frame (FUN_7100173df4)
   uint8_t mPad1D4[5];                       //0x1D4 - 0x1D8 — unproven padding
   bool mFlag1D9;                            //0x1D9 — set true by FUN_7100173204 (SusKit call path)
   uint8_t mPad1DA[2];                       //0x1DA - 0x1DB — unproven padding
-  float mAntiGTransFrame;                   //0x1DC — UNCERTAIN: no access site found in the
-                                            // KartVehicle accessor cluster; do not rely on it
-  float mStartCharge;                       //0x1E0 — rocket-start charge 0..1 (FUN_7100173df4
-                                            // cascade, 173ec0..173ef4): held throttle ramps
-                                            // x = 0.985x + 0.017, released decays x *= 0.96;
-                                            // at GO strict > tiers: >0.95 item-kick effect,
-                                            // >0.935 -> tier 0x4000 (70f, level 5), lower
-                                            // tiers at 0.92/0.90 (0x2000/0x1000)
+  float mAntiGTransFrame;                   //0x1DC — UNCERTAIN: no access site found
+  float mStartCharge;                       //0x1E0 — rocket-start charge 0..1 (FUN_7100173df4, 173ec0..173ef4);
+                                            // GO tiers 0.95/0.935/0.92/0.90 -> 0x4000/0x2000/0x1000
   uint32_t mStarFrames;                     //0x1E4 — zeroed by FUN_7100175af4
   uint32_t mGessoFrames;                    //0x1E8 — set to 1 by FUN_7100175afc (min-1 semantics)
   int32_t mTeresaFrames;                    //0x1EC — compared ==0x258/600 by FUN_7100174ce8
@@ -175,11 +154,8 @@ class KartVehicle {
   uint32_t mTrickFramesLeft;                //0x200
   uint32_t mTrickFrames;                    //0x204
   uint8_t mPad208[4];                       //0x208 - 0x20B — unproven padding
-  uint32_t mTrickSubstate20C;               //0x20C — trick pose id set at trick start
-                                            // (values 4/5/6/7/8/0x23); +0x208 = sub-state
-                                            // timer (5 or 35); +0x1CC bit 0x40000 set while
-                                            // mTrickFramesLeft > 0 (FUN_7100175f5c /
-                                            // FUN_71001744a4 landing tick)
+  uint32_t mTrickSubstate20C;               //0x20C — trick pose id 4/5/6/7/8/0x23; +0x208 = timer;
+                                            // +0x1CC bit 0x40000 while mTrickFramesLeft>0 (FUN_7100175f5c)
   uint8_t mPad210[0xc];                     //0x210 - 0x21B — unproven padding
   uint32_t mPressFrames;                    //0x21C
   float mPressScale;                        //0x220
@@ -204,37 +180,17 @@ class KartVehicle {
   bool mIsAfterOnResetPosition;             //0x270
   uint8_t mPad271[3];                       //0x271 - 0x273 — unproven padding
   float mUnknown274;                        //0x274 — float (FUN_710017842c)
-  float mXluAlpha;                          //0x278 — float, verified (FUN_710017842c ldr/str s on a
-                                            // base with mKartStatusBits/mKartFrames); matches recorder channel
-                                            // "p_xlu_alpha". The strb users at +0x278 are the boost-envelope
-                                            // struct (its own bytes 0x250-0x253), NOT this field.
+  float mXluAlpha;                          //0x278 — recorder ch "p_xlu_alpha" (FUN_710017842c); boost-envelope strb at +0x278 is NOT this field
   uint8_t mPad27C[0x1C];                    //0x27C - 0x297 — unproven padding
   uint32_t mRaceInvincibilityFrames;        //0x298
   uint8_t mWaterState29C;                   //0x29C — water state: 0 idle, 1 in-water,
                                             // 2 forced (writer: rule == 5 -> 2, via
                                             // getRaceCheckManager_710087fcd0 then [x0+8])
   uint8_t mPad29D[7];                                     //0x29D - 0x2A3 — unproven padding
-  float mSubmergeFactor2A4;                 //0x2A4 — water submersion accumulator 0..1
-                                            // (FUN_7100173df4): state 0 + sink flag ramps
-                                            // x = x*0.985 + 0.017 (sink event at > 0.95, sets
-                                            // state 1); state 1: += 0.1 clamped <= 1; state 2:
-                                            // forced 1.0; leaving water decays by +0x1D4.
-                                            // Blend weight for the float-vs-sink velocity
-                                            // target in FUN_7100172ac8.
-                                            // Depth tiers below 0.95 :
-                                            // >0.90 -> status flag 0x1000, >0.92 -> 0x2000,
-                                            // >0.935 -> 0x4000 via status setter FUN_710017a830;
-                                            // consumer 0x18a2b8 collapses status&0x3000 into
-                                            // KartVehicleMove+0x230 water level (0/1/2; the
-                                            // deepest 0x4000 tier maps to level 0 — sink path
-                                            // takes over). Sink ramp fixed point 1.1333:
-                                            // 0.90 ~3.5s, 0.95 (sink) ~4.0s @30fps.
-  float mBuoyancyOut2A8[3];                 //0x2A8 - 0x2B3 — output of the buoyancy blend
-                                            // FUN_7100172ac8 (indirect/virtual dispatch, never bl):
-                                            // out[i] = inVel[i] + mSubmergeFactor2A4 *
-                                            // (waterSurfaceTarget[i] - inVel[i]) when +0x2A4 > 0,
-                                            // else inVel composed through pose rows
-                                            //
+  float mSubmergeFactor2A4;                 //0x2A4 — water submersion 0..1 (FUN_7100173df4); sink at >0.95;
+                                            // tiers 0.90/0.92/0.935 -> 0x1000/0x2000/0x4000 (FUN_710017a830);
+                                            // consumer 0x18a2b8 -> KartVehicleMove+0x230 water level
+  float mBuoyancyOut2A8[3];                 //0x2A8 — buoyancy blend out (FUN_7100172ac8), only when +0x2A4>0
   uint8_t mPad2B4[0xC];                     //0x2B4 - 0x2BF — unproven padding
   uint8_t mFlag2C0;                         //0x2C0 — zeroed by FUN_7100173204
   uint8_t mPad2C1[0x63];                    //0x2C1 - 0x323 — unproven padding

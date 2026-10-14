@@ -15,65 +15,18 @@ enum CalcPhase {
   CALC_PHASE_APPLY = 5,       // KartRadar | CalcApply branch
 };
 
-// Ctor = 0x710013f968 (race-director family vtable 0x11ba328; doc
-// race_director_vtable_family.md "H"): member ctors 0x6287b4 at the seven
-// 0xC8 job blocks (back-pointers at block-0x28: 0x170/0x238/0x300/0x3C8/
-// 0x490/0x558/0x620), member ctor 0x6286a4 at +0x708, vtable
-// [0x12fbd48]+0x10 = 0x11b3928 at +0x758. Size >= 0x760.
+// Ctor 0x710013f968 (race-director vtable 0x11ba328); member ctors 0x6287b4 at the seven
+// 0xC8 job blocks (back-pointers block-0x28: 0x170/0x238/0x300/0x3C8/0x490/0x558/0x620),
+// member ctor 0x6286a4 at +0x708, second vptr [0x12fbd48]+0x10 = 0x11b3928 at +0x758.
+// Size >= 0x760. Vtable slots: 1 (0x18) singleton getter (guard 0x712fd340, cell 0x712fd348,
+// static instance 0x710013f90c); 2 (0x20) ctor/dtor 0x710013f968; 3 (0x28) reinit+delete
+// 0x710013fa10; 14 (0x80) scenario init 0x710013d588; 15 (0x88) reset weights 0x710013e140;
+// 17 (0x98) tick 0x710013eaec; 18 (0xa0) frame update 0x710013ec60; 24 (0xd0) free actors
+// 0x710013d0ac. Shuffle helper FUN_710013e524 (range through 0x710013eae8); profiler flush
+// FUN_71006328b8 (end of Calc pipeline).
 //
-// Vtable slots :
-// - slot 1 (0x18): guard-protected static accessor; __cxa_guard on the guard
-//   at cell 0x712fd340, first init stores cell 0x712fbc68 (+0x10) into the
-//   static slot at cell 0x712fd348 and returns it (singleton vtable-holder
-//   instance). 0x58 bytes true (file_list size is a gap-split artifact).
-//   [kartDirectorStaticInstance_710013f90c.cpp]
-// - slot 2 (0x20): ctor 0x710013f968 (see above); tail-calls
-//   gear::Actor::~Actor (0x71007b978c). [directorReinitSubsDtorSlot2_710013f968.cpp]
-// - slot 3 (0x28): same re-init sequence as slot 2, then ~Actor and
-//   operatorDelete_710060b470(self). [directorReinitSubsDtorDeleteSlot3_710013fa10.cpp]
-// - slot 14 (0x80): scenario load/init. Allocates a 0x10-entry pointer table
-//   via FUN_710060b3fc into +0x40 (all entries zeroed; count mirrored at
-//   +0x38, set to 2), zeroes +0x4c, calls FUN_710013dfdc, derives +0xea
-//   (race manager mode == 5) and +0xe9 ((mode | 2) == 7) from the race
-//   manager state, and for scenario rows resolves the flow object via the
-//   phys-manager lookup (+0x190 table entries) into +0xf8 plus a second
-//   node cleared when (mode|2)==7 (0x20-byte nodes via FUN_710060afec).
-//   listed 0x1a0 bytes is a gap-split artifact. [directorInitSlot14_710013d588.cpp]
-// - slot 15 (0x88): reset per-item weights. For each of +0xc0 entries at
-//   +0xc8: writes 1.0f into *(*(*(e+0x210)) + selector 0x10/0x18 by e+0x208
-//   vs 2/3) + 0x38 and copies that sub-object into +0x170, +0x300 and +0x3c8
-//   via FUN_7100631df8; then via the phys-manager (+0x190 -> +0x218 -> +0x50)
-//   copies the flow default into +0x620 when +0xe9 is clear; finally calls
-//   vt[0x20/8] on each non-null *(e+0x28). 0x210 bytes true (gap-split).
-//   [directorResetWeightsSlot15_710013e140.cpp]
-// - slot 17 (0x98): per-frame tick. When race manager state is (mode==3 &&
-//   phase==2), stamps a 16-byte osc timer (cell 0x71012fbd48) with
-//   nn::os::GetSystemTick and +0x760, then for every kart at +0xc8 whose
-//   +0xea flag is set blends a random factor into the kart +0x48 target via
-//   FUN_7100137df0. When +0xe9 is clear and +0xd8 is set, resolves a scenario
-//   row and stores -1 or row+0x4c into +0xf0, then releases +0x700 via
-//   FUN_71006a9508. 0x174 bytes true (gap-split). [directorTickSlot17_710013eaec.cpp]
-// - slot 18 (0xa0): per-frame update. If pending byte +0xeb is set, plays the
-//   queued event FUN_710013e3ac(self, +0xec, +0xf0) and clears +0xeb; calls
-//   FUN_710013ed3c and KartDirector::CalcPosition (0x710013ef3c); rebuilds a
-//   bitset (bit i set iff byte *(ptr_i + 0x20) + 0xca != 0 for each of the
-//   +0xc0 entries at +0xc8) and, when it differs from +0x748, forwards it
-//   through FUN_71000c7858()/+0x1f8 -> FUN_71000c87dc and stores it at +0x748;
-//   calls FUN_710013f22c and increments +0xe4. 0xdc bytes true (gap-split).
-//   [directorFrameUpdateSlot18_710013ec60.cpp]
-// - slot 24 (0xd0): free actors — iterates count +0xc0 / array +0xc8 and
-//   calls helper 0x710016ce8c on each entry. 0x48 bytes true (gap-split).
-//   [kartDirectorFreeActors_710013d0ac.cpp]
-// - shuffle helper FUN_710013e524 (see +0x760/+0x764/+0x778 below): per-kart
-//   random draw over the RaceCheckManager singleton; modes keyed on mgr+0x8
-//   and mgr+0x27. true size: 0x5c4, ends at the ret 0x710013eae8.
-// - profiler flush FUN_71006328b8: "end" helper of the Calc pipeline, see the
-//   +0xA0-region profiler note below.
-//
-// Calc pipeline: CalcPosition -> CalcAI -> CalcMove -> (KartRadar |
-// CalcApply), selected per phase. Each phase submits a job whose buffer
-// is one of the 0xC8 work blocks at 0x170-0x6E8; the phase id lives at
-// 0x790. Member offsets verified against the 4.0.0 binary.
+// Calc pipeline: CalcPosition -> CalcAI -> CalcMove -> (KartRadar | CalcApply); phase id at
+// 0x790; each phase uses one of the 0xC8 work blocks at 0x170-0x6E8.
 class KartDirector {
  public:
   uint8_t pad_00[0x50];               // 0x00 — unproven padding
@@ -90,50 +43,15 @@ class KartDirector {
   void* mD8;                          // 0xD8 — when set, CalcPosition runs the KartRadar branch instead of CalcApply
   uint8_t pad_E0[0x8];                // 0xE0 — unproven padding
   uint8_t mFlagE8;                    // 0xE8 — run the post-calc hook (arg: m6F8)
-  uint8_t mFlagE9;                    // 0xE9 — run the per-unit pre-reset; derived in
-                                      // slot 14 as ((race manager mode | 2) == 7)
-  // +0xEA — flag derived in slot 14 as (race manager mode == 5); gates the
-  //   slot 17 random-blend into each kart's +0x48 target.
-  // +0xE4 — frame counter, incremented each slot 18 update.
-  // +0xEB — pending-event byte; when set, slot 18 plays the queued event
-  //   FUN_710013e3ac(self, +0xec, +0xf0) and clears it.
-  // +0xF0 — scenario row value (-1 or row+0x4c), written by slot 17; also
-  //   the second word of the +0xec/+0xf0 queued event pair.
-  // +0x38/+0x40 — count and 0x10-entry pointer table allocated by slot 14
-  //   (FUN_710060b3fc, entries zeroed).
-  // +0x700 — object released via FUN_71006a9508 in slot 17.
-  // +0x708 — object initialized by member ctor 0x6286a4 (slot 2/3).
-  // +0x748 — bitset of sub-actor flags (byte *(ptr_i + 0x20) + 0xca per
-  //   +0xc8 entry); on change forwarded via FUN_71000c7858()/+0x1f8 ->
-  //   FUN_71000c87dc and stored here (slot 18).
-  // +0x758 — second vptr, cell 0x712fbd48 + 0x10 (slot 2/3 re-init).
-  // +0x760 — value stamped into the slot 17 osc timer.
-  // +0x760/+0x764/+0x778 — random draw/shuffle state (helper FUN_710013e524,
-  //   addresses 0x710013e524-0x710013eae8, called from the slot-15 ctor family
-  //   FUN_7100013e140 and FUN_710013e3ac): +0x778 = 12 i16 draw slots cleared
-  //   to -1; +0x760 = u32 seed, +0x764 = rng state seeded via FUN_710062ee88.
-  //   Seed: bit3 of RaceCheckManager+0x24 clear -> nn::os::GetSystemTick;
-  //   else madd hash of mgr fields (+0x2c*315, +0x1a0, +0x1c*12345, +0x180*
-  //   0xEBED0000, +0xc*0xB9FF0000) mixed with row i of the mgr table (stride
-  //   0x1c: +0x3c*0xB2070000, +0x30*0x66590000, +0x34*123, +0x38*0x7D7B).
-  //   Draw modes on mgr+0x8: ==3 && +0x27!=0 -> tally zero/nonzero checks
-  //   (helper FUN_7100141ffc) and draw with LCG retry (v = (u64)count*draw>>32,
-  //   mirror >0xb -> 23-v) with linear probe over +0x778; ==3 && +0x27==0 ->
-  //   plain (v+1) mod count on collision; else guard-protected manager slot 3
-  //   singleton (FUN_71008cf5c4 -> vt[0]) bails when its +0x1fac==2 or
-  //   +0x1a44!=0, then assigns candidates 0,1,2.. into -1 slots whose check
-  //   matches the minority tally. Tail: FUN_710013f430(self, i, draw[i]) per
-  //   kart; FUN_710014ced0 on +0xd8 when set.
-  // +0xA0-region profiler — flush helper FUN_71006328b8 (through 0x632a78),
-  //   used as the profiler "end" from CalcPosition/CalcAI/CalcApply. x0 =
-  //   profiler object: +0x78 unit count, +0x80 unit ptr array, +0x88 record
-  //   capacity, +0x90 record ptr array, +0x98 record count, +0x9c active byte,
-  //   +0xa0 idle-frame u32, +0xa8 latched GetSystemTick. Idle path bumps
-  //   +0xa0, latches +0xa8, calls FUN_71006368c0(unit,1) on units with
-  //   unit+0xf4 set. Active path: per record, vt[0] tick-start, elapsed via
-  //   FUN_7100631f50, atomic ldxr/stxr add into record+0x70; core id = TLS
-  //   slot cell 0x710012fad88 (value-1, else nn::os::GetCurrentCoreNumber)
-  //   via FUN_7100631fc0; then FUN_7100636794 over the unit array.
+  uint8_t mFlagE9;                    // 0xE9 — per-unit pre-reset flag ((mode|2)==7, slot 14)
+  // Offset facts: +0xEA gate flag (mode==5, slot 14); +0xE4 frame counter (slot 18);
+  // +0xEB pending-event byte; +0xEC/+0xF0 queued event pair; +0xF0 = -1 or row+0x4c (slot 17);
+  // +0x38/+0x40 count + 0x10-entry ptr table (slot 14, FUN_710060b3fc); +0x700 released in
+  // slot 17 (FUN_71006a9508); +0x748 sub-actor bitset (slot 18); +0x758 second vptr;
+  // +0x760 u32 seed + osc timer value; +0x764 rng state (FUN_710062ee88); +0x778 12 i16 draw
+  // slots = -1 (shuffle FUN_710013e524). +0xA0-region profiler fields (flush FUN_71006328b8):
+  // +0x78 unit count, +0x80 unit ptrs, +0x88 capacity, +0x90 records, +0x98 count, +0x9c active,
+  // +0xa0 idle-frame u32, +0xa8 latched GetSystemTick.
   uint8_t pad_EA[0x86];               // 0xEA — see field notes above
 
   // Job buffers (0xC8 each), reset by CalcAI before accumulation:

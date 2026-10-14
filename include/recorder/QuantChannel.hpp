@@ -39,27 +39,12 @@
  * step at entry+0x8 is what lands in +0x1f4 (+0x1f8 = 1/step),
  * overwriting the setup-time values below for that block.
  *
- * Per-point quantizer implementations (structure-faithful ports of
- * the channel-quantizer group; each returns [ch+0x1c4] = substream
- * width so the caller can advance the cursor):
- *
- *   FUN_71007b424c — 2-component byte quantizer (scalar/u8 channels):
- *     per component, v = in[j] * [+0x1f4]; clamp to [+0x280, +0x284]
- *     (the `b.gt` skips the clamp only when v > max, so NaN falls
- *     through to the min/max branches); fcvtzs; store one byte (strb).
- *     Two bytes total per sampled point.
- *
- *   FUN_71007b45a4 — 3-component packer into ONE u32 token (three
- *     10-bit fields; used by wide float channels):
- *       comp0 -> bits 0-9   (clamp [-0x3ff, +0x3ff]; q <= -0x400
- *                 saturates to 0xfffffc00 and is cut by the 10-bit
- *                 field mask)
- *       comp1 -> bits 11-20 (clamp [-0x1ff, +0x1ff]; ubfiz #11,#10)
- *       comp2 -> bits 21-30 (clamp [-0x3ff, +0x3ff], <<21)
- *     Bits 10 and 31 stay zero. Each component is fcvtzs(in[j] *
- *     [+0x1f4]). The `+0x280/+0x284` clamp floats are only used by
- *     the byte quantizer above; the packer clamps to the field
- *     half-ranges directly.
+ * Per-point quantizers (each returns [ch+0x1c4] = substream width):
+ *   FUN_71007b424c — 2-comp byte quantizer: v = in[j]*[+0x1f4], clamp
+ *     [+0x280,+0x284] (NaN falls through to the min/max branches), 1 B/comp.
+ *   FUN_71007b45a4 — 3 comps packed into ONE u32 token: comp0 bits 0-9,
+ *     comp1 bits 11-20, comp2 bits 21-30 (fcvtzs(in[j]*[+0x1f4]); clamps
+ *     to the field half-ranges; bits 10/31 stay zero).
  */
 namespace recorder {
 
