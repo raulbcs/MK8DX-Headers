@@ -3,8 +3,7 @@
 #include <cstdint>
 
 // CourseTriggerRegistry — course trigger/object registry singleton
-// (2026-10-09 MECHANICS_101 closure; layout comments only — no headered
-// consumers yet).
+// .
 //
 // Identity: 0x4e8-byte singleton allocated at 0x7100383618. The base
 // descriptor byte +0x8 = 4 (ctor arg — a REGISTRY id, not a trigger type;

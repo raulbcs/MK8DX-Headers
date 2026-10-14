@@ -45,7 +45,7 @@ class KartParamCacheVtd608 : public KartParamCache {
                                //        extent; variant touches 0x310 rel)
                                // (extent >= 0x318, tail unmapped)
 };
-// Vtable slot 0 (0x10) reset/dtor (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtd608ResetSlot0_710072875c.cpp):
+// Vtable slot 0 (0x10) reset/dtor :
 // runs the +0x88 vtable method on sub-objects +0x238 and +0x310; on a set bit0 it frees
 // *(+0x250) / *(+0x328) via operator delete[] and clears byte +0x25c / +0x334; zeros
 // counters +0x1f0/+0x210/+0x230/+0x2e8; re-stamps vptr cells 0x130e8a8+0x10 -> +0x0,

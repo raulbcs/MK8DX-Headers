@@ -29,7 +29,7 @@ namespace object {
 // Why no self name: the EN/JP name strings belong to CHILD leaf nodes
 // (vptrs 0x12b29a0/0x12b2900), never to dba0 itself; no typeinfo, no
 // symbols. Renaming would be invention.
-// Vtable slot facts (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slot facts :
 // - Slot 10 (0x60): guard-protected static singleton getter. Guard cell
 //   0x710130e378; instance cell 0x710130e380 initialised to
 //   [0x71012fd3d0]+0x10. true function size 0x5c bytes (gap-split artifact).

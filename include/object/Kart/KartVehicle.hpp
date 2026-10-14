@@ -212,8 +212,22 @@ class KartVehicle {
                                             // state 1); state 1: += 0.1 clamped <= 1; state 2:
                                             // forced 1.0; leaving water decays by +0x1D4.
                                             // Blend weight for the float-vs-sink velocity
-                                            // target in FUN_7100172ac8
-  uint8_t mPad2A8[0x18];                    //0x2A8 - 0x2BF — unproven padding
+                                            // target in FUN_7100172ac8.
+                                            // Depth tiers below 0.95 :
+                                            // >0.90 -> status flag 0x1000, >0.92 -> 0x2000,
+                                            // >0.935 -> 0x4000 via status setter FUN_710017a830;
+                                            // consumer 0x18a2b8 collapses status&0x3000 into
+                                            // KartVehicleMove+0x230 water level (0/1/2; the
+                                            // deepest 0x4000 tier maps to level 0 — sink path
+                                            // takes over). Sink ramp fixed point 1.1333:
+                                            // 0.90 ~3.5s, 0.95 (sink) ~4.0s @30fps.
+  float mBuoyancyOut2A8[3];                 //0x2A8 - 0x2B3 — output of the buoyancy blend
+                                            // FUN_7100172ac8 (indirect/virtual dispatch, never bl):
+                                            // out[i] = inVel[i] + mSubmergeFactor2A4 *
+                                            // (waterSurfaceTarget[i] - inVel[i]) when +0x2A4 > 0,
+                                            // else inVel composed through pose rows
+                                            //
+  uint8_t mPad2B4[0xC];                     //0x2B4 - 0x2BF — unproven padding
   uint8_t mFlag2C0;                         //0x2C0 — zeroed by FUN_7100173204
   uint8_t mPad2C1[0x63];                    //0x2C1 - 0x323 — unproven padding
   uint32_t mRenegadeCaughtFrames;           //0x324

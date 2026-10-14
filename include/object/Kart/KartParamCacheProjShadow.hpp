@@ -62,7 +62,7 @@ class KartParamCacheProjShadow : public KartParamCache {
   uint8_t mPad539[0x7];   // 0x539 — unproven gap
   uint8_t mPad540;        // 0x540 — ctor zero
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) dtor, returns self (projShadowDtorSlot0_7100ade9a8.cpp): vptr from
 //   cell 0x7101315460+0x10, resets the nine member sub-vptrs at +0x420..+0x520 to
 //   [0x710130d918]+0x10 and +0x3e8 to [0x710130d920]+0x10, calls 0x710063a384(self)

@@ -7,7 +7,7 @@ namespace object {
 // Node class of the 0x647f40 hook-band cluster (shared trivial band
 // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
 // [this+0x1c]).
-// Vtable slot facts (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slot facts :
 // - Slot 10 (0x60), entry at 0x7100abb5f4: blur/gaussian dispatch. Calls
 //   FUN_7100654de4(x1arg, self+0x248, self+0x170, x2arg, x3arg, 1,
 //   *(0x12fadb8)), then switches on *(self+0x128): 0 -> FUN_710062c4b8

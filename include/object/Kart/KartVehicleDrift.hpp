@@ -23,7 +23,7 @@ struct KartVehicleDrift {
                               // drifting family = (state|3)==7; glide = (state|1)==5.
                               // Setter 0x710017bd14: target = (arg&1)?5:4; it also
                               // resets +0x58/+0x70/+0x8c, writes +0x6c = ±1.0 and
-                              // KartVehicleMove+0x3c4 = 0.0392f (dis 17bd14..17bdac).
+                              // KartVehicleMove+0x3c4 = 0.04f .
                               // 6/7 are read by predicates but have NO located
                               // producer (only store to +0x10 is the setter's 4/5;
                               // hop-release 17cc08 passes 4/5 via csel) — UNCERTAIN.

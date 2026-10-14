@@ -49,5 +49,5 @@ struct BoostSlot {
 //   type:  0     1    2      3    4    5     6     7    8     9     10    11
 //   tier: 0x10000 0x2 0x200 0x4  0x8  0x10  0x100 0x80 0x40 0x8000 0x20  0x1
 //   id:   default t1  antigrav pad-w pad-m pad-s trick  ?    ?     ?    dash  mushroom-class
-// Details (durations, obj-param classes, provenance): docs/MECHANICS_101.md
+// Details (durations, obj-param classes, provenance):
 // "Course triggers — the 12 types" and gear/Course/TriggerRegistry.hpp.

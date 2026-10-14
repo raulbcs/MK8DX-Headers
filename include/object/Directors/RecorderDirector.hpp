@@ -27,8 +27,7 @@
  * 7a9914 7a9bc8 7a9c18 7ac730 7a9c5c 7a9a68 7a90f8 7a9f5c 7a9f78.
  * Block ring at [director+0x1d8]/[+0x1dc].
  *
- * (Session 2026-10-10, ghost-decoder campaign
- * mk8dx-ghost-vis/docs/stream-input-frame.md 5.15-5.16.3.)
+ *
  */
 
 namespace object {

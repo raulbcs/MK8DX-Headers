@@ -97,7 +97,7 @@ class KartParamCacheCloudDraw : public KartParamCache {
   uint8_t mPad7f58[0x30];    // 0x7f58 — unproven gap
   uint64_t mField7f88;       // 0x7f88 — ctor-written
 };
-// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/cloudDrawDtorSlot0_7100a969d4.cpp):
+// Vtable slot 0 (0x10) dtor/reset :
 // stamps vptr 0x13151d8(+0x10); if byte +0x8270 set, calls the companion reset
 // 0x7100a96c08; frees the pooled array at +0x620 (count at -8, stride 0x1258, element
 // reset 0x7100a96ecc), zeroing +0x620/+0x618; resets containers 0x71006375a0 on

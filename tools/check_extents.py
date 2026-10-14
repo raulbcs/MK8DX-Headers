@@ -326,6 +326,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Vt12ba010.hpp
 #   include/object/Vt12ca000.hpp
 #   include/object/Vt12f3160.hpp
+#   include/recorder/GhostCodec.hpp
 #   include/recorder/QuantChannel.hpp
 #   include/recorder/Recorder.hpp
 #   include/repl/File.hpp

@@ -64,7 +64,7 @@ class KartParamCacheShadow : public KartParamCache {
   uint8_t mPad17a0[0x20];   // 0x17a0 — unproven gap
   uint32_t mZero17c0;       // 0x17c0 — ctor zero
 };
-// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/shadowDtorResetSlot0_7100ad99a8.cpp):
+// Vtable slot 0 (+0x10) dtor/reset :
 // tears down the +0x380 drawer, frees the pooled array at +0x378 (stride 0x5d0,
 // paramNodeVt3f08DtorSlot0_7100adb5d0 element dtor), releases the optional heap blocks
 // at +0x360/+0x318 (flags +0x36c/+0x324), then re-stamps default vptr fields +0x348,

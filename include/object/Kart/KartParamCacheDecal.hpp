@@ -25,7 +25,7 @@ class KartParamCacheDecal : public KartParamCache {
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
 };
-// Vtable slot 0 (0x10) complete-object dtor (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/decalCompleteDtorSlot0_7100aed3b8.cpp):
+// Vtable slot 0 (0x10) complete-object dtor :
 // vptr from cell 0x71013154b0+0x10; if an array is registered at +0x1d8 (count at
 // [ptr-8], stride 0x7a8), destroys seven sub-objects of each entry — at entry-0x128,
 // -0x2f8, -0x410, -0x460, -0x530, -0x628, -0x6f8 — via 0x7100639f38 / 0x710063ed3c /

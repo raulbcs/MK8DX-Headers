@@ -13,7 +13,7 @@ class KartParamCacheVt1d08 : public KartParamCacheMid2 {
  public:
   // (0x208 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) dtor, returns self, no operator delete (kartParamCacheVt1d08DtorSlot0_710063c954.cpp):
 //   installs vptr cell 0x710130d858(+0x10), invokes entry vtable slot 2 on each of
 //   the *(+0x218) pointers while +0x210 > index, zeroes +0x210, runs 0x710060b984 on

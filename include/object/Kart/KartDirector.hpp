@@ -21,7 +21,7 @@ enum CalcPhase {
 // 0x490/0x558/0x620), member ctor 0x6286a4 at +0x708, vtable
 // [0x12fbd48]+0x10 = 0x11b3928 at +0x758. Size >= 0x760.
 //
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 1 (0x18): guard-protected static accessor; __cxa_guard on the guard
 //   at cell 0x712fd340, first init stores cell 0x712fbc68 (+0x10) into the
 //   static slot at cell 0x712fd348 and returns it (singleton vtable-holder

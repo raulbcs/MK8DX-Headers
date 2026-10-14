@@ -13,7 +13,7 @@ class KartParamCacheEnvSet : public KartParamCacheMid2 {
  public:
   // (0x200 total)
 };
-// Vtable slot 0 (+0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/envSetDtorResetSlot0_710064be2c.cpp):
+// Vtable slot 0 (+0x10) dtor/reset :
 // walks the pooled array at +0x1e0 (stride 0x2e8, count at -8); per entry runs the
 // element dtor 0x710064a82c over the inner array at entry-0x8 (stride 0x168), frees it
 // and clears the entry's count/pointer fields (-0x10/-0x8), then re-stamps default vptrs

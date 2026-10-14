@@ -49,9 +49,9 @@
  *     bytes per set bit 1..63).
  *
  * Channel-object vtable cells (.rela.dyn R_AARCH64_RELATIVE addends,
- * verified with llvm-readelf on the 400 main.elf — these
- * are the authoritative values; an earlier ghost-vis report had the
- * fb10/fb18 pair swapped):
+ * verified with llvm-readelf on the 400 main.elf — these are the
+ * authoritative values; the fb10/fb18 pair was once swapped in a stale
+ * report):
  *   0x710130fb08 -> 0x71012c4778  async read-thread channel (latch
  *                                 vt[0xa0] = 0x7100628f3c, nn::os
  *                                 StartThread wrapper over this+0xd8)
@@ -326,6 +326,129 @@ struct Mgr {
  */
 
 /*
+ * Playback / mgr-side chain (ghost replay setup + per-kart ctx family;
+ * ports 2026-10-09..14, addresses verified against the decomp TUs):
+ *
+ *   FUN_710020c6fc — playback setup on the Mgr (x0):
+ *     1. Stack key {mgr+0x38, [mgr+0x40], u8[[mgr+0x130]], 0x01010101
+ *        pad, flag 1 (key[0x1e])}; 0x88e23c(mgr+0x38, key) -> [mgr+0xe0].
+ *     2. new 0x278 Binder (ctor recorderBinderCtor_71007aae24), stored at
+ *        [mgr+0x2f0]; FUN_71007ab1b8(binder, 0); binder+0x208 = rodata
+ *        0xedec85.
+ *     3. new 0x2e0 playback ctx; name = FUN_710020f3a8(2); idx =
+ *        FUN_710069ff88([mgr+0x40], {vt(GOT cell 0x71012fae28)+0x10, name}).
+ *     4. FUN_71007b19f4(ctx, stream, idx, flag 1); then
+ *        addChannel_71007ac0cc([mgr+0x2f0], ctx, NULL name).
+ *     5. t = FUN_71007f7ac0(); slot = [t + min(u32[sp],0xa)*8 + 0x190];
+ *        FUN_7100889278([slot+0x230], [mgr+0x2f0]) — ALWAYS called.
+ *
+ *   FUN_7100889278 (0x34 B) — attach ctx to mgr: if byte [mgr+0x1d0]
+ *     != 0 (stream attached), calls FUN_71007b7758([mgr+0x40], child)
+ *     (stream-side register, 0x88 B, not decompiled) and zeroes
+ *     [child+0x214] (back-pointer slot polled by the tick path).
+ *
+ *   FUN_710069ff88 (124 B) — registry lookup by name key: walks
+ *     items at [reg+0x38] (count u32 [reg+0x30]); each item holds a
+ *     handle, entry = *handle; matcher = entry vtable slot 0x38
+ *     (entry, key) returning inner index; result = (inner << 16) |
+ *     entryIdx, 0xffffffff on miss / empty.
+ *
+ *   FUN_71006a0080 — push dispatcher: for each entry of the container's
+ *     table ([self+0x38], count u32 [self+0x30], stride 8, obj = *e),
+ *     tail-calls obj vtable slot +0xa8 — the virtual PUSH slot of the
+ *     ghost playback class family. Also invoked by the write-back path
+ *     FUN_71007b151c step 5.
+ *
+ *   streamableRegistryLookup_71006b9394 — NAME -> META lookup used by
+ *     the frame-record builder chain (scene montador 0x6bb144 -> meta
+ *     -> 0x6ac198 -> 0xa7141c -> ... -> 0xa7b414). Registry: intrusive
+ *     list, head sentinel this+0x38, end this+0x40, slot size s32
+ *     this+0x4c (negated while walking), list lock this+0x50 (thunks
+ *     0x628714/0x628724). Each resource R: R+0x30 = trie root (0 ->
+ *     skip), R+0x28 = meta-array base, R+0x174 bit5 = in-use (helper
+ *     0x6b6e4c under the resource lock at R+0x188). Critical-bit trie
+ *     keyed by [key+8] (vt slot 0x18 of key supplies a name object,
+ *     side effects only), read LAST CHARACTER FIRST; 0x10-byte trie
+ *     entries (u32 node word, u16 next-slot idx, leaf ptr at +8 ->
+ *     {u16 len; char name[len]}). Match: metaOffset =
+ *     ((leafEntry - (root+0x18)) >> 4) * 0x78 + [R+0x28]; meta == 0
+ *     means "not present".
+ *
+ *   FUN_710062ee28 (96 B, byte-exact) — xorshift128 state seed
+ *     (init_genrand-style): w0 = nn::os::GetSystemTick(); each s(i+1)
+ *     = (s(i) ^ (s(i)>>30)) * 0x6c078965 + i+1, four u32s stored at t.
+ *     Caller: KartDirector osc timer directorTickSlot17_710013eaec.
+ *     (RaceDirectorManager.hpp mentions "object built by 0x62ee28" at
+ *     +0x08 — same function, it emits the 16-byte seeded state block.)
+ *
+ *   Per-kart replay ctx family (the objects the per-tick
+ *   FUN_71007b1968/FUN_71007b1cc8/FUN_71007b1f8c run on):
+ *
+ *   FUN_71007b19f4 — ctor of the 0x2e0 ctx (layout in
+ *     recorder::PlaybackKartCtx below). vptr = bss cell 0x710130fb38 +
+ *     0x10 (re-set after the seed call); state at +0x2b0 seeded by
+ *     recorderCreateRotTransChannels_71007ae16c(ctx, ctx+0x2b0, 0, 0)
+ *     = identity. When flag bit0: allocates a 0x280 sibling binder
+ *     (vptr cell 0x710130fb10+0x10, +0x1c0=0xc, +0x1c4=4, +0x1f0=
+ *     64.0f, +0x1f4=0.01f, +0x1f8=0.015625f, +0x278 = ctx+0x2a4 i.e.
+ *     the lens triplet) and registers it under rodata name
+ *     0x7100f0589c via addChannel_71007ac0cc (tail call).
+ *
+ *   FUN_71007b1874 — sibling ctor, DIFFERENT class (vptr cell
+ *     0x710130fb30 + 0x10): +0x290 u32 frame idx, +0x294 u8 applyLens,
+ *     state at +0x2a4 seeded with selA=1, selB=0; +0x298 cache/link
+ *     target. Sibling binder (same 0x280 shape, +0x278 = ctx+0x298)
+ *     registered as "scale" (same rodata 0x7100f0589c). Afterwards it
+ *     UNCONDITIONALLY stamps the factory-created binder at [ctx+0x280]
+ *     with +0x1f0=0.2f, +0x1f4=4.0f, +0x1f8=0.25f.
+ *
+ *   FUN_71007b1f8c — per-tick state update (variant B, WITH commit):
+ *     if second channel (+0x294/+0x296 s16 pair) != -1/-1: evaluates it
+ *     via stream table [stream+0x38][idx], obj vtable slot +0x70 (out,
+ *     sub), column-normalizes the 3x4 result (eps = rodata 0xed58e0;
+ *     zero-norm columns -> 0) and does state = M · state (asm lane
+ *     pattern 0x7b2210: out[i][k] = sum_j state[j][k]*M[j][i], lane 3
+ *     += M[i][3]). Else: state = state · (cached matrix at +0x298) RAW
+ *     (no normalize/invert); null cache skips the multiply entirely.
+ *     Then if byte +0x2a0: scales the three rotation COLUMNS of state
+ *     by lens[0..2] (+0x2a4/08/0xac). Commit: FUN_71006a0058(stream,
+ *     &idx, state) — record vtable slot +0x68.
+ *
+ *   FUN_71007b1460 — delta-cache ctx PULL (family layout: +0x278
+ *     binder link, flag bytes +0x290/0x291/0x292, +0x298 u32 mask,
+ *     +0x29c u8 result, +0x2a0/04/08 u32 lens triplet):
+ *     byte +0x292 -> rebuild mask from binder entries ([binder+0x38][i],
+ *     flag byte entry+0x1e bit 0x20); byte +0x290 -> pull binder lens
+ *     [binder+0x80/84/88]; byte +0x291 -> +0x29c = FUN_71006a01ac(
+ *     binder, 0) & 1.
+ *
+ *   FUN_71007b151c — WRITE-BACK path (mirror of the pull): +0x292 ->
+ *     apply mask to each entry flag byte (|0x20 / &~0x20); +0x290 ->
+ *     binder+0x98 |= 1 and push the lens triplet back; +0x291 ->
+ *     FUN_71006a00c4(binder, +0x29c, 0); then two edge-triggered
+ *     steps with dirty-byte rotates: (+0x28c >= 1 && +0x2ad &&
+ *     !+0x2ac) -> per binder entry drain o->vt[0xb0] count x
+ *     o->vt[0x198](o, j) (results discarded; count re-evaluated per
+ *     iteration), rotate +0x2ad = +0x2ac, +0x2ac = 0; (+0x288 >= 1 &&
+ *     +0x2af && !+0x2ae) -> FUN_71006a0080(binder), rotate +0x2af =
+ *     +0x2ae, +0x2ae = 0.
+ *
+ *   FUN_71007b16d0 / interior commit 0x7b17ac — incremental delta
+ *     maintenance between a stream binder and a ctx caching 3 matrix
+ *     rows: ctx +0x278 binder link, +0x288 stream binder (stream
+ *     matrix rows at stream+0x50/0x60/0x70), +0x290 u64 flag/pointer
+ *     to a 0x30 matrix, +0x298 cache A (rows 0/1/2 at +0x298/0x2a8/
+ *     0x2b8). Update: if the +0x290 ptr is non-null, invert cache A in
+ *     place (invertAffine3x4_71000c9c64) and row-fold the stream
+ *     matrix through it; first run caches the stream rows verbatim.
+ *     Commit 0x7b17ac (interior — no own symbol in file_list.yml):
+ *     stamps stream+0x98 |= 1, then either copies the caches into the
+ *     stream rows (ptr null) or computes streamM_row_i =
+ *     cacheA*m[0][i] + cacheB*m[1][i] + cacheC*m[2][i] (+ m[i][3] on
+ *     lane 3) — the same NEON lane pattern as FUN_71007b1cc8/1f8c.
+ */
+
+/*
      * Channel binder (ctor FUN_71007aae24; size 0x288; calc
      * FUN_71007aaf68; addChannel FUN_71007ac0cc touches +0x1e8/+0x208
      * and links +0xe8/+0xf8; float-channel setup FUN_71003aef8c stores
@@ -459,6 +582,74 @@ void createRotChannel_710088ad40(void* ctx, void* param, int selA, int selB);
 // FUN_71000c9c64 — affine 3x4 inverse (rows at in+0x0/0x10/0x20,
 // translation column +0xc/0x1c/0x2c); returns false on zero det.
 int invertAffine3x4_71000c9c64(void* out /*12 floats*/, const void* in);
+
+/*
+     * Per-kart replay ctx (0x2e0 bytes; ctor FUN_71007b19f4 — see the
+     * playback chain docblock above). Mirrored from the ctor/1f8c reads.
+     */
+struct PlaybackKartCtx {
+  void* vtable;         // 0x000 — bss cell 0x710130fb38 + 0x10
+  uint8_t pad08[0x270];
+  void* binder278;      // 0x278 — binder link
+  void* binder280;      // 0x280 — binder link
+  void* stream;         // 0x288 — stream (registry; table at +0x38)
+  uint32_t frameIdx;    // 0x290 — u32 frame idx (u32 store zeroes +0x292)
+  int16_t chanA_sub;    // 0x294 — second channel sub (-1 = absent; ctor -1)
+  int16_t chanB_sub;    // 0x296 — second channel idx (-1 = absent; ctor -1)
+  void* cache;          // 0x298 — cached matrix (raw multiply source; ctor null)
+  uint8_t applyLens;    // 0x2a0 — u8; scale state rot columns by lens when set
+  uint8_t pad2a1[0x3];
+  float lens[3];        // 0x2a4 — lens triplet (sibling binder points here)
+  float state[3][4];    // 0x2b0 — 3x4 state, seeded identity by
+                        //         recorderCreateRotTransChannels_71007ae16c
+                        //         (selA=selB=0)
+  uint8_t pad2e0[0x00];
+};
+
+// FUN_71007b19f4 — playback ctx ctor (0x2e0; see docblock above).
+void playbackKartCtxCtor_71007b19f4(void* ctx, void* stream, int idx, int flag);
+
+// FUN_71007b1874 — sibling playback ctx ctor (different class, vptr cell
+// 0x710130fb30+0x10; state at ctx+0x2a4, applyLens u8 at +0x294; see
+// docblock above).
+void playbackKartCtxCtorScale_71007b1874(void* ctx, void* stream, int idx,
+                                          int flag);
+
+// FUN_71007b1f8c — per-tick state update with commit (FUN_71006a0058,
+// stream vtable slot +0x68).
+void playbackKartCtxTick_71007b1f8c(void* ctx);
+
+// FUN_71007b1460 / FUN_71007b151c — delta-cache ctx pull / write-back
+// pair (family layout in the docblock above).
+void playbackDeltaPull_71007b1460(void* ctx);
+void playbackDeltaWriteback_71007b151c(void* ctx);
+
+// FUN_71007b16d0 — incremental matrix delta maintenance (interior commit
+// at 0x7b17ac has no own symbol).
+void playbackDeltaMatrixUpdate_71007b16d0(void* ctx);
+
+// FUN_710020c6fc — mgr-side playback setup (see docblock above).
+void playbackSetupMgr_710020c6fc(void* mgr);
+
+// FUN_7100889278 — attach ctx to mgr (gated on byte mgr+0x1d0;
+// stream-side register FUN_71007b7758, child+0x214 zeroed).
+void playbackAttach_7100889278(void* mgr, void* child);
+
+// FUN_710069ff88 — registry lookup by name key; returns
+// (inner << 16) | entryIdx, 0xffffffff on miss.
+long registryLookupByName_710069ff88(void* registry, void* key);
+
+// FUN_71006a0080 — push dispatcher over the container entry table
+// (+0x30 count, +0x38 table); tail-calls obj vtable slot +0xa8.
+void pushDispatcher_71006a0080(void* self);
+
+// FUN_710062ee28 — xorshift128 state seed (4x u32 at t) from
+// nn::os::GetSystemTick; caller directorTickSlot17_710013eaec.
+void xorshift128Seed_710062ee28(void* t);
+
+// streamableRegistryLookup_71006b9394 — NAME -> META trie lookup
+// (see docblock above); returns the meta pointer or NULL.
+void* streamableRegistryLookup_71006b9394(void* self, void* key);
 
 /*
      * Kart recorder context (per-kart state consumed by the per-frame

@@ -18,7 +18,7 @@ class KartParamCacheEnv {
   uint64_t mZero30;  // 0x30
                      // (0x38 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) deleting dtor (envDeletingDtor_71006482a8.cpp): installs vptr from
 //   cell 0x710130d948+0x10, frees +0x30 (also zeroing it and word +0x28), frees +0x20,
 //   then operator delete(self). function size 0x50 bytes.

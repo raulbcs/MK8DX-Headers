@@ -17,7 +17,7 @@ class KartParamCacheMultiFilterColorDrift : public KartParamCacheMid {
   char mChanPair110[0x60];  // 0x110 — three 0x20 channel pairs (ChanBase ctor 0x7100662f30), each with two w32 tail fields (0x128/0x12c, 0x148/0x14c, 0x168/0x16c)
                             // (0x170 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) vtable-init ctor stub (colorDriftVtInitCtor_7100660e48.cpp): same
 //   fan as the Vt3508 family — cell 0x710130d918(+0x10) vptr into 0xb0/0xd0/0xf0/0x110/
 //   0x130, cell 0x710130d920(+0x10) into 0x68, cell 0x710130d848(+0x10) into +0x0.

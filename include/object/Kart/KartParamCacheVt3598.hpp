@@ -20,7 +20,7 @@ class KartParamCacheVt3598 : public KartParamCacheMid {
 
   // (0x150 total)
 };
-// Vtable slots (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vt3598ClampCountsByShift_710065ff78.cpp):
+// Vtable slots :
 // - slot 12 (0x70): shifts the u32 pair at arg+4/arg+8 left by *(int*)(self+0x148) and
 //   stores back the smaller of the shifted value and the original element (arg+0xc
 //   participates as the bound for the arg+8 element). function size 0x30 bytes (file_list

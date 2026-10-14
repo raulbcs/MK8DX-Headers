@@ -20,7 +20,7 @@ class KartParamCacheVt3508 : public KartParamCacheMid {
 
   // (0x150 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) vtable-init ctor stub, no base call (vt3508InitVt_710065f584.cpp):
 //   fans cell 0x710130d918(+0x10) vptr into 0xb0/0xd0/0xf0/0x110/0x130, cell
 //   0x710130d920(+0x10) into 0x68, cell 0x710130d848(+0x10) into +0x0. The bodies in

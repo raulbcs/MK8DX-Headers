@@ -110,7 +110,7 @@ class KartParamCacheOfx : public KartParamCache {
   uint8_t mPad26e8[0x150];  // 0x26e8 — unproven gap
   uint64_t mField2838;      // 0x2838 — ctor-written
 };
-// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/ofxDtorSlot0_7100af5b40.cpp):
+// Vtable slot 0 (0x10) dtor/reset :
 // stamps vptr 0x1315530(+0x10); frees *(+0x1008) and *(+0x1368) via 0x71005b0260 +
 // 0x710063d6a0, clearing bytes +0x1148/+0x14a8; virtual vt[0x8/8] dtor on each of the
 // *(+0xde4) pointers in *(+0xde8), 0x710060b984 on +0xde0; frees *(+0xb90) via delete[]

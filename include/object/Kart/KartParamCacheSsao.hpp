@@ -176,7 +176,7 @@ class KartParamCacheSsao : public KartParamCache {
   uint8_t mPad3ce0[0x10];   // 0x3ce0 — unproven gap
   uint32_t mField3cf0;      // 0x3cf0 — ctor-written
 };
-// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/ssaoDtorSlot0_7100ae85d8.cpp):
+// Vtable slot 0 (0x10) dtor/reset :
 // stamps vptr 0x1315480(+0x10); frees the pooled array at +0x1d8 (count at -8, stride
 // 0xc08, 0x7100ae7a94 element dtor), zeroing +0x1d8/+0x1d0; 0x71006373a4 on 16 optional
 // sub-objects +0x3a98..+0x3c00 (0x18/0x10 pitch per pointer-header flags); 0x7100654ae0

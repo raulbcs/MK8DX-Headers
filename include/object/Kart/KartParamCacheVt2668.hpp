@@ -31,7 +31,7 @@ class KartParamCacheVt2668 {
   uint64_t mZero160;           // 0x160 — ctor zero
                                // (0x168 total)
 };
-// Vtable slot 0 (0x10) vtable-init ctor stub (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtInit_710064a9d4.cpp):
+// Vtable slot 0 (0x10) vtable-init ctor stub :
 // stores the class vtable pointer (global pointer at 0x710130848, +0x10) into *this.
 // True extent 20 bytes.
 }  // namespace object

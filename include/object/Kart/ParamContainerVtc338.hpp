@@ -10,14 +10,13 @@ namespace object {
 // 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare; compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables).
 // Own fields mapped from the inlined construction at the quoted site
 // (vptr stores at +0x0/+0x30, tail count block); interior array region unproven.
-// Vtable slot facts (evidence TU under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slot facts :
 // - Slot 10 (0x60): one-time-guarded static singleton getter. Guard cell
 //   0x71012fd3c8; instance cell 0x71012fd3d8 initialised to
 //   [0x71012fd3d0]+0x10; returns the instance pointer.
 //   true function size 0x5c bytes (gap-split artifact).
 //   [paramContainerVtc338StaticInstanceSlot10_7100712e64.cpp]
-// Vtable slot facts (evidence TUs: src/unknown/spotLightRigUpdateSlot24_7100712ed4.cpp,
-// maskedSpotLightRigUpdateSlot32_710072f618.cpp — SpotLightRig::Obj identity):
+// Vtable slot facts :
 // slot 24 (vt+0xd0) = spot light update (light node *(self+0x358), id +0x360,
 // angle accumulators +0x364/0x368, mask +0x36c; hue/palette modes on
 // *(lt+0x290)); slot 32 (vt+0x210) = byte-identical masked variant (light ptr

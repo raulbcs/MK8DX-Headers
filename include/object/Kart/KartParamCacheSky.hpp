@@ -60,7 +60,7 @@ class KartParamCacheSky : public KartParamCache {
   uint8_t mPadda4[0x4];    // 0xda4 — unproven gap
   uint64_t mZeroda8;       // 0xda8 — ctor zero
 };
-// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/skyDtorSlot0_7100aae71c.cpp):
+// Vtable slot 0 (0x10) dtor/reset :
 // stamps vptr 0x1315270(+0x10) into +0x0; cell 0x130d848(+0x10) into +0x8f58; cell
 // 0x130d918(+0x10) into +0x8f38/0x8f18/0x8ef8/0x8ea8/0x8e88/0x8e68/0x8e18/0x8df8/
 // 0x8dd0/0x8da8/0x8d88; cell 0x130d920(+0x10) into +0x8ec8/0x8e38/0x8d58. Then calls

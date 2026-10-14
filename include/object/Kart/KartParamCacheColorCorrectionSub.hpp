@@ -107,7 +107,7 @@ class KartParamCacheColorCorrectionSub : public KartParamCache {
   uint64_t mZero1a20;       // 0x1a20 — ctor zero
   uint32_t mZero1a28;       // 0x1a28 — ctor zero
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) complete-object dtor (colorCorrectionCompleteDtorSlot0_7100650520.cpp):
 //   vptr from cell 0x710130da78+0x10; calls 0x710065063c(self); releases sub-objects at
 //   +0x17a0 (0x71006918a8), +0x1698 (0x710063a384), +0x4b0 (0x710063ed3c) and

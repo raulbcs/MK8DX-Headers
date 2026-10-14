@@ -73,7 +73,7 @@ class KartParamCacheCubeMap : public KartParamCache {
   uint64_t mZero448;       // 0x448 — ctor zero
   uint32_t mField450;      // 0x450 — ctor-written
 };
-// Vtable slot 0 (0x10) dtor/reset (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/cubeMapDtorSlot0_7100ab8aa4.cpp):
+// Vtable slot 0 (0x10) dtor/reset :
 // stamps vptr 0x13152a0(+0x10); frees the pooled array at +0x208 (count at -8, stride
 // 0x2258); per element (last to first): stamps cell 0x1315298(+0x10) at el-0x378, cell
 // +0x78 at el-0x190, cell 0x130d918(+0x10) at +0x1eb0/+0x1a58/+0x1a30/-0x20/-0x40/-0x60/

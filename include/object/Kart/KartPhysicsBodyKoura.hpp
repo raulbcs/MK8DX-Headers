@@ -65,8 +65,7 @@ namespace object {
 // 0x7100030b10 (see KartPhysicsBodyKouraTogezo.hpp), which covers the
 // +0x4d0 writes. Extent stays 0x460.
 //
-// Additional slot facts (Koura vtable, evidence TUs under
-// /Users/raul/projects/mk8dx-400/src/unknown/):
+// Additional slot facts :
 // slot 3 (0x28, kouraDeletingDtor_710002ff7c): same shape as the root
 //   deleting dtor (vptr reset from cell 0x71012fb050+0x10, sub-object
 //   dtor on 0x100, derived cleanup, operator delete).

@@ -7,7 +7,7 @@ namespace object {
 // Node class of the 0x647f40 hook-band cluster (shared trivial band
 // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
 // [this+0x1c]).
-// Vtable slot facts (evidence TU under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slot facts :
 // - Slot 10 (0x60): guard-initialised static pointer getter; the self
 //   parameter is unused. On first call stores *(0x12fd3d0)+0x10 into the
 //   global pointer slot at 0x130e158 (guard byte reached through the pointer

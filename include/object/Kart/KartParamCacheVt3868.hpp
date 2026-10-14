@@ -21,7 +21,7 @@ class KartParamCacheVt3868 : public KartParamCacheMid {
 
   // (0x150 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10): vtable-init stub identical to the Vt3508 family fan (vt3868InitVt_71006612dc.cpp).
 // - slot 11 (0x68) per-frame multi-pass filter update (vt3868FilterUpdateSlot11_710066134c.cpp):
 //   mirrors multiFilterColorDriftUpdateSlot11_7100660ed4 with scale multipliers from

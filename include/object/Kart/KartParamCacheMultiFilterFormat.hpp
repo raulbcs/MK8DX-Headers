@@ -16,7 +16,7 @@ class KartParamCacheMultiFilterFormat : public KartParamCacheMid {
   char mChanPair110[0xa0];  // 0x110 — five 0x20 channel pairs (ChanBase ctor 0x7100662f30), w32 tail fields at 0x128/0x148/0x168/0x188/0x1a8
                             // (0x1b0 total)
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (0x10) vtable-init ctor stub (multiFilterFormatVtInitCtor_7100660b24.cpp):
 //   fans cell 0x710130d918(+0x10) vptr into 0x80..0xc0 (nine qwords), cell
 //   0x710130d920(+0x10) into 0x30, cell 0x710130d848(+0x10) into +0x0. function size 0x4c bytes.

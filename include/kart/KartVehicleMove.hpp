@@ -46,7 +46,11 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint16_t course_flag21a;            //0x21A — 0x101 on course 0x65 (0x181558);
                                       // byte +0x21B = 1 on course 0x71 (0x181584/0x18158c)
   uint8_t pad_21c[3];                       //0x21C
-  uint8_t zero_220[0xc];              //0x220 - 0x22B — ctor zeroes
+  float wallBoostScale220;            //0x220 — wallBoostScale: per-axle calc clamps it to [0,1]
+                                      // (0x182738), accumulates += (1 - n*axleDir) * (0.3 | 0.2 if
+                                      // bodyType+0xB0) in the hit path, and calcHitReaction
+                                      // FUN_710017b578 reads it at 0x17b580
+  uint8_t pad_224[8];                 //0x224 - 0x22B — rest of the ctor zero run
   uint8_t antigravSpinTimer22c;       //0x22C — body calc requests boost tier 0x200
                                       // (trigger type 2) when mbAntiGColSpin (+0x3EC)
                                       // is set and this < 1.0 (0x18b9f4)
@@ -73,10 +77,23 @@ struct KartVehicleMove : public object::KartRigidBody {
   float f3a0;                         //0x3A0 — ctor sets 1.0f
   uint8_t pad_3a4[0x10];
   float f3b8;                         //0x3B8 — ctor sets 0.75f
-  uint8_t zero_3bc[8];                //0x3BC - 0x3C3 — ctor zeroes
-  float driftReset3c4;                //0x3C4 — drift state setter writes 0.0392f here
-                                      // (0x17bda0..0x17bdac)
-  uint8_t zero_3c8[0x24];             //0x3C8 - 0x3EB — ctor zeroes
+  uint8_t zero_3bc[8];                //0x3BC - 0x3C3 — ctor zeroes; +0x3C0 = vertical gravity
+                                      // trimmer: +/-0.005 per frame toward target 0.75 (0.75 when
+                                      // flag(0x174ec8(outer,-1)), else s8), sum +0x3C0+0x3C4
+                                      // clamped [0, 0.99] (0x184900..0x18498c)
+  float gravityAccel3c4;              //0x3C4 — gravity accel (Y of the +0x3C0/+0x3C4/+0x3C8
+                                      // accel vector), integrated into vel +0x50/+0x54/+0x58 by
+                                      // FUN_71001ac038 (0x1ac170..0x1ac194). Values per state
+                                      //  0.245f default
+                                      // air (pool 0xed5ef8; inline writers 0x17c39c, 0x17c658,
+                                      // 0x17d94c, 0x17d560); 0.04f glide/hop states 4/5 (inline
+                                      // 0x17bda4 setter and 0x17ce20 every frame); 0 grounded
+                                      // resets 0x181bf0/0x182ca8 and gate 0x184438. NOTE: earlier
+                                      // "0.0392f" and's "0.24f" were approximate
+                                      // reads — corrected to 0.04f/0.245f byte-exact.
+  uint8_t zero_3c8[0x24];             //0x3C8 - 0x3EB — ctor zeroes; +0x3C8 = gravity accel Z,
+                                      // zeroed by the move-gate at 0x184438 and lerped via
+                                      // FUN_710016f138(rate 0.001, 0x184490)
   uint8_t mbAntiGColSpin3ec;          //0x3EC — antigrav wall-spin flag. Writers:
                                       // FUN_71001873d8 (0x187b20: (w23!=0) & [+0x3ED]!=0,
                                       // then spin event 0xb0c90 w1=0x1f) and
@@ -105,9 +122,19 @@ struct KartVehicleMove : public object::KartRigidBody {
                                       // floor clamp derives +0x590 (>= 0.65 when <= 1.0).
                                       // Per-axle consumers 0x71000172da8/0x71000182390 use
                                       // the +0x4B8/+0x4BC..+0x4CC pairs; other members in
-                                      // the zero run below: +0x4D4=0.0157f,
+                                      // the zero run below: +0x4D4=0.015f (0x3c75c28f),
                                       // 0x4E0/+0x4F0/+0x4F8/+0x500=32767.0f,
-                                      // 0x4E8/+0x508=-75.0f, +0x510=0.1f
+                                      // 0x4E8/+0x508=0.018046875f , +0x510=0.1f.
+                                      // WALL BOUNCE : the accel/
+                                      // wall-family slots +0x4B8..+0x4CC (bit-flag selected:
+                                      // 0x1000 -> {+0x4C8,+0x4CC}; 0x800080 -> {+0x4C0,+0x4C4};
+                                      // default {+0x4B8,+0x4BC}) feed calcHitReaction
+                                      // FUN_710017b578 (called 0x1835a4): scaled reflection
+                                      // v' = v + n*(wallMult - scale*dot(v,n)) with wallMult
+                                      // from the selected slot pair and scale = (wallMult -
+                                      // 0.04*s_contact)*(1 - a*(n*axleDir)) + boostSlot+0x60;
+                                      // scale > 0.3 drops miniturbo (+0x60 *= 1-scale); no
+                                      // runtime writer of +0x4B8..+0x4CC exists (init-only).
   uint8_t zero_4b8[0xd4];             //0x4B8 - 0x58B — memset 0 EXCEPT the family members
                                       // listed in the +0x4B4 comment
   uint8_t bodyType3Flag58c;           //0x58C — set 1 by the body-type-3 branch (0x1817a4)

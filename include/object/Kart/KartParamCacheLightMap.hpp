@@ -34,7 +34,7 @@ class KartParamCacheLightMap : public KartParamCache {
   uint64_t mZero8e8;       // 0x8e8 — ctor zero
   uint32_t mZero8f0;       // 0x8f0 — ctor zero
 };
-// Vtable slots (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slots :
 // - slot 0 (+0x10) dtor/reset (lightMapDtorResetSlot0_7100678b78.cpp): runs
 //   0x71006373a4 (cold fragment) on the +0x33e8 block, frees the pooled array at +0x1d8
 //   (stride 0xad8, 0x7100695e90 element dtor), clears +0x1e0 via 0x710060b984, re-inits

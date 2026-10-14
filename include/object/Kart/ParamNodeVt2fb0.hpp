@@ -7,7 +7,7 @@ namespace object {
 // Node class of the 0x647f40 hook-band cluster (shared trivial band
 // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
 // [this+0x1c]).
-// Vtable slot facts (evidence TUs under /Users/raul/projects/mk8dx-400/src/unknown/):
+// Vtable slot facts :
 // - Slots 0 (0x10) / 1 (0x18), complete/deleting destructor: free self+0x268
 //   (clear 0x268/0x260) and self+0x258 (clear 0x258/0x250) via operator
 //   delete; install the static vptr from cell 0x710130d9f8 (+0x10) with its

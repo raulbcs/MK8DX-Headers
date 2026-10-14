@@ -14,7 +14,7 @@ class KartParamCacheChan : public KartParamCacheChanBase {
  public:
   char mTail18[8];  // 0x18 — filled by the 0x7100662f70 init
 };
-// Vtable slot 0 (0x10) vtable-init ctor stub (evidence TU /Users/raul/projects/mk8dx-400/src/unknown/vtInitKartParamCacheChan_710064733c.cpp):
+// Vtable slot 0 (0x10) vtable-init ctor stub :
 // stores the class vtable pointer (global pointer at 0x710130918, +0x10) into *this.
 // True extent 20 bytes.
 }  // namespace object
