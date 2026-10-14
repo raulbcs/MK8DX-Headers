@@ -30,8 +30,15 @@ struct KartVehicleCollision {
   uint32_t uc0;            //0xC0 — ctor zero
   uint8_t cells_c4[0xc];   //0xC4 — global pair 0x12fb148
   uint32_t ud0;            //0xD0 — ctor zero
-  uint8_t bd8;             //0xD8 — ctor zero
-  uint8_t zero_dc[0x24];   //0xDC - 0xFF
+  uint8_t pair_caller_d3;  //0xD3 — u8 read by the wrapper thunk FUN_7100142048
+                           // (0x7100140d20): *(KartVehicle+0x48)+0xD3
+  uint8_t pad_d4[5];       //0xD4 - 0xD8 — unproven padding
+  uint8_t surface_resolve_d9;              //0xD9 — u8 read by the wrapper thunk
+                                           // FUN_7100142060 (0x7100140d38)
+  uint8_t pad_da[0x11];    //0xDA - 0xEA — unproven padding
+  uint8_t combo_eb;                        //0xEB — u8 read by the wrapper thunk
+                                           // FUN_71001423a0 (0x7100141078)
+  uint8_t zero_ec[0x14];   //0xEC - 0xFF — ctor zeroes
   uint8_t cells_100[0xc];  //0x100 — global pair
   uint8_t cells_10c[0xc];  //0x10C — global pair
   uint8_t cells_118[0xc];  //0x118 — global pair
@@ -41,6 +48,13 @@ struct KartVehicleCollision {
   uint8_t cells_144[0xc];  //0x144 — global pair
   uint8_t cells_150[0xc];  //0x150 — global pair
   uint8_t zero_15c[0x54];  //0x15C - 0x1AF — ctor zeroes (byte granular)
+  // +0x1CD / +0x1CE — collision flag byte pair, read bitwise by wrapper thunks
+  // on *(KartVehicle+0x48): +0x1CD bit7 = trivial-collision (FUN_7100141d0c,
+  // 0x71001409e4); +0x1CD bit4 = collision state (FUN_71001421c0, 0x7100140e98);
+  // +0x1CE bit1 (FUN_7100142138, 0x7100140e10).
+  // +0x26C — float read by the wrapper thunk FUN_7100142788 (0x7100141460).
+  // +0x50 — pointer walked deep by FUN_71001424b0 (0x7100141188):
+  // returns *(*(KartVehicle+0x48)+0x50)+0x68.
   uint8_t sub_1b0[0x60];   //0x1B0 — subobject via ctor 0x60b918(arg 10)
                            // (0x139a68)
   uint8_t sub_210[0x60];   //0x210 — same ctor (0x139a80)

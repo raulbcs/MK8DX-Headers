@@ -33,6 +33,19 @@ namespace object {
 // - slot 0x1c0 (0x710019b440): delegates to [0x140] -> [+0x730]
 //   vtable slot 0x18, returns [+0x738] (602 classes differ).
 //
+// Run-vtable accessor impls (thunks compiled in the 0x710019xxxx band):
+// - vtable +0x148 impl (0x7100012a44): writes 1.0f (u32 0x3f800000) to the
+//   low word of mField128.
+// - contact-type query (0x71001994d8): returns *(int*)mField140 — first int
+//   of the +0x140 sub-object.
+// - counter slot (0x710019a388): installs a counter pointer at +0x1B0 and
+//   snapshots the pre-increment value at +0x1B8 (increments *p).
+// - slot dispatching vtable +0x148 (0x7100199ef4): tail-call *(vt+0x148)(this).
+// - u16 ring push (0x710019b7bc): base=[+0x1C0], cap=[+0x1C8],
+//   base_idx=[+0x1CC], head=[+0x1D0]; signed head<cap gate, index wraps by cap.
+// - flag slots: (0x710019b7f4) *(u32*)(this+0x1D0) != 0;
+//   (0x710019b80c) *(u8*)(this+0xDE) & 7 (byte in the Actor-base band).
+//
 // Vtable .data 0x11bb5c0 (GOT cell 0x12fd6a8), ctor 0x7100019888, size
 // 0x208 (allocation 0x208 at 0x19d554). Ctor: Actor base 0x7b976c,
 // embedded member at 0x38 (ctor 0x86838c), zeros at 0x150-0x160,

@@ -104,7 +104,8 @@ class KartVehicle {
   bool mIsTrike;                            //0xDD — INIT: isKartUnitField24Eq2 mirror (0x170120)
   bool mIsTrikeR;                           //0xDE — INIT: isKartUnitField24Eq3 mirror (0x170130)
   uint8_t mPadDF[2];                        //0xDF-0xE0 — unproven padding
-  bool mIsEnableRun;                        //0xE1
+  bool mIsEnableRun;                        //0xE1 — setter FUN_7100172eb0
+                                            // (0x7100171b6c): *this = v & 1
   uint8_t mPadE2[3];                        //0xE2 - 0xE4 — unproven padding
   bool mIsNetVS;                            //0xE5 — INIT: bit3 of the manager global at 0x87fcd0->+0x24 (0x17014c)
   bool mIsNetSend;                          //0xE6 — INIT: mIsNetVS && (param+0xd54 != 2) (0x17015c-0x17016c)
@@ -144,6 +145,13 @@ class KartVehicle {
                                             // KartVehicle accessor cluster; do not rely on it
   uint32_t mPad1C8;                         //0x1C8 — unproven padding
   uint32_t mKartStatusBits;                 //0x1CC — evidenced bits: 4 (FUN_7100174ec8),
+                                            // 0x200000/0x8000/0x800 (race-start trigger
+                                            // FUN_7100175d18, through 0x175e60: sets +0xD3=1,
+                                            // plays effects 0x2a/0x24/0x25 via *(+0x8)+0x28 when
+                                            // bits 21/15/11 clear, phys-mgr idx-4 slot *(slot+0x238)
+                                            // gets FUN_710013d394 with +0xA8 id, zeroes +0x21C/+0x224,
+                                            // clears bits 12..14/27..31, +0x1EC>=1 -> -10, +0x1F0 =
+                                            // max(+0x1F0 + *(f32*)(0xed5000+0xc20), 0)),
                                             // 6 (FUN_7100174f5c), 14+21 volatile 0x204000 gate (FUN_710017a830),
                                             // 29 (FUN_7100177400, byte 0x1CF >>5)
   uint32_t mKartFrames;                     //0x1D0 — zeroed per-frame (FUN_7100173df4)

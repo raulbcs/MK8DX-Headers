@@ -37,6 +37,30 @@ class ParamContainerVtc338 {
   uint8_t mPad36e[0x2];   // 0x36e — u16 — ctor-zero
                           // (0x370 total, factory alloc)
 };
+
+// Vtable slot 24 (0xd0) = SpotLightRig::Obj update — entry 0x7100712ed4,
+// true size: 0x3f8, range 0x7100712ed4..0x71007132cc. Self fields: light node
+// ptr +0x358, id halfword +0x360, angle accumulators i32 +0x364/+0x368,
+// mask halfword +0x36c. Semantics:
+//  - Gate: vt[0x90/8](arg, [+0x360]) bit0 must be set and *(u8*)(lt+0x58)
+//    nonzero, else return.
+//  - [+0x36C] = *(u16*)(arg+0xC) & mask.
+//  - vt[0x80/8](arg, &sp+0x40, id) fetches two rgb triples (+0x40/+0x50/
+//    +0x60, second at +0x4c/+0x5c/+0x6c).
+//  - Color combine vs lt[0x468]/[0x46C]/[0x470]: byte lt+0x490 set ->
+//    out_k = lt[0x468+4k] + in[0xc+0x10k] (plain add); else 3x3 combine
+//    with rows (a,b,c)/(b,a,c)/(a,b,c), (a,b,c) = (lt[0x468], lt[0x46C],
+//    lt[0x470]).
+//  - Default stack color words from globals 0x7102fce50 and 0x7102fce10;
+//    mode switch on *(int*)(lt+0x290): 0 static, 1 double-rng hue/palette
+//    via FUN_710062eecc + 683565248.0f fixed-point angles, 2 multiply; w21
+//    merge into lt+0x2D0/lt+0x2F0, alpha normalized by lt[0x388]; final
+//    vt+0xe0 apply. Globals touched: 0x712fc990 / 0x712fb0160 / 0x71307cb8.
+//
+// Vtable slot 32 = MaskedSpotLightRig update — entry 0x710072f618, size
+// 0x3f8, byte-identical to slot 24 except three self offsets: light node
+// ptr +0x470, id halfword +0x478, mask halfword +0x484 (all callees,
+// globals, rodata floats and vtable slot offsets identical).
 }  // namespace object
 
 // Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.

@@ -286,4 +286,25 @@ class KartPhysicsBody : public gear::Actor {
   uint8_t mPad324[4];    // 0x324 — to end of root (0x328); the ctor's
                          // tail only fills the three 0xb0 arrays
 };
+
+// EXTENT / gap-split boundary notes — physics area (verified against the
+// decomp TUs):
+//  - FUN_7100814c7c (item scoring/query, ret 0x8151a0):
+//    file_list size 680 is a gap-split; a duplicated variant with an
+//    extra w4 flag starts at 0x814efc.
+//  - FUN_71007c8d84 (conditional 0x30-record update, ret
+//    0x7c8e24): file_list size 0x12c is a gap-split; FUN_71007c8e24 at
+//    +0xa0 is the next function.
+//  - respawnRayPipeline_7100016340 (true size 0x7d0 bytes, ret 0x16b0c):
+//    file_list size 444 is a gap-split; an unnamed sibling starts at
+//    0x16b10. Three cbz paths on a null physics manager branch into
+//    0x16b10, past the ret (unreachable crash path).
+//  - playerKartContextInit_7100003f08): the null-mgr cbz
+//    jumps into the prologue of the next function at 0x7100003fac
+//    (gap-split tail-call crash path, unreachable in practice).
+//  - FUN_71009b3838 (intrusive sorted-list lookup, true size 0x52 bytes,
+//    ret 0x9b386c): 48 bytes in phys_remaining.json / 56 in file_list —
+//    extent mismatch, not a gap-split.
+//  - surfaceWheelQuery_71007cd8b8: true range 0x7cd8b8..0x7cdc30 (888
+//    bytes); the file_list size is correct, not a gap-split.
 }  // namespace object

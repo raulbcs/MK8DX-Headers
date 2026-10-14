@@ -64,6 +64,11 @@ enum CalcPhase {
 // - slot 24 (0xd0): free actors — iterates count +0xc0 / array +0xc8 and
 //   calls helper 0x710016ce8c on each entry. 0x48 bytes true (gap-split).
 //   [kartDirectorFreeActors_710013d0ac.cpp]
+// - shuffle helper FUN_710013e524 (see +0x760/+0x764/+0x778 below): per-kart
+//   random draw over the RaceCheckManager singleton; modes keyed on mgr+0x8
+//   and mgr+0x27. true size: 0x5c4, ends at the ret 0x710013eae8.
+// - profiler flush FUN_71006328b8: "end" helper of the Calc pipeline, see the
+//   +0xA0-region profiler note below.
 //
 // Calc pipeline: CalcPosition -> CalcAI -> CalcMove -> (KartRadar |
 // CalcApply), selected per phase. Each phase submits a job whose buffer
@@ -103,6 +108,32 @@ class KartDirector {
   //   FUN_71000c87dc and stored here (slot 18).
   // +0x758 — second vptr, cell 0x712fbd48 + 0x10 (slot 2/3 re-init).
   // +0x760 — value stamped into the slot 17 osc timer.
+  // +0x760/+0x764/+0x778 — random draw/shuffle state (helper FUN_710013e524,
+  //   addresses 0x710013e524-0x710013eae8, called from the slot-15 ctor family
+  //   FUN_7100013e140 and FUN_710013e3ac): +0x778 = 12 i16 draw slots cleared
+  //   to -1; +0x760 = u32 seed, +0x764 = rng state seeded via FUN_710062ee88.
+  //   Seed: bit3 of RaceCheckManager+0x24 clear -> nn::os::GetSystemTick;
+  //   else madd hash of mgr fields (+0x2c*315, +0x1a0, +0x1c*12345, +0x180*
+  //   0xEBED0000, +0xc*0xB9FF0000) mixed with row i of the mgr table (stride
+  //   0x1c: +0x3c*0xB2070000, +0x30*0x66590000, +0x34*123, +0x38*0x7D7B).
+  //   Draw modes on mgr+0x8: ==3 && +0x27!=0 -> tally zero/nonzero checks
+  //   (helper FUN_7100141ffc) and draw with LCG retry (v = (u64)count*draw>>32,
+  //   mirror >0xb -> 23-v) with linear probe over +0x778; ==3 && +0x27==0 ->
+  //   plain (v+1) mod count on collision; else guard-protected manager slot 3
+  //   singleton (FUN_71008cf5c4 -> vt[0]) bails when its +0x1fac==2 or
+  //   +0x1a44!=0, then assigns candidates 0,1,2.. into -1 slots whose check
+  //   matches the minority tally. Tail: FUN_710013f430(self, i, draw[i]) per
+  //   kart; FUN_710014ced0 on +0xd8 when set.
+  // +0xA0-region profiler — flush helper FUN_71006328b8 (through 0x632a78),
+  //   used as the profiler "end" from CalcPosition/CalcAI/CalcApply. x0 =
+  //   profiler object: +0x78 unit count, +0x80 unit ptr array, +0x88 record
+  //   capacity, +0x90 record ptr array, +0x98 record count, +0x9c active byte,
+  //   +0xa0 idle-frame u32, +0xa8 latched GetSystemTick. Idle path bumps
+  //   +0xa0, latches +0xa8, calls FUN_71006368c0(unit,1) on units with
+  //   unit+0xf4 set. Active path: per record, vt[0] tick-start, elapsed via
+  //   FUN_7100631f50, atomic ldxr/stxr add into record+0x70; core id = TLS
+  //   slot cell 0x710012fad88 (value-1, else nn::os::GetCurrentCoreNumber)
+  //   via FUN_7100631fc0; then FUN_7100636794 over the unit array.
   uint8_t pad_EA[0x86];               // 0xEA — see field notes above
 
   // Job buffers (0xC8 each), reset by CalcAI before accumulation:

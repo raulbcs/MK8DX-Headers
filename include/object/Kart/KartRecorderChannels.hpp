@@ -28,6 +28,11 @@
 //
 // Runtime cross-evidence: FUN_7100173140 (Path2Gate cluster) reads the int
 // at +0x8 (==2 gate).
+// +0x1C4 — int returned by the converter thunks in the recorder band:
+// 0x71003afc74 stores *(u8*)dst = *(int*)src then returns it;
+// 0x71003b0e50 stores *(u16*)dst = *(int*)src then returns it;
+// 0x71003ac03c zeroes the word (receiver class UNCERTAIN — offset fits
+// this hub's 0x2B8 extent, but the thunks' this is not pinned to it).
 namespace object {
 struct KartRecorderChannels {
   uint8_t pad_00[8];        // 0x00 — vtable ptr (global 0x1307890+0x10)

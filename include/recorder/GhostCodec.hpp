@@ -246,4 +246,68 @@ struct GhostFrameRecord {
                            //      out+0x50 = input group B verbatim
 };
 
+/*
+ * GHOST FILE SIDE TUs (READ/playback path, outside the write codec):
+ *
+ * FUN_71004a85a4 — ghost file opener, READ side (612 B). x0 = entry object
+ *   (player+0x1e0 or self+0x8d0; sead string-like: vtable [x0], data [x0+8],
+ *   vt+0x18 getData), w1 flag (bit0 "Fast" else "Slow"), w2 extra flag
+ *   (inverted into FUN_71003bc344). Resolves a slot/descriptor from +0x9b0 of
+ *   the FUN_71003ddf50 singleton, builds a 0x100-byte stack path string
+ *   (vtable cell 0x71012fada0) formatted "Ghost/%s/%s" (fmt 0xeeb2ad; folder
+ *   strings 0xeeb2b9/0xeeb2be). Ghost-data manager singleton = FUN_71008bd3c8:
+ *   Fast table base = mgr + 0x130C000, Slow base = mgr + 0x653B0000
+ *   (in-object preallocated landing zones for decompressed frame data).
+ *   Entry count = [FUN_710087fce8() + 0x1a0]; target object FUN_71008bd33c
+ *   holds {count@+0x50, array@+0x58}. Bucket index = count + adj (adj 0 /
+ *   -27 / -16 for count <0x4B / <0x7B / >=0x7B) — approximate modulo into
+ *   the 0x1A0-stride entry table. Copies the 0x24-byte metadata entry into
+ *   target+0x210..+0x22C (two ids/keys, words, u16 — key/time/flag triplet;
+ *   consumed by per-frame playback). Then FUN_710088c934 / FUN_71008bd2e4,
+ *   stream open of the formatted path, on success stores [result+0x10] into
+ *   the out slot and (if [result+8]) FUN_710088cb34 / FUN_710088ca18(x19, 1)
+ *   enable the async read.
+ *
+ * FUN_71008754c0 — ghost-data stream session state machine (280 B).
+ *   Layout: +0x38 region base, +0x40 u32 busy flag, +0x44 u32 session state
+ *   (0 open-pending / 1 discard / 2 close), +0x48 u32 size, +0x50 u8
+ *   force-close, +0x200 stream ptr, +0x208 u8 flag forwarded after open,
+ *   +0x230 s32 cursor (init -1). x1 = caller probe int. Probe 0 with no
+ *   stream: FUN_710087aaa8(+0x38, +0x48) -> +0x200, FUN_71007df028(stream,
+ *   [+0x208] byte); failure -> state 1, success -> 0, stored at +0x44.
+ *   State 1: stream vt+0x70 abort, clear +0x40, null +0x200, cursor -1.
+ *   State 2 or +0x50: cursor -1, FUN_710087b47c(+0x38, +0x48) flush,
+ *   FUN_7100879370(+0x38) finish/seal. Live state: cursor refreshed from
+ *   FUN_710087ad08 when -1, then flush + finish. Reached via
+ *   FUN_7100874cb0 / FUN_7100874d68 from loader tick FUN_71004a8978.
+ *
+ * FUN_71006eccbc — ghost bind-entry default frame id: writes the u16 frame
+ *   id (w1) into +0x4 of EVERY 0xc-byte record of the stream ctx's record
+ *   table: count = entryObj vt+0xb0() (concrete callee for NodeB:
+ *   0x71006afbc4); table = *(entryObj+0x68); table[12*k+4] = id for k < count.
+ *
+ * FUN_71006abbf8 — atomic monotonic frame-id generator (0x1c bytes):
+ *   ldxr/stxr fetch-add at obj+0xCC, returns PREVIOUS value & 0x7ff
+ *   (id wraps every 2048 frames).
+ *
+ * FUN_71003af93c — per-tick prep of the ghost playback ctx (caller runs it
+ *   before LerpKartMatrix_71003afaa4): inv = inverse3x4(FUN_7100c9c64) of
+ *   *(*(ctx+0x280)+0x128)+0x2EC; snap = *(ctx+0x288) is 12 words COLUMN-major
+ *   {rot col0 (0-2), col1 (3-5), col2 (6-8), T (9-11)}. Writes:
+ *   ctx+0x308/0C/10 = snap col2 . inv columns + inv T column (kart pos in
+ *   frame coords); ctx+0x314/18/1C = snap words 9/10/11 VERBATIM (bit
+ *   copies); ctx+0x320/24/28 = snap col1 - col2, normalized when len > 0
+ *   (frame frontal dir); ctx+0x330 = len; ctx+0x32C = snap word 12 verbatim.
+ *
+ * FUN_710069ee98 — ghost stream load of a dat resource's named chunk set:
+ *   stream = FUN_710069ebd8(reader=x1, meta=x2, ctx=x3);
+ *   *(stream+0x100) = target (the hdr later read by apply FUN_71006ada8c:
+ *   hdr+0x18 = per-frame record array, stride 0x60); count = u16
+ *   *(*(target+0x30)+0xBC) (desc chunkCount); per i, entry =
+ *   FUN_71006b85f4(target, i), pair = {vptr = *(GOT 0x12fa000+0xe28)+0x10
+ *   (fixed class), name = entry+0x10+2 (past the s16 length prefix)};
+ *   FUN_710069f080(stream, target, &pair, ctx), stopping at first failure.
+ *   Returns the stream (NULL if creation failed or count == 0).
+ */
+
 }  // namespace recorder
