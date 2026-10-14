@@ -5,7 +5,7 @@
 namespace object {
 // Item/object spawner director. Docblock facts — owning classes unnamed.
 
-// Dispatch entry behind cell 0x1314f68 (PROVADO: idx*0x10 indexing in
+// Dispatch entry behind cell 0x1314f68 (proven: idx*0x10 indexing in
 // FUN_7100a7763c) — extent 0x10.
 struct WeightDispatchEntry {
     void* fn;                 // 0x00 void(void* vehAtOffset)

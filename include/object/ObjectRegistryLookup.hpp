@@ -6,7 +6,7 @@ namespace object {
 // Object-registry bulk (re)registration and name lookups over the global
 // registry manager (mgr = *(cell 0x7101309218)). Docblock facts.
 
-// Stage-table entry shared by the name lookups (PROVADO: 0xc stride reads in
+// Stage-table entry shared by the name lookups (proven: 0xc stride reads in
 // FUN_710063ff98 at table+0x3c and FUN_710063fb98 at table+0x30 — different
 // table objects, same entry shape) — extent 0xc.
 struct RegistryStageTableEntry {

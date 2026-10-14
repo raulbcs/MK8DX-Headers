@@ -6,7 +6,7 @@ namespace gear {
 // Item-slot record system (0x5dbf48..0x79b854 cluster).
 
 // Item-slot record built by FUN_710079aee0 (0x710079aee0) — extent 0x78,
-// PROVADO via FUN_710060b234(0x78, arena, 8) zeroed at step 2.
+// proven via FUN_710060b234(0x78, arena, 8) zeroed at step 2.
 // Counts are the 8-byte count headers FUN_710060b3fc(count*0x28 + 8, ...).
 struct ItemSlotRecord {
     uint32_t count0;          // 0x00 sized stage->[0x1c]
