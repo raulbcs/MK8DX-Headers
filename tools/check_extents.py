@@ -108,7 +108,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Item/ItemSlot.hpp
 #   include/gear/Item/Obj/ItemObjBase.hpp
 #   include/gear/Item/Obj/ItemObjKouraG.hpp
-#   include/gear/Item/Obj/ItemObjKouraR.hpp
 #   include/gear/MapObj/IMapObjBounce.hpp
 #   include/gear/MapObj/MapObjBase.hpp
 #   include/gear/MapObj/MapObjCreateArg.hpp
@@ -131,8 +130,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Race/RaceDirectorBase38.hpp
 #   include/gear/Race/RaceDirectorManager.hpp
 #   include/gear/Race/RaceDirectorManagerBase.hpp
-#   include/gear/Race/RaceDirectorPlayerBase.hpp
-#   include/gear/Race/RaceDirectorPlayerSetBase.hpp
 #   include/gear/Race/RaceDirectorSetChain.hpp
 #   include/gear/Race/RaceDirectorSetHelper.hpp
 #   include/gear/Race/RaceDirectorSetStatePod.hpp

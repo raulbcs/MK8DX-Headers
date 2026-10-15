@@ -49,5 +49,9 @@ class ItemObjKouraR : public ItemObjKouraG {
   int32_t mLockOnKartIdx;  // 0x428
   uint8_t mPad42C[0x34];   // 0x42C
   // 0x460
+// extent 0x460 (allocation size 0x460 — movz w0,#0x460; bl 0x710060afec
+// _Znwm @0x710035f10 → ctor 0x710030d50, stores reach 0x460 and call the
+// KartPhysicsBodyMid base ctor 0x71003703c)
+
 };
 }  // namespace gear
