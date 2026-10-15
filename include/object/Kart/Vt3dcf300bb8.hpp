@@ -20,5 +20,7 @@ class Vt3dcf300bb8 {
   uint8_t mPad08[0xe8];  // 0x08 — unproven gap
   uint32_t mFieldf0;     // 0xf0 — ctor-written (param pass-through)
                          // (extent unknown)
+// extent 0xf4 (ctor 0x7100628a54 stores reach 0xf4)
+
 };
 }  // namespace object

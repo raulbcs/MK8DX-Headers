@@ -246,10 +246,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamNodeVtde48.hpp
 #   include/object/Kart/UIMovieRecreatingThread.hpp
 #   include/object/Kart/VibrationThread.hpp
-#   include/object/Kart/Vt3dcf300bb8.hpp
 #   include/object/Kart/Vt3dcf3018f8.hpp
-#   include/object/Kart/Vt3dcf307018.hpp
-#   include/object/Kart/Vt3dcf308480.hpp
 #   include/object/MapObj/MapObjItemBox.hpp
 #   include/object/MapObj/MapObjVehicleBase.hpp
 #   include/object/ObjectEngine.hpp
