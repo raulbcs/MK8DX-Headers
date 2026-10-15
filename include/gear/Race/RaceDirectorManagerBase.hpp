@@ -28,5 +28,7 @@ class RaceDirectorManagerBase : public RaceDirectorBase38 {
   uint64_t mZero58;   //0x58 — ctor zero
   uint64_t mZero60;   //0x60 — ctor zero
   // (0x68 total)
+// extent 0x68 (prior-survey total 0x68)
+
 };
 }  // namespace gear

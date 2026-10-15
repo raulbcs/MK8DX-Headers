@@ -23,6 +23,8 @@ class ParamMultiChanVtbb50 {
                         // +0x5c8 -> +0x5f0, +0x5e8 -> +0x5f1 (0x890810)
   // (0x5f8 total; proven lower bound 0x5f2, no allocation site —
   // static singleton)
+// extent 0x5f8 (prior-survey total 0x5f8)
+
 };
 // vtable facts (multiChanBb50InitCtorSlot0_7100706540,
 // paramMultiChanVtbb50StaticInstanceSlot10_7100706c40):

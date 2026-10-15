@@ -123,7 +123,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Player/PlayerInfo.hpp
 #   include/gear/Player/PlayerManager.hpp
 #   include/gear/Race/LapRankChecker.hpp
-#   include/gear/Race/RaceDirectorManagerBase.hpp
 #   include/gear/Race/RaceDirectorSetChain.hpp
 #   include/gear/Race/RaceInfo.hpp
 #   include/gear/Race/RaceKartInfo.hpp
@@ -176,14 +175,10 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartModelBackgroundLoadThread.hpp
 #   include/object/Kart/KartParamCacheVtd608.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
-#   include/object/Kart/ParamChannelVt38f8.hpp
-#   include/object/Kart/ParamContainerVtb0b8.hpp
-#   include/object/Kart/ParamContainerVtb1e8.hpp
 #   include/object/Kart/ParamMultiChanVt2808.hpp
 #   include/object/Kart/ParamMultiChanVt2c40.hpp
 #   include/object/Kart/ParamMultiChanVtb318.hpp
 #   include/object/Kart/ParamMultiChanVtba40.hpp
-#   include/object/Kart/ParamMultiChanVtbb50.hpp
 #   include/object/Kart/ParamMultiChanVtbdb8.hpp
 #   include/object/Kart/ParamMultiChanVtc0f0.hpp
 #   include/object/Kart/ParamMultiChanVtc200.hpp
@@ -223,8 +218,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Vt12ca000.hpp
 #   include/object/Vt12f3160.hpp
 #   include/repl/File.hpp
-#   include/repl/SZSThread.hpp
-#   include/repl/Thread.hpp
 #   include/sead/Container.hpp
 #   include/ui/Buttons/Control_BackButton.hpp
 #   include/ui/Buttons/Control_Button.hpp
