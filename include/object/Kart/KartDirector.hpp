@@ -32,8 +32,7 @@ class KartDirector {
   uint8_t pad_00[0x50];               // 0x00 — unproven padding
   void* mUnits50[12];                 // 0x50 — per-unit object pointers, indexed by unit
                                       // idx clamped < 12 (FUN_710013f430 0x13f468-0x13f478, read before
-                                      // each KartUnitHolder is destroyed)
-  uint8_t pad_80[0x30];               // 0x80 — unproven padding
+                                      // each KartUnitHolder is destroyed); 0x50..0xB0
   void* mB0;                          // 0xB0 — passed to the unit getter along with the index
   uint8_t pad_B8[0x8];                // 0xB8 — unproven padding
   int mUnitCount;                     // 0xC0
@@ -74,5 +73,8 @@ class KartDirector {
   // Full calc pipeline: CalcPosition -> CalcAI -> CalcMove ->
   // (KartRadar|)CalcApply.
   void CalcPosition() asm("KartDirector::CalcPosition");  // KartDirector::CalcPosition
+// extent 0x794 (KartDirector::CalcPosition 0x710013ef3c writes
+// mPhase790: str w21,[x19,#0x790] @0x710013efd8)
+
 };
 }  // namespace object

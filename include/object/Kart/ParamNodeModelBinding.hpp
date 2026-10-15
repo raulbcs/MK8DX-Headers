@@ -20,6 +20,8 @@ class ParamNodeModelBinding {
   void* vtable;         // 0x00
   uint8_t mPad8[0x28];  // 0x8 — unproven gap
   uint64_t mField30;    // 0x30
+// extent 0x38 (in-place node partition: next node's vptr at +0x38 — site 0x73312c)
+
 };
 }  // namespace object
 

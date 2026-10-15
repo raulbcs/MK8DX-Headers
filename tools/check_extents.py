@@ -92,7 +92,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Director/TDirectorBase.hpp
 #   include/gear/Framework/FrameworkGameScene.hpp
 #   include/gear/Ghost/RaceTime.hpp
-#   include/gear/Item/ItemDirector.hpp
 #   include/gear/Item/ItemEvent.hpp
 #   include/gear/Item/ItemEventManager.hpp
 #   include/gear/Item/ItemOwner.hpp
@@ -159,7 +158,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/BackgroundLoadThread.hpp
 #   include/object/Kart/ContentsThread.hpp
 #   include/object/Kart/KartChassisEffect.hpp
-#   include/object/Kart/KartDirector.hpp
 #   include/object/Kart/KartFloorEffect.hpp
 #   include/object/Kart/KartInfoProxy.hpp
 #   include/object/Kart/KartMatrixInfo.hpp
@@ -178,7 +176,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamMultiChanVtd900.hpp
 #   include/object/Kart/ParamMultiChanVtda50.hpp
 #   include/object/Kart/ParamNodeEnvObjName.hpp
-#   include/object/Kart/ParamNodeModelBinding.hpp
 #   include/object/Kart/ParamNodePseudoOcclusion.hpp
 #   include/object/Kart/ParamNodeVt2198.hpp
 #   include/object/Kart/ParamNodeVt2b90.hpp
