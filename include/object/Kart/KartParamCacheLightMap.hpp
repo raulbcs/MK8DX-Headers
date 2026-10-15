@@ -15,7 +15,7 @@ class KartParamCacheLightMap : public KartParamCache {
   uint64_t mZero1e8;       // 0x1e8 — ctor zero
   uint8_t mPad1f0[0x10];   // 0x1f0 — unproven gap
   uint32_t mZero200;       // 0x200 — ctor zero
-  uint32_t mField204;      // 0x204 — ctor-written
+  uint32_t mField204;      // 0x204
   uint64_t mZero208;       // 0x208 — ctor zero
   uint32_t mZero210;       // 0x210 — ctor zero
   uint8_t mPad214[0x4];    // 0x214 — unproven gap

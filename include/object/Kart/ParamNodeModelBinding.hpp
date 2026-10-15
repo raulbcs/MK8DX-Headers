@@ -19,7 +19,7 @@ class ParamNodeModelBinding {
  public:
   void* vtable;         // 0x00
   uint8_t mPad8[0x28];  // 0x8 — unproven gap
-  uint64_t mField30;    // 0x30 — ctor-written
+  uint64_t mField30;    // 0x30
 };
 }  // namespace object
 

@@ -12,9 +12,9 @@ class KartPhysicsBodyVt96a : public KartPhysicsBody {
   uint8_t mPad328[0x4];  // 0x328 — unproven gap
   uint8_t mPad32c;       // 0x32c — ctor zero
   uint8_t mPad32d[0x3];  // 0x32d — unproven gap
-  uint32_t mField330;    // 0x330 — ctor-written
+  uint32_t mField330;    // 0x330
   uint8_t mPad334[0x4];  // 0x334 — unproven gap
-  uint64_t mField338;    // 0x338 — ctor-written
+  uint64_t mField338;    // 0x338
 };
 }  // namespace object
 

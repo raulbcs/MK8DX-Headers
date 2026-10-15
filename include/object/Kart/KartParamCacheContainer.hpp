@@ -13,11 +13,8 @@ class KartParamCacheContainer : public KartParamCacheMid2 {
  public:
   // additional writes by ctor 0x710071db70
 };
-// Vtable slot 0 (+0x10) dtor/reset :
-// frees the pooled array at +0x338 (stride 0xfd0, 0x7100721758 per entry), re-inits the
-// +0x900 container, runs 0x710063a384 on +0x850 and 0x7100639f38 on +0x780, re-stamps
-// default vptr fields +0x8c0 and +0x6a8..+0x340 (cell 0x710130d918), +0x300
-// (0x710130d920), +0x900/+0x0 (0x710130d830 / 0x710130d848). function size 0x144 bytes.
+// dtor: pooled-array strides 0xfd0; resets cells 0x710130d918; fn size 0x144.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

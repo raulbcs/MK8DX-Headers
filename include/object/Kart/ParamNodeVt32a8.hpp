@@ -26,7 +26,7 @@ class ParamNodeVt32a8 {
  public:
   void* vtable;         // 0x00
   uint8_t mPad8[0x28];  // 0x8 — unproven gap
-  uint16_t mField30;    // 0x30 — ctor-written
+  uint16_t mField30;    // 0x30
 };
 }  // namespace object
 

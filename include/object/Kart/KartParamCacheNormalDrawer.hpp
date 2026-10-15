@@ -12,23 +12,20 @@ class KartParamCacheNormalDrawer : public KartParamCache {
   uint8_t mPad40[0x190];   // 0x40 — unproven gap
   uint32_t mZero1d0;       // 0x1d0 — ctor zero
   uint8_t mPad1d4[0xc];    // 0x1d4 — unproven gap
-  uint32_t mField1e0;      // 0x1e0 — ctor-written
+  uint32_t mField1e0;      // 0x1e0
   uint8_t mPad1e4[0x23c];  // 0x1e4 — unproven gap
-  uint64_t mField420;      // 0x420 — ctor-written
+  uint64_t mField420;      // 0x420
   uint8_t mPad428[0x28];   // 0x428 — unproven gap
-  uint64_t mField450;      // 0x450 — ctor-written
+  uint64_t mField450;      // 0x450
   uint8_t mPad458[0x10];   // 0x458 — unproven gap
-  uint8_t mField468;       // 0x468 — ctor-written
+  uint8_t mField468;       // 0x468
   uint8_t mPad469[0x7];    // 0x469 — unproven gap
-  uint64_t mField470;      // 0x470 — ctor-written
+  uint64_t mField470;      // 0x470
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
 };
-// Vtable slot 0 (+0x10) dtor/reset :
-// frees the pooled array at +0x1d8 (stride 0x9f8) running ten element destructors per
-// entry, re-inits both +0x1e8 and the drawer container, and re-stamps default vptr
-// fields +0x470/+0x450 (cell 0x710130d918), +0x420 (0x710130d920), +0x1e8
-// (0x710130d830), +0x0 (0x710130d848). function size 0x130 bytes.
+// dtor: pooled-array strides 0x9f8; resets cells 0x710130d918; fn size 0x130.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

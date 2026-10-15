@@ -16,7 +16,7 @@ class ParamNodeVt47a0 {
  public:
   void* vtable;           // 0x00
   uint8_t mPad8[0x28];    // 0x8 — unproven gap
-  uint64_t mField30;      // 0x30 — ctor-written
+  uint64_t mField30;      // 0x30
   uint8_t mPad38[0xe58];  // 0x38 — unproven gap
   uint64_t mZeroe90;      // 0xe90 — ctor zero
   uint64_t mZeroe98;      // 0xe98 — ctor zero

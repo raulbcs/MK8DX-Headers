@@ -10,12 +10,12 @@ namespace object {
 class KartParamCacheDecalAo : public KartParamCache {
  public:
   uint8_t mPad40[0x190];    // 0x40 — unproven gap
-  uint32_t mField1d0;       // 0x1d0 — ctor-written
+  uint32_t mField1d0;       // 0x1d0
   uint32_t mZero1d4;        // 0x1d4 — ctor zero
   uint8_t mPad1d8[0x1068];  // 0x1d8 — unproven gap
   uint64_t mZero1240;       // 0x1240 — ctor zero
   uint64_t mZero1248;       // 0x1248 — ctor zero
-  uint64_t mField1250;      // 0x1250 — ctor-written
+  uint64_t mField1250;      // 0x1250
   uint8_t mPad1258[0x180];  // 0x1258 — unproven gap
   uint32_t mZero13d8;       // 0x13d8 — ctor zero
   uint8_t mPad13dc[0x184];  // 0x13dc — unproven gap
@@ -31,13 +31,8 @@ class KartParamCacheDecalAo : public KartParamCache {
   uint64_t mZero1998;       // 0x1998 — ctor zero
   uint64_t mZero19a0;       // 0x19a0 — ctor zero
 };
-// Vtable slot 0 (0x10) complete-object dtor :
-// vptr from cell 0x71013151f0+0x10; runs the base dtor 0x7100654ae0 on +0x1d8; releases
-// the optional sub-objects at +0x1560 and +0x1578 (0x71006373a4 — virtual release via
-// vtable +8), the fixed sub-objects at +0x1950/0x1880/0x16b0/0x1490/0x1308 (0x7100639f38),
-// +0x1598 (0x710063ed3c) and +0x410 (0x7100b00100); re-vptrs +0x1d8 from cell
-// 0x710130d830, runs 0x7100654ae0 and 0x71006156b4 on it again; final vptr from cell
-// 0x710130d848+0x10. function size 0xe0 bytes.
+// dtor: resets cells 0x71013151f0; fn size 0xe0.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

@@ -23,7 +23,7 @@ class KartVehicleControl {
   uint32_t m3c;             //0x3C — same global pair (unaligned u64 store 0x3c)
   uint32_t m40;             //0x40 — upper half
   uint32_t mU44;            //0x44
-  uint16_t mU48;            //0x48 — ctor zero
+  uint16_t mU48;            //0x48
   uint8_t pad_4A[0x2];  //0x4A — unproven gap
   float mF4c;               //0x4C — 52.0f (reset 0x179738)
   float mF50;               //0x50 — 76.0f

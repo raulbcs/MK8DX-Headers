@@ -20,16 +20,13 @@ class KartParamCacheLref : public KartParamCache {
   uint64_t mZerocc0;       // 0xcc0 — ctor zero
   uint32_t mZerocc8;       // 0xcc8 — ctor zero
   uint8_t mPadccc[0x8];    // 0xccc — unproven gap
-  uint32_t mFieldcd4;      // 0xcd4 — ctor-written
-  uint64_t mFieldcd8;      // 0xcd8 — ctor-written
+  uint32_t mFieldcd4;      // 0xcd4
+  uint64_t mFieldcd8;      // 0xcd8
   uint8_t mPadce0[0x238];  // 0xce0 — unproven gap
   uint8_t mPadf18;         // 0xf18 — ctor zero
 };
-// Vtable slot 0 (+0x10) dtor/reset :
-// runs 0x7100aa3f0c first (releases the per-item lref payloads), re-inits the +0xce0
-// container, runs 0x710063a384 on +0xc68 and 0x7100639f38 on +0xb98/+0xa18, then
-// re-stamps the long default vptr ladder +0x948..+0x210 (cell 0x710130d918), +0x2f0/
-// +0x1e0 (0x710130d920), +0xce0 (0x710130d830), +0x0 (0x710130d848). function size 0x18c bytes.
+// dtor: resets cells 0x710130d918; fn size 0x18c.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

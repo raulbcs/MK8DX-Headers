@@ -33,29 +33,29 @@ class ParamNodeDirectionalLight {
  public:
   void* vtable;           // 0x00
   uint8_t mPad8[0x28];    // 0x8 — unproven gap
-  uint64_t mField30;      // 0x30 — ctor-written
+  uint64_t mField30;      // 0x30
   uint8_t mPad38[0xd8];   // 0x38 — unproven gap
-  uint64_t mField110;     // 0x110 — ctor-written
+  uint64_t mField110;     // 0x110
   uint8_t mPad118[0x10];  // 0x118 — unproven gap
-  uint32_t mField128;     // 0x128 — ctor-written
-  uint32_t mField12c;     // 0x12c — ctor-written
-  uint32_t mField130;     // 0x130 — ctor-written
-  uint32_t mField134;     // 0x134 — ctor-written
-  uint64_t mField138;     // 0x138 — ctor-written
+  uint32_t mField128;     // 0x128
+  uint32_t mField12c;     // 0x12c
+  uint32_t mField130;     // 0x130
+  uint32_t mField134;     // 0x134
+  uint64_t mField138;     // 0x138
   uint8_t mPad140[0x10];  // 0x140 — unproven gap
-  uint32_t mField150;     // 0x150 — ctor-written
-  uint32_t mField154;     // 0x154 — ctor-written
-  uint32_t mField158;     // 0x158 — ctor-written
-  uint32_t mField15c;     // 0x15c — ctor-written
-  uint64_t mField160;     // 0x160 — ctor-written
+  uint32_t mField150;     // 0x150
+  uint32_t mField154;     // 0x154
+  uint32_t mField158;     // 0x158
+  uint32_t mField15c;     // 0x15c
+  uint64_t mField160;     // 0x160
   uint8_t mPad168[0x10];  // 0x168 — unproven gap
-  uint32_t mField178;     // 0x178 — ctor-written
+  uint32_t mField178;     // 0x178
   uint8_t mPad17c[0x4];   // 0x17c — unproven gap
-  uint64_t mField180;     // 0x180 — ctor-written
+  uint64_t mField180;     // 0x180
   uint8_t mPad188[0x10];  // 0x188 — unproven gap
-  uint32_t mField198;     // 0x198 — ctor-written
-  uint32_t mField19c;     // 0x19c — ctor-written
-  uint32_t mField1a0;     // 0x1a0 — ctor-written
+  uint32_t mField198;     // 0x198
+  uint32_t mField19c;     // 0x19c
+  uint32_t mField1a0;     // 0x1a0
   uint8_t mPad1a4[0x4];   // 0x1a4 — unproven gap
   uint32_t mZero1a8;      // 0x1a8 — ctor zero
   uint8_t mPad1ac[0x4];   // 0x1ac — unproven gap

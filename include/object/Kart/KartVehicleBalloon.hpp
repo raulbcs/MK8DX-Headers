@@ -10,7 +10,7 @@ struct KartVehicle;  // KartVehicle.hpp
 
 struct KartVehicleBalloon {
   uint8_t pad_00[8];          // 0x00 — vtable ptr (global 0x12fd100+0x10)
-  uint32_t u08;               //0x08 — ctor zero
+  uint32_t u08;               //0x08
   uint8_t pad_C[0x4];  //0xC — unproven gap
   KartVehicle* kart_vehicle;  //0x10 — ctor arg
   uint8_t pad_018[0x70];      //0x18 - 0x87 — unproven padding
@@ -37,7 +37,7 @@ struct KartVehicleBalloon {
   uint32_t m9c;             //0xA9C — ctor zero (unaligned u64 store 0xa9c)
   uint32_t ma0;             //0xAA0
   uint8_t pad_AA4[0x4];  //0xAA4 — unproven gap
-  uint8_t baa8;             //0xAA8 — ctor zero
+  uint8_t baa8;             //0xAA8
   uint8_t pad_aa9[3];       //0xAA9 — unproven padding
   uint32_t s_aac;           //0xAAC — ctor sets -1 (unaligned u64 store 0xaac)
   uint32_t mab0;            //0xAB0 — upper half of the -1 store

@@ -9,13 +9,13 @@ namespace object {
 class KartParamCacheEnv {
  public:
   void* vptr;        // 0x00
-  uint64_t mZero08;  // 0x08
-  uint64_t mZero10;  // 0x10
-  uint64_t mZero18;  // 0x18
-  uint32_t mZero20;  // 0x20
-  uint32_t mZero24;  // 0x24
-  uint64_t mZero28;  // 0x28
-  uint64_t mZero30;  // 0x30
+  uint64_t mZero08;  // 0x08 — ctor zero
+  uint64_t mZero10;  // 0x10 — ctor zero
+  uint64_t mZero18;  // 0x18 — ctor zero
+  uint32_t mZero20;  // 0x20 — ctor zero
+  uint32_t mZero24;  // 0x24 — ctor zero
+  uint64_t mZero28;  // 0x28 — ctor zero
+  uint64_t mZero30;  // 0x30 — ctor zero
                      // (0x38 total)
 // extent 0x38 (prior survey: 0x38 total)
 };

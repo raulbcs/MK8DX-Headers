@@ -58,13 +58,13 @@ struct KartChassis {
   uint8_t pad_2f8[0x18];        //0x2F8 - 0x30F — unproven padding
   float f310[3];                //0x310 — ctor sets {1.0f, 1.0f, 1.0f}
   uint16_t u31c[2];             //0x31C — ctor sets both to 0xFFFF
-  uint8_t b320;                 //0x320 — ctor zero
+  uint8_t b320;                 //0x320
   uint8_t pad_321[3];           //0x321 — unproven padding
   uint8_t pad_324[0x20];        //0x324 — ctor zeroes through 0x343
   uint32_t s344;                //0x344 — ctor sets -1 (unaligned u64 store 0x344)
   uint32_t s348;                //0x348 — upper half of the -1 store
   int32_t s34c;                 //0x34C — ctor sets -1
-  uint8_t b350;                 //0x350 — ctor zero
+  uint8_t b350;                 //0x350
   uint8_t pad_351[3];           //0x351 — unproven padding
   uint32_t zero354;             //0x354 — ctor zero (unaligned u64 store 0x354)
   uint32_t zero358;             //0x358 — upper half

@@ -13,81 +13,81 @@ class KartParamCacheSsao : public KartParamCache {
   uint32_t mZero1d0;        // 0x1d0 — ctor zero
   uint8_t mPad1d4[0x4];     // 0x1d4 — unproven gap
   uint64_t mZero1d8;        // 0x1d8 — ctor zero
-  uint64_t mField1e0;       // 0x1e0 — ctor-written
+  uint64_t mField1e0;       // 0x1e0
   uint8_t mPad1e8[0x28];    // 0x1e8 — unproven gap
   void* mSelf210;           // 0x210 — ctor stores `this`
-  uint64_t mField218;       // 0x218 — ctor-written
+  uint64_t mField218;       // 0x218
   uint8_t mPad220[0x10];    // 0x220 — unproven gap
-  uint8_t mField230;        // 0x230 — ctor-written
+  uint8_t mField230;        // 0x230
   uint8_t mPad231[0x7];     // 0x231 — unproven gap
-  uint64_t mField238;       // 0x238 — ctor-written
+  uint64_t mField238;       // 0x238
   uint8_t mPad240[0x10];    // 0x240 — unproven gap
-  uint32_t mField250;       // 0x250 — ctor-written
+  uint32_t mField250;       // 0x250
   uint8_t mPad254[0x4];     // 0x254 — unproven gap
-  uint64_t mField258;       // 0x258 — ctor-written
+  uint64_t mField258;       // 0x258
   uint8_t mPad260[0x10];    // 0x260 — unproven gap
-  uint32_t mField270;       // 0x270 — ctor-written
+  uint32_t mField270;       // 0x270
   uint8_t mPad274[0x4];     // 0x274 — unproven gap
-  uint64_t mField278;       // 0x278 — ctor-written
+  uint64_t mField278;       // 0x278
   uint8_t mPad280[0x10];    // 0x280 — unproven gap
-  uint32_t mField290;       // 0x290 — ctor-written
+  uint32_t mField290;       // 0x290
   uint8_t mPad294[0x4];     // 0x294 — unproven gap
-  uint64_t mField298;       // 0x298 — ctor-written
+  uint64_t mField298;       // 0x298
   uint8_t mPad2a0[0x10];    // 0x2a0 — unproven gap
-  uint8_t mField2b0;        // 0x2b0 — ctor-written
+  uint8_t mField2b0;        // 0x2b0
   uint8_t mPad2b1[0x7];     // 0x2b1 — unproven gap
-  uint64_t mField2b8;       // 0x2b8 — ctor-written
+  uint64_t mField2b8;       // 0x2b8
   uint8_t mPad2c0[0x10];    // 0x2c0 — unproven gap
-  uint8_t mField2d0;        // 0x2d0 — ctor-written
+  uint8_t mField2d0;        // 0x2d0
   uint8_t mPad2d1[0x7];     // 0x2d1 — unproven gap
-  uint64_t mField2d8;       // 0x2d8 — ctor-written
+  uint64_t mField2d8;       // 0x2d8
   uint8_t mPad2e0[0x10];    // 0x2e0 — unproven gap
-  uint32_t mField2f0;       // 0x2f0 — ctor-written
+  uint32_t mField2f0;       // 0x2f0
   uint8_t mPad2f4[0x4];     // 0x2f4 — unproven gap
-  uint64_t mField2f8;       // 0x2f8 — ctor-written
+  uint64_t mField2f8;       // 0x2f8
   uint8_t mPad300[0x10];    // 0x300 — unproven gap
-  uint32_t mField310;       // 0x310 — ctor-written
+  uint32_t mField310;       // 0x310
   uint8_t mPad314[0x4];     // 0x314 — unproven gap
   uint32_t mZero318;        // 0x318 — ctor zero
-  uint32_t mField31c;       // 0x31c — ctor-written
-  uint32_t mField320;       // 0x320 — ctor-written
-  uint32_t mField324;       // 0x324 — ctor-written
-  uint32_t mField328;       // 0x328 — ctor-written
-  uint32_t mField32c;       // 0x32c — ctor-written
-  uint32_t mField330;       // 0x330 — ctor-written
-  uint32_t mField334;       // 0x334 — ctor-written
-  uint32_t mField338;       // 0x338 — ctor-written
-  uint32_t mField33c;       // 0x33c — ctor-written
-  uint32_t mField340;       // 0x340 — ctor-written
-  uint32_t mField344;       // 0x344 — ctor-written
-  uint32_t mField348;       // 0x348 — ctor-written
-  uint32_t mField34c;       // 0x34c — ctor-written
-  uint32_t mField350;       // 0x350 — ctor-written
-  uint32_t mField354;       // 0x354 — ctor-written
-  uint32_t mField358;       // 0x358 — ctor-written
-  uint32_t mField35c;       // 0x35c — ctor-written
-  uint32_t mField360;       // 0x360 — ctor-written
-  uint32_t mField364;       // 0x364 — ctor-written
-  uint32_t mField368;       // 0x368 — ctor-written
-  uint32_t mField36c;       // 0x36c — ctor-written
-  uint32_t mField370;       // 0x370 — ctor-written
-  uint32_t mField374;       // 0x374 — ctor-written
-  uint32_t mField378;       // 0x378 — ctor-written
-  uint32_t mField37c;       // 0x37c — ctor-written
-  uint32_t mField380;       // 0x380 — ctor-written
-  uint32_t mField384;       // 0x384 — ctor-written
-  uint32_t mField388;       // 0x388 — ctor-written
-  uint32_t mField38c;       // 0x38c — ctor-written
-  uint32_t mField390;       // 0x390 — ctor-written
-  uint32_t mField394;       // 0x394 — ctor-written
-  uint32_t mField398;       // 0x398 — ctor-written
-  uint32_t mField39c;       // 0x39c — ctor-written
-  uint32_t mField3a0;       // 0x3a0 — ctor-written
-  uint32_t mField3a4;       // 0x3a4 — ctor-written
-  uint32_t mField3a8;       // 0x3a8 — ctor-written
+  uint32_t mField31c;       // 0x31c
+  uint32_t mField320;       // 0x320
+  uint32_t mField324;       // 0x324
+  uint32_t mField328;       // 0x328
+  uint32_t mField32c;       // 0x32c
+  uint32_t mField330;       // 0x330
+  uint32_t mField334;       // 0x334
+  uint32_t mField338;       // 0x338
+  uint32_t mField33c;       // 0x33c
+  uint32_t mField340;       // 0x340
+  uint32_t mField344;       // 0x344
+  uint32_t mField348;       // 0x348
+  uint32_t mField34c;       // 0x34c
+  uint32_t mField350;       // 0x350
+  uint32_t mField354;       // 0x354
+  uint32_t mField358;       // 0x358
+  uint32_t mField35c;       // 0x35c
+  uint32_t mField360;       // 0x360
+  uint32_t mField364;       // 0x364
+  uint32_t mField368;       // 0x368
+  uint32_t mField36c;       // 0x36c
+  uint32_t mField370;       // 0x370
+  uint32_t mField374;       // 0x374
+  uint32_t mField378;       // 0x378
+  uint32_t mField37c;       // 0x37c
+  uint32_t mField380;       // 0x380
+  uint32_t mField384;       // 0x384
+  uint32_t mField388;       // 0x388
+  uint32_t mField38c;       // 0x38c
+  uint32_t mField390;       // 0x390
+  uint32_t mField394;       // 0x394
+  uint32_t mField398;       // 0x398
+  uint32_t mField39c;       // 0x39c
+  uint32_t mField3a0;       // 0x3a0
+  uint32_t mField3a4;       // 0x3a4
+  uint32_t mField3a8;       // 0x3a8
   uint8_t mPad3ac[0x25c];   // 0x3ac — unproven gap
   uint32_t mZero608;        // 0x608 — ctor zero
-  uint32_t mField60c;       // 0x60c — ctor-written
+  uint32_t mField60c;       // 0x60c
   uint8_t mPad610;          // 0x610 — ctor zero
   uint8_t mPad611[0x3487];  // 0x611 — unproven gap
   uint64_t mZero3a98;       // 0x3a98 — ctor zero
@@ -154,37 +154,30 @@ class KartParamCacheSsao : public KartParamCache {
   uint32_t mZero3c08;       // 0x3c08 — ctor zero
   uint8_t mPad3c0c[0x4];    // 0x3c0c — unproven gap
   uint64_t mZero3c10;       // 0x3c10 — ctor zero
-  uint64_t mField3c18;      // 0x3c18 — ctor-written
+  uint64_t mField3c18;      // 0x3c18
   uint8_t mPad3c20[0x18];   // 0x3c20 — unproven gap
-  uint64_t mField3c38;      // 0x3c38 — ctor-written
+  uint64_t mField3c38;      // 0x3c38
   uint8_t mPad3c40[0x18];   // 0x3c40 — unproven gap
-  uint64_t mField3c58;      // 0x3c58 — ctor-written
+  uint64_t mField3c58;      // 0x3c58
   uint8_t mPad3c60[0x18];   // 0x3c60 — unproven gap
-  uint64_t mField3c78;      // 0x3c78 — ctor-written
+  uint64_t mField3c78;      // 0x3c78
   uint8_t mPad3c80[0x10];   // 0x3c80 — unproven gap
-  uint32_t mField3c90;      // 0x3c90 — ctor-written
+  uint32_t mField3c90;      // 0x3c90
   uint8_t mPad3c94[0x4];    // 0x3c94 — unproven gap
-  uint64_t mField3c98;      // 0x3c98 — ctor-written
+  uint64_t mField3c98;      // 0x3c98
   uint8_t mPad3ca0[0x10];   // 0x3ca0 — unproven gap
   uint32_t mZero3cb0;       // 0x3cb0 — ctor zero
   uint8_t mPad3cb4[0x4];    // 0x3cb4 — unproven gap
-  uint64_t mField3cb8;      // 0x3cb8 — ctor-written
+  uint64_t mField3cb8;      // 0x3cb8
   uint8_t mPad3cc0[0x10];   // 0x3cc0 — unproven gap
-  uint32_t mField3cd0;      // 0x3cd0 — ctor-written
+  uint32_t mField3cd0;      // 0x3cd0
   uint8_t mPad3cd4[0x4];    // 0x3cd4 — unproven gap
-  uint64_t mField3cd8;      // 0x3cd8 — ctor-written
+  uint64_t mField3cd8;      // 0x3cd8
   uint8_t mPad3ce0[0x10];   // 0x3ce0 — unproven gap
-  uint32_t mField3cf0;      // 0x3cf0 — ctor-written
+  uint32_t mField3cf0;      // 0x3cf0
 };
-// Vtable slot 0 (0x10) dtor/reset :
-// stamps vptr 0x1315480(+0x10); frees the pooled array at +0x1d8 (count at -8, stride
-// 0xc08, 0x7100ae7a94 element dtor), zeroing +0x1d8/+0x1d0; 0x71006373a4 on 16 optional
-// sub-objects +0x3a98..+0x3c00 (0x18/0x10 pitch per pointer-header flags); 0x7100654ae0
-// on +0x3d0; re-stamps cell 0x130d918(+0x10) into +0x3cd8..+0x3c18 (0x20 stride, 7
-// slots); 0x7100ae8834 on +0x1e18, 0x7100ae8984 on +0x618; re-stamps cell 0x130d830(+0x10)
-// into +0x3d0 with 0x7100654ae0/0x71006156b4; finally cell 0x130d918(+0x10) into
-// +0x2f8..+0x218 (0x20 stride, 7 slots), cell 0x130d920(+0x10) into +0x1e0, cell
-// 0x130d848(+0x10) into +0x0. function size 0x258 bytes.
+// dtor: re-stamps vptr 0x1315480; resets cells 0x130d830,0x130d918,0x130d920; fn size 0x258.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

@@ -32,17 +32,17 @@ class KartUnitHolder {
   uint8_t pad218[8];        // 0x218 — SECONDARY vtable ptr (base subobject)
   uint8_t pad220[0x18];     // 0x220 — unproven padding
   uint64_t mZero238;        // 0x238 — zeroed pair (args to FUN_710016dd04)
-  uint64_t mZero240;        // 0x240
+  uint64_t mZero240;        // 0x240 — ctor zero
   void* mListHead248;       // 0x248 — intrusive list head (sentinel = self),
                             // one per active entry index (ctor 0x16e23c)
   void* mListNext250;       // 0x250
-  uint32_t mZero258;        // 0x258
+  uint32_t mZero258;        // 0x258 — ctor zero
   uint8_t pad25C[4];        // 0x25C — unproven padding (to u64 @0x260)
-  uint64_t mZero260;        // 0x260
-  uint64_t mZero268;        // 0x268
+  uint64_t mZero260;        // 0x260 — ctor zero
+  uint64_t mZero268;        // 0x268 — ctor zero
   int32_t mS270;            // 0x270 — ctor -1
   int32_t mS274;            // 0x274 — ctor -1
-  uint64_t mZero278;        // 0x278
+  uint64_t mZero278;        // 0x278 — ctor zero
   uint8_t mFlag280;         // 0x280 — per-entry flag byte (entry i at 0x248+i*0x78,
                             // flag at entry+0x38; FUN_710016e6e4 0x16e74c)
   uint8_t pad281[7];        // 0x281 — unproven padding
@@ -51,7 +51,7 @@ class KartUnitHolder {
   uint8_t pad298[0x28];     // 0x298 — unproven padding
   void* mListHead2C0;       // 0x2C0 — second list head (sentinel = self)
   void* mListNext2C8;       // 0x2C8
-  uint32_t mZero2D0;        // 0x2D0
+  uint32_t mZero2D0;        // 0x2D0 — ctor zero
   uint8_t pad2D4[0x14];     // 0x2D4 — unproven padding
   int32_t mS2E8;            // 0x2E8 — ctor -1
   int32_t mS2EC;            // 0x2EC — ctor -1

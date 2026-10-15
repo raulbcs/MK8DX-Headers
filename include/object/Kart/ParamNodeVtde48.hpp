@@ -11,7 +11,7 @@ class ParamNodeVtde48 {
  public:
   void* vtable;          // 0x00
   uint8_t mPad8[0x54c];  // 0x8 — unproven gap
-  uint32_t mField554;    // 0x554 — ctor-written
+  uint32_t mField554;    // 0x554
 };
 }  // namespace object
 
