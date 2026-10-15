@@ -1,8 +1,10 @@
 #pragma once
+
+#include <audio/Object/AudSoundObjBase.hpp>
 #include <cstdint>
 
 namespace audio {
-class AudSoundObjKart {
+class AudSoundObjKart : public AudSoundObjBase {
  public:
   enum ETrgKartSE : int {};
 

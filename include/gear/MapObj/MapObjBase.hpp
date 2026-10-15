@@ -1,45 +1,40 @@
 #pragma once
 
-#include <cstdint>
-#include <gear/Actor/Actor.hpp>
-
-#include <object/EObjColSe.hpp>
-#include <gear/Object/EObjReact.hpp>
-#include <gear/Object/ObjectBase.hpp>
-
-#include "MapObjReactProxy.hpp"
-
-#include <gear/Math/Matrix.hpp>
-#include <gear/ArgumentObj.hpp>
-
-#include <gsys/Model/Model.hpp>
-
-#include <gear/Item/ItemReact.hpp>
-#include <gear/Item/EItemReact.hpp>
-
-#include <gear/Collision/PrimColDefine.hpp>
-#include <gear/Collision/GndColDefine.hpp>
-
-#include <gear/MapObj/MapObjCreateArg.hpp>
-
-#include <gear/Kart/EKartReact.hpp>
-#include <gear/Kart/KartReactProxy.hpp>
-#include <object/Kart/KartInfoProxy.hpp>
-
-#include <gsys/Model/IModelCallback.hpp>
-
 #include <container/seadRingBuffer.h>
-
 #include <math/seadVector.h>
 
+#include <cstdint>
+#include <gear/Actor/Actor.hpp>
+#include <gear/ArgumentObj.hpp>
+#include <gear/Collision/GndColDefine.hpp>
+#include <gear/Collision/PrimColDefine.hpp>
+#include <gear/Item/EItemReact.hpp>
+#include <gear/Item/ItemReact.hpp>
+#include <gear/Kart/EKartReact.hpp>
+#include <gear/Kart/KartReactProxy.hpp>
+#include <gear/MapObj/MapObjCreateArg.hpp>
+#include <gear/MapObj/MapUnitMapObj.hpp>
+#include <gear/Math/Matrix.hpp>
+#include <gear/Object/EObjReact.hpp>
+#include <gear/Object/ObjectBase.hpp>
+#include <gsys/Model/IModelCallback.hpp>
+#include <gsys/Model/Model.hpp>
+#include <object/EObjColSe.hpp>
+#include <object/Kart/KartInfoProxy.hpp>
+
 #include "MapObjDrawManager.hpp"
+#include "MapObjReactProxy.hpp"
 
 namespace gear {
-class MapObjBase : public Actor, public ObjectBase, public gsys::IModelCallback {
+class MapObjBase : public Actor,
+                   public ObjectBase,
+                   public gsys::IModelCallback {
  public:
   // gear::Actor overrides
-  virtual bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*) const override;  //0x00
-  virtual sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo(void) const override;           //0x08
+  virtual bool checkDerivedRuntimeTypeInfo(
+      sead::RuntimeTypeInfo::Interface const*) const override;  // 0x00
+  virtual sead::RuntimeTypeInfo::Interface const* getRuntimeTypeInfo(
+      void) const override;  // 0x08
   virtual ~MapObjBase();
   virtual void prepare(gear::ArgumentObj const*) override;
   virtual void enter() override;
@@ -62,9 +57,11 @@ class MapObjBase : public Actor, public ObjectBase, public gsys::IModelCallback 
   virtual void calcSoundObj(gear::MtxT const&) {};
   virtual void afterUpdateMatrix_(gear::MtxT*) {};  // 0xE8
   virtual void hitItem(gear::ItemReact*, int8_t);
-  virtual void reactAgainstItem(gear::EObjReact&, gear::EItemReact&, gear::ItemReact*, int8_t);
+  virtual void reactAgainstItem(gear::EObjReact&, gear::EItemReact&,
+                                gear::ItemReact*, int8_t);
   virtual void hitKart(gear::KartReactProxy*, int8_t);
-  virtual void reactAgainstKart(gear::EObjReact&, gear::EKartReact&, gear::KartReactProxy*, int8_t);
+  virtual void reactAgainstKart(gear::EObjReact&, gear::EKartReact&,
+                                gear::KartReactProxy*, int8_t);
   virtual void reactAgainstKart_GndColBlock(int) {};
   virtual void hitMapObj(gear::MapObjReactProxy*, int8_t) {};
   virtual void react1Impl_Item(gear::ItemReact*) {};
@@ -74,12 +71,17 @@ class MapObjBase : public Actor, public ObjectBase, public gsys::IModelCallback 
   virtual void react2Impl_Kart(gear::KartReactProxy*) {};
   virtual void react1Impl(void) {};
   virtual void react2Impl(void) {};
-  virtual void reactKart(gear::EKartReact, gear::KartReactProxy*, gear::PrimColDefine::HitInfo&);
+  virtual void reactKart(gear::EKartReact, gear::KartReactProxy*,
+                         gear::PrimColDefine::HitInfo&);
   virtual void reactThunder(void);
-  virtual void updateHitInfo(gear::PrimColDefine::HitInfo&, gear::KartReactProxy*, int) {};
-  virtual void calcVelGndLocal(gear::GndColDefine::GndInfo*, sead::Vector3<float> const&) {};
-  virtual void reactPress(gear::EKartReact, gear::KartReactProxy*, gear::PrimColDefine::HitInfo&);
-  virtual void reactCrash(gear::EKartReact, gear::KartReactProxy*, gear::PrimColDefine::HitInfo&);
+  virtual void updateHitInfo(gear::PrimColDefine::HitInfo&,
+                             gear::KartReactProxy*, int) {};
+  virtual void calcVelGndLocal(gear::GndColDefine::GndInfo*,
+                               sead::Vector3<float> const&) {};
+  virtual void reactPress(gear::EKartReact, gear::KartReactProxy*,
+                          gear::PrimColDefine::HitInfo&);
+  virtual void reactCrash(gear::EKartReact, gear::KartReactProxy*,
+                          gear::PrimColDefine::HitInfo&);
   virtual bool isIgnoreWallCollision(void) { return false; };  // 0x188
   virtual bool VFunc190() { return true; };                    // 0x190
   virtual void calcAfterRecorder_(void) {};
@@ -90,7 +92,8 @@ class MapObjBase : public Actor, public ObjectBase, public gsys::IModelCallback 
   virtual const char* getName(void) const override;
   virtual void updateMatrix(void) override;
   virtual void setXLinkLocalLightMap_(void) override;
-  virtual void hitKartSE(object::KartInfoProxy*, gear::EObjReact, gear::EKartReact, object::EObjColSe);
+  virtual void hitKartSE(object::KartInfoProxy*, gear::EObjReact,
+                         gear::EKartReact, object::EObjColSe);
   virtual void createModel(gsys::ModelResource*);
   virtual void registToDrawManager(gear::MapObjDrawManager*);
   virtual void setVisibleImpl(bool, int);
@@ -115,13 +118,16 @@ class MapObjBase : public Actor, public ObjectBase, public gsys::IModelCallback 
     ClassParam(uint8_t, uint8_t, float, float);
   };
 
-  ClassParam* mClassParam;
-  uint8_t mPad138[0x78];                          // 0x128 — unproven padding
+  ClassParam* mClassParam;                        // 0x130
+  MapUnitMapObj* mMapUnit;                        // 0x138
+  uint8_t mPad140[0x70];                          // 0x140 — unproven padding
   MapObjDrawManager* mDrawManager;                // 0x1B0
   int32_t mDrawManagerIndex;                      // 0x1B8
   int32_t mPad1BC;                                // 0x1BC — unproven padding
   sead::FixedRingBuffer<int16_t, 8> mRouteGroup;  // 0x1C0
   uint8_t mPad1E8[0x10];                          // 0x1B8 — unproven padding
+
+  void setVisible(bool, int);
 
   MapObjBase(gear::MapObjCreateArg const&);
 };

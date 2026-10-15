@@ -1,8 +1,8 @@
 #pragma once
 
-#include <cstdint>
-
 #include <math/seadMatrix.h>
+
+#include <cstdint>
 
 namespace xlink2 {
 // BoneMtx — trivially-copyable value wrapper (ptr to sead::Matrix34<f32>
