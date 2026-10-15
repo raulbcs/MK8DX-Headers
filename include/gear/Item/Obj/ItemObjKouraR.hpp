@@ -43,11 +43,11 @@ class ItemObjKouraR : public ItemObjKouraG {
     ~EStateEx() {}
   };
 
-  uint8_t mPad390[0x09];   // 0x390
+  uint8_t mPad390[0x09];   // 0x390 — unproven padding
   EStateEx mLockOnState;   // 0x399
-  uint8_t mPad39A[0x8E];   // 0x39A
+  uint8_t mPad39A[0x8E];   // 0x39A — unproven padding
   int32_t mLockOnKartIdx;  // 0x428
-  uint8_t mPad42C[0x34];   // 0x42C
+  uint8_t mPad42C[0x34];   // 0x42C — unproven padding
   // 0x460
 // extent 0x460 (allocation size 0x460 — movz w0,#0x460; bl 0x710060afec
 // _Znwm @0x710035f10 → ctor 0x710030d50, stores reach 0x460 and call the
