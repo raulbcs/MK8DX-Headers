@@ -25,5 +25,7 @@ struct RaceDirectorSetStatePod {
   uint8_t pad34[4];      //0x34 — unproven padding
   uint32_t mZero38;      //0x38
   // (0x3C total)
+// extent 0x3c (ctor 0x71000585C4 stores reach 0x3c)
+
 };
 }  // namespace gear

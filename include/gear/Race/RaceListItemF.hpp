@@ -23,5 +23,7 @@ class RaceListItemF {
   uint32_t m21c190;      //0x190 — ctor sets 0x21C
   uint32_t mZero194;     //0x194 — ctor zero
   // (0x198 total)
+// extent 0x198 (ctor 0x71000C9E04 stores reach 0x198)
+  uint8_t mGap18C[4];  // 0x18C — unproven gap
 };
 }  // namespace gear

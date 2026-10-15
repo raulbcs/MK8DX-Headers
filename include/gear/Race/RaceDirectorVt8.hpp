@@ -57,5 +57,8 @@ class RaceDirectorVt8 : public Actor {
   void* mChan150;        // 0x150 — owner back-ptr = this
   void* mChan158;        // 0x158 — fn
   void* mChan160;        // 0x160 — 0
+// extent 0x168 (ctor 0x710087D9B8 stores reach 0x168)
+  uint8_t mGap108[8];  // 0x108 — unproven gap
+  uint8_t mGap140[8];  // 0x140 — unproven gap
 };
 }  // namespace gear

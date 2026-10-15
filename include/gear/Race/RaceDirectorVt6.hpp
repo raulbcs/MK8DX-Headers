@@ -33,5 +33,7 @@ class RaceDirectorVt6 : public RaceDirectorVt2 {
   uint16_t mZerocc;     //0xCC — ctor zero (u16)
   uint32_t mZerod0;     //0xD0
   // (0xD8 total)
+// extent 0xd4 (ctor 0x710005377C stores reach 0xd4)
+  uint8_t mGapCE[2];  // 0xCE — unproven gap
 };
 }  // namespace gear
