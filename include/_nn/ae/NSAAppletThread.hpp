@@ -10,7 +10,7 @@ namespace nn::ae {
 // Extent 0xf8 (strb @0xf4).
 class NSAAppletThread : public AppletThread {
  public:
-  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
+  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), own fields unmapped
   uint8_t mFlagF4;       // 0xf4 — ctor zero
   uint8_t mPadF5[0x3];   // 0xf5 — unproven padding
                          // (0xf8 total)

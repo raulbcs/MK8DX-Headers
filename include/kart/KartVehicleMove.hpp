@@ -9,9 +9,9 @@
 // KartRigidBody (ctor 0x71001812b4 calls 0x710014ddb4 first). Name
 // confirmed by the recorder channel string "RecorderKartVehicleMove".
 //
-// MISATTRIBUTED FIELDS: earlier revisions declared fields at +0x1680
-// (flag bitfield) and +0x2288/+0x2298 (float pairs) — those lie beyond
-// the 0x5F8 allocation and belong to another, unnamed class.
+// MISATTRIBUTED FIELDS: the bitfield at +0x1680 and the float pairs at
+// +0x2288/+0x2298 lie beyond the 0x5F8 allocation and belong to another,
+// unnamed class.
 namespace object {
 struct KartVehicle;
 }  // namespace object
@@ -88,9 +88,7 @@ struct KartVehicleMove : public object::KartRigidBody {
                                       // air (pool 0xed5ef8; inline writers 0x17c39c, 0x17c658,
                                       // 0x17d94c, 0x17d560); 0.04f glide/hop states 4/5 (inline
                                       // 0x17bda4 setter and 0x17ce20 every frame); 0 grounded
-                                      // resets 0x181bf0/0x182ca8 and gate 0x184438. NOTE: earlier
-                                      // "0.0392f" and's "0.24f" were approximate
-                                      // reads — corrected to 0.04f/0.245f byte-exact.
+                                      // resets 0x181bf0/0x182ca8 and gate 0x184438.
   uint8_t zero_3c8[0x24];             //0x3C8 - 0x3EB — ctor zeroes; +0x3C8 = gravity accel Z,
                                       // zeroed by the move-gate at 0x184438 and lerped via
                                       // FUN_710016f138(rate 0.001, 0x184490)

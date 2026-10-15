@@ -22,12 +22,12 @@ class ParamMultiChanVt2da0 {
                         // aim angles 0x23c/0x240 (slot 15)
   // (0x248 total; proven by allocation size 0x248 at 0x710064f928)
 };
-// vtable facts (TUs paramMultiChanVt2da0CompleteDtorSlot0_710064dc0c.cpp,
-// paramMultiChanVt2da0DeletingDtorSlot1_710064dcec.cpp,
-// multiChanVt2da0AllocArraySlot11_710064dddc.cpp,
-// multiChanVt2da0WriteRowSlot13_710064df70.cpp,
-// multiChanVt2da0ApplySlot14_710064de44.cpp,
-// multiChanVt2da0ComputeAnglesSlot15_710064e0bc.cpp):
+// vtable facts (paramMultiChanVt2da0CompleteDtorSlot0_710064dc0c,
+// paramMultiChanVt2da0DeletingDtorSlot1_710064dcec,
+// multiChanVt2da0AllocArraySlot11_710064dddc,
+// multiChanVt2da0WriteRowSlot13_710064df70,
+// multiChanVt2da0ApplySlot14_710064de44,
+// multiChanVt2da0ComputeAnglesSlot15_710064e0bc):
 //   slots 0 (0x10) / 1 (0x18): complete / deleting dtor — free the array at
 //     self+0x1f8 and clear 0x1f8/0x1f0, install the static vptr from cell
 //     0x710130d9e8 (+0x10), store cell+0xd8 into self+0x30, reset the six
@@ -59,4 +59,4 @@ class ParamMultiChanVt2da0 {
 // +0x1f8 array free and slot 15's +0x23c/+0x240 angle writes.
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable.

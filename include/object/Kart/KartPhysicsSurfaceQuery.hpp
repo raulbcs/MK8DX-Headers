@@ -48,7 +48,7 @@
 // u8 flags self+0x28, per-slot state *(self + (idx sxtw << 3) + 0x350); guarded static
 // table at 0x710135a008 (guard word 0x710135a878); record = table + idx*0x2d0.
 
-// FUN_71007cc490 (TU shares file with ContactDataGet 0x71007c8bc8): contact data getter
+// FUN_71007cc490 (shares file with ContactDataGet 0x71007c8bc8): contact data getter
 // by index; base = x0 + w1*0xf0; returns *(base+0xe0+0x368) when *(base+0xe0) non-null.
 
 // FUN_71008d04f8 (0x8d04f8..0x8d05f4): physics closure slice — fixed-point quaternion/

@@ -33,11 +33,11 @@ namespace object {
 // - Slot 10 (0x60): guard-protected static singleton getter. Guard cell
 //   0x710130e378; instance cell 0x710130e380 initialised to
 //   [0x71012fd3d0]+0x10. true function size 0x5c bytes (gap-split artifact).
-//   [paramNodeVtdba0StaticInstanceSlot10_710072f21c.cpp]
+//   [paramNodeVtdba0StaticInstanceSlot10_710072f21c]
 // - Slot 27 (0xe8): clears a per-object flag byte. Looks the entry up via
 //   FUN_71006e0ae0(*(*(x1arg+0xf0))+0x4d00, self); when a non-null object is
 //   returned, stores 0 into its byte at +0x140. true function size 0x2c bytes.
-//   [paramNodeDba0ClearFlagSlot27_710072efcc.cpp]
+//   [paramNodeDba0ClearFlagSlot27_710072efcc]
 class ParamNodeVtdba0 {
  public:
   void* vtable;  // 0x00
@@ -45,4 +45,4 @@ class ParamNodeVtdba0 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

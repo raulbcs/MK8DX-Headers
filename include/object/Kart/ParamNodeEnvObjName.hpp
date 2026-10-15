@@ -15,18 +15,18 @@ namespace object {
 //   then restores the derived vptr from cell 0x710130d920 (+0x10) and
 //   returns self; slot 1 tail-calls operator delete(self).
 //   true function sizes 0x5c/0x54 bytes (gap-split artifacts).
-//   [envObjNameCompleteDtorSlot0_71006472c8.cpp,
-//    envObjNameDeletingDtorSlot1_71006473b0.cpp]
+//   [envObjNameCompleteDtorSlot0_71006472c8,
+//    envObjNameDeletingDtorSlot1_71006473b0]
 // - Slot 9 (0x58): is-static-instance test. One-time-guarded initialisation
 //   of the singleton slot at 0x71012fd03e8 (guard at 0x71012fd03e0) to
 //   [0x710012fade0]+0x10, then returns whether the second argument equals
 //   that static instance pointer. true function size 0x6c bytes.
-//   [paramNodeEnvObjNameIsStaticInstance_7100647f80.cpp]
+//   [paramNodeEnvObjNameIsStaticInstance_7100647f80]
 // - Slot 10 (0x60): guard-protected static accessor. Uses the guard object
 //   loaded from cell 0x712fd3e0; on first init stores cell 0x712fade0
 //   (+0x10) into the static slot pointed to by cell 0x712fd3e8 (a default
 //   vtable-holder instance) and returns that slot. true function size 0x58 bytes.
-//   [envObjNameStaticInstanceSlot10_7100647ff0.cpp]
+//   [envObjNameStaticInstanceSlot10_7100647ff0]
 class ParamNodeEnvObjName {
  public:
   void* vtable;          // 0x00
@@ -52,4 +52,4 @@ class ParamNodeEnvObjName {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

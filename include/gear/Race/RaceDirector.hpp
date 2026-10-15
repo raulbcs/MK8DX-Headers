@@ -17,13 +17,11 @@ namespace gear {
 // Slot facts (vtable 0x11b2f28, default impls shared by derived directors):
 // slot 0xa8 is a no-op returning void; slot 0xc0 returns the 32-bit word at
 // *sCell12fbc10 (isolated singleton pointer cell, .orig_bss_iso; no
-// decompiled code writes the cell — derived directors override it with
+// writer for the cell in this binary — derived directors override it with
 // getters of their own 0xB8-0xC4 config words); slot 0xc8 returns 0.
-// (Evidence: RaceDirector__slotA8.cpp, RaceDirector__slotC0.cpp,
-// RaceDirector__slotC8.cpp; slots 0xc0/0xc8 are not declared below.)
-// Signatures below match the 4.0.0 binary. Actor's slots 0x00/0x08 were
-// corrected to return bool / const sead::RuntimeTypeInfo::Interface*
-// accordingly.
+// Slots 0xa8/0xc0/0xc8 are not declared below.
+// Signatures below match the 4.0.0 binary. Slots 0x00/0x08 return
+// bool / const sead::RuntimeTypeInfo::Interface*.
 class RaceDirector : public Actor {
  public:
   // Vtable .data 0x11b2f28 (GOT cell 0x12fbc58); concrete size 0x90 — the
@@ -48,7 +46,7 @@ class RaceDirector : public Actor {
   void exit() asm("RaceDirector::exit");                                                                       //0x40 — RaceDirector::exit
   bool isDirector() asm("RaceDirector::isDirector");                                                           //0x48 — RaceDirector::isDirector
   void enterOuter() asm("RaceDirector::enterOuter");                                                           //0x68 — RaceDirector::enterOuter
-  ~RaceDirector();                                                                                             //0x10/0x18 — D1/D0 carry the MethodTree labels via linker aliases in the .cpp
+  ~RaceDirector();                                                                                             //0x10/0x18 — D1/D0 carry the MethodTree labels via linker aliases in the 
 
   uint32_t mActorCount;                       //0x38 — Actor element count for calc/exit/enter
                                               // (ctor: 3 after the child array allocation succeeds)

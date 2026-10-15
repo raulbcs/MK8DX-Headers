@@ -16,12 +16,12 @@ class ParamMultiChanVt2808 {
   char mTail110[0xa8];  // 0x110 — channel array region (to 0x1b8)
                         // (~0x1b8 total, APPROXIMATE)
 };
-// vtable facts (TUs paramMultiChan2808InitVt_710064cbe0.cpp,
-// multiChanVt2808DeletingDtorSlot1_710064cc1c.cpp,
-// multiChanVt2808IsStaticMatchSlot9_710064cc78.cpp,
-// multiChanVt2808StaticInstanceSlot10_710064cd44.cpp,
-// multiChanSlot14_tailCompute_710064cbc4.cpp,
-// multiChanGetGlobalShort_710064cda0.cpp):
+// vtable facts (paramMultiChan2808InitVt_710064cbe0,
+// multiChanVt2808DeletingDtorSlot1_710064cc1c,
+// multiChanVt2808IsStaticMatchSlot9_710064cc78,
+// multiChanVt2808StaticInstanceSlot10_710064cd44,
+// multiChanSlot14_tailCompute_710064cbc4,
+// multiChanGetGlobalShort_710064cda0):
 //   slot 0 (0x10): vtable-init ctor stub — sets self+0x0 / self+0x30 from
 //     cell 0x710130d9b0 (+0x10 / +0xd8), fans the cell 0x710130d918 (+0x10)
 //     vptr into self+0x110/0x130/0x150/0x170/0x198, then tail-calls the
@@ -42,4 +42,4 @@ class ParamMultiChanVt2808 {
 //     dereferences it, returns the signed 16-bit value at offset 0.
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable.

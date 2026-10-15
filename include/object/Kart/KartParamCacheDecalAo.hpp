@@ -40,4 +40,4 @@ class KartParamCacheDecalAo : public KartParamCache {
 // 0x710130d848+0x10. function size 0xe0 bytes.
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

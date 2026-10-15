@@ -14,7 +14,7 @@ namespace object {
 //   +0x1f0/+0x180/+0x110 from [0x710130d918]+0x10, then tail-calls the base
 //   complete destructor envObjNameCompleteDtorSlot0_71006472c8.
 //   true function size 0x34 bytes (gap-split artifact).
-//   [paramNodeModelBindingCompleteDtorSlot0_710073305c.cpp]
+//   [paramNodeModelBindingCompleteDtorSlot0_710073305c]
 class ParamNodeModelBinding {
  public:
   void* vtable;         // 0x00
@@ -23,4 +23,4 @@ class ParamNodeModelBinding {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

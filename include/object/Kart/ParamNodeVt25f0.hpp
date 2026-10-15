@@ -19,15 +19,15 @@ namespace object {
 //   FUN_7100672b34, index -1 = miss) and resolves a target node; repeats the
 //   +0x18 calls on self+0xc8 and a second byte-compare between *(self+0xd0)
 //   and the target; returns 1 on match, else 0. true function size 0x1d0 bytes.
-//   [paramNodeTwoKeyLookupSlot8_710064b988.cpp]
+//   [paramNodeTwoKeyLookupSlot8_710064b988]
 // - Slots 0 (0x10) / 1 (0x18), complete/deleting destructor: install the
 //   static vptr from cell 0x710130d990 (+0x10), [0x710130d918]+0x10 into
 //   self+0xb0 and [0x710130d938]+0x10 into self+0x30; call
 //   FUN_7100661c4c(self). Slot 0 then restores the derived vptr from cell
 //   0x710130d920 (+0x10) and returns self; slot 1 tail-calls operator
 //   delete(self). true function sizes 0x5c/0x54 bytes.
-//   [vt25f0CompleteDtorSlot0_710064bb5c.cpp,
-//    vt25f0DeletingDtorSlot1_710064bbbc.cpp]
+//   [vt25f0CompleteDtorSlot0_710064bb5c,
+//    vt25f0DeletingDtorSlot1_710064bbbc]
 class ParamNodeVt25f0 {
  public:
   void* vtable;          // 0x00
@@ -40,4 +40,4 @@ class ParamNodeVt25f0 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

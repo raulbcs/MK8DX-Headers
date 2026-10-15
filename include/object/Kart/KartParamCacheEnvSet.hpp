@@ -21,4 +21,4 @@ class KartParamCacheEnvSet : public KartParamCacheMid2 {
 // +0x1d8, re-inits the +0x1e8 container, stamps the +0x0 vptr. function size 0x148 bytes.
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

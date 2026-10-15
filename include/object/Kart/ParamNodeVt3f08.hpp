@@ -16,11 +16,11 @@ namespace object {
 //   0x7100ae1308 on self+0xa8, self+0x90 and self+0x78, sets self+0x50 to
 //   [0x710130d918]+0x10, then installs the outer vptr from cell
 //   0x710130d920 (+0x10). true function size 0x74 bytes.
-//   [paramNodeVt3f08DtorSlot0_7100adb5d0.cpp]
+//   [paramNodeVt3f08DtorSlot0_7100adb5d0]
 // - Slot 1 (0x18): deleting destructor. Installs cell 0x710151430 (+0x10)
 //   into self+0x0 and self+0x90, calls 0x7100ae1308 on self+0xa8,
 //   self+0x120 and self+0x78, then tail-calls operator delete(self).
-//   true function size 0x58 bytes. [vt3f08DeletingDtorSlot1_7100adb644.cpp]
+//   true function size 0x58 bytes. [vt3f08DeletingDtorSlot1_7100adb644]
 class ParamNodeVt3f08 {
  public:
   void* vtable;          // 0x00
@@ -33,4 +33,4 @@ class ParamNodeVt3f08 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

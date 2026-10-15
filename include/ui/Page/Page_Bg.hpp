@@ -16,8 +16,6 @@ class Page_Bg : public gear::UIPage {
         *reinterpret_cast<uintptr_t*>(sInfo));
   }
 
-  // NOTE: animation currently undocumented.
-  // Expect this function name to change.
   void playDLCBgChange(bool forward);
 };
 }  // namespace ui

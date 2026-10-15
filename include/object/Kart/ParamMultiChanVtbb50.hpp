@@ -24,8 +24,8 @@ class ParamMultiChanVtbb50 {
   // (0x5f8 total; proven lower bound 0x5f2, no allocation site —
   // static singleton)
 };
-// vtable facts (TUs multiChanBb50InitCtorSlot0_7100706540.cpp,
-// paramMultiChanVtbb50StaticInstanceSlot10_7100706c40.cpp):
+// vtable facts (multiChanBb50InitCtorSlot0_7100706540,
+// paramMultiChanVtbb50StaticInstanceSlot10_7100706c40):
 //   slot 0 (0x10): vtable-init ctor stub — stamps cell 0x130d918 (+0x10)
 //     into the 24 member sub-vptrs at +0x278/+0x298/+0x2b8/+0x2d8/+0x2f8/
 //     +0x320/+0x348/+0x370/+0x390/+0x3b0/+0x3d0/+0x3f0/+0x410/+0x430/
@@ -47,4 +47,4 @@ class ParamMultiChanVtbb50 {
 // 0x5f8 is the rounded proven bound, not an allocation-size proof.
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable.

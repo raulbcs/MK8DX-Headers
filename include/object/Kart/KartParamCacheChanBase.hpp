@@ -8,7 +8,7 @@ namespace object {
 // (vptr, u32 @0x8, ptr zero @0x10); the callers overwrite the vptr with
 // KartParamCacheChan (0x12b21e0) and finish via 0x7100662f70.
 // Shared vtable slots of the 22-channel cluster (0x66496c cluster: Vt2a50/
-// 2af0/32b8/...; evidence TUs paramChannelSharedEquals_710066496c /
+// 2af0/32b8/...; evidence slots paramChannelSharedEquals_710066496c /
 // paramChannelSharedCopyFrom_71006649ec):
 // - Slot 2 (0x20) Equals 0x710066496c: type-id compare via each object's
 //   vtable+0x38, u32 +8 compare, then self vtable+0x18(self, other).
@@ -28,4 +28,4 @@ class KartParamCacheChanBase {
 // True extent 20 bytes.
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

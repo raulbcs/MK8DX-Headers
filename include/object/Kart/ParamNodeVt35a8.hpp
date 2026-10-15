@@ -13,7 +13,7 @@ namespace object {
 //   global pointer slot at 0x130e158 (guard byte reached through the pointer
 //   cell at 0x130e150, acquire load bit 0) and returns *(0x130e158).
 //   true function size 0x58 bytes (file_list size is a gap-split artifact).
-//   [paramNode35a8StaticGetterSlot10_7100ac2100.cpp]
+//   [paramNode35a8StaticGetterSlot10_7100ac2100]
 class ParamNodeVt35a8 {
  public:
   void* vtable;           // 0x00
@@ -44,4 +44,4 @@ class ParamNodeVt35a8 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

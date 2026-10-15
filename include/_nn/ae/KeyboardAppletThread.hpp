@@ -13,7 +13,7 @@ namespace nn::ae {
 //   0x530 mWorkBuf2 (0x878 rel), u32 size @0x544 (0x894 rel).
 class KeyboardAppletThread : public AppletThread {
  public:
-  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
+  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), own fields unmapped
   uint8_t mFlagF4;       // 0xf4 — ctor zero
   uint8_t padF5[0x423];  // 0xf5 — unproven gap (docblock memset 0xf8-0x528)
   void* mBuf518;         // 0x518 — swkbd string buffer (0x868)

@@ -36,4 +36,4 @@ class KartParamCacheVt2668 {
 // True extent 20 bytes.
 }  // namespace object
 
-// Naming closure: only ctor string is the debug icon 'Icon=CIRCLE_GREEN' (0xef90b0); no role evidence. Address-anchored name retained.
+// Naming: only ctor string is the debug icon 'Icon=CIRCLE_GREEN' (0xef90b0); no role evidence.

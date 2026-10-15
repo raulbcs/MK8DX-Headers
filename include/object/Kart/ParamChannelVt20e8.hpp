@@ -25,9 +25,9 @@ class ParamChannelVt20e8 : public KartParamCacheChan {
   char mPad20[0x60];  // 0x20 — unproven padding to the 0x80 embedded stride
   // (0x80 total)
 };
-// vtable facts (TU paramChannelDeletingDtor_7100647c40.cpp,
-// vtInitTailBaseCtor_7100647c2c.cpp, paramChannelForwardVtCall_7100647bec.cpp,
-// virtualForwardSlot19_7100647c14.cpp):
+// vtable facts (paramChannelDeletingDtor_7100647c40,
+// vtInitTailBaseCtor_7100647c2c, paramChannelForwardVtCall_7100647bec,
+// virtualForwardSlot19_7100647c14):
 //   slot 0 (0x10): vtable-init — stores vptr from GOT cell 0x710130938 (+0x10)
 //     into *this, then tail-calls the base-class ctor continuation
 //     0x7100661c4c.
@@ -46,4 +46,4 @@ class ParamChannelVt20e8 : public KartParamCacheChan {
 // is no operator-new site for this class (built in place only).
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.

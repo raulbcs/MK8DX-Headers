@@ -10,10 +10,9 @@ namespace nn::nex {
 // base nn::nex::ForcedCriticalSection (primary vptr cell family at 0x130b618).
 // NEVER CONSTRUCTED: no code site stores the derived vptr (only the generic
 // .data RELATIVE init at 0xe485d8 references the vtable). The dtors
-// 0xa44078/0xa442e0 touch only the base region. The previously cited
-// "ctor 0xa205c0" is a method of a different class (it reads [x19,#0x190]
-// and [x19,#0x1b8] on a foreign object); the old field map to 0x200 was
-// taken from it and has been removed.
+// 0xa44078/0xa442e0 touch only the base region. 0xa205c0 is a method of a
+// different class (reads [x19,#0x190] and [x19,#0x1b8] on a foreign
+// object), not a ctor of this one.
 class JobNNIDLogin {
  public:
   void* vtable;           // 0x00

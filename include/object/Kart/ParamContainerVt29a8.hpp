@@ -28,4 +28,4 @@ class ParamContainerVt29a8 {
 };
 }  // namespace object
 
-// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.
+// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

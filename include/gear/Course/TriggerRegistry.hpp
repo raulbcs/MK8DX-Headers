@@ -31,10 +31,9 @@
 //   +0x22c < 1.0).
 // - t0: consistent with the zero-initialized default entry (descriptor
 //   byte +0x8 never written => type 0 => tier 0x10000).
-// - t11: one unexplained identity; static closure requires locating the
-//   writer of the entry +0x8/+0x9 bytes (decompile the descriptor
-//   population side — callers of the 0x710039549c/0x71003971a4 virtual
-//   methods — or runtime-breakpoint the insert family).
+// - t11: one unexplained identity; the writer of the entry +0x8/+0x9
+//   bytes is not in this binary (descriptor population side — callers
+//   of the 0x710039549c/0x71003971a4 virtual methods).
 // - The type byte is course_muunt placement/trigger-section data, NOT
 //   objflow (MK8D objflow.byaml has no 0..0xb type field; verified by
 //   full parse, 788 objects).

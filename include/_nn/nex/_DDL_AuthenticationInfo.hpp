@@ -12,7 +12,6 @@ namespace nn::nex {
 // at +0xc4 plus u16 flags at +0xe8/+0xec/+0xf8.
 //
 // Slots: 0xa457e8 (likely dtor), then 0xb4ccac, 0xb4cabc, 0xb4cb88,
-// 0xb4cbb8, 0xb4cbec, 0xb4cbcc, 0xb4cbdc. Field map pending.
 class _DDL_AuthenticationInfo {
  public:
   void* vtable;             // 0x00 — 0x12f9058

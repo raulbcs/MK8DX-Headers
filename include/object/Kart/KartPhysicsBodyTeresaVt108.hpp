@@ -37,4 +37,4 @@ class KartPhysicsBodyTeresaVt108 : public KartPhysicsBody {
 };
 }  // namespace object
 
-// Naming closure: per item/kart physics-body variant; no distinguishing ctor strings, and the body's semantic identity requires the combo dictionary. Address-anchored name retained.
+// Naming: per item/kart physics-body variant; no distinguishing ctor strings, and the body's semantic identity requires the combo dictionary.

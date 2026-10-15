@@ -14,7 +14,7 @@ namespace object {
 // - Slot 10 (0x60): guard-initialised static vtable getter. On first call
 //   stores descriptor cell 0x710130e300 (+0x10) into cache cell
 //   0x710130e308 (guard byte 0x710130e2f8) and returns the cached pointer.
-//   true function size 0x5c bytes. [vtadb8VtGetterSlot10_71006fb738.cpp]
+//   true function size 0x5c bytes. [vtadb8VtGetterSlot10_71006fb738]
 class ParamContainerVtadb8 {
  public:
   void* vtable;            // 0x00
@@ -25,4 +25,4 @@ class ParamContainerVtadb8 {
 };
 }  // namespace object
 
-// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.
+// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

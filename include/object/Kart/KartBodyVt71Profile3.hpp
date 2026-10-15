@@ -123,4 +123,4 @@ class KartBodyVt71Profile3 : public KartBodyVt71 {
 };
 }  // namespace object
 
-// Naming closure: the 665 family members are per kart+driver combination variants (shared ctors, vtable passed as argument); semantic per-combo names need the combination dictionary and are not derivable from the binary alone. Address-anchored name retained.
+// Naming: the 665 family members are per kart+driver combination variants (shared ctors, vtable passed as argument); semantic per-combo names need the combination dictionary.

@@ -21,7 +21,7 @@ namespace enl {
 class TaskThread {
  public:
   void* vptr;               // 0x00 — cell 0x130b0f0
-  uint8_t mOwn08[0xf0];     // 0x08 — shared applet-thread base interior, map pending
+  uint8_t mOwn08[0xf0];     // 0x08 — shared applet-thread base interior, own fields unmapped
   uint32_t mRingHeadF8;     // 0xf8 — ctor zero
   uint32_t mRingTailFc;     // 0xfc — ctor zero
   uint8_t mRing108[0x18];   // 0x108 — 2-node ring, 0x10 per node (init 0x60b918)

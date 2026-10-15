@@ -17,7 +17,6 @@ namespace nn::nex {
 // — both RTTI-confirmed, covered by this family header.
 //
 // Slot map: +0x00/+0x08 dtor pair (0x575c84/0x575d18), +0x10 0x57619c,
-// +0x18 0x576234, +0x20 0x576054. Field map pending.
 class EventLog {
  public:
   void* vtable;           // 0x00 — 0x128c000

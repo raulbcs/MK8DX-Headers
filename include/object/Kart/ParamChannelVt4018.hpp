@@ -10,15 +10,15 @@ namespace object {
 // place inside the headered containers (ctor family 0x7100668528 /
 // in-place vptr store), derived from KartParamCacheChan via
 // ChanBase (0x12b3af0). Byte flag at 0x24 (extent 0x28).
-// Slot 0x48 returns 13 (family ID) — Slot48_ret13_7100668500.cpp.
+// Slot 0x48 returns 13 (family ID) — Slot48_ret13_7100668500.
 class ParamChannelVt4018 : public KartParamCacheChan {
  public:
   uint8_t mFlag24;  // 0x24 — zeroed on init
                     // (0x28 total)
 };
-// vtable facts (TUs paramChannelVt4018DtorSlot0_7100668468.cpp,
-// paramChannel4018DeletingDtor_71006684bc.cpp,
-// paramChannel4018GetStrideSlot12_7100668528.cpp):
+// vtable facts (paramChannelVt4018DtorSlot0_7100668468,
+// paramChannel4018DeletingDtor_71006684bc,
+// paramChannel4018GetStrideSlot12_7100668528):
 //   slot 0 (0x10): dtor — installs the vptr from cell 0x710130dbd0 (+0x10);
 //     if the byte at self+0x24 is set, frees the heap pointer at self+0x18
 //     and clears the byte; then swaps in the cell 0x710130d918 (+0x10) vptr.
@@ -31,4 +31,4 @@ class ParamChannelVt4018 : public KartParamCacheChan {
 // self+0x20.
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.

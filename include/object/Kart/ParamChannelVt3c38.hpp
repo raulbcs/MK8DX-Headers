@@ -11,13 +11,13 @@ namespace object {
 // at runtime by the shared lazy-init method 0x7100646850(this, ctx).
 // Same proven layout (extent >= 0x170); see Vt38f8 for the full
 // resolver map. Shares the ctor region 0x710065e178 with Vt38f8.
-// Slot 0x48 returns 5 (family ID) — Slot48_ret5_7100664f8c.cpp.
+// Slot 0x48 returns 5 (family ID) — Slot48_ret5_7100664f8c.
 class ParamChannelVt3c38 : public ParamChannelVt38f8 {
   // (same shape; extent >= 0x170, tail unmapped)
 };
-// vtable fact (TU vtInitParamChannel_7100664f74.cpp): slot 0 (0x10) is the
+// vtable fact (vtInitParamChannel_7100664f74): slot 0 (0x10) is the
 // vtable-init — stores the class vtable pointer (global pointer at
 // 0x710130918, +0x10) into *this.
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.

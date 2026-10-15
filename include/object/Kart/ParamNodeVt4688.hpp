@@ -11,7 +11,7 @@ namespace object {
 // - Slot 10 (0x60): guard-initialised static vtable getter. On first call
 //   stores descriptor cell 0x710130e300 (+0x10) into cache cell
 //   0x710130e8a0 (guard byte 0x710130e890) and returns the cached pointer.
-//   true function size 0x5c bytes. [vt4688VtGetterSlot10_7100af47b4.cpp]
+//   true function size 0x5c bytes. [vt4688VtGetterSlot10_7100af47b4]
 class ParamNodeVt4688 {
  public:
   void* vtable;            // 0x00
@@ -50,4 +50,4 @@ class ParamNodeVt4688 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

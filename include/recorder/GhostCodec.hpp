@@ -4,7 +4,7 @@
 
 /*
  * Ghost stream trans/rot codec + record-layout builder. All addresses
- * are original VMAs verified against the ported TUs.
+ * are original VMAs verified against the disassembly.
  *
  * WORLD-SPACE SEMANTICS (proven):
  *   - dat "trans" channel d IS the kart world translation, raw (prep
@@ -17,10 +17,28 @@
  *     71003b2a64, out = (phi/sin(phi))*(q0,q1,q2); rotation angle =
  *     2*phi; playback R = Rodrigues(2phi).
  *
+ * PLAYBACK ROT INTERP (vt+0xe8 slot; FUN_71007ae66c, extent 0x224):
+ *   two 3x3 col-major stride-4 records (written by the exp-map
+ *   FUN_71007adf64) -> quat via Shepperd interior 0x1963a0 -> slerp
+ *   interior 0x2977b4 (frac = s0) -> quat -> 3x3 col-major 9 floats
+ *   out. Facts:
+ *   - Shepperd 0x1963a0: csinc `le` picks 2/1 (not 2/3); record diag
+ *     read at words 0/4/8 = col-major stride 4; the y-max branch
+ *     @196500 builds qx from (R10-R01); qx uses the standard
+ *     (R01+R10).
+ *   - Slerp 0x2977b4: thresholds +/-0.70710678 (rodata 0xed5cdc/d8);
+ *     hemisphere fix via final sign (0x2979bc); |sin| < FLT_EPSILON
+ *     (0xed58e0) -> nlerp (0x297950).
+ *   - Angle via asin fixpoint helper 0x61b690: scale 128.0 (rodata
+ *     0xed5a7c), LUT frac 2^-24. sincos LUT = rodata 0xf55d54 (256x4
+ *     f32), reached through bss pointer cell 0x12fb160; asin LUT = bss
+ *     cell 0x130d360, filled at runtime init (zero in the binary).
+ *     rodata file offset = vaddr - 0x128.
+ *
  * NOTE: the mode-0 Euler-sum path at 0x7a7b71c (inside
  * ghostFrameRecordBuild_7100a7b414) is NOT the ghost path.
  *
- * Codec family index (details in the decomp TUs):
+ * Codec family index (details at the listed addresses):
  *   FUN_71007ae350  trans record prep (vt 0x71012c4108 +0x98)
  *   FUN_71007b0178  token-table channel re-quant, write-path only
  *                   (FB20 vt +0xd8; slot stride 0x28, 2 floats/key)
@@ -126,7 +144,7 @@ struct GhostStreamSession {
 };
 
 /*
- * Side TU index (read/playback path; details in the decomp TUs):
+ * Side unit index (read/playback path):
  *   FUN_71004a85a4  ghost file opener (612 B): path "Ghost/%s/%s"; mgr
  *                   singleton FUN_71008bd3c8, Fast base mgr+0x130C000,
  *                   Slow base mgr+0x653B0000; bucket adj 0/-27/-16;

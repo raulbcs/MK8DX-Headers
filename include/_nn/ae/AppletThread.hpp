@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-// Baptism audit: the family itself is real (rodata thread names
+// Naming: the family itself is real (rodata thread names
 // ControllerAppletThread/KeyboardAppletThread/... prove nn::ae), but the binary never names the base. SDK-glue name kept.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
@@ -31,7 +31,7 @@ namespace nn::ae {
 class AppletThread {
  public:
   void* vptr;            // 0x00 — 0x12b0a58 for the base class
-  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (thread/event/queue), map pending
+  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (thread/event/queue), own fields unmapped
   uint8_t mFlagF4;       // 0xf4 — shared ctor strb zero
   uint8_t padF5[3];      // 0xf5 — unproven padding
   // (0xf8 total)

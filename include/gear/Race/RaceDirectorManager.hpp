@@ -13,7 +13,7 @@
 // 0x38/0x40/0x4C. Size 0x1A0, proven by the allocation site 0x710013d994.
 // Top-level race director manager: owns the per-player directors
 // (RaceDirectorPlayer) and ~14 per-player data tables.
-// Baptism audit: consumers: allocation site 0x13d994 and the per-player loop 0x58c44-0x58cd8; the class owns the per-player RaceDirectorPlayer vector, but no string or method-tree entry names it.
+// Naming: consumers: allocation site 0x13d994 and the per-player loop 0x58c44-0x58cd8; the class owns the per-player RaceDirectorPlayer vector, but no string or method-tree entry names it.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
 // MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
@@ -35,7 +35,7 @@ class RaceDirectorManager {
   void* mObj90;         //0x90 — ctor writes (0x588c0 region)
   // 0x98 — slot 0x98 guards on this+0x68: when set, runs the callee at
   // 0x710005a01c, then dispatches 0x710005a1e0 with flag 1
-  // (slot98_dispatch_7100059fe8.cpp). Slots 0xa0/0xa8 are tails of
+  // (slot98_dispatch_7100059fe8). Slots 0xa0/0xa8 are tails of
   // FUN_710005a1e0 — same dispatch, other flag values.
   uint8_t pad98[0x14];
   uint32_t mFieldAc;    //0xAC — ctor writes

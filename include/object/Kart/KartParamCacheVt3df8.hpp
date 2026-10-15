@@ -69,4 +69,4 @@ class KartParamCacheVt3df8 : public KartParamCache {
 // container. function size 0x128 bytes.
 }  // namespace object
 
-// Naming closure: ctor strings found (pref, start/end, blur_type/kernel, clear color) but no engine tag and no unambiguous role; kept address-anchored.
+// Naming: ctor strings found (pref, start/end, blur_type/kernel, clear color) but no engine tag and no unambiguous role; kept address-anchored.

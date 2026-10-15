@@ -35,7 +35,7 @@ namespace object {
 //   the object pointed to by the global pointer cell at 0x130da18 (deref of
 //   the cell, then deref of that pointer); self is unused.
 //   true function size 0x10 bytes (gap-split artifact).
-//   [paramNode2b90IdGetterSlot22_710064f1ec.cpp]
+//   [paramNode2b90IdGetterSlot22_710064f1ec]
 class ParamNodeVt2b90 {
  public:
   void* vtable;  // 0x00
@@ -43,4 +43,4 @@ class ParamNodeVt2b90 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

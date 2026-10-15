@@ -15,4 +15,4 @@ class KartParamCacheVtbb800 : public KartParamCacheMid2 {
 };
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

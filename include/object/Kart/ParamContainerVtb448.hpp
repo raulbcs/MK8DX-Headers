@@ -16,7 +16,7 @@ namespace object {
 //   +0x8 next); for each child with a non-null +0x18 handle: obj =
 //   [handle+0x10]; ORs bit 0x80 into obj+0xe28 halfword; calls the object's
 //   vtable method at 0xb8 (slot 23) with the original (x1, w4) arguments.
-//   true function size 0x98 bytes. [containerDispatchSlot14_71006fbc3c.cpp]
+//   true function size 0x98 bytes. [containerDispatchSlot14_71006fbc3c]
 class ParamContainerVtb448 {
  public:
   void* vtable;            // 0x00
@@ -29,4 +29,4 @@ class ParamContainerVtb448 {
 };
 }  // namespace object
 
-// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.
+// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

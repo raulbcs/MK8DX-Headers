@@ -5,7 +5,6 @@
 /*
  * Ghost/replay recorder framework (400 binary; layout authority for
  * the family). All addresses are original VMAs. Full codec behavior
- * details live in the decomp TUs / research notes; this header mirrors
  * LAYOUT only.
  *
  * Family: object::RecorderDirector (makeGhostData vt slot 0x98);
@@ -94,7 +93,7 @@ struct Mgr {
 // calc dispatched through vtable slot +0x100 of context *(mgr+0x00).
 
 /*
- * Playback-side function index (details in the decomp TUs):
+ * Playback-side function index (details at the listed addresses):
  *   FUN_710020c6fc  mgr playback setup (new 0x278 Binder @mgr+0x2f0;
  *                   new 0x2e0 PlaybackKartCtx; addChannel)
  *   FUN_7100889278  attach ctx to mgr (gated on byte mgr+0x1d0)
@@ -337,7 +336,7 @@ struct KartContext {
      *                   through Vehicle), one cell per channel class
      *   - 0x710130f7d0/d8/e0/e8/f0, 0x71012fae28 (GOT)  vtable cells
      *                   consumed by the Binder ctor
-     * Each instance getter (getRecorderInstance_* in the decomp, one per
+     * Each instance getter (getRecorderInstance_*, one per
      * descriptor cluster) returns one cell.
      */
 }  // namespace recorder

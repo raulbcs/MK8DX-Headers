@@ -14,13 +14,13 @@ namespace object {
 //   self+0x1a8); reset the member sub-vptrs (0x110, 0x138, 0x160, 0x180) to
 //   [0x710130d918]+0x10; base complete destructor is
 //   envObjNameCompleteDtorSlot0_71006472c8. true function sizes 0x68/0x6c bytes.
-//   [dirLightDeletingDtorSlot0_710064d488.cpp,
-//    dirLightCompleteDtorSlot1_710064d558.cpp]
+//   [dirLightDeletingDtorSlot0_710064d488,
+//    dirLightCompleteDtorSlot1_710064d558]
 // - Slot 11 (0x68): (self, count, src) reserves a matrix array; when
 //   count >= 1 allocates count*12 bytes (3 floats per entry) via
 //   heapAlloc_710060b3fc on the heap from cell 0x712fae80; on success stores
 //   count at word self+0x1a8 and the array pointer at self+0x1b0.
-//   true function size 0x68 bytes. [dirLightAllocMatrixArraySlot11_710064d638.cpp]
+//   true function size 0x68 bytes. [dirLightAllocMatrixArraySlot11_710064d638]
 // - Slot 13 (0x78): (self, src, idx) projects points. Uses the basis floats
 //   self+0x198/0x19c/0x1a0 to take dot products with three 2-float pairs
 //   from src and stores the three results into a 3-float row of the matrix
@@ -28,7 +28,7 @@ namespace object {
 //   idx, else base); then re-reads that row as a 3-float vector, computes
 //   its length (NaN guard FUN_7100b52790) and normalises it in place when
 //   > 0. true function size 0x10c bytes.
-//   [dirLightProjectPointsSlot13_710064d6a0.cpp]
+//   [dirLightProjectPointsSlot13_710064d6a0]
 class ParamNodeDirectionalLight {
  public:
   void* vtable;           // 0x00
@@ -63,4 +63,4 @@ class ParamNodeDirectionalLight {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

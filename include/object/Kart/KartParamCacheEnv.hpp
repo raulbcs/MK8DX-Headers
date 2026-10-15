@@ -19,10 +19,10 @@ class KartParamCacheEnv {
                      // (0x38 total)
 };
 // Vtable slots :
-// - slot 0 (0x10) deleting dtor (envDeletingDtor_71006482a8.cpp): installs vptr from
+// - slot 0 (0x10) deleting dtor (envDeletingDtor_71006482a8): installs vptr from
 //   cell 0x710130d948+0x10, frees +0x30 (also zeroing it and word +0x28), frees +0x20,
 //   then operator delete(self). function size 0x50 bytes.
-// - slot 1 (0x18) bind/alloc (envCacheBindAllocSlot1_71006482f8.cpp): (self, src,
+// - slot 1 (0x18) bind/alloc (envCacheBindAllocSlot1_71006482f8): (self, src,
 //   heapArg): allocates from heap cell 0x71012fae80 via 0x710060b3fc (align 8):
 //   [src+0x208] x 8-byte entries stored at +0x28/+0x30 when >= 1, and [0x710130d930] x
 //   4-byte entries stored at +0x18/+0x20 when >= 1; fills the second array with
@@ -30,4 +30,4 @@ class KartParamCacheEnv {
 //   zeroes the tail of the 8-byte array from element count-1 onward. function size 0x11c bytes.
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

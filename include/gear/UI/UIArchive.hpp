@@ -4,7 +4,7 @@
 #include "_nn/ui2d/ResourceTextureInfo.h"
 
 namespace gear {
-// Made up structure name. Cannot find the actual name through static analysis of the dump.
+// Address-anchored name; no name string for this class in the binary.
 class BntxContainer {
  public:
   uint8_t mPad00[0x98];                      // 0x00

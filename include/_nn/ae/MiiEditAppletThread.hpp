@@ -10,7 +10,7 @@ namespace nn::ae {
 // -1 @0xf8.
 class MiiEditAppletThread : public AppletThread {
  public:
-  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), map pending
+  uint8_t mOwn08[0xec];  // 0x08 — SDK-internal (AppletThread interior), own fields unmapped
   uint8_t mFlagF4;       // 0xf4 — ctor zero
   uint8_t mPadF5[0x3];   // 0xf5 — unproven padding
   int32_t mFffF8;        // 0xf8 — ctor sets -1

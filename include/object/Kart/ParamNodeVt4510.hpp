@@ -14,12 +14,12 @@ namespace object {
 //   self+0x110); call FUN_7100af9c28(self+0x170); base complete destructor
 //   envObjNameCompleteDtorSlot0_71006472c8, then operator delete(self).
 //   true function sizes 0x54/0x58 bytes (gap-split artifacts).
-//   [vt4510DeletingDtorSlot0_7100aef8f4.cpp,
-//    vt4510DeletingDtorSlot1_7100aef9a0.cpp]
+//   [vt4510DeletingDtorSlot0_7100aef8f4,
+//    vt4510DeletingDtorSlot1_7100aef9a0]
 // - Slot 10 (0x60): guard-initialised static vtable getter. Stores
 //   descriptor cell 0x71012fade0 (+0x10) into cache cell 0x710130e318
 //   (guard byte 0x710130e310) on first call. true function size 0x5c bytes.
-//   [vt4510VtGetterSlot10_7100af4684.cpp]
+//   [vt4510VtGetterSlot10_7100af4684]
 class ParamNodeVt4510 {
  public:
   void* vtable;            // 0x00
@@ -59,4 +59,4 @@ class ParamNodeVt4510 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

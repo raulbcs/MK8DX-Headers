@@ -12,7 +12,7 @@ namespace object {
 //   unused. On first call stores *(0x130e300)+0x10 into the global pointer
 //   slot at 0x130e328 (guard byte reached through the pointer cell at
 //   0x130e320) and returns *(0x130e328). true function size 0x58 bytes.
-//   [paramNodeAf38StaticGetterSlot10_71006fb8e4.cpp]
+//   [paramNodeAf38StaticGetterSlot10_71006fb8e4]
 class ParamNodeVtaf38 {
  public:
   void* vtable;            // 0x00
@@ -30,4 +30,4 @@ class ParamNodeVtaf38 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

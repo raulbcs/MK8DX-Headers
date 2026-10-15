@@ -176,4 +176,4 @@ class KartParamCacheShadowPP : public KartParamCache {
 // +0x420 (0x710130d920), +0x1e8 (0x710130d830), +0x0 (0x710130d848). function size 0x16c bytes.
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

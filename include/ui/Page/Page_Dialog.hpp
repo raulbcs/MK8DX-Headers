@@ -12,8 +12,7 @@ enum EDialogResult {
 };
 
 /* Field offsets below came from the Wii U (32-bit) layout and are NOT
-     * valid on Switch. Field order is kept as a placeholder until the
-     * offsets are re-derived from the 64-bit binary.
+     * valid on Switch (64-bit offsets not yet derived).
      */
 class Page_Dialog : public gear::UIPage {
  public:

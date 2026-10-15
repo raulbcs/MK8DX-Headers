@@ -7,7 +7,7 @@ namespace object {
 // Large container of the 0x647f40 hook-band cluster (param-cache super-family ring);
 // n=25 slots, allocation 0x370 @ 0x712cac. Interior array region unproven.
 // Vtable slot facts: slot 10 (0x60) one-time-guarded singleton getter (guard 0x71012fd3c8,
-// instance cell 0x71012fd3d8 = [0x71012fd3d0]+0x10; paramContainerVtc338StaticInstanceSlot10_7100712e64.cpp);
+// instance cell 0x71012fd3d8 = [0x71012fd3d0]+0x10; paramContainerVtc338StaticInstanceSlot10_7100712e64);
 // slot 24 (0xd0) spot light update 0x7100712ed4 (light node +0x358, id +0x360, angle accum i32
 // +0x364/+0x368, mask +0x36c); slot 32 (0x210) byte-identical masked variant 0x710072f618
 // (light +0x470, id +0x478, mask +0x484; 5 differing insns).
@@ -40,4 +40,4 @@ class ParamContainerVtc338 {
 // slot 24 except self offsets +0x470/+0x478/+0x484.
 }  // namespace object
 
-// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.
+// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

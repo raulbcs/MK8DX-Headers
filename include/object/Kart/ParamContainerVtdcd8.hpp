@@ -14,7 +14,7 @@ namespace object {
 // - Slot 10 (0x60): one-time-guarded static singleton getter. Guard cell
 //   0x710130e190; instance cell 0x710130e198 initialised to
 //   [0x71012fd3d0]+0x10. true function size 0x5c bytes (gap-split artifact).
-//   [paramContainerVtdcd8StaticInstanceSlot10_710072f5a8.cpp]
+//   [paramContainerVtdcd8StaticInstanceSlot10_710072f5a8]
 class ParamContainerVtdcd8 {
  public:
   void* vtable;           // 0x00
@@ -33,4 +33,4 @@ class ParamContainerVtdcd8 {
 };
 }  // namespace object
 
-// Naming closure: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only). Address-anchored name retained.
+// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

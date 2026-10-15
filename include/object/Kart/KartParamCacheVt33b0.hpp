@@ -43,4 +43,4 @@ class KartParamCacheVt33b0 : public KartParamCache {
 // function size 0x1a4 bytes.
 }  // namespace object
 
-// Naming closure: docblock ctor anchor yields only nvn init strings (nvnDeviceInitialize/nvnDeviceGetProcAddress) — anchor misquote suspected; needs re-verification. Address-anchored name retained.
+// Naming: docblock ctor anchor yields only nvn init strings (nvnDeviceInitialize/nvnDeviceGetProcAddress) — anchor misquote suspected; needs re-verification.

@@ -17,11 +17,11 @@ namespace object {
 //   (t, 0, *(self+0x200) * *(self+0x240)), FUN_710062c8b0(buf, t,
 //   *(self+0x1c0), *(self+0x1e0)), then FUN_7100655ebc + FUN_710062bf28;
 //   other values do nothing. true function size 0x128 bytes.
-//   [node32a8BlurDispatchSlot10_7100abb5f4.cpp]
+//   [node32a8BlurDispatchSlot10_7100abb5f4]
 // - Slot 10 (0x60), entry at 0x7100abb8a4: guard-initialised static vtable
 //   getter. On first call stores descriptor cell 0x712fd03d0 (+0x10) into
 //   cache cell 0x710130e140 (guard byte 0x710130e138). true function size 0x58
-//   bytes. [vt32a8VtGetterSlot10_7100abb8a4.cpp]
+//   bytes. [vt32a8VtGetterSlot10_7100abb8a4]
 class ParamNodeVt32a8 {
  public:
   void* vtable;         // 0x00
@@ -30,4 +30,4 @@ class ParamNodeVt32a8 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

@@ -287,8 +287,7 @@ class KartPhysicsBody : public gear::Actor {
                          // tail only fills the three 0xb0 arrays
 };
 
-// EXTENT / gap-split boundary notes — physics area (verified against the
-// decomp TUs):
+// EXTENT / gap-split boundary notes — physics area:
 //  - FUN_7100814c7c (item scoring/query, ret 0x8151a0):
 //    file_list size 680 is a gap-split; a duplicated variant with an
 //    extra w4 flag starts at 0x814efc.

@@ -16,8 +16,8 @@ class ParamMultiChanVtda50 {
   char mTail2c8[0xb8];  // 0x2c8 — channel array region (to 0x380)
                         // (~0x380 total, APPROXIMATE)
 };
-// vtable facts (TUs multiChanDa50BindParamsSlot30_710072da50.cpp,
-// paramMultiChanVtda50StaticInstanceSlot10_710072e2ec.cpp):
+// vtable facts (multiChanDa50BindParamsSlot30_710072da50,
+// paramMultiChanVtda50StaticInstanceSlot10_710072e2ec):
 //   slot 10 (0x60): guard-protected static singleton getter — guard cell
 //     0x710130e1a0, instance cell 0x710130e1a8 initialised to
 //     [0x710130e180]+0x10; returns the instance pointer.
@@ -33,4 +33,4 @@ class ParamMultiChanVtda50 {
 //     0xf03162), +0x420 (0x12fae28+0x10, 0xf06dd5).
 }  // namespace object
 
-// Naming closure: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable. Address-anchored name retained.
+// Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash, not statically resolvable.

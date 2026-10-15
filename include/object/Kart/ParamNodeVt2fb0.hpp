@@ -16,8 +16,8 @@ namespace object {
 //   [0x710130d918]+0x10; call base cleanup 0x71006472c8. Slot 1
 //   additionally tail-calls operator delete(self). true function sizes 0x90/0x98
 //   bytes (gap-split artifacts).
-//   [paramNodeVt2fb0CompleteDtorSlot0_710064ebc0.cpp,
-//    paramNodeVt2fb0DeletingDtorSlot1_710064ece0.cpp]
+//   [paramNodeVt2fb0CompleteDtorSlot0_710064ebc0,
+//    paramNodeVt2fb0DeletingDtorSlot1_710064ece0]
 class ParamNodeVt2fb0 {
  public:
   void* vtable;             // 0x00
@@ -38,4 +38,4 @@ class ParamNodeVt2fb0 {
 };
 }  // namespace object
 
-// Naming closure: no ctor strings in a 500-line window (or icon-string only); quoted ctor anchors near the nvn init region need re-verification before any semantic rename. Address-anchored name retained.
+// Naming: no ctor strings.

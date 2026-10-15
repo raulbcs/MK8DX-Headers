@@ -25,4 +25,4 @@ class KartParamCacheVt24c8 : public KartParamCache {
 };
 }  // namespace object
 
-// Naming closure: only ctor string is the generic 'param_list'; array-element variant with factory case id only. Address-anchored name retained.
+// Naming: only ctor string is the generic 'param_list'; array-element variant with factory case id only.

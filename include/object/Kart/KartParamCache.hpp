@@ -3,9 +3,8 @@
 #include <cstdint>
 
 namespace object {
-// KartParamCache — address-anchored name (slot-5 evidence:
-// the shared ret stub 0x7100638e3c is named KartParamCache_vt5 in the
-// ported symbols). Base of the ~41-vtable param-cache cluster
+// KartParamCache — address-anchored name (slot-5 evidence: shared ret
+// stub 0x7100638e3c is named KartParamCache_vt5). Base of the ~41-vtable param-cache cluster
 // (vtables 0x12b1xxx-0x12f4xxx, n=9..16, sharing the slot block
 // 0x10-0x40; per-class variance is in slots 0x0/0x8 and the tail).
 //
@@ -35,4 +34,4 @@ class KartParamCache {
 };
 }  // namespace object
 
-// Naming closure: factory/array structural variant (base-call chain + factory case id only, no per-class strings). Address-anchored name retained.
+// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

@@ -7,5 +7,5 @@
 // FUN_7100719ce0, FUN_71007b8480, FUN_71007f5a9c, FUN_7100809244.
 // Per-player check manager (x0) observed fields:
 //   +0x90 u32 player count; +0x98 u32* counters; +0xC4 u32 (zeroed);
-//   sibling 0x7100631e80 also zeroes +0xC0 and +0x18 (separate TU).
+//   sibling 0x7100631e80 also zeroes +0xC0 and +0x18 (separate unit).
 // NOTE: manager extent unproven (access sites only) — no struct.
