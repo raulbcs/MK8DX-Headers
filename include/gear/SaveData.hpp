@@ -10,6 +10,8 @@ class SaveData {
   // extent fixed by mFlagAccessor at 0x190.
   uint8_t mPad00[0x190];  // unproven - extent fixed by mFlagAccessor at 0x190
   FlagAccessor mFlagAccessor;
+// extent 0x190 (extent fixed by mFlagAccessor at 0x190 (32-bit reference size))
+
 };
 
 SaveData* GetCurrentUserSaveData();

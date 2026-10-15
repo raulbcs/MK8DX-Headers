@@ -86,9 +86,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/eui/Screen/ScreenMgr.hpp
 #   include/gear/Account/account.hpp
 #   include/gear/Audio/AudSoundLinkUserBase.hpp
-#   include/gear/Background/BackgroundLoadThread.hpp
 #   include/gear/Collision/GndColCheckRayInfo.hpp
-#   include/gear/Controller/ControllerRaceNX.hpp
 #   include/gear/Course/CourseDecompThread.hpp
 #   include/gear/Course/FieldDirector.hpp
 #   include/gear/Director/TDirectorBase.hpp
@@ -96,13 +94,11 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Ghost/RaceTime.hpp
 #   include/gear/Item/ItemDirector.hpp
 #   include/gear/Item/ItemEvent.hpp
-#   include/gear/Item/ItemEventContent.hpp
 #   include/gear/Item/ItemEventManager.hpp
 #   include/gear/Item/ItemOwner.hpp
 #   include/gear/Item/ItemReact.hpp
 #   include/gear/Item/ItemReactInfo.hpp
 #   include/gear/Item/ItemSlot.hpp
-#   include/gear/Item/Obj/ItemObjKouraG.hpp
 #   include/gear/MapObj/IMapObjBounce.hpp
 #   include/gear/MapObj/MapObjBase.hpp
 #   include/gear/MapObj/MapObjCreateArg.hpp
@@ -116,9 +112,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Network/NetworkDataMenuCourseVote.hpp
 #   include/gear/Network/NetworkDataPlayerInfo.hpp
 #   include/gear/Network/Transporter/NetworkTransporterAllPlayerInfo.hpp
-#   include/gear/NetworkTaskThread.hpp
 #   include/gear/Object/ObjectBase.hpp
-#   include/gear/Player/Player.hpp
 #   include/gear/Player/PlayerInfo.hpp
 #   include/gear/Player/PlayerManager.hpp
 #   include/gear/Race/LapRankChecker.hpp
@@ -133,7 +127,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Resource/Race/ResourceRaceCommon.hpp
 #   include/gear/Resource/ResourceLoader.hpp
 #   include/gear/RigidBody.hpp
-#   include/gear/SaveData.hpp
 #   include/gear/SaveData/SaveDataFile.hpp
 #   include/gear/SaveData/SaveDataManager.hpp
 #   include/gear/SaveData/SaveDataManagerThread.hpp
