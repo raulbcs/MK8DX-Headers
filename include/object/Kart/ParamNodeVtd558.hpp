@@ -19,6 +19,8 @@ class ParamNodeVtd558 {
   uint8_t mPad18[0x18];  // 0x18 — unproven gap
   char mChan30[0x20];    // 0x30 — recorder channel-pair member
                          // (0x50 total)
+// extent 0x50 (in-place node partition: next node's vptr stored at +0x50 — construction site 0x727d74)
+
 };
 }  // namespace object
 

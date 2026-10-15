@@ -17,6 +17,7 @@ class KartParamCacheEnv {
   uint64_t mZero28;  // 0x28
   uint64_t mZero30;  // 0x30
                      // (0x38 total)
+// extent 0x38 (prior survey: 0x38 total)
 };
 // Vtable slots :
 // - slot 0 (0x10) deleting dtor (envDeletingDtor_71006482a8): installs vptr from

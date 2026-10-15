@@ -22,6 +22,7 @@ class KartParamCacheVt24c8 : public KartParamCache {
   uint8_t pad4c[4];   // 0x4c — unproven padding
   void* mPtr50;       // 0x50 — factory zero
                       // (0x58 total)
+// extent 0x58 (pool element stride 0x58; each element runs ctor 0x7100669954)
 };
 }  // namespace object
 

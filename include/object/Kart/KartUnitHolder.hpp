@@ -37,7 +37,7 @@ class KartUnitHolder {
                             // one per active entry index (ctor 0x16e23c)
   void* mListNext250;       // 0x250
   uint32_t mZero258;        // 0x258
-  uint8_t pad25C[8];        // 0x25C — unproven padding
+  uint8_t pad25C[4];        // 0x25C — unproven padding (to u64 @0x260)
   uint64_t mZero260;        // 0x260
   uint64_t mZero268;        // 0x268
   int32_t mS270;            // 0x270 — ctor -1
@@ -78,6 +78,9 @@ class KartUnitHolder {
   uint8_t mFlag361;         // 0x361 — set 1 by FUN_710016ef3c (KartDirectorVt8)
   uint8_t mFlag362;         // 0x362 — read as list-walk arg (payload+0x48 flag)
   uint8_t mFlag363;         // 0x363 — ctor sets 1 (read at 0x16e9bc)
-  uint8_t pad364[4];        // 0x364 — to 0x368 (size unproven beyond)
+  uint8_t pad364[4];        // 0x364 — to 0x368 (ctor stores reach 0x364)
+
+  // extent 0x368 (allocation size 0x368 — movz w0,#0x368; bl 0x710060afec
+  // _Znwm @0x710013d8bc → ctor 0x710016e1ec; ctor stores reach 0x364)
 };
 }  // namespace object

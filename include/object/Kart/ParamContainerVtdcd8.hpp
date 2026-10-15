@@ -30,6 +30,7 @@ class ParamContainerVtdcd8 {
   uint8_t mPad484[0x2];   // 0x484 — u16 — ctor-written
   uint8_t mPad486[0x2];   // 0x486 — u16 — ctor-zero
                           // (0x488 total, factory alloc)
+// extent 0x488 (factory allocation size 0x488)
 };
 }  // namespace object
 

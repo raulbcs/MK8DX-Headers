@@ -19,6 +19,8 @@ class ParamNodeVt26c0 {
   uint8_t mPad18[0x18];  // 0x18 — unproven gap
   char mChan30[0x20];    // 0x30 — recorder channel-pair member
                          // (0x50 total)
+// extent 0x50 (in-place node partition: stur [elem-0x50]/+0xa0 at site 0x64a7e4)
+
 };
 }  // namespace object
 

@@ -112,5 +112,8 @@ struct KartUnit {
   uint8_t flag_fb4;        // 0xfb4 — bool
   uint8_t flag_fb5;        // 0xfb5 — bool
   uint8_t flag_fb6;        // 0xfb6 — bool
+
+  // extent 0xFB7 (ctor 0x7100399c14 stores reach 0xFB7 — strb flag
+  // defaults 0xfa0..0xfb6 at 0x399e58-0x39a900; allocation site unproven)
 };
 }  // namespace object

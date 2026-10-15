@@ -13,6 +13,7 @@ namespace object {
 class KartParamCacheChan : public KartParamCacheChanBase {
  public:
   char mTail18[8];  // 0x18 — filled by the 0x7100662f70 init
+// extent 0x20 (true extent per prior survey (0x18 base + 0x8 tail))
 };
 // Vtable slot 0 (0x10) vtable-init ctor stub :
 // stores the class vtable pointer (global pointer at 0x710130918, +0x10) into *this.

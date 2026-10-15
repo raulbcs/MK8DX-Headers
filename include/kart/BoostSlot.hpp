@@ -2,8 +2,11 @@
 
 #include <cstdint>
 
-// BoostSlot (size 0x258) — kart boost slot. PROVISIONAL: name has no
-// MethodTree string. Embedded in KartVehicleMove at +0x118 (pointer there).
+// BoostSlot (size 0xD0) — kart boost slot. PROVISIONAL: name has no
+// MethodTree string. Object at KartVehicleMove+0x118 (pointer there):
+// operator new(0xD0) in the KartVehicleMove ctor (0x71001815d4/
+// 0x71001815dc) → ctor 0x710017a0e4, stores reach 0xD0 (owner @0x8,
+// flags @0x10, scalar @0x18).
 // Naming: no MethodTree string; consumers are the FUN_710017a* boost helpers and KartVehicleMove+0x118; behavior-rich, name-less.
 // the ELF carries no name for this class (strings and the method-tree
 // registrations at 0x6327a8 cover only graphics/profiling and the
@@ -36,8 +39,7 @@ struct BoostSlot {
   float case6_profile_a;            //0xb4 — out0 x +0xb4
   float case6_profile_b;            //0xb8 — +0xc4: (b8-1)*0.5+1
   uint32_t custom_duration_d;       //0xbc
-  uint8_t pad_c0[0x194];            // 0xc0 — unproven padding
-  uint32_t counter_mirror;          //0x254 — mirror of the real counter (KartVehicle+0x254)
+  uint8_t pad_c0[0x10];             // 0xc0 — unproven padding (to extent 0xd0)
 };
 
 // Course-trigger boost entry: FUN_710017af90(BoostSlot* x0,

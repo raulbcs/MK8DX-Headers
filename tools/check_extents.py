@@ -27,6 +27,7 @@ Exit codes: 0 = clean (warnings allowed), 1 = violations.
 """
 
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -187,15 +188,12 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/AudioTaskThread.hpp
 #   include/object/Kart/BackgroundLoadThread.hpp
 #   include/object/Kart/ContentsThread.hpp
-#   include/object/Kart/KartCamera.hpp
 #   include/object/Kart/KartChassisEffect.hpp
 #   include/object/Kart/KartDirector.hpp
 #   include/object/Kart/KartFloorEffect.hpp
 #   include/object/Kart/KartInfoProxy.hpp
 #   include/object/Kart/KartMatrixInfo.hpp
 #   include/object/Kart/KartModelBackgroundLoadThread.hpp
-#   include/object/Kart/KartParamCacheChan.hpp
-#   include/object/Kart/KartParamCacheChanBase.hpp
 #   include/object/Kart/KartParamCacheCloud.hpp
 #   include/object/Kart/KartParamCacheCloudDraw.hpp
 #   include/object/Kart/KartParamCacheCloudTex.hpp
@@ -203,11 +201,9 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartParamCacheCubeMap.hpp
 #   include/object/Kart/KartParamCacheDecal.hpp
 #   include/object/Kart/KartParamCacheDecalAo.hpp
-#   include/object/Kart/KartParamCacheEnv.hpp
 #   include/object/Kart/KartParamCacheLightMap.hpp
 #   include/object/Kart/KartParamCacheLref.hpp
 #   include/object/Kart/KartParamCacheMid2.hpp
-#   include/object/Kart/KartParamCacheNodeBase.hpp
 #   include/object/Kart/KartParamCacheNormalDrawer.hpp
 #   include/object/Kart/KartParamCacheOfx.hpp
 #   include/object/Kart/KartParamCacheProjShadow.hpp
@@ -216,27 +212,12 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartParamCacheSky.hpp
 #   include/object/Kart/KartParamCacheSsao.hpp
 #   include/object/Kart/KartParamCacheVolumeMask.hpp
-#   include/object/Kart/KartParamCacheVt24c8.hpp
 #   include/object/Kart/KartParamCacheVt3df8.hpp
 #   include/object/Kart/KartParamCacheVtd608.hpp
-#   include/object/Kart/KartPhysicsBodyMid.hpp
-#   include/object/Kart/KartUnit.hpp
-#   include/object/Kart/KartUnitHolder.hpp
-#   include/object/Kart/KartVehicleNetData.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
-#   include/object/Kart/ParamChannelVt20e8.hpp
 #   include/object/Kart/ParamChannelVt38f8.hpp
-#   include/object/Kart/ParamContainerVt29a8.hpp
-#   include/object/Kart/ParamContainerVt4920.hpp
-#   include/object/Kart/ParamContainerVt4aa0.hpp
-#   include/object/Kart/ParamContainerVtadb8.hpp
 #   include/object/Kart/ParamContainerVtb0b8.hpp
 #   include/object/Kart/ParamContainerVtb1e8.hpp
-#   include/object/Kart/ParamContainerVtb448.hpp
-#   include/object/Kart/ParamContainerVtb578.hpp
-#   include/object/Kart/ParamContainerVtb690.hpp
-#   include/object/Kart/ParamContainerVtbc88.hpp
-#   include/object/Kart/ParamContainerVtdcd8.hpp
 #   include/object/Kart/ParamMultiChanVt2808.hpp
 #   include/object/Kart/ParamMultiChanVt2c40.hpp
 #   include/object/Kart/ParamMultiChanVtb318.hpp
@@ -253,27 +234,18 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamNodeModelBinding.hpp
 #   include/object/Kart/ParamNodePseudoOcclusion.hpp
 #   include/object/Kart/ParamNodeVt2198.hpp
-#   include/object/Kart/ParamNodeVt25f0.hpp
-#   include/object/Kart/ParamNodeVt26c0.hpp
 #   include/object/Kart/ParamNodeVt2b90.hpp
-#   include/object/Kart/ParamNodeVt2df8.hpp
-#   include/object/Kart/ParamNodeVt2e50.hpp
 #   include/object/Kart/ParamNodeVt2ea8.hpp
 #   include/object/Kart/ParamNodeVt2fb0.hpp
 #   include/object/Kart/ParamNodeVt32a8.hpp
-#   include/object/Kart/ParamNodeVt3f08.hpp
 #   include/object/Kart/ParamNodeVt3fd8.hpp
 #   include/object/Kart/ParamNodeVt4140.hpp
 #   include/object/Kart/ParamNodeVt4510.hpp
 #   include/object/Kart/ParamNodeVt4688.hpp
 #   include/object/Kart/ParamNodeVt4c70.hpp
-#   include/object/Kart/ParamNodeVt4eb8.hpp
-#   include/object/Kart/ParamNodeVt7780.hpp
 #   include/object/Kart/ParamNodeVtc848.hpp
 #   include/object/Kart/ParamNodeVtc8a0.hpp
 #   include/object/Kart/ParamNodeVtc8f8.hpp
-#   include/object/Kart/ParamNodeVtd500.hpp
-#   include/object/Kart/ParamNodeVtd558.hpp
 #   include/object/Kart/ParamNodeVtd5b0.hpp
 #   include/object/Kart/ParamNodeVtde48.hpp
 #   include/object/Kart/UIMovieRecreatingThread.hpp
@@ -681,6 +653,237 @@ def analyze(path: Path):
                 errs=errs, warns=warns, in_allowlist=not has_extent)
 
 
+# ---------------------------------------------------------------------------
+# ELF mining (ctor store extents / allocation sites) — data/main.elf
+#
+# Address convention: VAs are VMA (objdump address; header labels are
+# 0x7100000000 + VMA). ELF maps LOAD off=0x788 vaddr=0, so file offset =
+# VMA + 0x788. Decode notes: L bit (bit 22) must be 0 (LDR/LDP don't
+# count); STR unsigned imm is scaled (byte offset = imm12 * size).
+# ---------------------------------------------------------------------------
+ELF_PATH = Path("/Users/raul/projects/mk8dx-400/data/main.elf")
+NEW_VA = 0x60AFEC  # _Znwm VMA
+
+_mine_f = None
+
+
+def _elf_word(va):
+    global _mine_f
+    if _mine_f is None:
+        _mine_f = ELF_PATH.read_bytes()
+    return struct.unpack_from("<I", _mine_f, 0x788 + va)[0]
+
+
+def func_span(va, maxspan=0x2000):
+    """Function length in bytes: VMA until first ret."""
+    for k in range(maxspan // 4):
+        if _elf_word(va + k * 4) == 0xD65F03C0:
+            return k * 4 + 4
+    return maxspan
+
+
+def _bl_target(w, pc):
+    if (w >> 26) != 0x25:
+        return None
+    imm = w & 0x3FFFFFF
+    if imm >= 1 << 25:
+        imm -= 1 << 26
+    return pc + imm * 4
+
+
+def max_store_end(va, ln=None):
+    """Max byte end of stores whose base reg holds `this` (x0 at entry,
+    propagated through mov xN, x0). Lower bound for the object extent
+    when va is a ctor."""
+    if _mine_f is None:
+        _elf_word(0)
+    off = 0x788 + va
+    if ln is None:
+        ln = func_span(va)
+    bases = {0}
+    best = 0
+    for k in range(ln // 4):
+        w = struct.unpack_from("<I", _mine_f, off + k * 4)[0]
+        if (w & 0xFFFFFFE0) == 0xAA0003E0:  # mov xN, x0
+            bases.add(w & 31)
+        if (w >> 22) & 1:  # loads don't count
+            continue
+        top = w >> 24
+        if top in (0xA9, 0xA8):  # STP 64-bit imm
+            imm = (w >> 15) & 0x7F
+            if imm >= 64:
+                imm -= 128
+            if (w >> 5) & 31 in bases:
+                best = max(best, imm * 8 + 16)
+        elif top in (0xF9, 0xB9, 0x79, 0x39):  # STR x/w/h/b unsigned imm
+            imm = (w >> 10) & 0xFFF
+            szm = {0xF9: 3, 0xB9: 2, 0x79: 1, 0x39: 0}[top]
+            if (w >> 5) & 31 in bases:
+                best = max(best, imm * (1 << szm) + (1 << szm))
+        elif (w >> 21) == 0x3E0:  # STUR
+            imm = (w >> 12) & 0x1FF
+            if imm >= 256:
+                imm -= 512
+            s = {0: 1, 1: 2, 2: 4, 3: 8}[(w >> 30) & 3]
+            if (w >> 5) & 31 in bases:
+                best = max(best, imm + s)
+    return best
+
+
+def _mov_imm(w):
+    """Decode ORR-immediate (MOV alias) value for Wd=Xd=Wn=WZR, or None."""
+    if (w >> 23) != 0b0100100100 >> 1:  # sf=0 opc=10 0010010 N
+        pass
+    if (w & 0xFF800000) != 0x32000000:  # 32-bit ORR imm (mov alias form)
+        return None
+    if w & 31 != 31 or (w >> 5) & 31 != 31:  # Rd=Rn=wzr
+        return None
+    n = (w >> 22) & 1
+    immr = (w >> 16) & 0x3F
+    imms = (w >> 10) & 0x3F
+    # standard move-widener decode for 32-bit
+    if n or not (imms >> 5):
+        return None
+    length = 6 - (imms.bit_length() - 1)  # len of run of 1s starting at msb
+    if length == 0:
+        return None
+    imm = (1 << length) - 1
+    ror = immr & (32 - 1) if False else immr  # 32-bit: use immr mod 32
+    ror = immr % 32
+    val = ((imm >> ror) | (imm << (32 - ror))) & 0xFFFFFFFF
+    # replicate per length
+    if length:
+        reps = 32 // length
+        val = 0
+        piece = ((1 << length) - 1)
+        shifted = ((piece >> ror) | (piece << (32 - ror))) & 0xFFFFFFFF if ror else piece
+        for i in range(reps):
+            val |= shifted << (i * length)
+            val &= 0xFFFFFFFF
+    return val
+
+
+def alloc_sites(size, elf_size=0xB55750):
+    """`mov w0,#size` (movz or orr-imm alias); bl _Znwm -> [(site, ctor)]"""
+    if _mine_f is None:
+        _elf_word(0)
+    out = []
+    for k in range(elf_size // 4):
+        va = k * 4
+        w = struct.unpack_from("<I", _mine_f, 0x788 + va)[0]
+        if (w & 0xFFE00000) == 0x52800000:
+            imm = (w >> 5) & 0xFFFF
+        else:
+            imm = _mov_imm(w)
+            if imm is None:
+                continue
+        if imm != size:
+            continue
+        got = False
+        ctor = None
+        for j in range(1, 14):
+            t = _bl_target(_elf_word(va + j * 4), va + j * 4)
+            if t is None:
+                continue
+            if not got:
+                if t == NEW_VA:
+                    got = True
+            else:
+                ctor = t
+                break
+        if got and ctor:
+            out.append((va, ctor))
+    return out
+
+
+def _norm_va(va):
+    return va & 0xFFFFFFFF if va >= 0xB55750 else va
+
+
+def mine_ctor(vas):
+    for va in vas:
+        va = _norm_va(va)
+        print(f"ctor {va:#x}: len {func_span(va):#x} "
+              f"stores -> {max_store_end(va):#x}")
+
+
+def mine_alloc(sizes):
+    for size in sizes:
+        found = False
+        for site, ctor in alloc_sites(size):
+            found = True
+            print(f"alloc {size:#x} @ {site:#x} -> ctor {ctor:#x} "
+                  f"(len {func_span(ctor):#x}) "
+                  f"stores -> {max_store_end(ctor):#x}")
+        if not found:
+            print(f"alloc {size:#x}: no movz+Znwm sites")
+
+
+def mine_sweep(filters, apply=False):
+    """Sweep NO_EXTENT_ALLOWLIST entries matching filters; docblock ctor
+    VAs -> store reach. --apply appends the citation when proven."""
+    violations = 0  # unused; keeps parse of args simple
+    for rel in allowlist_paths():
+        if filters and not any(x in rel for x in filters):
+            continue
+        path = ROOT / rel
+        text = path.read_text()
+        fe = fields_end(text)
+        rows = []
+        for m in re.finditer(
+                r"\b(0x[0-9a-fA-F]{5,12})[^.\n]{0,60}\bctor\b", text, re.I):
+            va = _norm_va(int(m.group(1), 16))
+            if va < 0x1000 or va >= 0xB55750:
+                continue
+            rows.append((va, max_store_end(va)))
+        ok = [b for _, b in rows if fe <= b <= 0x4000]
+        chosen = max(ok) if ok else None
+        print(f"{rel}: fields_end={fe:#x} "
+              + " ".join(f"ctor{va:#x}->{b:#x}" for va, b in rows)
+              + (f" CHOSEN={chosen:#x}" if chosen else ""))
+        if apply and chosen:
+            va = [v for v, b in rows if b == chosen][0]
+            with open(path, "a") as fh:
+                fh.write(f"// extent {chosen:#x} (ctor 0x{0x7100000000 + va:X} "
+                         f"stores reach {chosen:#x}; lower bound — allocation "
+                         f"end unproven)\n")
+
+
+def fields_end(text):
+    best = 0
+    for seg in struct_segments(text):
+        for fld in parse_fields(seg):
+            if fld["size"]:
+                best = max(best, fld["off"] + fld["size"])
+    return best
+
+
+def allowlist_paths():
+    return [l.strip()[2:].strip() for l in NO_EXTENT_ALLOWLIST.splitlines()
+            if l.strip().startswith("#   ")]
+
+
+def main_mine(argv):
+    usage = ("usage: check_extents.py --mine ctor VA... | "
+             "alloc SIZE... | sweep [FILTER...] [--apply]")
+    if not argv or argv[0] not in ("ctor", "alloc", "sweep"):
+        print(usage)
+        return 2
+    cmd, rest = argv[0], argv[1:]
+    apply = "--apply" in rest
+    rest = [a for a in rest if a != "--apply"]
+    if cmd == "sweep":
+        mine_sweep(rest, apply)
+        return 0
+    nums = [int(a, 16) if a.lower().startswith("0x") else int(a, 0)
+            for a in rest]
+    if cmd == "ctor":
+        mine_ctor(nums)
+    else:
+        mine_alloc(nums)
+    return 0
+
+
 def main():
     check_allow = set(
         l.strip()[2:].strip() for l in NO_EXTENT_ALLOWLIST.splitlines()
@@ -737,4 +940,8 @@ def main():
 
 
 if __name__ == "__main__":
+    import sys as _sys
+    if "--mine" in _sys.argv[1:]:
+        i = _sys.argv.index("--mine")
+        _sys.exit(main_mine(_sys.argv[i + 1:]))
     main()

@@ -26,6 +26,7 @@ class ParamContainerVtb448 {
   uint8_t mPad780[0x8];    // 0x780 — ptr — ctor-written
   uint8_t mPad788[0x8c0];  // 0x788 — unproven gap
                            // (0x1048 total, factory alloc)
+// extent 0x1048 (factory allocation size 0x1048)
 };
 }  // namespace object
 

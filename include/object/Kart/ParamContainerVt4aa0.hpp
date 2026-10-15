@@ -21,6 +21,7 @@ class ParamContainerVt4aa0 {
   uint8_t mPad1678[0x4];   // 0x1678 — ctor-written
   uint8_t mPad167c[0x4];   // 0x167c — tail pad
                            // (0x1680 total, factory alloc)
+// extent 0x1680 (factory allocation size 0x1680)
 };
 }  // namespace object
 
