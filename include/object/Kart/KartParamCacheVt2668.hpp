@@ -16,7 +16,7 @@ class KartParamCacheVt2668 {
  public:
   void* vtable;                // 0x00
   uint8_t mEnvBase08[0x30];    // 0x08 — KartParamCacheEnv base fields (ctor-zeroed)
-  uint64_t mField38;           // 0x38 — ctor-written
+  uint64_t mField38;           // 0x38
   char mMid2Member40[0x48];    // 0x40 — member, ctor 0x710061cc48 (Mid2-shaped, extent 0x48)
   char mVt24c8Member88[0x20];  // 0x88 — member, ctor 0x7100669954 (Vt24c8-shaped, extent 0x20)
   void* mChanBaseA8;           // 0xa8 — KartParamCacheChanBase member vptr (ctor 0x7100662f30)

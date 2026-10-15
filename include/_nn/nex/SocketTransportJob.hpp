@@ -12,6 +12,7 @@ namespace nn::nex {
 class SocketTransportJob {
  public:
   void* vtable;           // 0x00
+  uint8_t pad_8[0x58];  //0x8 — unproven gap
   uint8_t mBase08[0x58];  // 0x08 — job base region (object is only 0x70 bytes; smaller than
                           // the 0xa0 ForcedCriticalSection extent of the larger jobs)
   uint8_t mPad60[0x1];    // 0x60 — unproven gap

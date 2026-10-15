@@ -36,5 +36,7 @@ class RaceCheckerVt3 : public gear::Actor {
   uint64_t mField48;  // 0x48 — zeroed on ctor
   char mPad50[0x18];  // 0x50 — zeroed on ctor (to 0x68)
   void* mChannel68;   // 0x68 — owned 0x38 recorder channel sub-object
+// extent 0x70 (ctor 0x7100882DB0 stores reach 0x70)
+
 };
 }  // namespace object

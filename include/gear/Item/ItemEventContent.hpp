@@ -11,5 +11,7 @@ struct ItemEventContent {
   // extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference
   // layout preserved).
   char mPad04[0xFC];  // unproven - extent from sizeof(ItemEventContent) = 0x100 (32-bit reference)
+// extent 0x100 (extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference))
+
 };
 }  // namespace gear

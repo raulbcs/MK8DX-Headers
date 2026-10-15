@@ -2,11 +2,9 @@
 
 #include <cstdint>
 
-namespace object
-{
-    class RecorderKartUnit
-    {
-    public:
-        void onWarp();
-    };
-}
+namespace object {
+class RecorderKartUnit {
+ public:
+  void onWarp();
+};
+}  // namespace object

@@ -1,22 +1,19 @@
 #pragma once
 
+#include <math/seadMatrix.h>
+#include <math/seadVector.h>
+
 #include <cstdint>
 
-#include <math/seadVector.h>
-#include <math/seadMatrix.h>
+namespace aal {
+class SpatialCalculator {
+ public:
+  struct Setting {
+    sead::Matrix34f* mTransform;  // 0x00
+    sead::Vector3f* mVelocity;    // 0x08
+    uint8_t mPad10[0x28];         // 0x10
 
-namespace aal
-{
-    class SpatialCalculator
-    {
-    public:
-        struct Setting
-        {
-            sead::Matrix34f* mTransform; // 0x00
-            sead::Vector3f* mVelocity; // 0x08
-            uint8_t mPad10[0x28]; // 0x10
-
-            void initialize();
-        };
-    };
-}
+    void initialize();
+  };
+};
+}  // namespace aal

@@ -32,5 +32,7 @@ class RaceDirectorVt5 : public RaceDirectorVt2 {
   uint16_t mFfffbe;    //0xBE — ctor sets 0xFFFF
   uint32_t mZeroc0;    //0xC0 — slot 0xd8 override getter returns this word
   // (0xC8 total)
+// extent 0xc4 (ctor 0x71000511A8 stores reach 0xc4)
+
 };
 }  // namespace gear

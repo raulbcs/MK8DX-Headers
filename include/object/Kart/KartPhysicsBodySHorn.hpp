@@ -9,20 +9,21 @@ namespace object {
 // (ctor calls 0x116a4);
 class KartPhysicsBodySHorn : public KartPhysicsBody {
  public:
-  uint32_t mField328;    // 0x328 — ctor-written
+  uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap
-  uint64_t mField330;    // 0x330 — ctor-written
-  uint64_t mField338;    // 0x338 — ctor-written
+  uint64_t mField330;    // 0x330
+  uint64_t mField338;    // 0x338
   uint8_t mPad340;       // 0x340 — ctor zero
   uint8_t mPad341[0x3];  // 0x341 — unproven gap
   uint32_t mZero344;     // 0x344 — ctor zero
   uint64_t mZero348;     // 0x348 — ctor zero
-  uint64_t mField350;    // 0x350 — ctor-written
-  uint32_t mField358;    // 0x358 — ctor-written
+  uint64_t mField350;    // 0x350
+  uint32_t mField358;    // 0x358
   uint8_t mPad35c[0x8];  // 0x35c — unproven gap
-  uint32_t mField364;    // 0x364 — ctor-written
+  uint32_t mField364;    // 0x364
   uint32_t mZero368;     // 0x368 — ctor zero
   uint8_t mPad36c;       // 0x36c — ctor zero
-  uint8_t mField36d;     // 0x36d — ctor-written
+  uint8_t mField36d;     // 0x36d
+  uint8_t pad_36E[0x2];  //0x36E — unproven gap
 };
 }  // namespace object

@@ -25,6 +25,7 @@ class ParamContainerVt29a8 {
   uint8_t mPad33c[0x2];   // 0x33c — u16 — ctor-written
   uint8_t mPad33e[0x2];   // 0x33e — u16 — ctor-zero
                           // (0x340 total, factory alloc)
+// extent 0x340 (factory allocation size 0x340)
 };
 }  // namespace object
 

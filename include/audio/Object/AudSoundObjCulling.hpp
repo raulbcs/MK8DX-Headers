@@ -2,11 +2,8 @@
 
 #include <cstdint>
 
-namespace audio
-{
-    class AudSoundObjCulling
-    {
-    public:
-        //
-    };
-}
+namespace audio {
+class AudSoundObjCulling {
+ public:
+};
+}  // namespace audio

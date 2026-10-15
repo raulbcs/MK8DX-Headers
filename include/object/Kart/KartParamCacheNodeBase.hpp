@@ -15,6 +15,7 @@ class KartParamCacheNodeBase {
   uint32_t mField18;  // 0x18
   uint8_t pad1c[4];   // 0x1c — unproven padding
                       // (0x20 total)
+// extent 0x20 (prior survey: 0x20 total (ctor 0x710066a2a4 stores reach 0x30))
 };
 }  // namespace object
 

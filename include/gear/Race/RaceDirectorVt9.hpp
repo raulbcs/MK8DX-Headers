@@ -50,5 +50,7 @@ class RaceDirectorVt9 : public Actor {
   uint64_t mField218;  // 0x218 — zeroed on ctor
   uint8_t mField220;   // 0x220 — zeroed on ctor
   uint8_t mPad221[7];  // 0x221 — unproven padding
+// extent 0x228 (allocation size 0x228 @0x398a9c → ctor 0x7100107c3c)
+
 };
 }  // namespace gear

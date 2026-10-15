@@ -31,5 +31,8 @@ class RaceDirectorVt3 : public RaceDirectorVt2 {
   // (== 0xFFFFFFFF); rodata cell also holds 11 for Vt6/Vt7
   uint32_t mZerobc;  //0xBC — slot 0xc8 override getter returns this word
   // (0xC0 total)
+  uint8_t mGapB4[4];  // 0xB4 — unproven gap
+
+  // extent 0xc0 (docblock proven-size 0xC0)
 };
 }  // namespace gear

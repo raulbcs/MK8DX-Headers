@@ -2,11 +2,9 @@
 
 #include <cstdint>
 
-namespace object
-{
-    class FieldManualCulling
-    {
-    public:
-        void onWarpCamera();
-    };
-}
+namespace object {
+class FieldManualCulling {
+ public:
+  void onWarpCamera();
+};
+}  // namespace object

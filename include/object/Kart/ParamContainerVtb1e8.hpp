@@ -53,6 +53,8 @@ class ParamContainerVtb1e8 {
   uint8_t mPad2e4[0x4];   // 0x2e4 — unproven gap
   uint8_t mPad2e8[0x8];   // 0x2e8 — ctor-zero
                           // (0x2f0 total, factory alloc)
+// extent 0x2f0 (prior-survey total 0x2f0)
+
 };
 }  // namespace object
 

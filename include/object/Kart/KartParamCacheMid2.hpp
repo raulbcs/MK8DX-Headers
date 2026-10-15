@@ -13,17 +13,20 @@ namespace object {
 class KartParamCacheMid2 : public KartParamCache {
  public:
   uint8_t mPad40[0x10];   // 0x40 — unproven gap
-  uint64_t mField50;      // 0x50 — ctor-written
-  uint32_t mField58;      // 0x58 — ctor-written
+  uint64_t mField50;      // 0x50
+  uint32_t mField58;      // 0x58
   uint8_t mPad5c[0x44];   // 0x5c — unproven gap
-  uint32_t mFielda0;      // 0xa0 — ctor-written
+  uint32_t mFielda0;      // 0xa0
   uint8_t mPada4[0x4];    // 0xa4 — unproven gap
   uint64_t mZeroa8;       // 0xa8 — ctor zero
-  uint64_t mFieldb0;      // 0xb0 — ctor-written
-  uint64_t mFieldb8;      // 0xb8 — ctor-written
+  uint64_t mFieldb0;      // 0xb0
+  uint64_t mFieldb8;      // 0xb8
   uint8_t mPadc0[0x108];  // 0xc0 — unproven gap
   uint64_t mZero1c8;      // 0x1c8 — ctor zero
                           // additional writes by ctor 0x7100668d40
+// extent 0x1d0 (ctor 0x7100668d40 stores reach 0x1d0 — resolves the old
+// "true extent 20 bytes" conflict as a gap-split artifact)
+
 };
 // Vtable slot 0 (0x10) vtable-init ctor stub :
 // stores the class vtable pointer (global pointer at 0x710130848, +0x10) into *this.

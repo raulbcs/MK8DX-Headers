@@ -11,6 +11,7 @@ namespace nn::nex {
 class JobDataStoreGetObjectV1 {
  public:
   void* vtable;           // 0x00
+  uint8_t pad_8[0x98];  //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
   uint64_t mFielda0;      // 0xa0 — ctor-written
   uint32_t mZeroa8;       // 0xa8 — ctor zero
@@ -77,7 +78,7 @@ class JobDataStoreGetObjectV1 {
   uint16_t mZero318;      // 0x318 — ctor zero
   uint8_t mField31a;      // 0x31a — ctor-written
   // Object size 0x320 (allocation size at the factory new preceding ctor 0xb18220).
+  uint8_t mPad31B[0x5];  // 0x31B — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad31B[0x5];  // 0x31B — unproven gap

@@ -13,12 +13,8 @@ class KartParamCacheFilterAA : public KartParamCacheMid2 {
  public:
   // additional writes by ctor 0x7100651ae4
 };
-// Vtable slot 0 (+0x10) dtor/reset :
-// runs 0x71006373a4 (mid-function cold fragment) on each +0x918 child of the +0x5e0
-// pooled array (stride 0xb40, count +0x5d8), frees the array running nine element
-// destructors per entry, re-inits the +0x5e8 container, and re-stamps default vptr
-// fields +0x568..+0x408 (cell 0x710130d918), +0x3d8 (0x710130d920), +0x5e8
-// (0x710130d830), +0x0 (0x710130d848). function size 0x198 bytes.
+// dtor: pooled-array strides 0xb40; resets cells 0x710130d918; fn size 0x198.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

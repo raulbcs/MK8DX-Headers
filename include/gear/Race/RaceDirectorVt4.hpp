@@ -30,5 +30,7 @@ class RaceDirectorVt4 : public RaceDirectorVt2 {
   uint16_t mFfffba;  //0xBA — ctor sets 0xFFFF
   uint32_t mZerobc;  //0xBC — slot 0xd8 override getter returns this word
   // (0xC0 total)
+// extent 0xc0 (ctor 0x710004FD6C stores reach 0xc0)
+  uint8_t mGapB4[4];  // 0xB4 — unproven gap
 };
 }  // namespace gear

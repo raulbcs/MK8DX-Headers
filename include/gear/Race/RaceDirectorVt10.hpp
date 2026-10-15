@@ -41,5 +41,7 @@ class RaceDirectorVt10 : public Actor {
   uint32_t mField11c;   // 0x11c — zeroed on ctor
   uint32_t mField120;   // 0x120 — zeroed on ctor
   char mPad124[0x114];  // 0x124 — to end (0x238)
+// extent 0x238 (allocation size 0x238 @0x8bc884)
+
 };
 }  // namespace gear

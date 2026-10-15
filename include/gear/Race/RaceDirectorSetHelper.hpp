@@ -24,5 +24,7 @@ class RaceDirectorSetHelper {
   uint32_t m30;      //0x30 — ctor zero
   uint8_t pad34[4];  //0x34 — unproven padding
   uint32_t m38;      //0x38 — ctor zero
+// extent 0x3c (ctor 0x71000689C8 stores reach 0x3c)
+
 };
 }  // namespace gear

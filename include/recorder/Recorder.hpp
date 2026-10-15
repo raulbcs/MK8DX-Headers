@@ -122,67 +122,77 @@ struct Mgr {
 struct Binder {
   void* vtable;      // 0x000 — cell 0x710130f7d0 + 0x10
   uint32_t field08;  // 0x008 — zeroed
-  uint8_t pad0c[0x4];
+  uint8_t pad0c[0x4];  // unproven
   void* vt10;                 // 0x010 — cell 0x710130f7d8
   uint64_t pad18;             // 0x018 — zeroed
   void* vt20;                 // 0x020 — cell 0x710130f7d8
   uint64_t pad28;             // 0x028 — zeroed
   void* vt30;                 // 0x030 — cell 0x710130f7d8
   uint8_t pad38[0x10];        // 0x038 — zeroed (ctor memset 0x38..0x111)
+  uint8_t pad_48[0x8];  //0x48 — unproven gap
   void (*calcStep)(Binder*);  // 0x048 — called by calc when +0x1a8 is set
-  uint8_t pad50[0x40];
+  uint8_t pad50[0x40];  // unproven
+  uint8_t pad_90[0x8];  //0x90 — unproven gap
   struct {
     void* obj;
     void (*fn)(void*, void*, void*, void*, float);
   }* list4Begin;   // 0x090 — 4-arg+float cb list
   void* list4End;  // 0x098
-  uint8_t padA0[0x8];
+  uint8_t padA0[0x8];  // unproven
+  uint8_t pad_A8[0x8];  //0xA8 — unproven gap
   struct {
     void* obj;
     void (*fn)(void*);
   }* list1Begin;   // 0x0a8 — 1-arg cb list
   void* list1End;  // 0x0b0
-  uint8_t padB8[0xe0];
+  uint8_t padB8[0xe0];  // unproven
   uint32_t field198;      // 0x198 — zeroed
   int32_t state;          // 0x19c — calc disabled while < 0 (ctor: -1)
   void* src;              // 0x1a0 — live source (calc: primary read path)
   uint8_t flag1a8;        // 0x1a8 — run calcStep before the cb-list tail
+  uint8_t pad_1A9[0x7];  //0x1A9 — unproven gap
   void* dst;              // 0x1b0 — fallback source
   uint8_t flag1b8;        // 0x1b8 — seed selection in calc tail
   uint8_t flags1b9[0x2];  // 0x1b9 — zeroed
   uint8_t flags1bb[0x2];  // 0x1bb — gate bytes read via Mgr::flagOffA/B
-  uint8_t pad1bf[0x3];
+  uint8_t pad_1BD[0x2];  //0x1BD — unproven gap
+  uint8_t pad1bf;       // 0x1BF — unproven padding
   uint64_t field1c0;  // 0x1c0 — zeroed (float-channel flags per setup)
   uint64_t field1c8;  // 0x1c8 — zeroed
   uint32_t field1d0;  // 0x1d0 — zeroed
   int32_t indexA;     // 0x1d4 — channel index into Mgr tables (ctor: -1)
   uint32_t field1d8;  // 0x1d8 — ctor: -1
   int32_t indexB;     // 0x1dc — ctor: -1
-  uint8_t pad1e0[0x8];
+  uint8_t pad1e0[0x8];  // unproven
   void* mgrId;            // 0x1e8 — *(Mgr*) read at ctor; must equal registry's +0x1e8
   float eps;              // 0x1f0 — quantization step (ctor 1.0f; quant channel: eps)
   float quantStep;        // 0x1f4 — (exp2f(n)-1)/range for quant channels (ctor 256.0f)
   float quantStepInv;     // 0x1f8 — 1/quantStep (ctor 0.00390625f = 1/256)
   uint8_t flag1fc;        // 0x1fc — 1 (cleared for one quant-channel variant)
+  uint8_t pad_1FD[0x3];  //0x1FD — unproven gap
   uint32_t field200;      // 0x200 — zeroed
+  uint8_t pad_204[0xC];  //0x204 — unproven gap
   const char* name;       // 0x208 — registration name (NULL until addChannel)
   uint8_t flag210;        // 0x210 — 1
+  uint8_t pad_211[0x3];  //0x211 — unproven gap
   uint32_t field214;      // 0x214 — zeroed
   uint32_t field218;      // 0x218 — 1
+  uint8_t pad_21C[0x4];  //0x21C — unproven gap
   uint64_t field220;      // 0x220 — zeroed
   uint64_t field228;      // 0x228 — zeroed
   uint64_t field230;      // 0x230 — zeroed
   void* vt238;            // 0x238 — cell 0x710130f7e0 + 0x10
   void* vt240;            // 0x240 — GOT cell 0x71012fae28 + 0x10
+  uint8_t pad_248[0x8];  //0x248 — unproven gap
   const char* emptyName;  // 0x248 — "" (rodata 0xed6af8)
   void* vt250;            // 0x250 — cell 0x710130f7f0 + 0x10
   Binder* self;           // 0x258 — self pointer
   void* field260;         // 0x260 — bss cell 0x710130f7e8
   uint64_t field268;      // 0x268 — zeroed
   uint8_t field270;       // 0x270 — zeroed
-  uint8_t pad271[0x7];
+  uint8_t pad271[0x7];  // unproven
   void* owner;  // 0x278 — owner/target object (calc writes flag byte here)
-  uint8_t pad280[0x8];
+  uint8_t pad280[0x8];  // unproven
 };
 
 /*

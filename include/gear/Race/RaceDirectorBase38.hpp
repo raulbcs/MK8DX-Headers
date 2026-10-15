@@ -27,5 +27,7 @@ class RaceDirectorBase38 {
   uint64_t mZero28;  //0x28 — ctor zero
   uint64_t mZero30;  //0x30 — ctor zero
   // (0x38 total)
+// extent 0x38 (ctor 0x71007B976C stores reach 0x38)
+
 };
 }  // namespace gear

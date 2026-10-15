@@ -10,15 +10,15 @@ namespace object {
 class KartParamCacheSky : public KartParamCache {
  public:
   uint8_t mPad40[0x208];   // 0x40 — unproven gap
-  uint64_t mField248;      // 0x248 — ctor-written
+  uint64_t mField248;      // 0x248
   uint8_t mPad250[0x330];  // 0x250 — unproven gap
-  uint64_t mField580;      // 0x580 — ctor-written
+  uint64_t mField580;      // 0x580
   uint8_t mPad588[0x690];  // 0x588 — unproven gap
-  uint64_t mFieldc18;      // 0xc18 — ctor-written
+  uint64_t mFieldc18;      // 0xc18
   uint8_t mPadc20[0x30];   // 0xc20 — unproven gap
-  uint64_t mFieldc50;      // 0xc50 — ctor-written
+  uint64_t mFieldc50;      // 0xc50
   uint8_t mPadc58[0x30];   // 0xc58 — unproven gap
-  uint64_t mFieldc88;      // 0xc88 — ctor-written
+  uint64_t mFieldc88;      // 0xc88
   uint8_t mPadc90[0x38];   // 0xc90 — unproven gap
   uint32_t mZerocc8;       // 0xcc8 — ctor zero
   uint8_t mPadccc[0x4];    // 0xccc — unproven gap
@@ -59,16 +59,11 @@ class KartParamCacheSky : public KartParamCache {
   uint32_t mZeroda0;       // 0xda0 — ctor zero
   uint8_t mPadda4[0x4];    // 0xda4 — unproven gap
   uint64_t mZeroda8;       // 0xda8 — ctor zero
+// extent 0xdb0 (ctor 0x7100AADFEC stores reach 0xdb0)
+
 };
-// Vtable slot 0 (0x10) dtor/reset :
-// stamps vptr 0x1315270(+0x10) into +0x0; cell 0x130d848(+0x10) into +0x8f58; cell
-// 0x130d918(+0x10) into +0x8f38/0x8f18/0x8ef8/0x8ea8/0x8e88/0x8e68/0x8e18/0x8df8/
-// 0x8dd0/0x8da8/0x8d88; cell 0x130d920(+0x10) into +0x8ec8/0x8e38/0x8d58. Then calls
-// the KartParamCacheCloud slot-0 dtor (cloudDtorSlot0_7100aac7e4) on self, 0x71006374e4
-// on +0xc88/0x1315268, +0xc50/0x130de90, +0xc18/0x130e620, 0x7100639f38 on
-// +0xb48/+0x9c8/+0x848/+0x6c8, 0x710063ea80 on +0x5b8, 0x71006374e4 on +0x580/0x130d838,
-// 0x71006469c4 on +0x460, 0x71006462c4 on +0x280, 0x71006374e4 on +0x248/0x130dc40,
-// 0x7100645970 on +0x1d0; finally re-stamps 0x130d848(+0x10) into +0x0. function size 0x198 bytes.
+// dtor: re-stamps vptr 0x1315270; resets cells 0x130d848,0x130d920; fn size 0x198.
+
 }  // namespace object
 
 // Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

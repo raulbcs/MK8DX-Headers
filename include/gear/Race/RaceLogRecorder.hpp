@@ -2,11 +2,9 @@
 
 #include <cstdint>
 
-namespace gear
-{
-    class RaceLogRecorder
-    {
-    public:
-        //
-    };
-}
+namespace gear {
+class RaceLogRecorder {
+ public:
+  //
+};
+}  // namespace gear

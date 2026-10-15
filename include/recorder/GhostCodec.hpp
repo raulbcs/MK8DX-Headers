@@ -69,8 +69,10 @@
 namespace recorder {
 
 /*
- * Mirror of the record-layout object built by FUN_7100045f78 (0x460
- * bytes; offsets proven by the ctor/builder stores above).
+ * Mirror of the record-layout object built by FUN_7100045f78
+ * (extent 0x378 — operator new(0x378) at the sole ctor caller
+ * 0x710002bd4, immediately before the bl FUN_7100045f78; offsets proven by
+ * the ctor/builder stores above).
  */
 struct GhostRecordLayout {
   uint8_t widthShift_00;   //0x00 — u8 0x100 >> ((sub-1)*8); 1 when sub-1 >= 4
@@ -92,8 +94,11 @@ struct GhostRecordLayout {
   uint32_t count178_1dc;   //0x1DC — count of slots in list +0x178
   uint8_t subObj_1e0[0x10]; //0x1E0 — sub-object (init FUN_710062ee28)
   uint8_t tail_1f0[0x60];  //0x1F0 — tail: f32 -98.0 pairs (type<=1, sub 0/7/8)
-  uint8_t idList_250[22][12]; //0x250 — 22 x u32 -1, stride 0xc to +0x358
-  uint8_t pad_358[0x18];   //0x358 — to the ctor-written end 0x370
+  uint8_t idList_250[0x120]; //0x250 — u32 -1 written at every +0xc stride
+                             //      (25 stores: 0x250,0x25c..0x370); inner
+                             //      8 of each 12 B unproven
+  uint32_t idTail_370;     //0x370 — u32 -1 (final store, ends 0x374)
+  uint8_t pad_374[0x4];    //0x374 — to the allocation end 0x378 (new at 0x2bd4)
 };
 
 /*

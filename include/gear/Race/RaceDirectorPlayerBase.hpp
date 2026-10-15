@@ -25,5 +25,7 @@ class RaceDirectorPlayerBase : public RaceDirectorBase38 {
   uint64_t mZero48;   //0x48 — ctor zero
   void* mField50;     //0x50 — ctor zero (child count)
   // (0x58 total)
+// extent 0x58 (ctor 0x71007c2a90 stores reach 0x58)
+
 };
 }  // namespace gear

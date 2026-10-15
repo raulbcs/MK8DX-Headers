@@ -34,5 +34,7 @@ class RaceDirectorVt7 : public RaceDirectorVt2 {
   uint16_t mUc0;     //0xC0 — upper half of the same rodata copy; slot 0xd0 override getter returns the byte at 0xBE
   uint32_t mZeroc4;  //0xC4
   // (0xC8 total)
+// extent 0xc8 (ctor 0x7100056BA8 stores reach 0xc8)
+  uint8_t mGapC2[2];  // 0xC2 — unproven gap
 };
 }  // namespace gear

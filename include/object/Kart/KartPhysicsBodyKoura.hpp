@@ -214,6 +214,7 @@ class KartPhysicsBodyKoura : public KartPhysicsBodyMid {
                        // by slot 0x71000325ac per race)
   uint64_t mField3f8;  // 0x3f8
   char mPad400[0x60];  // 0x400 — to end (0x460 total; proven by
+  uint8_t pad_460[0x78];  //0x460 — unproven gap
                        // operator new(0x460) at 0x7100035f10)
 };
 }  // namespace object

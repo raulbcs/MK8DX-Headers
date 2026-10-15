@@ -43,6 +43,8 @@ class ParamContainerVtb0b8 {
   uint8_t mPad274[0x4];   // 0x274 — ctor-written (param w22)
   uint8_t mPad278[0x78];  // 0x278 — unproven gap
                           // (0x2f0 total, factory alloc)
+// extent 0x2f0 (prior-survey total 0x2f0)
+
 };
 }  // namespace object
 

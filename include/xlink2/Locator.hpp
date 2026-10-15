@@ -3,16 +3,20 @@
 #include <cstdint>
 
 #include "BoneMtx.hpp"
-#include "TriggerType.hpp"
 #include "ResTriggerOverwriteParam.hpp"
+#include "TriggerType.hpp"
 
 namespace xlink2 {
 class Locator {
  public:
   virtual void reset() {}
-  virtual void setTriggerInfo(xlink2::TriggerType, xlink2::ResTriggerOverwriteParam*, xlink2::BoneMtx) {}
+  virtual void setTriggerInfo(xlink2::TriggerType,
+                              xlink2::ResTriggerOverwriteParam*,
+                              xlink2::BoneMtx) {}
   virtual int32_t getTriggerType() const { return -1; }
-  virtual ResTriggerOverwriteParam* getTriggerOverwriteParam() const { return nullptr; }
+  virtual ResTriggerOverwriteParam* getTriggerOverwriteParam() const {
+    return nullptr;
+  }
   virtual BoneMtx getOverwriteBoneMtx() const { return {}; }
 
   uintptr_t mPad08;      // 0x08

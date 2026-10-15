@@ -28,5 +28,8 @@ class KartPhysicsBodyMid : public KartPhysicsBody {
   uint32_t mField380;  // 0x380 — zeroed on ctor
   char mPad384[4];     // 0x384 — unproven padding
   uint64_t mField388;  // 0x388 — zeroed on ctor
+
+  // extent 0x390 (allocation size 0x390 — movz w0,#0x390; bl 0x710060afec
+  // _Znwm @0x7100391d0 → ctor 0x71003703c, whose stores reach exactly 0x390)
 };
 }  // namespace object

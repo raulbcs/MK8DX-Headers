@@ -35,6 +35,8 @@ class ParamChannelVt38f8 : public KartParamCacheChan {
   uint8_t pad12c[0x34];    // 0x12c — unproven padding
   uint8_t mBlob160[0x10];  // 0x160 — copied from ctx+0xc0
                            // (0x170 total, tail unmapped)
+// extent 0x170 (prior-survey total 0x170)
+  uint8_t mGap118[4];  // 0x118 — unproven gap
 };
 // vtable fact (vtInitParamChannel_7100660e90): slot 0 (0x10) is the
 // vtable-init — stores the class vtable pointer (global pointer at

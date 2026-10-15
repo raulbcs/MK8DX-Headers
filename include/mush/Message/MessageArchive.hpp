@@ -21,6 +21,7 @@ class MessageArchive {
   std::uint32_t mCategoryFourCC;  // 0x8 - e.g. 'AIBL', 'CTRL', 'ITEM', 'PERF'
   std::uint32_t mCategoryParam;   // 0xc
   void* mVtable2;                 // 0x10 - second vtable (mixin), shared by all 14
+  uint8_t pad_18[0x18];  //0x18 — unproven gap
   const char* mArchivePath;       // 0x18 - "/Common/Mush/<X>.bin" (8 more bytes follow, null)
 
   MessageArchive();  // v400: 0x82c8f8 (base ctor, size 0x30)

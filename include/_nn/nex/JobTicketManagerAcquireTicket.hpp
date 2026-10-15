@@ -11,6 +11,7 @@ namespace nn::nex {
 class JobTicketManagerAcquireTicket {
  public:
   void* vtable;           // 0x00
+  uint8_t pad_8[0x98];  //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
   uint32_t mFielda0;      // 0xa0 — ctor-written
   uint8_t mPada4[0x4];    // 0xa4 — unproven gap
@@ -27,7 +28,7 @@ class JobTicketManagerAcquireTicket {
   uint8_t mPad195[0x2b];  // 0x195 — unproven gap
   uint8_t mInit1c0;       // 0x1c0 — member-init call (subobject starts here) (size unknown)
   // Object size 0x1d8 (allocation size at the factory new preceding ctor 0xa32e08).
+  uint8_t mPad1C1[0x17];  // 0x1C1 — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad1C1[0x17];  // 0x1C1 — unproven gap

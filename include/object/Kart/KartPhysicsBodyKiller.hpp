@@ -9,9 +9,10 @@ namespace object {
 // (ctor calls 0x116a4);
 class KartPhysicsBodyKiller : public KartPhysicsBody {
  public:
-  uint32_t mField328;    // 0x328 — ctor-written
+  uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap
-  uint64_t mField330;    // 0x330 — ctor-written
+  uint64_t mField330;    // 0x330
   uint8_t mPad338;       // 0x338 — ctor zero
+  uint8_t pad_339[0x7];  //0x339 — unproven gap
 };
 }  // namespace object

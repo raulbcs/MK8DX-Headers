@@ -37,13 +37,15 @@ class RaceDirectorManager {
   // 0x710005a01c, then dispatches 0x710005a1e0 with flag 1
   // (slot98_dispatch_7100059fe8). Slots 0xa0/0xa8 are tails of
   // FUN_710005a1e0 — same dispatch, other flag values.
-  uint8_t pad98[0x14];
+  uint8_t pad98[0x14];  // 0x98 — unproven padding (slot-0x98 dispatch region)
   uint32_t mFieldAc;    //0xAC — ctor writes
   uint8_t padB0[0x10];  //0xB0 — unproven padding
   // +0xC0..+0x198: ~14 allocated arrays (0x60b3fc + memset 0xb52770),
   // per-player data tables (ctor 0x58d7c-0x59244)
-  uint8_t mTablesC0[0xd8];  //0xC0 - 0x197
+  uint8_t mTablesC0[0xd8];  //0xC0 - 0x197 — unproven gap
   uint8_t pad198[8];        //0x198 — unproven padding
   // (0x1A0 total)
+// extent 0x1a0 (allocation size 0x1A0 @0x710013d994)
+
 };
 }  // namespace gear

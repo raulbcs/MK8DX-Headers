@@ -9,13 +9,14 @@ namespace object {
 // (ctor calls 0x116a4);
 class KartPhysicsBodyTeresaVt97 : public KartPhysicsBody {
  public:
-  uint64_t mField328;    // 0x328 — ctor-written
-  uint32_t mField330;    // 0x330 — ctor-written
+  uint64_t mField328;    // 0x328
+  uint32_t mField330;    // 0x330
   uint8_t mPad334[0x8];  // 0x334 — unproven gap
-  uint32_t mField33c;    // 0x33c — ctor-written
+  uint32_t mField33c;    // 0x33c
   uint64_t mZero340;     // 0x340 — ctor zero
-  uint8_t mField348;     // 0x348 — ctor-written
+  uint8_t mField348;     // 0x348
   uint8_t mPad349;       // 0x349 — ctor zero
+  uint8_t pad_34A[0x6];  //0x34A — unproven gap
 };
 }  // namespace object
 

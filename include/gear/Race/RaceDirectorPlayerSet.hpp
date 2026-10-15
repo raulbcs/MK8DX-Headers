@@ -56,6 +56,7 @@ class RaceDirectorPlayerSet : public Actor {
   RaceDirectorSetStatePod* mC0;  //0xC0 — second POD; also stored into
   // [[set+0xb0]+0x78]
   uint8_t padC8[8];  //0xC8 - 0xCF — unproven padding
+  uint8_t pad_D0[0x30];  //0xD0 — unproven gap
   // plus: plain RaceDirector instance (0x4d7d8, alloc 0x90 @0x6f244),
   // Vt2 (0x6f11c), 0x6e9d0/0x6ded4/0x620a0/0x6e5e0 members
   // (0xD0 total)

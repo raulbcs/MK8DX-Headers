@@ -2,11 +2,9 @@
 
 #include <cstdint>
 
-namespace aal
-{
-    class Group
-    {
-    public:
-        //
-    };
-}
+namespace aal {
+class Group {
+ public:
+  //
+};
+}  // namespace aal

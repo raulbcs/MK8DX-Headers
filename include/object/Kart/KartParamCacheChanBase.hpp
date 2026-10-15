@@ -20,8 +20,9 @@ class KartParamCacheChanBase {
   void* vptr;        // 0x00
   uint32_t mField8;  // 0x08 — ctor arg w0
   uint8_t pad0c[4];  // 0x0c — unproven padding
-  void* mZero10;     // 0x10 — ctor zero
+  void* mZero10;     // 0x10
                      // (0x18 total)
+// extent 0x18 (prior survey: 0x18 total)
 };
 // Vtable slot 0 (0x10) vtable-init ctor stub :
 // stores the class vtable pointer (global pointer at 0x710130918, +0x10) into *this.
