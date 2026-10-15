@@ -60,7 +60,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/_nn/nex/JobDeriveKey.hpp
 #   include/_nn/nex/JobHttp.hpp
 #   include/_nn/nex/JobNNIDLogin.hpp
-#   include/_nn/nex/JobProcessProtocolMessage.hpp
 #   include/_nn/nex/ProtocolCallContext.hpp
 #   include/_nn/nex/_DDL_AuthenticationInfo.hpp
 #   include/_nn/pia/session/DestroySessionJob.hpp
