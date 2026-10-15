@@ -56,7 +56,7 @@ class JobCheckAndRelay {
   uint16_t mField1c0;     // 0x1c0 — ctor-written
   uint8_t mZero1c2;       // 0x1c2 — ctor zero
   // Object size 0x1c8 (allocation size at the factory new preceding ctor 0x9f10e8).
+  uint8_t mPad1C3[0x5];  // 0x1C3 — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad1C3[0x5];  // 0x1C3 — unproven gap

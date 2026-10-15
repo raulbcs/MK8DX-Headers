@@ -17,7 +17,7 @@ class JobOnlineLoungeHeartbeat {
   uint8_t mPadc8[0x38];   // 0xc8 — unproven gap
   uint8_t mInit100;       // 0x100 — member-init call (subobject starts here) (size unknown)
   // Object size 0x190 (allocation size at the factory new preceding ctor 0x902d00).
+  uint8_t mPad101[0x8F];  // 0x101 — unproven gap (region unmapped by ctor analysis)
 };
 }  // namespace nn::nex
 
-uint8_t mPad101[0x8F];  // 0x101 — unproven gap (region unmapped by ctor analysis)

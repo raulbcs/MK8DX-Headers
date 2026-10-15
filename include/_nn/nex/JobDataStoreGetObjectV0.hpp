@@ -65,7 +65,7 @@ class JobDataStoreGetObjectV0 {
   uint16_t mZero2c8;      // 0x2c8 — ctor zero
   uint8_t mField2ca;      // 0x2ca — ctor-written
   // Object size 0x2d0 (allocation size at the factory new preceding ctor 0xb18618).
+  uint8_t mPad2CB[0x5];  // 0x2CB — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad2CB[0x5];  // 0x2CB — unproven gap

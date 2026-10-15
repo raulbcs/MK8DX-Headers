@@ -63,7 +63,7 @@ class JobDataStoreCheckNotification {
   uint64_t mZero2a0;      // 0x2a0 — ctor zero
   uint8_t mZero2a8;       // 0x2a8 — ctor zero
   // Object size 0x2b0 (allocation size at the factory new preceding ctor 0xb1974c).
+  uint8_t mPad2A9[0x7];  // 0x2A9 — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad2A9[0x7];  // 0x2A9 — unproven gap

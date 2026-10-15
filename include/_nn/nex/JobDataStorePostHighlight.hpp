@@ -98,7 +98,7 @@ class JobDataStorePostHighlight {
   uint64_t mZero3a0;      // 0x3a0 — ctor zero
   uint32_t mZero3a8;      // 0x3a8 — ctor zero
   // Object size 0x3b0 (allocation size at the factory new preceding ctor 0xb28b24).
+  uint8_t mPad3AC[0x4];  // 0x3AC — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad3AC[0x4];  // 0x3AC — unproven gap

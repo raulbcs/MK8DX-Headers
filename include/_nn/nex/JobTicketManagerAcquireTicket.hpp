@@ -27,7 +27,7 @@ class JobTicketManagerAcquireTicket {
   uint8_t mPad195[0x2b];  // 0x195 — unproven gap
   uint8_t mInit1c0;       // 0x1c0 — member-init call (subobject starts here) (size unknown)
   // Object size 0x1d8 (allocation size at the factory new preceding ctor 0xa32e08).
+  uint8_t mPad1C1[0x17];  // 0x1C1 — unproven gap
 };
 }  // namespace nn::nex
 
-uint8_t mPad1C1[0x17];  // 0x1C1 — unproven gap
