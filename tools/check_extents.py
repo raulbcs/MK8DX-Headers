@@ -126,12 +126,8 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Player/PlayerInfo.hpp
 #   include/gear/Player/PlayerManager.hpp
 #   include/gear/Race/LapRankChecker.hpp
-#   include/gear/Race/RaceDirectorManager.hpp
 #   include/gear/Race/RaceDirectorManagerBase.hpp
 #   include/gear/Race/RaceDirectorSetChain.hpp
-#   include/gear/Race/RaceDirectorVt10.hpp
-#   include/gear/Race/RaceDirectorVt3.hpp
-#   include/gear/Race/RaceDirectorVt9.hpp
 #   include/gear/Race/RaceInfo.hpp
 #   include/gear/Race/RaceKartInfo.hpp
 #   include/gear/Race/RaceKartResult.hpp
