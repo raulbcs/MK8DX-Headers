@@ -5,8 +5,9 @@
 // KartVehicleDrift — drift state object (name from the recorder channel
 // string "RecorderKartVehicleDrift", rodata 0xee602a). Held through the
 // POINTER at KartChassis+0x110 (getters 0x71001420e4/21b4/23d8 load
-// *(void**)(chassis+0x110)); allocated at runtime (no ctor/new site
-// found — size is >= 0x110, exact value unproven). Accessor family:
+// *(void**)(chassis+0x110)); extent 0x118 — operator new(0x118) at
+// 0x71001815bc inside the KartVehicleMove ctor, immediately followed by
+// bl 0x710017b304 (Drift ctor family). Accessor family:
 // 0x710017b9xx-0x710017bfb4 + calc 0x710017b578.
 namespace object {
 struct KartVehicle;      // KartVehicle.hpp
@@ -55,7 +56,7 @@ struct KartVehicleDrift {
   uint8_t pad_090[4];         //0x90 — unproven padding
   uint8_t b94;                //0x94 — direction latch on drift start (state 4)
   uint8_t b95;                //0x95 — direction latch (else)
-  uint8_t pad_096[0x12];      //0x96 — unproven padding
+  uint8_t pad_096[6];         //0x96 — unproven padding
   uint32_t s9c;               //0x9C — KartVehicle mPlayerID copy? (read at 0x17bdf4)
   uint8_t pad_0a0[0x1c];      //0xA0 — unproven padding
   int32_t sbc;                //0xBC — checked > 0 (FUN_710017bc94), zeroed in calc
@@ -78,5 +79,6 @@ struct KartVehicleDrift {
   int32_t s10c;               //0x10C — arg to 0x7100175f5c in the same calc
                               // The calc also mirrors floats into KartVehicleBody+0x110/0x114/0x118
                               // (0x17bf14-0x17bf74).
+  uint8_t pad_110[0x8];       //0x110 — to the allocation end 0x118 (new at 0x71001815bc)
 };
 }  // namespace object

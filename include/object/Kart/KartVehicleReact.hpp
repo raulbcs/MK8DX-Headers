@@ -7,11 +7,16 @@
 namespace object {
 class KartVehicle;  // cycle-safe forward declaration
 
+// extent 0xD8 — operator new(0xD8) at 0x71001815f4 inside the
+// KartVehicleMove ctor, immediately followed by bl 0x710017eb94, which
+// stores the KartVehicle arg at +0x10 (mKartVehicle below).
+
 class KartVehicleReact {
  public:
   uint8_t mPad00[0x10];       // 0x00 — unproven padding
   KartVehicle* mKartVehicle;  // 0x10
-  uint8_t mPad18[0x78];       // 0x90 — unproven padding
+  uint8_t mPad18[0x78];       // 0x18 — unproven padding
+  uint8_t mPad90[0x48];       // 0x90 — to the allocation end 0xD8 (new at 0x71001815f4)
 
   void requestBattleDropCoin(int, sead::Vector3<float> const&);
 

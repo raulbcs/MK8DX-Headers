@@ -222,9 +222,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartPhysicsBodyMid.hpp
 #   include/object/Kart/KartUnit.hpp
 #   include/object/Kart/KartUnitHolder.hpp
-#   include/object/Kart/KartVehicleDrift.hpp
 #   include/object/Kart/KartVehicleNetData.hpp
-#   include/object/Kart/KartVehicleReact.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
 #   include/object/Kart/ParamChannelVt20e8.hpp
 #   include/object/Kart/ParamChannelVt38f8.hpp
