@@ -17,7 +17,8 @@
 #include "../ItemReactInfo.hpp"
 
 namespace gear {
-// Total size 0x28C
+// extent 0x328 (allocation size 0x328 @0x71001816b0 in the KartVehicleMove
+// ctor → 0x71003aef8c; stores reach 0x320 and match the 0x2f0..0x318 fields)
 class ItemObjBase : public Actor {
  public:
   virtual bool checkDerivedRuntimeTypeInfo(
@@ -130,30 +131,28 @@ class ItemObjBase : public Actor {
 
   enum EColMode : int32_t { ECOLMODE00, ECOLMODE01 };
 
-  uint8_t mPad38[0x20];               // 0x38
+  uint8_t mPad38[0x20];               // 0x38 — unproven padding
   EItemType mItemType;                // 0x58
   uint32_t mPad5C;                    // 0x5C
   uint32_t mObjectIdx;                // 0x60
-  uint8_t mPad64[0x34];               // 0x64
+  uint8_t mPad64[0x34];               // 0x64 — unproven padding
   void* mScaleStructPtr;              // 0x98
   sead::Matrix34f mTransform;         // 0xA0
-  uint8_t mPadD0[0x08];               // 0xD0
+  uint8_t mPadD0[0x08];               // 0xD0 — unproven padding
   sead::Vector3f mScale;              // 0xD8
-  uint8_t mPadE4[0x44];               // 0xE4
+  uint8_t mPadE4[0x44];               // 0xE4 — unproven padding
   float mScaleFactor;                 // 0x128
   sead::Vector3f mPosition;           // 0x12C
-  uint8_t mPad138[0x0C];              // 0x138
+  uint8_t mPad138[0x0C];              // 0x138 — unproven padding
   sead::Vector3f mVelocity;           // 0x144
   float mSpeed;                       // 0x150
   sead::Vector3f mMoveVelocity;       // 0x154
-  uint8_t mPad138[0x1C];              // 0x138
-  sead::Vector3f mPad154;             // 0x154, 0x158, 0x15C
-  sead::Vector3f mPad160;             // 0x160, 0x164, 0x168
-  uint8_t mPad16C[0x10];              // 0x16C
-  float mPad17C;                      // 0x17C
-  uint8_t mPad180[0x10];              // 0x180
+  sead::Vector3f mPad160;             // 0x160 — unproven padding
+  uint8_t mPad16C[0x10];              // 0x16C — unproven padding
+  float mPad17C;                      // 0x17C — unproven padding
+  uint8_t mPad180[0x10];              // 0x180 — unproven padding
   float* mPad190;                     // 0x190
-  uint8_t mPad198[0x20];              // 0x198
+  uint8_t mPad198[0x20];              // 0x198 — unproven padding
   gear::GndCol* mGroundCollision;     // 0x1B8
   uint32_t mPad1C0;                   // 0x1C0
   uint32_t mPad1C4;                   // 0x1C4
@@ -161,35 +160,35 @@ class ItemObjBase : public Actor {
   bool mPad1C9;                       // 0x1C9
   bool mPad1CA;                       // 0x1CA
   bool mPad1CB;                       // 0x1CB
-  uint8_t mPad1CC[0x10];              // 0x1CC
+  uint8_t mPad1CC[0x10];              // 0x1CC — unproven padding
   float mPad1DC;                      // 0x1DC
   float mPad1E0;                      // 0x1E0
   float mPad1E4;                      // 0x1E4
   float mPad1E8;                      // 0x1E8
-  uint8_t mPad1EC[0x4];               // 0x1EC
+  uint8_t mPad1EC[0x4];               // 0x1EC — unproven padding
   uint8_t mPad1F0;                    // 0x1F0
   uint8_t mPad1F1;                    // 0x1F1
   uint8_t mPad1F2;                    // 0x1F2
   uint8_t mPad1F3;                    // 0x1F3
   uint32_t mPad1F4;                   // 0x1F4
   uint32_t mReactType;                // 0x1F8
-  uint8_t mPad1FC[0x08];              // 0x1FC
+  uint8_t mPad1FC[0x08];              // 0x1FC — unproven padding
   sead::Vector3f mThrowVelocity;      // 0x204
-  uint8_t mPad210[0x18];              // 0x210
+  uint8_t mPad210[0x18];              // 0x210 — unproven padding
   bool mReflectTooMany;               // 0x228
-  uint8_t mPad229[0x4F];              // 0x229
+  uint8_t mPad229[0x4F];              // 0x229 — unproven padding
   gear::XLinkUser* mXLinkUser;        // 0x278
-  uint8_t mPad280[0x6C];              // 0x280
+  uint8_t mPad280[0x6C];              // 0x280 — unproven padding
   EColMode mCurrentCollisionMode;     // 0x2EC
   EColMode mPreviousCollisionMode;    // 0x2F0
   int32_t mPad2F4;                    // 0x2F4
   int32_t mStandbyCounter;            // 0x2F8
   sead::Vector3f mEquipMultiForward;  // 0x2FC
   sead::Vector3f mEquipMultiUp;       // 0x308
-  uint8_t mPad314[0x04];              // 0x314
+  uint8_t mPad314[0x04];              // 0x314 — unproven padding
   uint16_t mItemSerial;               // 0x318
   uint16_t mPad31A;                   // 0x31A
-  uint8_t mPad31C[0xC];               // 0x31C
+  uint8_t mPad31C[0xC];               // 0x31C — unproven padding
 
   void exitBreak();
   void exitVanish();
@@ -209,5 +208,6 @@ class ItemObjBase : public Actor {
   bool isDisappearState(void) const;
 
   ItemObjBase(gear::EItemType, int);  // defined
+
 };
 }  // namespace gear

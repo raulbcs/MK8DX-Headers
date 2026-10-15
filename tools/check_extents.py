@@ -106,7 +106,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Item/ItemReact.hpp
 #   include/gear/Item/ItemReactInfo.hpp
 #   include/gear/Item/ItemSlot.hpp
-#   include/gear/Item/Obj/ItemObjBase.hpp
 #   include/gear/Item/Obj/ItemObjKouraG.hpp
 #   include/gear/MapObj/IMapObjBounce.hpp
 #   include/gear/MapObj/MapObjBase.hpp
