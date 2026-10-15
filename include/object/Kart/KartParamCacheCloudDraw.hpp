@@ -42,9 +42,9 @@ class KartParamCacheCloudDraw : public KartParamCache {
   uint8_t mPad514[0x4];      // 0x514 — unproven gap
   uint64_t mField518;        // 0x518
   uint8_t mPad520[0x10];     // 0x520 — unproven gap
-  uint64_t mField530;        // 0x530
+  uint32_t mField530;        // 0x530
   uint32_t mField534;        // 0x534
-  uint64_t mField538;        // 0x538
+  uint32_t mField538;        // 0x538
   uint32_t mField53c;        // 0x53c
   uint64_t mField540;        // 0x540
   uint8_t mPad548[0x10];     // 0x548 — unproven gap
@@ -96,6 +96,8 @@ class KartParamCacheCloudDraw : public KartParamCache {
   uint64_t mField7f50;       // 0x7f50
   uint8_t mPad7f58[0x30];    // 0x7f58 — unproven gap
   uint64_t mField7f88;       // 0x7f88
+// extent 0x7f90 (ctor 0x7100A960F8 stores reach 0x7f90)
+
 };
 // dtor: re-stamps vptr 0x13151d8; pooled-array strides 0x1258; resets cells 0x130d830,0x130d848,0x130d918,0x130d920; fn size 0x230.
 

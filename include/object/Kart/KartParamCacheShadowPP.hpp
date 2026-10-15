@@ -169,6 +169,8 @@ class KartParamCacheShadowPP : public KartParamCache {
   uint32_t mField8fc;      // 0x8fc
   uint32_t mField900;      // 0x900
   uint8_t mPad904;         // 0x904 — ctor zero
+// extent 0x905 (ctor 0x7100AE2F64 stores reach 0x905)
+
 };
 // dtor: pooled-array strides 0x2070; resets cells 0x710130d918; fn size 0x16c.
 

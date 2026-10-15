@@ -30,6 +30,8 @@ class KartParamCacheDecalAo : public KartParamCache {
   uint8_t mPad1590[0x408];  // 0x1590 — unproven gap
   uint64_t mZero1998;       // 0x1998 — ctor zero
   uint64_t mZero19a0;       // 0x19a0 — ctor zero
+// extent 0x19a8 (ctor 0x7100A9A2E0 stores reach 0x19a8)
+
 };
 // dtor: resets cells 0x71013151f0; fn size 0xe0.
 

@@ -63,6 +63,8 @@ class KartParamCacheShadow : public KartParamCache {
   uint64_t mZero1798;       // 0x1798 — ctor zero
   uint8_t mPad17a0[0x20];   // 0x17a0 — unproven gap
   uint32_t mZero17c0;       // 0x17c0 — ctor zero
+// extent 0x17c4 (ctor 0x7100AD90E8 stores reach 0x17c4)
+
 };
 // dtor: pooled-array strides 0x5d0; fn size 0x128.
 

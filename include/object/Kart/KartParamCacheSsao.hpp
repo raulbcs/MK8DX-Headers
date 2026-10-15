@@ -175,6 +175,8 @@ class KartParamCacheSsao : public KartParamCache {
   uint64_t mField3cd8;      // 0x3cd8
   uint8_t mPad3ce0[0x10];   // 0x3ce0 — unproven gap
   uint32_t mField3cf0;      // 0x3cf0
+// extent 0x3cf4 (ctor 0x7100AE7D58 stores reach 0x3cf4)
+
 };
 // dtor: re-stamps vptr 0x1315480; resets cells 0x130d830,0x130d918,0x130d920; fn size 0x258.
 

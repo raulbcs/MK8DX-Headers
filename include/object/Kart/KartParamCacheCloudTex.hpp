@@ -154,9 +154,9 @@ class KartParamCacheCloudTex : public KartParamCache {
   uint8_t mPad65c[0x4];   // 0x65c — unproven gap
   uint64_t mField660;     // 0x660
   uint8_t mPad668[0x10];  // 0x668 — unproven gap
-  uint64_t mField678;     // 0x678
+  uint32_t mField678;     // 0x678
   uint32_t mField67c;     // 0x67c
-  uint64_t mField680;     // 0x680
+  uint32_t mField680;     // 0x680
   uint32_t mField684;     // 0x684
   uint64_t mField688;     // 0x688
   uint8_t mPad690[0x10];  // 0x690 — unproven gap
@@ -176,21 +176,21 @@ class KartParamCacheCloudTex : public KartParamCache {
   uint8_t mPad704[0x4];   // 0x704 — unproven gap
   uint64_t mField708;     // 0x708
   uint8_t mPad710[0x10];  // 0x710 — unproven gap
-  uint64_t mField720;     // 0x720
+  uint32_t mField720;     // 0x720
   uint32_t mField724;     // 0x724
-  uint64_t mField728;     // 0x728
+  uint32_t mField728;     // 0x728
   uint32_t mField72c;     // 0x72c
   uint64_t mField730;     // 0x730
   uint8_t mPad738[0x10];  // 0x738 — unproven gap
-  uint64_t mField748;     // 0x748
+  uint32_t mField748;     // 0x748
   uint32_t mField74c;     // 0x74c
-  uint64_t mField750;     // 0x750
+  uint32_t mField750;     // 0x750
   uint32_t mField754;     // 0x754
   uint64_t mField758;     // 0x758
   uint8_t mPad760[0x10];  // 0x760 — unproven gap
-  uint64_t mField770;     // 0x770
+  uint32_t mField770;     // 0x770
   uint32_t mField774;     // 0x774
-  uint64_t mField778;     // 0x778
+  uint32_t mField778;     // 0x778
   uint32_t mField77c;     // 0x77c
   uint64_t mField780;     // 0x780
   uint8_t mPad788[0x10];  // 0x788 — unproven gap
@@ -303,6 +303,8 @@ class KartParamCacheCloudTex : public KartParamCache {
   uint64_t mFieldae0;     // 0xae0
   uint8_t mPadae8[0x10];  // 0xae8 — unproven gap
   uint8_t mPadaf8;        // 0xaf8 — ctor zero
+// extent 0xaf9 (ctor 0x7100A94BB8 stores reach 0xaf9)
+
 };
 // dtor: re-stamps vptr 0x13151d0; resets cells 0x130d918; fn size 0x20c.
 

@@ -61,6 +61,8 @@ class KartParamCacheProjShadow : public KartParamCache {
   uint8_t mPad538;        // 0x538 — ctor zero
   uint8_t mPad539[0x7];   // 0x539 — unproven gap
   uint8_t mPad540;        // 0x540 — ctor zero
+// extent 0x541 (ctor 0x7100ADE480 stores reach 0x541)
+
 };
 // Vtable slots :
 // - slot 0 (0x10) dtor, returns self (projShadowDtorSlot0_7100ade9a8): vptr from

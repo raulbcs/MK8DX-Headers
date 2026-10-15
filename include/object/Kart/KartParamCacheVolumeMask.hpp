@@ -43,7 +43,7 @@ class KartParamCacheVolumeMask : public KartParamCache {
   uint32_t mZero244;       // 0x244 — ctor zero
   uint8_t mPad248;         // 0x248 — ctor zero
   uint8_t mPad249[0x3];    // 0x249 — unproven gap
-  uint32_t mZero24c;       // 0x24c — ctor zero
+  uint8_t mZero24c;        // 0x24c — ctor zero
   uint8_t mField24d;       // 0x24d
   uint16_t mPad24e;        // 0x24e — ctor zero
   uint8_t mPad250[0x238];  // 0x250 — unproven gap
@@ -60,6 +60,8 @@ class KartParamCacheVolumeMask : public KartParamCache {
   uint32_t mZero538;       // 0x538 — ctor zero
   uint8_t mPad53c[0x4];    // 0x53c — unproven gap
   uint64_t mZero540;       // 0x540 — ctor zero
+// extent 0x548 (ctor 0x7100A9CA94 stores reach 0x548)
+
 };
 }  // namespace object
 

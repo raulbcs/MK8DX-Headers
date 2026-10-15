@@ -109,6 +109,8 @@ class KartParamCacheOfx : public KartParamCache {
   uint64_t mField26e0;      // 0x26e0
   uint8_t mPad26e8[0x150];  // 0x26e8 — unproven gap
   uint64_t mField2838;      // 0x2838
+// extent 0x2840 (ctor 0x7100AF56F8 stores reach 0x2840)
+
 };
 // dtor: re-stamps vptr 0x1315530; pooled-array strides 0x460; resets cells 0x130d848; fn size 0x33c.
 

@@ -24,6 +24,8 @@ class KartParamCacheLref : public KartParamCache {
   uint64_t mFieldcd8;      // 0xcd8
   uint8_t mPadce0[0x238];  // 0xce0 — unproven gap
   uint8_t mPadf18;         // 0xf18 — ctor zero
+// extent 0xf19 (ctor 0x7100AA3C6C stores reach 0xf19)
+
 };
 // dtor: resets cells 0x710130d918; fn size 0x18c.
 

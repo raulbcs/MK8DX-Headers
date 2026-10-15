@@ -24,6 +24,8 @@ class KartParamCacheDecal : public KartParamCache {
   uint64_t mField470;      // 0x470
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
+// extent 0x48c (ctor 0x7100AED234 stores reach 0x48c)
+
 };
 // dtor: pooled-array strides 0x7a8; resets cells 0x710130d848,0x71013154b0; fn size 0x118.
 

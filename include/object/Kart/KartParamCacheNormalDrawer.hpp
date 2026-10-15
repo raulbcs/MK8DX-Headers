@@ -23,6 +23,8 @@ class KartParamCacheNormalDrawer : public KartParamCache {
   uint64_t mField470;      // 0x470
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
+// extent 0x48c (ctor 0x7100A9BAF4 stores reach 0x48c)
+
 };
 // dtor: pooled-array strides 0x9f8; resets cells 0x710130d918; fn size 0x130.
 

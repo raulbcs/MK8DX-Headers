@@ -61,6 +61,8 @@ class KartParamCacheCloud : public KartParamCache {
   uint64_t mField7f38;      // 0x7f38
   uint8_t mPad7f40[0x18];   // 0x7f40 — unproven gap
   uint64_t mField7f58;      // 0x7f58
+// extent 0x7f60 (ctor 0x7100AAC014 stores reach 0x7f60)
+
 };
 // dtor: re-stamps vptr 0x1315250; resets cells 0x130d848,0x130d918,0x130d920; fn size 0x194.
 

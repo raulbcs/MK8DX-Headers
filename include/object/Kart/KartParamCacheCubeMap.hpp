@@ -72,6 +72,8 @@ class KartParamCacheCubeMap : public KartParamCache {
   uint64_t mZero440;       // 0x440 — ctor zero
   uint64_t mZero448;       // 0x448 — ctor zero
   uint32_t mField450;      // 0x450
+// extent 0x454 (ctor 0x7100AB868C stores reach 0x454)
+
 };
 // dtor: re-stamps vptr 0x13152a0; resets cells 0x130d918,0x1315298; fn size 0x280.
 

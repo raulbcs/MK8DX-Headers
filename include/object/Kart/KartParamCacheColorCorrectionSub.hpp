@@ -42,27 +42,27 @@ class KartParamCacheColorCorrectionSub : public KartParamCache {
   uint8_t mPad2d9[0x7];     // 0x2d9 — unproven gap
   uint64_t mField2e0;       // 0x2e0
   uint8_t mPad2e8[0x10];    // 0x2e8 — unproven gap
-  uint64_t mField2f8;       // 0x2f8
+  uint32_t mField2f8;       // 0x2f8
   uint32_t mField2fc;       // 0x2fc
-  uint64_t mField300;       // 0x300
+  uint32_t mField300;       // 0x300
   uint32_t mField304;       // 0x304
   uint64_t mField308;       // 0x308
   uint8_t mPad310[0x10];    // 0x310 — unproven gap
-  uint64_t mField320;       // 0x320
+  uint32_t mField320;       // 0x320
   uint32_t mField324;       // 0x324
-  uint64_t mField328;       // 0x328
+  uint32_t mField328;       // 0x328
   uint32_t mField32c;       // 0x32c
   uint64_t mField330;       // 0x330
   uint8_t mPad338[0x10];    // 0x338 — unproven gap
-  uint64_t mField348;       // 0x348
+  uint32_t mField348;       // 0x348
   uint32_t mField34c;       // 0x34c
-  uint64_t mField350;       // 0x350
+  uint32_t mField350;       // 0x350
   uint32_t mField354;       // 0x354
   uint64_t mField358;       // 0x358
   uint8_t mPad360[0x10];    // 0x360 — unproven gap
-  uint64_t mField370;       // 0x370
+  uint32_t mField370;       // 0x370
   uint32_t mField374;       // 0x374
-  uint64_t mField378;       // 0x378
+  uint32_t mField378;       // 0x378
   uint32_t mField37c;       // 0x37c
   uint64_t mField380;       // 0x380
   uint8_t mPad388[0x10];    // 0x388 — unproven gap
@@ -82,9 +82,9 @@ class KartParamCacheColorCorrectionSub : public KartParamCache {
   uint8_t mPad3fc[0x4];     // 0x3fc — unproven gap
   uint64_t mField400;       // 0x400
   uint8_t mPad408[0x10];    // 0x408 — unproven gap
-  uint64_t mField418;       // 0x418
+  uint32_t mField418;       // 0x418
   uint32_t mField41c;       // 0x41c
-  uint64_t mField420;       // 0x420
+  uint32_t mField420;       // 0x420
   uint32_t mField424;       // 0x424
   uint8_t mPad428[0x8];     // 0x428 — unproven gap
   uint16_t mPad430;         // 0x430 — ctor zero
@@ -106,6 +106,8 @@ class KartParamCacheColorCorrectionSub : public KartParamCache {
   uint8_t mPad1a1c[0x4];    // 0x1a1c — unproven gap
   uint64_t mZero1a20;       // 0x1a20 — ctor zero
   uint32_t mZero1a28;       // 0x1a28 — ctor zero
+// extent 0x1a2c (ctor 0x710064FB3C stores reach 0x1a2c)
+
 };
 // Vtable slots :
 // - slot 0 (0x10) complete-object dtor (colorCorrectionCompleteDtorSlot0_7100650520):

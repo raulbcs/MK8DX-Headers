@@ -39,9 +39,9 @@ class KartParamCacheVt3df8 : public KartParamCache {
   uint32_t mField2dc;      // 0x2dc
   uint64_t mField2e0;      // 0x2e0
   uint8_t mPad2e8[0x10];   // 0x2e8 — unproven gap
-  uint64_t mField2f8;      // 0x2f8
+  uint32_t mField2f8;      // 0x2f8
   uint32_t mField2fc;      // 0x2fc
-  uint64_t mField300;      // 0x300
+  uint32_t mField300;      // 0x300
   uint32_t mField304;      // 0x304
   uint64_t mField308;      // 0x308
   uint8_t mPad310[0x10];   // 0x310 — unproven gap
@@ -61,6 +61,8 @@ class KartParamCacheVt3df8 : public KartParamCache {
   uint64_t mField5a8;      // 0x5a8
   uint8_t mPad5b0[0x10];   // 0x5b0 — unproven gap
   uint32_t mZero5c0;       // 0x5c0 — ctor zero
+// extent 0x5c4 (ctor 0x7100AD06D0 stores reach 0x5c4)
+
 };
 // dtor: pooled-array strides 0x678; fn size 0x128.
 
