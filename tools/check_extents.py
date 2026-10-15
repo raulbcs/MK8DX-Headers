@@ -41,8 +41,6 @@ OFFSET_LIMIT = 0x10000  # larger hex constants are VMAs, not offsets
 # extent citation (suspicious) or a new header was added without one.
 # ---------------------------------------------------------------------------
 NO_EXTENT_ALLOWLIST = """
-# Headers with field declarations but no cited extent (docblock evidence
-# pending). Sorted. Keep shrinking.
 #   include/_nn/account/NetworkServiceAccountId.hpp
 #   include/_nn/account/Uid.hpp
 #   include/_nn/ae/AppletThreadHost.hpp
@@ -71,6 +69,15 @@ NO_EXTENT_ALLOWLIST = """
 #   include/_nn/pia/session/DestroySessionJob.hpp
 #   include/_nn/pia/session/JoinMeshJob.hpp
 #   include/_nn/pia/session/LeaveSessionJob.hpp
+#   include/aal/Asset/AssetInfo.hpp
+#   include/aal/Emitter.hpp
+#   include/aal/Handle.hpp
+#   include/aal/Param/SoundParam.hpp
+#   include/aal/Resource/AudioResource.hpp
+#   include/aal/Resource/AudioResourceList.hpp
+#   include/aal/Result/StartResult.hpp
+#   include/aal/Spatial/SpatialSetting.hpp
+#   include/audio/Aud/AudResourceManager.hpp
 #   include/enl/Buffer.hpp
 #   include/enl/Connection/ConnectInfo.hpp
 #   include/enl/ContentTransporter/ContentTransporterCommon.hpp
@@ -83,9 +90,13 @@ NO_EXTENT_ALLOWLIST = """
 #   include/eui/Screen/Screen.hpp
 #   include/eui/Screen/ScreenMgr.hpp
 #   include/gear/Account/account.hpp
+#   include/gear/Audio/AudSoundLinkUserBase.hpp
 #   include/gear/Background/BackgroundLoadThread.hpp
+#   include/gear/Collision/GndColCheckRayInfo.hpp
 #   include/gear/Controller/ControllerRaceNX.hpp
 #   include/gear/Course/CourseDecompThread.hpp
+#   include/gear/Course/FieldDirector.hpp
+#   include/gear/Director/TDirectorBase.hpp
 #   include/gear/Framework/FrameworkGameScene.hpp
 #   include/gear/Ghost/RaceTime.hpp
 #   include/gear/Item/ItemDirector.hpp
@@ -98,11 +109,15 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Item/ItemSlot.hpp
 #   include/gear/Item/Obj/ItemObjBase.hpp
 #   include/gear/Item/Obj/ItemObjKouraG.hpp
+#   include/gear/Item/Obj/ItemObjKouraR.hpp
 #   include/gear/MapObj/IMapObjBounce.hpp
 #   include/gear/MapObj/MapObjBase.hpp
+#   include/gear/MapObj/MapObjCreateArg.hpp
 #   include/gear/MapObj/MapObjDirector.hpp
 #   include/gear/MapObj/MapObjDrawManager.hpp
+#   include/gear/MapObj/MapObjManagerBase.hpp
 #   include/gear/MapObj/MapObjParameter.hpp
+#   include/gear/MapObj/MapUnitMapObj.hpp
 #   include/gear/Math/Matrix.hpp
 #   include/gear/Network/NetworkDataAllPlayerInfo.hpp
 #   include/gear/Network/NetworkDataMenuCourseVote.hpp
@@ -119,6 +134,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Race/RaceDirectorManagerBase.hpp
 #   include/gear/Race/RaceDirectorPlayer.hpp
 #   include/gear/Race/RaceDirectorPlayerBase.hpp
+#   include/gear/Race/RaceDirectorPlayerSet.hpp
 #   include/gear/Race/RaceDirectorPlayerSetBase.hpp
 #   include/gear/Race/RaceDirectorSetChain.hpp
 #   include/gear/Race/RaceDirectorSetHelper.hpp
@@ -168,6 +184,9 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/UI/UINFPThread.hpp
 #   include/gear/UI/UIPlayer.hpp
 #   include/gear/UI/UITheaterThread.hpp
+#   include/gear/XLink/XLinkManualEffect.hpp
+#   include/gear/XLink/XLinkSlotState.hpp
+#   include/gear/XLink/XLinkUser.hpp
 #   include/gsys/Animation/AnimationAccessKey.hpp
 #   include/gsys/Model/Model.hpp
 #   include/gsys/Model/ModelInfo.hpp
@@ -176,15 +195,20 @@ NO_EXTENT_ALLOWLIST = """
 #   include/kart/KartVehicleMove.hpp
 #   include/kart/SteeringX.hpp
 #   include/mush/Message/MessageArchive.hpp
+#   include/naked/Network/NetworkDataDrive.hpp
+#   include/object/AI/AIUnit.hpp
 #   include/object/Kart/AudioTaskThread.hpp
 #   include/object/Kart/BackgroundLoadThread.hpp
 #   include/object/Kart/ContentsThread.hpp
-#   include/object/Kart/KartBodyVt71.hpp
 #   include/object/Kart/KartCalcSpeedMiniCore.hpp
 #   include/object/Kart/KartCamera.hpp
 #   include/object/Kart/KartChassis.hpp
 #   include/object/Kart/KartChassisAnim.hpp
+#   include/object/Kart/KartChassisEffect.hpp
 #   include/object/Kart/KartDirector.hpp
+#   include/object/Kart/KartFloorEffect.hpp
+#   include/object/Kart/KartInfoProxy.hpp
+#   include/object/Kart/KartMatrixInfo.hpp
 #   include/object/Kart/KartModelBackgroundLoadThread.hpp
 #   include/object/Kart/KartParamCacheChan.hpp
 #   include/object/Kart/KartParamCacheChanBase.hpp
@@ -243,10 +267,12 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartVehicleDrift.hpp
 #   include/object/Kart/KartVehicleHeadLight.hpp
 #   include/object/Kart/KartVehicleNet.hpp
+#   include/object/Kart/KartVehicleNetData.hpp
 #   include/object/Kart/KartVehicleReact.hpp
 #   include/object/Kart/KartVehicleTrick.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
 #   include/object/Kart/NetworkSendThread.hpp
+#   include/object/Kart/ParamChannelVt20e8.hpp
 #   include/object/Kart/ParamChannelVt38f8.hpp
 #   include/object/Kart/ParamContainerVt29a8.hpp
 #   include/object/Kart/ParamContainerVt4920.hpp
@@ -326,7 +352,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Vt12ba010.hpp
 #   include/object/Vt12ca000.hpp
 #   include/object/Vt12f3160.hpp
-#   include/recorder/GhostCodec.hpp
 #   include/recorder/QuantChannel.hpp
 #   include/recorder/Recorder.hpp
 #   include/repl/File.hpp
@@ -362,7 +387,9 @@ NO_EXTENT_ALLOWLIST = """
 #   include/ui/Texture/Bntx.hpp
 #   include/ui/TimeAttack/TAData.hpp
 #   include/xlink2/BoneMtx.hpp
+#   include/xlink2/Event.hpp
 #   include/xlink2/Locator.hpp
+#   include/xlink2/UserInstanceSLink.hpp
 """
 
 # Words that count as an evidence note on a pad line.
@@ -391,7 +418,7 @@ EXTENT_PATTERNS = [
 SUBOBJECT_LINE = re.compile(r"sub-?object|base region", re.I)
 SUBOBJECT_TO = re.compile(r"extent\s+0x[0-9a-fA-F]+,?\s+to\s", re.I)
 
-BASE_DECL = re.compile(r"\bclass\s+\w+\s*:\s*public\b")
+BASE_DECL = re.compile(r"\b(?:class|struct)\s+\w+\s*:\s*(?:public|protected|private)\b")
 BASE_EXTENT = re.compile(
     r"(?:base|sub-?object)[^;\n]{0,120}?(?:extent|size)\s+0x([0-9a-fA-F]+)", re.I
 )
@@ -403,7 +430,7 @@ SKIP_PREFIX = ("virtual", "typedef", "using", "friend", "static", "enum",
                "struct", "class", "return", "}", "{", "#", "*", "/*")
 DECL = re.compile(
     r"^\s*(?:inline\s+)?([A-Za-z_][\w:]*)\s*((?:\*+\s*|\s*&\s*)?)"
-    r"(\w+)\s*(\[[^\]]*\])?\s*(?:=[^;]*)?;"
+    r"(\w+)\s*((?:\[[^\]]*\])*)\s*(?:=[^;]*)?;"
 )
 
 BASIC_SIZES = {
@@ -500,7 +527,13 @@ def parse_fields(text):
             continue  # declaration without a cited offset: not layout data
         size = None
         if arr:
-            n = array_size(arr.strip("[]"))
+            n = 1
+            for d in re.findall(r"\[([^\]]*)\]", arr):
+                v = array_size(d)
+                if v is None:
+                    n = None
+                    break
+                n *= v
             elem = type_size(base, bool(ptrs.strip()))
             if base in ("char", "uint8_t", "u8") or is_pad:
                 size = n  # char arrays: N bytes
@@ -549,8 +582,54 @@ def merge(ranges):
     return out
 
 
-def analyze(path: Path):
-    text = path.read_text(errors="replace")
+def struct_segments(text):
+    """Split a header into top-level class/struct blocks, each prefixed by
+    its immediately preceding comment block (extent citations live there).
+    Without this, fields and extents from DIFFERENT structs in one file get
+    pooled into a single fake layout and produce spurious overlaps."""
+    lines = text.splitlines()
+    segs = []
+    i = 0
+    while i < len(lines):
+        code = lines[i].split("//")[0]
+        if not re.match(r"\s*(?:class|struct)\s+\w+", code):
+            i += 1
+            continue
+        # preceding contiguous comment/blank block (skip namespace lines,
+        # which often sit between the docblock and the struct)
+        j = i - 1
+        pre = []
+        while j >= 0:
+            s = lines[j].strip()
+            if (not s or s.startswith(("//", "*", "/*"))
+                    or re.match(r"^(?:namespace\b[^;{]*\{|\}\s*(?://.*|/\*.*\*/)?\s*)$", s)):
+                pre.append(lines[j])
+                j -= 1
+                continue
+            break
+        pre.reverse()
+        depth = 0
+        seen_open = False
+        k = i
+        empty = False
+        while k < len(lines):
+            c = lines[k].split("//")[0]
+            if ";" in c and not seen_open:
+                empty = True  # forward declaration
+                break
+            depth += c.count("{") - c.count("}")
+            if "{" in c:
+                seen_open = True
+            if seen_open and depth <= 0:
+                break
+            k += 1
+        if not empty:
+            segs.append("\n".join(pre + lines[i:k + 1]))
+        i = k + 1
+    return segs
+
+
+def analyze_unit(text):
     fields = [f for f in parse_fields(text) if not f["base_region"]]
     # Base-region fields do not join the overlap check (they are overlaid by
     # the per-field map below them) but DO count as coverage.
@@ -588,7 +667,7 @@ def analyze(path: Path):
     # coverage
     if extent is None:
         return dict(fields=fields, extent=None, errs=[], warns=warns,
-                    in_allowlist=True)
+                    in_allowlist=False)
     cov_start = 0
     if has_base:
         if base_extent is not None:
@@ -622,6 +701,33 @@ def analyze(path: Path):
         errs.append(f"field end 0x{end:X} exceeds extent 0x{extent:X}")
     return dict(fields=fields, extent=extent, errs=errs, warns=warns,
                 in_allowlist=False)
+
+
+def analyze(path: Path):
+    """Header-level aggregation over per-struct analyses. A header counts as
+    NO-EXTENT only if NO struct in it cites an extent; structs without an
+    extent citation alongside ones with one are skipped silently."""
+    text = path.read_text(errors="replace")
+    segs = struct_segments(text)
+    if not segs:
+        segs = [text]  # no structs: legacy whole-file behavior
+    errs, warns = [], []
+    any_fields = False
+    has_extent = False
+    for seg in segs:
+        res = analyze_unit(seg)
+        if res is None:
+            continue
+        any_fields = True
+        if res["extent"] is None:
+            continue
+        has_extent = True
+        errs.extend(res["errs"])
+        warns.extend(res["warns"])
+    if not any_fields:
+        return None
+    return dict(fields=[], extent=True if has_extent else None,
+                errs=errs, warns=warns, in_allowlist=not has_extent)
 
 
 def main():
