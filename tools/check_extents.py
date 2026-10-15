@@ -55,7 +55,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/_nn/nex/CallContext.hpp
 #   include/_nn/nex/ClientProtocol.hpp
 #   include/_nn/nex/Credentials.hpp
-#   include/_nn/nex/EventLog.hpp
 #   include/_nn/nex/JobAcquireAccessToken.hpp
 #   include/_nn/nex/JobBackEndServicesTerminate.hpp
 #   include/_nn/nex/JobCallContextCallback.hpp
@@ -63,7 +62,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/_nn/nex/JobHttp.hpp
 #   include/_nn/nex/JobNNIDLogin.hpp
 #   include/_nn/nex/JobProcessProtocolMessage.hpp
-#   include/_nn/nex/ObjectThreadRoot.hpp
 #   include/_nn/nex/ProtocolCallContext.hpp
 #   include/_nn/nex/_DDL_AuthenticationInfo.hpp
 #   include/_nn/pia/session/DestroySessionJob.hpp
@@ -132,16 +130,12 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Race/RaceDirectorBase38.hpp
 #   include/gear/Race/RaceDirectorManager.hpp
 #   include/gear/Race/RaceDirectorManagerBase.hpp
-#   include/gear/Race/RaceDirectorPlayer.hpp
 #   include/gear/Race/RaceDirectorPlayerBase.hpp
-#   include/gear/Race/RaceDirectorPlayerSet.hpp
 #   include/gear/Race/RaceDirectorPlayerSetBase.hpp
 #   include/gear/Race/RaceDirectorSetChain.hpp
 #   include/gear/Race/RaceDirectorSetHelper.hpp
 #   include/gear/Race/RaceDirectorSetStatePod.hpp
-#   include/gear/Race/RaceDirectorSubActor60.hpp
 #   include/gear/Race/RaceDirectorVt10.hpp
-#   include/gear/Race/RaceDirectorVt2.hpp
 #   include/gear/Race/RaceDirectorVt3.hpp
 #   include/gear/Race/RaceDirectorVt4.hpp
 #   include/gear/Race/RaceDirectorVt5.hpp
@@ -152,9 +146,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/Race/RaceInfo.hpp
 #   include/gear/Race/RaceKartInfo.hpp
 #   include/gear/Race/RaceKartResult.hpp
-#   include/gear/Race/RaceListItemE.hpp
 #   include/gear/Race/RaceListItemF.hpp
-#   include/gear/Race/RaceListItemG.hpp
 #   include/gear/Race/RacePlayerInfo.hpp
 #   include/gear/Record/RecordFile.hpp
 #   include/gear/Resource/Race/ResourceGSysModelCache.hpp
@@ -181,7 +173,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gear/UI/UIInput_Key.hpp
 #   include/gear/UI/UILoader.hpp
 #   include/gear/UI/UIMiiThread.hpp
-#   include/gear/UI/UINFPThread.hpp
 #   include/gear/UI/UIPlayer.hpp
 #   include/gear/UI/UITheaterThread.hpp
 #   include/gear/XLink/XLinkManualEffect.hpp
@@ -191,19 +182,12 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gsys/Model/Model.hpp
 #   include/gsys/Model/ModelInfo.hpp
 #   include/gsys/Model/ModelResource.hpp
-#   include/kart/BoostSlot.hpp
-#   include/kart/KartVehicleMove.hpp
-#   include/kart/SteeringX.hpp
-#   include/mush/Message/MessageArchive.hpp
 #   include/naked/Network/NetworkDataDrive.hpp
 #   include/object/AI/AIUnit.hpp
 #   include/object/Kart/AudioTaskThread.hpp
 #   include/object/Kart/BackgroundLoadThread.hpp
 #   include/object/Kart/ContentsThread.hpp
-#   include/object/Kart/KartCalcSpeedMiniCore.hpp
 #   include/object/Kart/KartCamera.hpp
-#   include/object/Kart/KartChassis.hpp
-#   include/object/Kart/KartChassisAnim.hpp
 #   include/object/Kart/KartChassisEffect.hpp
 #   include/object/Kart/KartDirector.hpp
 #   include/object/Kart/KartFloorEffect.hpp
@@ -215,7 +199,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartParamCacheCloud.hpp
 #   include/object/Kart/KartParamCacheCloudDraw.hpp
 #   include/object/Kart/KartParamCacheCloudTex.hpp
-#   include/object/Kart/KartParamCacheColorCorrection.hpp
 #   include/object/Kart/KartParamCacheColorCorrectionSub.hpp
 #   include/object/Kart/KartParamCacheCubeMap.hpp
 #   include/object/Kart/KartParamCacheDecal.hpp
@@ -234,44 +217,15 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartParamCacheSsao.hpp
 #   include/object/Kart/KartParamCacheVolumeMask.hpp
 #   include/object/Kart/KartParamCacheVt24c8.hpp
-#   include/object/Kart/KartParamCacheVt33b0.hpp
-#   include/object/Kart/KartParamCacheVt36b8.hpp
 #   include/object/Kart/KartParamCacheVt3df8.hpp
 #   include/object/Kart/KartParamCacheVtd608.hpp
-#   include/object/Kart/KartParameter.hpp
-#   include/object/Kart/KartPhysicsBodyKiller.hpp
-#   include/object/Kart/KartPhysicsBodyKoura.hpp
 #   include/object/Kart/KartPhysicsBodyMid.hpp
-#   include/object/Kart/KartPhysicsBodyPackun.hpp
-#   include/object/Kart/KartPhysicsBodySHorn.hpp
-#   include/object/Kart/KartPhysicsBodyTeresa.hpp
-#   include/object/Kart/KartPhysicsBodyTeresaVt108.hpp
-#   include/object/Kart/KartPhysicsBodyTeresaVt97.hpp
-#   include/object/Kart/KartPhysicsBodyUseItem.hpp
-#   include/object/Kart/KartPhysicsBodyVt96a.hpp
-#   include/object/Kart/KartPhysicsBodyVt96b.hpp
-#   include/object/Kart/KartPhysicsBodyVt96c.hpp
-#   include/object/Kart/KartPhysicsBodyVt96d.hpp
-#   include/object/Kart/KartPhysicsBodyVt97.hpp
-#   include/object/Kart/KartRecorderChannels.hpp
-#   include/object/Kart/KartRecorderKey.hpp
-#   include/object/Kart/KartSteerAssist.hpp
-#   include/object/Kart/KartSusKit.hpp
 #   include/object/Kart/KartUnit.hpp
 #   include/object/Kart/KartUnitHolder.hpp
-#   include/object/Kart/KartVehicleBalloon.hpp
-#   include/object/Kart/KartVehicleBody.hpp
-#   include/object/Kart/KartVehicleCollision.hpp
-#   include/object/Kart/KartVehicleControl.hpp
-#   include/object/Kart/KartVehicleCpu.hpp
 #   include/object/Kart/KartVehicleDrift.hpp
-#   include/object/Kart/KartVehicleHeadLight.hpp
-#   include/object/Kart/KartVehicleNet.hpp
 #   include/object/Kart/KartVehicleNetData.hpp
 #   include/object/Kart/KartVehicleReact.hpp
-#   include/object/Kart/KartVehicleTrick.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
-#   include/object/Kart/NetworkSendThread.hpp
 #   include/object/Kart/ParamChannelVt20e8.hpp
 #   include/object/Kart/ParamChannelVt38f8.hpp
 #   include/object/Kart/ParamContainerVt29a8.hpp
@@ -284,7 +238,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamContainerVtb578.hpp
 #   include/object/Kart/ParamContainerVtb690.hpp
 #   include/object/Kart/ParamContainerVtbc88.hpp
-#   include/object/Kart/ParamContainerVtc338.hpp
 #   include/object/Kart/ParamContainerVtdcd8.hpp
 #   include/object/Kart/ParamMultiChanVt2808.hpp
 #   include/object/Kart/ParamMultiChanVt2c40.hpp
@@ -298,7 +251,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamMultiChanVtd7b0.hpp
 #   include/object/Kart/ParamMultiChanVtd900.hpp
 #   include/object/Kart/ParamMultiChanVtda50.hpp
-#   include/object/Kart/ParamNodeDirectionalLight.hpp
 #   include/object/Kart/ParamNodeEnvObjName.hpp
 #   include/object/Kart/ParamNodeModelBinding.hpp
 #   include/object/Kart/ParamNodePseudoOcclusion.hpp
@@ -311,29 +263,22 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/ParamNodeVt2ea8.hpp
 #   include/object/Kart/ParamNodeVt2fb0.hpp
 #   include/object/Kart/ParamNodeVt32a8.hpp
-#   include/object/Kart/ParamNodeVt35a8.hpp
-#   include/object/Kart/ParamNodeVt3898.hpp
 #   include/object/Kart/ParamNodeVt3f08.hpp
 #   include/object/Kart/ParamNodeVt3fd8.hpp
 #   include/object/Kart/ParamNodeVt4140.hpp
 #   include/object/Kart/ParamNodeVt4510.hpp
 #   include/object/Kart/ParamNodeVt4688.hpp
-#   include/object/Kart/ParamNodeVt47a0.hpp
 #   include/object/Kart/ParamNodeVt4c70.hpp
 #   include/object/Kart/ParamNodeVt4eb8.hpp
 #   include/object/Kart/ParamNodeVt7780.hpp
-#   include/object/Kart/ParamNodeVtaf38.hpp
 #   include/object/Kart/ParamNodeVtc848.hpp
 #   include/object/Kart/ParamNodeVtc8a0.hpp
 #   include/object/Kart/ParamNodeVtc8f8.hpp
 #   include/object/Kart/ParamNodeVtd500.hpp
 #   include/object/Kart/ParamNodeVtd558.hpp
 #   include/object/Kart/ParamNodeVtd5b0.hpp
-#   include/object/Kart/ParamNodeVtdba0.hpp
 #   include/object/Kart/ParamNodeVtde48.hpp
-#   include/object/Kart/UILoadThread.hpp
 #   include/object/Kart/UIMovieRecreatingThread.hpp
-#   include/object/Kart/UINFPArchiveThread.hpp
 #   include/object/Kart/VibrationThread.hpp
 #   include/object/Kart/Vt3dcf300bb8.hpp
 #   include/object/Kart/Vt3dcf3018f8.hpp
@@ -343,17 +288,13 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/MapObj/MapObjVehicleBase.hpp
 #   include/object/ObjectEngine.hpp
 #   include/object/Race/RaceCheckerBase.hpp
-#   include/object/Race/RaceCheckerVt2.hpp
 #   include/object/Race/RaceCheckerVt3.hpp
-#   include/object/Race/RaceKartChecker.hpp
 #   include/object/Record/RecordFileKart.hpp
 #   include/object/Record/RecordFileManager.hpp
 #   include/object/Vt11bb080.hpp
 #   include/object/Vt12ba010.hpp
 #   include/object/Vt12ca000.hpp
 #   include/object/Vt12f3160.hpp
-#   include/recorder/QuantChannel.hpp
-#   include/recorder/Recorder.hpp
 #   include/repl/File.hpp
 #   include/repl/SZSThread.hpp
 #   include/repl/Thread.hpp
@@ -414,6 +355,9 @@ EXTENT_PATTERNS = [
     re.compile(r"news\[0x([0-9a-fA-F]+)\]", re.I),
     re.compile(r"allocation[^.]*?size\s+0x([0-9a-fA-F]+)", re.I),
     re.compile(r"\bsize\s+0x([0-9a-fA-F]+)\s*\(", re.I),
+    re.compile(r"\balloc(?:ation)?[^.\n]{0,80}?\b0x([0-9a-fA-F]+)\b", re.I),
+    re.compile(r"operator new\w*\(\s*0x([0-9a-fA-F]+)", re.I),
+    re.compile(r"\bSize\s+0x([0-9a-fA-F]+)\s*[.;)]", re.I),
 ]
 SUBOBJECT_LINE = re.compile(r"sub-?object|base region", re.I)
 SUBOBJECT_TO = re.compile(r"extent\s+0x[0-9a-fA-F]+,?\s+to\s", re.I)
@@ -557,6 +501,11 @@ def parse_fields(text):
 
 
 def extract_extent(text):
+    # join comment syntax so evidence split across comment lines matches
+    # ("size 0x2B0\n// (allocation site ...)")
+    text = re.sub(r"//", "", text)
+    text = re.sub(r"^\s*\*\s?", "", text, flags=re.M)
+    text = text.replace("/*", "").replace("*/", "")
     extents = []
     for pat in EXTENT_PATTERNS:
         for m in pat.finditer(text):
@@ -602,7 +551,8 @@ def struct_segments(text):
         while j >= 0:
             s = lines[j].strip()
             if (not s or s.startswith(("//", "*", "/*"))
-                    or re.match(r"^(?:namespace\b[^;{]*\{|\}\s*(?://.*|/\*.*\*/)?\s*)$", s)):
+                    or re.match(r"^(?:namespace\b[^;{]*\{|\}\s*(?://.*|/\*.*\*/)?\s*)$", s)
+                    or re.match(r"^(?:struct|class)\s+\w+\s*;", s)):
                 pre.append(lines[j])
                 j -= 1
                 continue
@@ -674,6 +624,9 @@ def analyze_unit(text):
             cov_start = base_extent
         else:
             cov_start = min(f["off"] for f in fields)
+    # implicit vptr slot for polymorphic types without a declared field at 0
+    if re.search(r"\bvirtual\b", text) and not any(f["off"] == 0 for f in fields):
+        cov_start = max(cov_start, 8)
     intervals = [list(x) for x in known] + base_cov
     unknown = [f for f in fields if not f["size"]]
     unknown.sort(key=lambda f: f["off"])

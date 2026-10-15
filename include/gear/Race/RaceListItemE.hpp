@@ -34,12 +34,12 @@ class RaceListItemE : public Actor {
   Cfg30 mCfg678;  //0x678 — f32 10.0 at +0x38 and f32 1.0 at +0x4C
   Cfg30 mCfg6d8;  //0x6D8 — of each block (0x5F0/0x650/0x6B0/0x710,
   // 0x604/0x664/0x6C4/0x724)
-  uint8_t zero730[0x30];   //0x730
   void* mMember730;        //0x730 — ctor 0x62c3a8
+  uint8_t pad_738[0xB8];   //0x738 — unproven gap (to next member, stride 0xC0)
   void* mMember7f0;        //0x7F0 — ctor 0x62c3a8 (stride 0xC0)
   void* mMember8b0;        //0x8B0 — ctor 0x62c3a8
   void* mMember970;        //0x970 — ctor 0x62c3a8
-  uint8_t zero9b0[0x150];  //0x9B0 - 0xAFF
+  uint8_t zero9b0[0x150];  //0x9B0 - 0xAFF  // unproven
   // (0xB00 total)
 };
 }  // namespace gear

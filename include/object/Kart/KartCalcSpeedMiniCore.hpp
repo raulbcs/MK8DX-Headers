@@ -50,5 +50,6 @@ class KartCalcSpeedMiniCore : public gear::Actor {
   uint32_t mField2ec;     // 0x2ec — ctor-written
   uint64_t mField2f0;     // 0x2f0 — ctor-written
   uint32_t mField2f8;     // 0x2f8 — ctor-written
+  uint8_t pad_2FC[0x4];  //0x2FC — unproven gap
 };
 }  // namespace object

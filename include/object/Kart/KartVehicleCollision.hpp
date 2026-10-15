@@ -19,7 +19,7 @@ struct KartVehicleCollision {
   uint8_t zero_2c[0x14];   //0x2C - 0x3F — ctor zeroes
   void* ptr_40;            //0x40 — factory result 0x7c3698(global 0x12fb148, param_08,
                            // 1.0f), set at ctor end, skipped when (managerBits|2)==7 (0x139aa0)
-  uint8_t zero_44[0x24];   //0x44 - 0x67 — ctor zeroes
+  uint8_t zero_48[0x20];   //0x48 - 0x67 — ctor zeroes
   uint32_t u68[12];        //0x68..0x97 — twelve u32s copied from global 0x12fb188
                            // (ctor 0x1398d8-0x139928)
   uint16_t u98;            //0x98 — ctor zero
@@ -30,8 +30,8 @@ struct KartVehicleCollision {
   uint32_t uc0;            //0xC0 — ctor zero
   uint8_t cells_c4[0xc];   //0xC4 — global pair 0x12fb148
   uint32_t ud0;            //0xD0 — ctor zero
-  uint8_t pair_caller_d3;  //0xD3 — u8 read by the wrapper thunk FUN_7100142048
-                           // (0x7100140d20): *(KartVehicle+0x48)+0xD3
+  //0xD3 — u8 read by the wrapper thunk FUN_7100142048
+  //        (0x7100140d20): *(KartVehicle+0x48)+0xD3 (overlaid by ud0's ctor zero)
   uint8_t pad_d4[5];       //0xD4 - 0xD8 — unproven padding
   uint8_t surface_resolve_d9;              //0xD9 — u8 read by the wrapper thunk
                                            // FUN_7100142060 (0x7100140d38)
@@ -44,6 +44,7 @@ struct KartVehicleCollision {
   uint8_t cells_118[0xc];  //0x118 — global pair
   uint8_t cells_124[0xc];  //0x124 — global pair
   uint32_t u130;           //0x130 — ctor zero
+  uint8_t pad_134[0x4];  //0x134 — unproven gap
   uint8_t cells_138[0xc];  //0x138 — global pair
   uint8_t cells_144[0xc];  //0x144 — global pair
   uint8_t cells_150[0xc];  //0x150 — global pair

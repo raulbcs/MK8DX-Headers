@@ -41,8 +41,9 @@ class RaceDirectorPlayer : public Actor {
   uint32_t mA8;         //0xA8 — ctor sets 2
   uint8_t padAc[8];     //0xAC - 0xB3 — unproven padding
   int32_t mB4;          //0xB4 — ctor sets -1
-  uint8_t padB8[8];     //0xB8 - 0xBF — unproven padding
+  uint8_t padB8[4];     //0xB8 - 0xBB — unproven padding
   int32_t mBC;          //0xBC — ctor sets -1
+  uint8_t pad_C0[0x4];  //0xC0 — unproven gap
   uint32_t mC4;         //0xC4 — ctor zero
   int32_t mC8;          //0xC8 — ctor -1; final vcall on parent slot 0xc8 (w1=0xc)
   int32_t mCc;          //0xCC — ctor -1
@@ -52,7 +53,7 @@ class RaceDirectorPlayer : public Actor {
   uint8_t padE9[7];     //0xE9 — unproven padding
   uint8_t padF0[8];     //0xF0 — unproven padding
   // +0xf8/+0x118/+0x12c: self-referencing member heads (ctor 0x70d40/0x70d64)
-  uint8_t mF8[0x134];    //0xF8 - 0x22B
+  uint8_t mF8[0x134];    //0xF8 - 0x22B  // unproven
   uint32_t mCell22c;     //0x22C — copied from the [0x12fb148] global pair
   uint16_t mFfff230;     //0x230 — ctor 0xFFFF
   uint16_t mFfff232;     //0x232 — ctor 0xFFFF

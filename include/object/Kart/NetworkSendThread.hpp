@@ -14,6 +14,7 @@ namespace object {
 class NetworkSendThread {
  public:
   void* vptr;  // 0x00 — passed by the caller (cell+0x10)
+  uint8_t pad_8[0x20];  //0x8 — unproven gap
                // (own fields unmapped)
 };
 }  // namespace object

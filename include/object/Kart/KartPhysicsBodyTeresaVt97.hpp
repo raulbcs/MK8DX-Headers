@@ -16,6 +16,7 @@ class KartPhysicsBodyTeresaVt97 : public KartPhysicsBody {
   uint64_t mZero340;     // 0x340 — ctor zero
   uint8_t mField348;     // 0x348 — ctor-written
   uint8_t mPad349;       // 0x349 — ctor zero
+  uint8_t pad_34A[0x6];  //0x34A — unproven gap
 };
 }  // namespace object
 

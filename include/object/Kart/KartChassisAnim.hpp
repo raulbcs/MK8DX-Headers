@@ -15,6 +15,7 @@ struct KartChassis;  // KartChassis.hpp
 struct KartChassisAnim {
   uint8_t pad_00[8];          // 0x00 — vtable ptr
   uint32_t u08;               //0x08 — ctor zero
+  uint8_t pad_C[0x4];  //0xC — unproven gap
   KartVehicle* kart_vehicle;  //0x10 — ctor arg
   void* chassis_10;           //0x18 — ctor arg: KartChassis+0x10 subcomponent
   uint8_t pad_020[0x30];      //0x20 — ctor zeroes through 0x4F
@@ -37,11 +38,14 @@ struct KartChassisAnim {
   int32_t s_f8;               //0xF8 — ctor sets -1
   uint8_t pad_fc[4];          //0xFC — unproven padding
   uint32_t u100;              //0x100 — ctor zero
+  uint8_t pad_104[0x4];  //0x104 — unproven gap
   uint64_t u108;              //0x108 — ctor zero
   uint32_t u110;              //0x110 — ctor zero
+  uint8_t pad_114[0x4];  //0x114 — unproven gap
   uint64_t u118;              //0x118 — ctor zero
   int32_t s120;               //0x120 — ctor sets -1
   uint16_t u124;              //0x124 — ctor sets 0xFFFF
+  uint8_t pad_126[0x2];  //0x126 — unproven gap
   int32_t s128;               //0x128 — ctor sets -1
   uint16_t u12c;              //0x12C — ctor sets 0xFFFF
   uint8_t pad_12e[2];         //0x12E — unproven padding

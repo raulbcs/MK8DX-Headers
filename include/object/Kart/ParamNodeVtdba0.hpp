@@ -41,6 +41,7 @@ namespace object {
 class ParamNodeVtdba0 {
  public:
   void* vtable;  // 0x00
+  uint8_t pad_8[0x530];  //0x8 — unproven gap
   // (own fields unmapped; secondary hook-band vptr at +0x30 = cell+0x108)
 };
 }  // namespace object

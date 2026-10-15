@@ -16,6 +16,7 @@ namespace object {
 class UINFPArchiveThread {
  public:
   void* vptr;  // 0x00 — passed by the caller (cell+0x10)
+  uint8_t pad_8[0x168];  //0x8 — unproven gap
                // (own fields unmapped)
 };
 }  // namespace object

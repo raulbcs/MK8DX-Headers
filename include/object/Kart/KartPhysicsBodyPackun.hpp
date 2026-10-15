@@ -13,5 +13,6 @@ class KartPhysicsBodyPackun : public KartPhysicsBody {
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap
   uint64_t mField330;    // 0x330 — ctor-written
   uint8_t mPad338;       // 0x338 — ctor zero
+  uint8_t pad_339[0x7];  //0x339 — unproven gap
 };
 }  // namespace object

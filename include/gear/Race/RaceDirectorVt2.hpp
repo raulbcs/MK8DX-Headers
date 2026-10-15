@@ -25,6 +25,7 @@ class RaceDirectorVt2 : public RaceDirector {
   // NOT a new allocation (ctor 0x4e338)
   uint16_t mU98;  //0x98 — ctor zero; reset by slot 0x100 (0x4e354)
   uint8_t mU9a;   //0x9A — ctor zero; same reset
+  uint8_t pad_9B[0x5];  //0x9B — unproven gap
   // NO explicit tail pad: the derived directors (Vt3-Vt7) start
   // their first field at 0x9C, i.e. INSIDE this class's tail
   // padding (Itanium tail-padding reuse; allocation is 0xA0)

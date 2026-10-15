@@ -24,5 +24,6 @@ class KartPhysicsBodySHorn : public KartPhysicsBody {
   uint32_t mZero368;     // 0x368 — ctor zero
   uint8_t mPad36c;       // 0x36c — ctor zero
   uint8_t mField36d;     // 0x36d — ctor-written
+  uint8_t pad_36E[0x2];  //0x36E — unproven gap
 };
 }  // namespace object

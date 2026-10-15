@@ -19,6 +19,7 @@ namespace nn::nex {
 class ObjectThreadRoot {
  public:
   void* vtable;  // 0x00 — 0x12e5928 for the WebSocketClient instantiation
+  uint8_t pad_8[0x1110];  //0x8 — unproven gap
                  // ObjectThread<WebSocketClient> is 0x1118 bytes; interior unmapped.
 };
 }  // namespace nn::nex

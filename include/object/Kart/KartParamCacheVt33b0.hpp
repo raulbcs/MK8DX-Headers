@@ -5,7 +5,7 @@
 #include "object/Kart/KartParamCache.hpp"
 
 namespace object {
-// KartParamCacheVt33b0 — address-anchored name (vptr 0x12f33b0, cell 0x13152c8, n=13, site 0xa83f70, ctor 0xa83984, alloc 0xa0).
+// KartParamCacheVt33b0 — address-anchored name (vptr 0x12f33b0, cell 0x13152c8, n=13, site 0xa83f70, ctor 0xa83984, alloc UNPROVEN — cite refuted by ctor stores reaching 0x1C8).
 // Variant of the 0x63c6f8 param-cache cluster.
 class KartParamCacheVt33b0 : public KartParamCache {
  public:

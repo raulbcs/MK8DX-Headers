@@ -16,6 +16,7 @@ namespace nn::nex {
 class JobTerminate {
  public:
   void* vtable;           // 0x00
+  uint8_t pad_8[0x98];  //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
   uint8_t mPada0[0xa0];  // 0xa0 — unproven gap (object fully constructed by the shared
 };

@@ -49,22 +49,23 @@
 namespace recorder {
 
 struct QuantChannelCommon {
-  uint8_t pad_00[0x1c0];
+  uint8_t pad_00[0x1c0];  // unproven
   uint32_t type_1c0;       //0x1C0 — numValues (12 = p_move_mtx 3x vec4,
                            //      4 = scalar channels; factory: 4/8/12)
   uint32_t width_1c4;      //0x1C4 — token bytes consumed per fresh tick
                            //      (readers: 0x1cb584 u16, 0x1cb0cc vec2 s16,
                            //       0xa1404 raw memmove, 0x26a00 u8);
                            //      formats seen: 1 (u8), 4 (u32), 6
-  uint8_t pad_1c8[0x28];   //0x1C8
+  uint8_t pad_1c8[0x28];   //0x1C8  // unproven
   float step_1f0;          //0x1F0 — step (s2 argument)
   float inv_step_1f4;      //0x1F4 — quantization multiplier (1/step-derived)
   float step2_1f8;         //0x1F8 — secondary step (1/inv when step != 0)
-  uint8_t pad_1fc[0x24];   //0x1FC
+  uint8_t pad_1fc[0x24];   //0x1FC  // unproven
   uint64_t deltaOnce_220;  //0x220 — delta once-changed state (u64 pair
   uint64_t deltaOnce_228;  //0x228   with the slot below)
-  uint8_t pad_230[0x48];   //0x230
+  uint8_t pad_230[0x48];   //0x230  // unproven
   void* owner_278;         //0x278 — x19 argument (owning hub object /
+  uint8_t pad_280[0x18];  //0x280 — unproven gap
                            //      backref to the mgr on read-side objects)
 };
 

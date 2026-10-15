@@ -44,6 +44,7 @@ class RaceDirectorVt5758 : public RaceDirectorBase38 {
   uint16_t mZero9c;      //0x9c — ctor zero
   uint8_t pad9e[2];      //0x9e — unproven padding
   uint8_t mZeroA0[0xe];  //0xa0 — ctor zeroes 0xa0..0xad (two
+  uint8_t pad_AE[0x2];  //0xAE — unproven gap
   // overlapping stores: u64 @0xa0, unaligned
   // u64 @0xa6)
   // (0xb0 total, binary extent 0xae)

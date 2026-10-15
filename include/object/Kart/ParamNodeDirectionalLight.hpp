@@ -3,7 +3,7 @@
 #include <cstdint>
 
 namespace object {
-// ParamNodeDirectionalLight — named from ctor string evidence: ctor params SkyColor/GroundColor/Intensity/Direction (EN/JP, 0xef9183-0xef92cd) (was address-anchored ParamNodeVt2c98) (vptr 0x12b2c98, cell 0x130d9e0, n=23, site 0x64d254, ctor 0x64d22c, alloc 0x28).
+// ParamNodeDirectionalLight — named from ctor string evidence: ctor params SkyColor/GroundColor/Intensity/Direction (EN/JP, 0xef9183-0xef92cd) (was address-anchored ParamNodeVt2c98) (vptr 0x12b2c98, cell 0x130d9e0, n=23, site 0x64d254, ctor 0x64d22c, alloc UNPROVEN — cite refuted by ctor stores reaching 0x1B8).
 // Node class of the 0x647f40 hook-band cluster (shared trivial band
 // 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
 // [this+0x1c]).
