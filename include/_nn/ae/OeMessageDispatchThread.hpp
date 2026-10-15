@@ -39,5 +39,7 @@ class OeMessageDispatchThread {
   uint64_t mZeroBf0;  // 0xbf0 — ctor zero
   uint64_t mZeroBf8;  // 0xbf8 — ctor zero
                       // (0xc00 total)
+// extent 0xc00 (prior-survey 0xc00 total)
+
 };
 }  // namespace nn::ae

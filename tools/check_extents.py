@@ -45,8 +45,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/_nn/account/NetworkServiceAccountId.hpp
 #   include/_nn/account/Uid.hpp
 #   include/_nn/ae/AppletThreadHost.hpp
-#   include/_nn/ae/ErrorAppletThread.hpp
-#   include/_nn/ae/OeMessageDispatchThread.hpp
 #   include/_nn/ae/TimeSyncThread.hpp
 #   include/_nn/atk/BiquadFilter.hpp
 #   include/_nn/atk/detail/driver/SoundThread.hpp
@@ -83,7 +81,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/enl/ContentTransporter/ContentTransporterForMulti.hpp
 #   include/enl/Framework.hpp
 #   include/enl/Peer/UniqueID.hpp
-#   include/enl/TaskThread.hpp
 #   include/eui/ControlBase.hpp
 #   include/eui/LayoutEx.hpp
 #   include/eui/Screen/Screen.hpp
@@ -177,7 +174,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/KartInfoProxy.hpp
 #   include/object/Kart/KartMatrixInfo.hpp
 #   include/object/Kart/KartModelBackgroundLoadThread.hpp
-#   include/object/Kart/KartParamCacheMid2.hpp
 #   include/object/Kart/KartParamCacheVtd608.hpp
 #   include/object/Kart/LowPrioWorkerThread.hpp
 #   include/object/Kart/ParamChannelVt38f8.hpp

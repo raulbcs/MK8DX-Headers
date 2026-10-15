@@ -38,5 +38,8 @@ class TaskThread {
   uint32_t mConf2b8;        // 0x2b8 — config[0x3c]
   uint8_t pad2bc[4];        // 0x2bc — to alloc size
                             // (0x2c0 total)
+// extent 0x2c0 (prior-survey 0x2c0 total; cross-checked: alloc 0x2c0 @0x71002700d8 → ctor 0x71002700fc stores 0x2c0)
+  uint8_t mGap100[8];    // 0x100 — unproven gap
+  uint8_t mGap26c[4];    // 0x26c — unproven gap
 };
 }  // namespace enl
