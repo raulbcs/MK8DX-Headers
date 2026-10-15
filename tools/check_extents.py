@@ -153,7 +153,6 @@ NO_EXTENT_ALLOWLIST = """
 #   include/gsys/Animation/AnimationAccessKey.hpp
 #   include/gsys/Model/Model.hpp
 #   include/gsys/Model/ModelInfo.hpp
-#   include/gsys/Model/ModelResource.hpp
 #   include/naked/Network/NetworkDataDrive.hpp
 #   include/object/AI/AIUnit.hpp
 #   include/object/Kart/AudioTaskThread.hpp
