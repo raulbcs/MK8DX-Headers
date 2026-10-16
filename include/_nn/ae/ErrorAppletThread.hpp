@@ -19,7 +19,6 @@ class ErrorAppletThread : public AppletThread {
   uint8_t mFlagF4;       // 0xf4 — ctor zero
   uint8_t padF5[7];      // 0xf5 — unproven padding
                          // (0xfc total)
-// extent 0xfc (prior-survey 0xfc total)
-
+  // extent 0xfc (prior-survey 0xfc total)
 };
 }  // namespace nn::ae

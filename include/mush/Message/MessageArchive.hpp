@@ -2,18 +2,13 @@
 
 #include <cstdint>
 
-// Message system archive definitions ("Mush" = Mushroom, Nintendo's message
-// library). Placeholder names: the v400 binary carries no symbol or RTTI for
-// this family — the classes are evidenced by the 14 "/Common/Mush/<X>.bin"
-// rodata paths, one ctor per category, a shared base ctor, and 15 adjacent
-// vtables at 0x71012cbda8-0x71012cbef8 (base vtable 0x71012cbeb0 sits in the
-// middle of the group). Evidence targets v400.
+// mush::MessageArchive family — placeholder names (no symbol/RTTI in v400);
+// evidenced by 14 "/Common/Mush/<X>.bin" rodata paths and vtables
+// 0x71012cbda8-0x71012cbef8.
 
 namespace mush {
-// One message-archive resource. The game instantiates 14 subclasses and
-// keeps them in two parallel arrays of the owning message-system object
-// (fields 0x20-0x88 and 0x90-0xf8); setup runs under the heap named
-// "System::Mushroom".
+// MessageArchive — base resource; base ctor v400 0x82c8f8 (size 0x30);
+// 14 subclasses in two parallel arrays (owner fields 0x20-0x88/0x90-0xf8).
 class MessageArchive {
  public:
   virtual ~MessageArchive();
@@ -21,7 +16,7 @@ class MessageArchive {
   std::uint32_t mCategoryFourCC;  // 0x8 - e.g. 'AIBL', 'CTRL', 'ITEM', 'PERF'
   std::uint32_t mCategoryParam;   // 0xc
   void* mVtable2;                 // 0x10 - second vtable (mixin), shared by all 14
-  uint8_t pad_18[0x18];  //0x18 — unproven gap
+  uint8_t pad_18[0x18];           //0x18 — unproven gap
   const char* mArchivePath;       // 0x18 - "/Common/Mush/<X>.bin" (8 more bytes follow, null)
 
   MessageArchive();  // v400: 0x82c8f8 (base ctor, size 0x30)

@@ -4,12 +4,6 @@
 
 namespace object {
 // ParamNodeVt26c0 — address-anchored name (vptr 0x12b26c0, GOT cell
-// 0x130d988). Node class of the 0x647f40 hook-band cluster
-// (param-cache super-family ring): vptr, fields to 0x30, recorder
-// channel-pair member at 0x30 (ctor pair 0x7100662f30/0x7100662f70),
-// tail to 0x50 (array stride 0x50 evidence, site 0x64a7e4).
-// Shares the trivial hook band 0x647f40-0x647f6c (return-1/ret/slot-0x78
-// thunk/ID compare vs [this+0x1c] — compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables).
 class ParamNodeVt26c0 {
  public:
   void* vtable;          // 0x00
@@ -19,9 +13,6 @@ class ParamNodeVt26c0 {
   uint8_t mPad18[0x18];  // 0x18 — unproven gap
   char mChan30[0x20];    // 0x30 — recorder channel-pair member
                          // (0x50 total)
-// extent 0x50 (in-place node partition: stur [elem-0x50]/+0xa0 at site 0x64a7e4)
-
+  // extent 0x50 (in-place node partition: stur [elem-0x50]/+0xa0 at site 0x64a7e4)
 };
 }  // namespace object
-
-// Naming: no ctor strings.

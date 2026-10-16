@@ -190,31 +190,31 @@ class KartPhysicsBodyKoura : public KartPhysicsBodyMid {
   // 0x3d4-0x3e8 = param block written by fns 0x7100030e4c-0x7100030eac
   // and 0x7100311xx (floats+u32); 0x3f0/0x400/0x404/0x408 state;
   // 0x428-0x45c = config block written by 0x7100031124-0x71000311a4.
-  uint8_t mFlag398;    // 0x398 — zeroed on ctor
-  uint8_t mFlag399;    // 0x399 — zeroed on ctor
-  uint8_t mFlag39a;    // 0x39a — zeroed on ctor
-  uint8_t mFlag39b;    // 0x39b — zeroed on ctor
-  uint32_t mField39c;  // 0x39c — zeroed on ctor
-  uint64_t mField3a0;  // 0x3a0 — zeroed on ctor
-  uint64_t mField3a8;  // 0x3a8 — zeroed on ctor
-  uint64_t mField3b0;  // 0x3b0 — zeroed on ctor
-  uint64_t mField3b8;  // 0x3b8 — zeroed on ctor
-  uint32_t mField3c0;  // 0x3c0 — zeroed on ctor
-  uint16_t mField3c4;  // 0x3c4 — zeroed on ctor; cleared by the wide
-                       // reset (root slot 91)
-  char mPad3c6[6];     // 0x3c6 — unproven padding; byte 0x3c1/0x3c2
-                       // boost/hop gates, byte 0x3c3 roast-active
-                       // (slot 98 phase gate)
-  uint16_t mField3cc;  // 0x3cc — packed start/respawn id pair: written
-  uint16_t mField3ce;  // 0x3ce — by slot 110 and the root slot 109 BFS
-                       // refresh; -1 = unset
-  uint16_t mField3d0;  // 0x3d0 — start-slot packed halfwords (slot 110);
-  uint16_t mField3d2;  // 0x3d2
-  char mPad3d4[0x24];  // 0x3d4 (state cluster 0x35c-0x3d2 is reset
-                       // by slot 0x71000325ac per race)
-  uint64_t mField3f8;  // 0x3f8
-  char mPad400[0x60];  // 0x400 — to end (0x460 total; proven by
+  uint8_t mFlag398;       // 0x398 — zeroed on ctor
+  uint8_t mFlag399;       // 0x399 — zeroed on ctor
+  uint8_t mFlag39a;       // 0x39a — zeroed on ctor
+  uint8_t mFlag39b;       // 0x39b — zeroed on ctor
+  uint32_t mField39c;     // 0x39c — zeroed on ctor
+  uint64_t mField3a0;     // 0x3a0 — zeroed on ctor
+  uint64_t mField3a8;     // 0x3a8 — zeroed on ctor
+  uint64_t mField3b0;     // 0x3b0 — zeroed on ctor
+  uint64_t mField3b8;     // 0x3b8 — zeroed on ctor
+  uint32_t mField3c0;     // 0x3c0 — zeroed on ctor
+  uint16_t mField3c4;     // 0x3c4 — zeroed on ctor; cleared by the wide
+                          // reset (root slot 91)
+  char mPad3c6[6];        // 0x3c6 — unproven padding; byte 0x3c1/0x3c2
+                          // boost/hop gates, byte 0x3c3 roast-active
+                          // (slot 98 phase gate)
+  uint16_t mField3cc;     // 0x3cc — packed start/respawn id pair: written
+  uint16_t mField3ce;     // 0x3ce — by slot 110 and the root slot 109 BFS
+                          // refresh; -1 = unset
+  uint16_t mField3d0;     // 0x3d0 — start-slot packed halfwords (slot 110);
+  uint16_t mField3d2;     // 0x3d2
+  char mPad3d4[0x24];     // 0x3d4 (state cluster 0x35c-0x3d2 is reset
+                          // by slot 0x71000325ac per race)
+  uint64_t mField3f8;     // 0x3f8
+  char mPad400[0x60];     // 0x400 — to end (0x460 total; proven by
   uint8_t pad_460[0x78];  //0x460 — unproven gap
-                       // operator new(0x460) at 0x7100035f10)
+                          // operator new(0x460) at 0x7100035f10)
 };
 }  // namespace object

@@ -4,17 +4,10 @@
 
 #include "RaceDirectorVt2.hpp"
 
-// RaceDirectorVt6 — PROVISIONAL vtable-anchored name. Vtable 0x11b3598
-// (GOT 0x12fbd10; the doc's 0x11b35a8 is the D1 slot, not the vptr),
-// typeinfo 0x53720 ("*(u32*)(this+0x9c) == 0"). Derives from
-// RaceDirectorVt2 (ctor 0x710005377c). Size 0xD8, proven by the allocation
-// site 0x710006ef64. Seeds 0xb8 with the rodata constant 11 and copies two
-// rodata tables ([0xf57b7c] u64 + u32) into 0xc0/0xc8.
-// Naming: rodata-seeded config (11 at 0xb8, two tables at 0xc0/0xc8); no name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// gear::RaceDirectorVt6 — PROVISIONAL vtable-anchored name; rodata-seeded
+// config (vtable 0x11b3598, ctor 0x710005377c, size 0xD8 —
+// extent 0xd4 (ctor 0x710005377c store reach; allocation site 0x710006ef64 news 0xD8)
+// Details: doc/gear/Race/RaceDirectorVt6.md
 
 namespace gear {
 class RaceDirectorVt6 : public RaceDirectorVt2 {
@@ -32,8 +25,6 @@ class RaceDirectorVt6 : public RaceDirectorVt2 {
   uint32_t mTableC8;    //0xC8 — ctor copies *(u32*)(0xf57b7c+8)
   uint16_t mZerocc;     //0xCC — ctor zero (u16)
   uint32_t mZerod0;     //0xD0
-  // (0xD8 total)
-// extent 0xd4 (ctor 0x710005377C stores reach 0xd4)
-  uint8_t mGapCE[2];  // 0xCE — unproven gap
+  uint8_t mGapCE[2];    // 0xCE — unproven gap
 };
 }  // namespace gear

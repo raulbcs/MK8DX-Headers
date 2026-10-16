@@ -3,15 +3,9 @@
 #include <cstdint>
 
 // RaceListItemF — PROVISIONAL vtable-anchored name ("F"). Manager list item
-// of the far race family (same wiring pattern as D/E; base chain 0x7d5450,
-// NOT Actor). Vtable 0x11b8ab8 (GOT 0x12fcca8). Ctor 0x71000c9e04; size 0x198,
-// proven by the allocation site 0x71003de7c4. Note: its typeinfo cell is
-// unreliable (points at unrelated code).
-// Naming: same wiring pattern, base chain 0x7d5450; typeinfo cell unreliable (points at unrelated code); no name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// of the far race family (base chain 0x7d5450, NOT Actor). Vtable 0x11b8ab8,
+// ctor 0x71000c9e04, size 0x198 (alloc 0x71003de7c4); typeinfo cell unreliable.
+// Details: doc/gear/Race/RaceListItemF.md
 
 namespace gear {
 class RaceListItemF {
@@ -23,7 +17,7 @@ class RaceListItemF {
   uint32_t m21c190;      //0x190 — ctor sets 0x21C
   uint32_t mZero194;     //0x194 — ctor zero
   // (0x198 total)
-// extent 0x198 (ctor 0x71000C9E04 stores reach 0x198)
+  // extent 0x198 (ctor 0x71000C9E04 stores reach 0x198)
   uint8_t mGap18C[4];  // 0x18C — unproven gap
 };
 }  // namespace gear

@@ -1,18 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (was address-anchored KartParamCacheVt30a8) (vptr
-// 0x12b30a8, GOT cell 0x130da78). Largest KartParamCache variant:
-// ctor 0x710064fb3c built by the factory 0x710065efbc (alloc 0x1a30).
-// NOT a KartParamCacheMid derive — it goes straight over the
-// KartParamCache base: embedded member at 0x1d0 (vptr 0x12b26b0, a
-// small cluster vtable — secondary base), recorder channel-pair
-// members from 0x200 on (pair 0x7100662f30/0x7100662f70, names
-// 0xef8f59/0xef8f60, cell 0x130d908), member writes up to 0x300+.
+// extent 0x1a30
 class KartParamCacheColorCorrection : public KartParamCache {
  public:
   void* mSecVt1d0;          // 0x1d0 — secondary vptr (0x12b26b0 +0x10)
@@ -109,8 +96,5 @@ class KartParamCacheColorCorrection : public KartParamCache {
   uint64_t mZero1a20;       // 0x1a20 — ctor zero
   uint32_t mZero1a28;       // 0x1a28 — ctor zero
   uint8_t mPad1a2c[0x4];    // 0x1a2c — unproven gap
-                            // (0x1a30 total)
 };
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

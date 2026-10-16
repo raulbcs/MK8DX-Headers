@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheNormalDrawer — named from ctor string evidence: ctor string tag 'aglNmdw' + 'NormalDrawer' name string (0xf1a9c5-0xf018f3) (was address-anchored KartParamCacheVt2ca0) (vptr 0x12f2ca0, cell 0x1315200, n=13, site 0xa9bb38, ctor 0xa9baf4).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0x48c
 class KartParamCacheNormalDrawer : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap
@@ -23,11 +16,6 @@ class KartParamCacheNormalDrawer : public KartParamCache {
   uint64_t mField470;      // 0x470
   uint8_t mPad478[0x10];   // 0x478 — unproven gap
   uint32_t mZero488;       // 0x488 — ctor zero
-// extent 0x48c (ctor 0x7100A9BAF4 stores reach 0x48c)
-
 };
-// dtor: pooled-array strides 0x9f8; resets cells 0x710130d918; fn size 0x130.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

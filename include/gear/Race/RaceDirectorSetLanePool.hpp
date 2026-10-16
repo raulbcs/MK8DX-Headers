@@ -5,17 +5,9 @@
 #include "RaceDirector.hpp"
 
 // RaceDirectorSetLanePool — PROVISIONAL vtable-anchored name. Per-lane
-// entry-pool manager of RaceDirectorPlayerSet: ctor 0x71000702e0 (Actor
-// base), primary vtable 0x11b4980 (GOT 0x12fc010), secondary at +0x38
-// (0x11b4a00, GOT 0x12fc018). Size 0xA8 (factory alloc 0x6f380). Holds
-// three 0x30 entry pools; entries are {fn, ctx} callback pairs filled from
-// GOT code cells (0x704a4/0x704b0/0x70508/0x705a4). Config (qword+2 dwords)
-// copied from the rodata default [0xf57b7c] (dword +8 = -1 at +0x94).
-// Naming: entry-pool manager: {fn,ctx} callbacks from GOT code cells and rodata default [0xf57b7c]; behavior mapped, name not.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// entry-pool manager of RaceDirectorPlayerSet; ctor 0x71000702e0, vtables
+// 0x11b4980 / 0x11b4a00 (+0x38), size 0xA8 (factory alloc 0x6f380).
+// Details: doc/gear/Race/RaceDirectorSetLanePool.md
 
 namespace gear {
 class RaceDirectorSetLanePool : public Actor {

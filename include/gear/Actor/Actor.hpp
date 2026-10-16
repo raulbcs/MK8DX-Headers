@@ -10,14 +10,7 @@
 #include <prim/seadRuntimeTypeInfo.h>
 
 namespace gear {
-// Inherits sead::hostio::Node: the constructor (0x71000001b4) calls a
-// base ctor with its own vtable before writing Actor's, and the vtable
-// at .data:0x11ad018 is followed by a second sub-vtable at 0x11ad098 —
-// multiple inheritance, matching the sead hostio base.
-// sead::hostio::Node resolves to the MK8DX fork override
-// (sead/hostio/seadHostIONode.hpp — hostio disabled, size 0x38); the
-// open-ead Node does not match the 4.0.0 binary. Node supplies the
-// fields at 0x08..0x30.
+// Actor — inherits sead::hostio::Node (fields 0x08..0x30) + SeadGameDeallocator; ctor 0x71000001b4, vtable .data:0x11ad018 (sub-vtable 0x11ad098)
 class Actor : public sead::hostio::Node, public SeadGameDeallocator {
  public:
   virtual bool checkDerivedRuntimeTypeInfo(sead::RuntimeTypeInfo::Interface const*) const;  //0x00

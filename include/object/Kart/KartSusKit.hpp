@@ -23,7 +23,7 @@ struct KartSusKit {
   float f_bc;                 //0xBC — ctor sets -4.0f
   uint8_t pad_0c0[0x10];      //0xC0 - 0xCF — ctor zeroes
   uint32_t u_d0[0x11];        //0xD0..0x113 — ctor ladder from globals
-  uint8_t pad_114[0x4];  //0x114 — unproven gap
+  uint8_t pad_114[0x4];       //0x114 — unproven gap
                               // 0x12fce50[0] and 0x12fce10[0]: 0xD0=0, then alternating g1/g2
                               // (0xD4..0x110), 0x114..0x117 zero
   float f118;                 //0x118 — course-conditional float from tables 0xf20860/0x68/

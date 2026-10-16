@@ -10,8 +10,8 @@ namespace object {
 // FUN_710063ff98 at table+0x3c and FUN_710063fb98 at table+0x30 — different
 // table objects, same entry shape) — extent 0xc.
 struct RegistryStageTableEntry {
-    char* name;               // 0x00 const char*
-    uint32_t id;              // 0x08
+  char* name;   // 0x00 const char*
+  uint32_t id;  // 0x08
 };
 // Entry stride is 0xc (C++ sizeof would pad to 0x10; binary layout ends at +0xc).
 

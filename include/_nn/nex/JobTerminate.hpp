@@ -4,7 +4,7 @@
 
 namespace nn::nex {
 // RTTI-confirmed (typeinfo mangled name: N2nn3nex12JobTerminateE).
-                       // inline job ctor 0x588b04 at the 0xa43d78 new; no further writes)
+// inline job ctor 0x588b04 at the 0xa43d78 new; no further writes)
 // Object size 0x140 (allocation size at the factory new 0xa43d78, which constructs the
 // JobTerminate inline: shared job ctor 0x588b04 + vptr store from GOT cell 0x1314e00).
 // NOTE: nearby function 0xa43c10 is NOT this class's ctor — it is a manager method whose
@@ -16,8 +16,8 @@ namespace nn::nex {
 class JobTerminate {
  public:
   void* vtable;           // 0x00
-  uint8_t pad_8[0x98];  //0x8 — unproven gap
+  uint8_t pad_8[0x98];    //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
-  uint8_t mPada0[0xa0];  // 0xa0 — unproven gap (object fully constructed by the shared
+  uint8_t mPada0[0xa0];   // 0xa0 — unproven gap (object fully constructed by the shared
 };
 }  // namespace nn::nex

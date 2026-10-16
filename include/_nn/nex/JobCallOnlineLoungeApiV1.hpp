@@ -11,11 +11,10 @@ namespace nn::nex {
 class JobCallOnlineLoungeApiV1 {
  public:
   void* vtable;           // 0x00
-  uint8_t pad_8[0x98];  //0x8 — unproven gap
+  uint8_t pad_8[0x98];    //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
                           // (no own-field ctor evidence found)
   // Object size 0x230 (allocation size at the factory new preceding ctor 0x907d10).
   uint8_t mPadA0[0x190];  // 0xA0 — unproven gap (region unmapped by ctor analysis)
 };
 }  // namespace nn::nex
-

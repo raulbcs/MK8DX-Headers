@@ -4,16 +4,10 @@
 
 #include "RaceDirector.hpp"
 
-// RaceDirectorSubActor60 — PROVISIONAL vtable-anchored name. The first
-// sub-actor RaceDirector creates at +0x60 (ctor 0x7100066448, base
-// 0x7b9a18). Size 0xB0, proven by the allocation site inside the
-// RaceDirector ctor (0x4d8c0 `mov w0,#0xb0`). Vtable 0x11b41c8 (GOT 0x12fbeb0). Owns one same-size
-// child (ctor 0x66ba8) registered in its own child array.
-// Naming: RaceDirector child at +0x60 (ctor 0x66448, size 0xB0); parent ctor is the only consumer; no name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// RaceDirectorSubActor60 — PROVISIONAL vtable-anchored name. First sub-actor
+// RaceDirector creates at +0x60; ctor 0x7100066448 (base 0x7b9a18), vtable
+// 0x11b41c8, size 0xB0 (alloc 0x4d8c0). Owns one same-size child (0x66ba8).
+// Details: doc/gear/Race/RaceDirectorSubActor60.md
 
 namespace gear {
 struct RaceDirectorSubActor60Child;  // RaceDirectorSubActor60Child.hpp

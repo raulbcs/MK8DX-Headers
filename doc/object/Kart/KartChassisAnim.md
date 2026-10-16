@@ -1,0 +1,73 @@
+# KartChassisAnim
+
+## Identity
+
+KartChassisAnim — size 0x130, proven by operator new(0x130) in the
+KartVehicle ctor (v400 0x7100170308, stored at KartVehicle+0x58; ctor
+0x710012289c receives the KartVehicle* and KartChassis+0x10).
+Name mirrors KartVehicle::mKartChassisAnim (field-mirror evidence); no MethodTree
+string. The ctor also fills the 0x80..0xCB region with 0xFF and then
+patches cells from globals 0x12fae28 / 0x12fada8 (beyond the dumped tail).
+
+## Member notes
+
+Notes in field order; proven from the cited addresses.
+
+- KartVehicle.hpp
+- KartChassis.hpp
+- 0x00 — vtable ptr
+- 0x08
+- 0xC — unproven gap
+- 0x10 — ctor arg
+- 0x18 — ctor arg: KartChassis+0x10 subcomponent
+- 0x20 — ctor zeroes through 0x4F
+- 0x50..0x67 — ctor sets -1 at 0x50/0x52/0x54/0x58/ 0x5A/0x5C/0x60/0x62/0x64/0x66 (0x56 and 0x5E left untouched)
+- 0x68 — ctor sets -1
+- 0x6C
+- 0x70
+- 0x78 — ctor sets 0xBFF80FFFFFFFFFFF (two raw u32 cells)
+- 0x80..0xCB — memset 0xFF (ctor 0x122930), cells then patched from globals 0x12fae28 / 0x12fada8
+- 0xCC
+- 0xD0 — ctor sets 0.0f
+- 0xD4 — ctor sets 1.5f (0x3FC00000)
+- 0xD8 — ctor sets -1
+- 0xE0 — ctor sets -1
+- 0xE8 — ctor sets -1
+- 0xF0 — ctor sets -1
+- 0xF4
+- 0xF8 — ctor sets -1
+- 0xFC — unproven padding
+- 0x100
+- 0x104 — unproven gap
+- 0x108
+- 0x110
+- 0x114 — unproven gap
+- 0x118
+- 0x120 — ctor sets -1
+- 0x124 — ctor sets 0xFFFF
+- 0x126 — unproven gap
+- 0x128 — ctor sets -1
+- 0x12C — ctor sets 0xFFFF
+- 0x12E — unproven padding
+
+## Construction / init order
+
+In field/offset order (= binary init order within this header):
+- 0x10 — ctor arg
+- 0x18 — ctor arg: KartChassis+0x10 subcomponent
+- 0x20 — ctor zeroes through 0x4F
+- 0x50..0x67 — ctor sets -1 at 0x50/0x52/0x54/0x58/ 0x5A/0x5C/0x60/0x62/0x64/0x66 (0x56 and 0x5E left untouched)
+- 0x68 — ctor sets -1
+- 0x78 — ctor sets 0xBFF80FFFFFFFFFFF (two raw u32 cells)
+- 0x80..0xCB — memset 0xFF (ctor 0x122930), cells then patched from globals 0x12fae28 / 0x12fada8
+- 0xD0 — ctor sets 0.0f
+- 0xD4 — ctor sets 1.5f (0x3FC00000)
+- 0xD8 — ctor sets -1
+- 0xE0 — ctor sets -1
+- 0xE8 — ctor sets -1
+- 0xF0 — ctor sets -1
+- 0xF8 — ctor sets -1
+- 0x120 — ctor sets -1
+- 0x124 — ctor sets 0xFFFF
+- 0x128 — ctor sets -1
+- 0x12C — ctor sets 0xFFFF

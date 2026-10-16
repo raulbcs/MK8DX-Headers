@@ -3,26 +3,17 @@
 #include <cstdint>
 
 // RaceListItemG — PROVISIONAL vtable-anchored name ("G"). Manager list item
-// of the far race family (base chain 0x7ee400, NOT Actor). Vtable
-// 0x11b9650 (GOT 0x12fcfe8). Ctor 0x710010adec; size 0xA10, proven by the
-// allocation site 0x71003989cc. Registers into manager+0x218.
-// RECLASSIFIED: offsets 0x00-0x9AF below are the primary base
-// RaceListItemGBase (vtable 0x12c8f68, ctor 0x7ee400 — see
-// RaceListItemGBase.hpp); this ctor overwrites the vptr and starts its own
-// fields at 0x9B0. Kept flat here (the m108/m10C/m110 writes sit inside
-// the base extent).
-// Naming: alloc 0xa10 at 0x3989cc inside the per-mode dispatcher, registered at mgr+0x218; no name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// of the far race family (base chain 0x7ee400, NOT Actor). Vtable 0x11b9650,
+// ctor 0x710010adec, size 0xA10 (alloc 0x71003989cc); registers into
+// manager+0x218. Offsets 0x00-0x9AF are the primary base RaceListItemGBase.
+// Details: doc/gear/Race/RaceListItemG.md
 
 namespace gear {
 class RaceListItemG {
  public:
   void* vtable;           //0x00 — vtable ptr
   uint8_t pad08[0xf8];    //0x08 — unproven padding
-  uint8_t pad_100[0x8];  //0x100 — unproven gap
+  uint8_t pad_100[0x8];   //0x100 — unproven gap
   uint32_t m108;          //0x108 — ctor sets 8
   uint32_t m10c;          //0x10C — ctor sets 0xC
   uint32_t m110;          //0x110 — ctor sets 4

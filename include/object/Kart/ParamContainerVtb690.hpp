@@ -4,18 +4,6 @@
 
 namespace object {
 // ParamContainerVtb690 — address-anchored name (vptr 0x12bb690, GOT cell
-// 0x130e4b8). Large container of the 0x647f40 hook-band cluster
-// (param-cache super-family ring): n=25 slots, allocation
-// 0x1678 at site 0x6fc0a0. Shares the trivial hook band
-// 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare; compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables).
-// Own fields mapped from the inlined construction at the quoted site
-// (vptr stores at +0x0/+0x30, tail count block); interior array region unproven.
-// Vtable slot facts :
-// - Slot 10 (0x60): guard-protected static singleton getter. Guard cell
-//   0x7101305860; instance cell 0x7101305870 initialised to
-//   [0x7101305868]+0x10 on first call; returns the instance pointer.
-//   true function size 0x60 bytes (gap-split artifact).
-//   [paramContainerVtb690StaticInstanceSlot10_71006fc208]
 class ParamContainerVtb690 {
  public:
   void* vtable;            // 0x00
@@ -23,8 +11,6 @@ class ParamContainerVtb690 {
   uint8_t mPad30[0x8];     // 0x30 — secondary hook-band vptr (ctor-written)
   uint8_t mPad38[0x1640];  // 0x38 — array/body region — unproven gap
                            // (0x1678 total, factory alloc)
-// extent 0x1678 (factory allocation size 0x1678)
+  // extent 0x1678 (factory allocation size 0x1678)
 };
 }  // namespace object
-
-// Naming: container shell of the 0x647f40 hook-band cluster; no ctor strings and no per-class static identity (runtime param id only).

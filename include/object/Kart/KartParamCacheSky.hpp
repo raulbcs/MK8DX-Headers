@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheSky — named from ctor string evidence: ctor string tag 'aglsky' + params sun_indensity/rayleigh (0xf02b5f-0xf1bfea) (was address-anchored KartParamCacheVt2fb8) (vptr 0x12f2fb8, cell 0x1315270, n=13, site 0xaae038, ctor 0xaadfec).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0xdb0
 class KartParamCacheSky : public KartParamCache {
  public:
   uint8_t mPad40[0x208];   // 0x40 — unproven gap
@@ -59,11 +52,6 @@ class KartParamCacheSky : public KartParamCache {
   uint32_t mZeroda0;       // 0xda0 — ctor zero
   uint8_t mPadda4[0x4];    // 0xda4 — unproven gap
   uint64_t mZeroda8;       // 0xda8 — ctor zero
-// extent 0xdb0 (ctor 0x7100AADFEC stores reach 0xdb0)
-
 };
-// dtor: re-stamps vptr 0x1315270; resets cells 0x130d848,0x130d920; fn size 0x198.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

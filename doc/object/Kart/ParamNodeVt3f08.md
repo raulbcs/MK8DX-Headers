@@ -1,0 +1,28 @@
+# ParamNodeVt3f08
+
+ ParamNodeVt3f08 — address-anchored name (vptr 0x12f3f08, GOT cell
+ 0x1315430). Node class of the 0x647f40 hook-band cluster
+ (param-cache super-family ring): vptr, fields to 0x30, recorder
+ channel-pair member at 0x30 (ctor pair 0x7100662f30/0x7100662f70),
+ tail to 0x50 (array stride 0x50 evidence, site 0xa8fd08).
+ Shares the trivial hook band 0x647f40-0x647f6c (return-1/ret/slot-0x78
+ thunk/ID compare vs [this+0x1c] — compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables).
+ Vtable slot facts :
+ - Slot 0 (0x10): destructor (returns self, no operator delete). Installs
+   the static vptr from cell 0x7101315430 (+0x10), calls member cleanup
+   0x7100ae1308 on self+0xa8, self+0x90 and self+0x78, sets self+0x50 to
+   [0x710130d918]+0x10, then installs the outer vptr from cell
+   0x710130d920 (+0x10). true function size 0x74 bytes.
+   [paramNodeVt3f08DtorSlot0_7100adb5d0]
+ - Slot 1 (0x18): deleting destructor. Installs cell 0x710151430 (+0x10)
+   into self+0x0 and self+0x90, calls 0x7100ae1308 on self+0xa8,
+   self+0x120 and self+0x78, then tail-calls operator delete(self).
+   true function size 0x58 bytes. [vt3f08DeletingDtorSlot1_7100adb644]
+
+## Naming and additional notes
+
+ Naming: no ctor strings.
+
+## Construction / init order
+
+- ParamNodeVt3f08 — address-anchored name (vptr 0x12f3f08, GOT cell 0x1315430). Node class of the 0x647f40 hook-band cluster (param-cache super-family ring): vptr, fields to 0x30, recorder channel-pair member at 0x30 (ctor pair 0x7100662f30/0x7100662f70), tail to 0x50 (array stride 0x50 evidence, site 0xa8fd08). Shares the trivial hook band 0x647f40-0x647f6c (return-1/ret/slot-0x78 thunk/ID compare vs [this+0x1c] — compare 0x7100647f6c (paramNodeSharedTypeIdEquals) is slot 0x50 shared by 61 ParamNode vtables). Vtable slot facts : - Slot 0 (0x10): destructor (returns self, no operator delete). Installs the static vptr from cell 0x7101315430 (+0x10), calls member cleanup 0x7100ae1308 on self+0xa8, self+0x90 and self+0x78, sets self+0x50 to [0x710130d918]+0x10, then installs the outer vptr from cell 0x710130d920 (+0x10). true function size 0x74 bytes. [paramNodeVt3f08DtorSlot0_7100adb5d0] - Slot 1 (0x18): deleting destructor. Installs cell 0x710151430 (+0x10) into self+0x0 and self+0x90, calls 0x7100ae1308 on self+0xa8, self+0x120 and self+0x78, then tail-calls operator delete(self). true function size 0x58 bytes. [vt3f08DeletingDtorSlot1_7100adb644] Naming: no ctor strings.

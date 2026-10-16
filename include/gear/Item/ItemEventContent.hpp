@@ -9,9 +9,8 @@ struct ItemEventContent {
   uint16_t mItemSerial;  //0x02
   // Unproven — Switch ctor not identified (no RTTI, stripped binary);
   // extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference
-  // layout preserved).
+  // layout preserved). Details: doc/gear/Item/ItemEventContent.md
   char mPad04[0xFC];  // unproven - extent from sizeof(ItemEventContent) = 0x100 (32-bit reference)
-// extent 0x100 (extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference))
-
+  // extent 0x100 (extent fixed by sizeof(ItemEventContent) = 0x100 (32-bit reference))
 };
 }  // namespace gear

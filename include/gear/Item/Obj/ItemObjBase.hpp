@@ -18,7 +18,7 @@
 
 namespace gear {
 // extent 0x328 (allocation size 0x328 @0x71001816b0 in the KartVehicleMove
-// ctor → 0x71003aef8c; stores reach 0x320 and match the 0x2f0..0x318 fields)
+// ctor -> 0x71003aef8c; stores reach 0x320). Details: doc/gear/Item/ItemObjBase.md
 class ItemObjBase : public Actor {
  public:
   virtual bool checkDerivedRuntimeTypeInfo(
@@ -48,12 +48,12 @@ class ItemObjBase : public Actor {
   virtual f32 getColRateForNetRecvKart() const {
     return 0.2f;
   };  // 0x6C
-      // defined
+  // defined
   virtual void reactHitKart(
-      gear::ItemReactInfo const& reactInfo);  // 0x70 defined
+      gear::ItemReactInfo const& reactInfo);                      // 0x70 defined
   virtual void reactBreak(gear::ItemReactInfo const& reactInfo);  // 0x74
                                                                   // defined
-  virtual void reactVanish();  // 0x78 defined
+  virtual void reactVanish();                                     // 0x78 defined
   virtual void reactReflect(float, sead::Vector3<float> const&,
                             bool);                          // 0x7C defined
   virtual void reactDamage(gear::ItemReactInfo const&) {};  // 0x80 defined
@@ -129,7 +129,8 @@ class ItemObjBase : public Actor {
   virtual void calcReflectTrampoline_(sead::Vector3<float> const&) {
   };  // 0x180 defined
 
-  enum EColMode : int32_t { ECOLMODE00, ECOLMODE01 };
+  enum EColMode : int32_t { ECOLMODE00,
+                            ECOLMODE01 };
 
   uint8_t mPad38[0x20];               // 0x38 — unproven padding
   EItemType mItemType;                // 0x58
@@ -208,6 +209,5 @@ class ItemObjBase : public Actor {
   bool isDisappearState(void) const;
 
   ItemObjBase(gear::EItemType, int);  // defined
-
 };
 }  // namespace gear

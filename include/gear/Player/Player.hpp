@@ -13,7 +13,6 @@ class Player {
   RaceKartInfo mKartInfo;
 
   void setPlayerInfoFromOther(gear::PlayerInfo const&, bool, bool);
-// extent 0x210 (extent fixed by mKartInfo at 0x210 (32-bit reference size))
-
+  // extent 0x210 (extent fixed by mKartInfo at 0x210 (32-bit reference size))
 };
 }  // namespace gear

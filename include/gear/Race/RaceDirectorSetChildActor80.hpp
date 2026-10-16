@@ -5,14 +5,9 @@
 #include "RaceDirector.hpp"
 
 // RaceDirectorSetChildActor80 — PROVISIONAL vtable-anchored name. Fallback
-// child director of RaceDirectorPlayerSet: ctor 0x710006e5e0 (Actor base),
-// vtable 0x11b46d8 (GOT 0x12fbf90). Size 0x80 (factory alloc 0x6f12c; used
-// in the fallback dispatch branch). Owner back-pointer at +0x58.
-// Naming: fallback child ctor 0x6e5e0; only the factory branch 0x6f12c names nothing.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// child director of RaceDirectorPlayerSet; ctor 0x710006e5e0, vtable
+// 0x11b46d8, size 0x80 (factory alloc 0x6f12c); owner at +0x58.
+// Details: doc/gear/Race/RaceDirectorSetChildActor80.md
 
 namespace gear {
 class RaceDirectorSetChildActor80 : public Actor {

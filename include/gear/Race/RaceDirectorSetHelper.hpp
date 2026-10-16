@@ -3,13 +3,9 @@
 #include <cstdint>
 
 // RaceDirectorSetHelper — PROVISIONAL vtable-anchored name. 0x40-byte
-// helper bound to RaceDirectorPlayerSet: ctor 0x71000689c8 (minimal base
-// 0x7c2920), vtable 0x11b4408 (GOT 0x12fbf40). Stored at set+0x50.
-// Naming: 0x40 helper ctor 0x689c8 off minimal base 0x7c2920, stored at set+0x50; no binary name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// helper bound to RaceDirectorPlayerSet (stored at set+0x50); ctor
+// 0x71000689c8 (minimal base 0x7c2920), vtable 0x11b4408.
+// Details: doc/gear/Race/RaceDirectorSetHelper.md
 
 namespace gear {
 class RaceDirectorSetHelper {
@@ -24,7 +20,6 @@ class RaceDirectorSetHelper {
   uint32_t m30;      //0x30 — ctor zero
   uint8_t pad34[4];  //0x34 — unproven padding
   uint32_t m38;      //0x38 — ctor zero
-// extent 0x3c (ctor 0x71000689C8 stores reach 0x3c)
-
+  // extent 0x3c (ctor 0x71000689C8 stores reach 0x3c)
 };
 }  // namespace gear

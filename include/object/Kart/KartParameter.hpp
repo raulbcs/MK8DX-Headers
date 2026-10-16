@@ -13,13 +13,13 @@ struct KartUnit;  // kart/KartUnit.hpp
 // (FUN_7100170090). Name from the upstream field mirror
 // mKartParameter; layout below is the verified part only.
 struct KartParameter {
-  uint8_t pad_000[8];     // 0x00 — unproven padding
-  KartUnit* kart_unit;    //0x08 — target of the 45 wrapper accessors
-                          // (KartUnit+0x08 points back to the owning KartVehicle)
-  uint8_t pad_010[0x34];  // 0x10 — unproven padding
-  uint8_t arrRegion_44[0x6C]; //0x44 — f32 array region (wrapper idx arg,
-                          // FUN_710014c734: fallback value for the stance
-                          // calc); element count unproven
-  uint8_t pad_b0[0x8];    // 0xB0 — to 0xb8
+  uint8_t pad_000[8];          // 0x00 — unproven padding
+  KartUnit* kart_unit;         //0x08 — target of the 45 wrapper accessors
+                               // (KartUnit+0x08 points back to the owning KartVehicle)
+  uint8_t pad_010[0x34];       // 0x10 — unproven padding
+  uint8_t arrRegion_44[0x6C];  //0x44 — f32 array region (wrapper idx arg,
+                               // FUN_710014c734: fallback value for the stance
+                               // calc); element count unproven
+  uint8_t pad_b0[0x8];         // 0xB0 — to 0xb8
 };
 }  // namespace object

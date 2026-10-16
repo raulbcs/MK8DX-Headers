@@ -10,7 +10,6 @@ class ModelResource {
   // extent fixed by mResFile at 0x30.
   uint8_t mPad00[0x30];        // unproven - extent fixed by mResFile at 0x30
   nn::g3d::ResFile* mResFile;  // 0x30
-// extent 0x38 (extent fixed by mResFile at 0x30 — 32-bit reference)
-
+  // extent 0x38 (extent fixed by mResFile at 0x30 — 32-bit reference)
 };
 }  // namespace gsys

@@ -15,7 +15,7 @@ class ObjectEngine {
   // Unproven — Switch ctor not identified (no RTTI, stripped binary);
   // extent fixed by mRaceDirector at 0x218. The Wii U (32-bit) layout
   // suggests per-director init state inside this range.
-  uint8_t mPad00[0x1F8];  // unproven - extent fixed by mRaceDirector at 0x218
+  uint8_t mPad00[0x1F8];                             // unproven - extent fixed by mRaceDirector at 0x218
   gear::GndColManager* mGndColManager;               // 0x1F8
   uint8_t mPad200[0x18];                             // 0x200
   gear::RaceDirector* mRaceDirector;                 // 0x218

@@ -4,17 +4,9 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
-// RaceDirectorPlayerBase — PROVISIONAL vtable-anchored name. Vtable
-// 0x12c5a88 (GOT cell 0x130fee8), far-family gap member reclassified: the
-// PRIMARY BASE of RaceDirectorPlayer. The player ctor (0x7100070cb4) calls
-// 0x7c2a90 at offset 0 — it runs ctor 0x7b976c (RaceDirectorBase38),
-// zeroes 0x38..0x57 and stores this vptr; the player then overwrites the
-// vptr with its own (0x12fc060 cell) and starts its fields at 0x58.
-// Naming: base-subobject gap member (ctor 0x7c2a90); nothing to baptize beyond the derived class.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// gear::RaceDirectorPlayerBase — PROVISIONAL vtable-anchored name;
+// primary base of RaceDirectorPlayer (vtable 0x12c5a88, size 0x58).
+// Details: doc/gear/Race/RaceDirectorPlayerBase.md
 
 namespace gear {
 class RaceDirectorPlayerBase : public RaceDirectorBase38 {
@@ -25,7 +17,6 @@ class RaceDirectorPlayerBase : public RaceDirectorBase38 {
   uint64_t mZero48;   //0x48 — ctor zero
   void* mField50;     //0x50 — ctor zero (child count)
   // (0x58 total)
-// extent 0x58 (ctor 0x71007c2a90 stores reach 0x58)
-
+  // extent 0x58 (ctor 0x71007c2a90 stores reach 0x58)
 };
 }  // namespace gear

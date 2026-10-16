@@ -1,0 +1,19 @@
+# ParamNodeVt47a0
+
+ ParamNodeVt47a0 — address-anchored name (vptr 0x12f47a0, cell 0x13154e8, n=38, site 0xaf25b8, ctor 0xaf259c, alloc UNPROVEN — cite refuted by ctor stores reaching 0xEB4).
+ Node class of the 0x647f40 hook-band cluster (shared trivial band
+ 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs
+ [this+0x1c]).
+ Vtable slot facts :
+ - Slot 10 (0x60): guard-initialised static vtable getter. On first call
+   stores descriptor cell 0x710130e300 (+0x10) into cache cell
+   0x710130e530 (guard byte 0x710130e528) and returns the cached pointer.
+   true function size 0x58 bytes. [vt47a0VtGetterSlot10_7100af48f8]
+
+## Naming and additional notes
+
+ Naming: no ctor strings.
+
+## Construction / init order
+
+- ParamNodeVt47a0 — address-anchored name (vptr 0x12f47a0, cell 0x13154e8, n=38, site 0xaf25b8, ctor 0xaf259c, alloc UNPROVEN — cite refuted by ctor stores reaching 0xEB4). Node class of the 0x647f40 hook-band cluster (shared trivial band 0x647f40-0x647f6c: return-1/ret/slot-0x78 thunk/ID compare vs [this+0x1c]). Vtable slot facts : - Slot 10 (0x60): guard-initialised static vtable getter. On first call stores descriptor cell 0x710130e300 (+0x10) into cache cell 0x710130e530 (guard byte 0x710130e528) and returns the cached pointer. true function size 0x58 bytes. [vt47a0VtGetterSlot10_7100af48f8] Naming: no ctor strings.

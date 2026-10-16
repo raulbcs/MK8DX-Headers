@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheCloudTex — named from ctor string evidence: ctor string tag 'aglclwd' + member names mBaseTextureNo/mNoiseTextureNo/mbCloudTexBlend/mCloudTexBlendRate (0xf1a080-0xf1a0f7) (was address-anchored KartParamCacheVt2ab0) (vptr 0x12f2ab0, cell 0x13151d0, n=13, site 0xa94c04, ctor 0xa94bb8).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0xaf9
 class KartParamCacheCloudTex : public KartParamCache {
  public:
   uint8_t mPad40[0x190];  // 0x40 — unproven gap
@@ -303,11 +296,6 @@ class KartParamCacheCloudTex : public KartParamCache {
   uint64_t mFieldae0;     // 0xae0
   uint8_t mPadae8[0x10];  // 0xae8 — unproven gap
   uint8_t mPadaf8;        // 0xaf8 — ctor zero
-// extent 0xaf9 (ctor 0x7100A94BB8 stores reach 0xaf9)
-
 };
-// dtor: re-stamps vptr 0x13151d0; resets cells 0x130d918; fn size 0x20c.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

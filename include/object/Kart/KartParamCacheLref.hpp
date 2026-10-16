@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (was address-anchored KartParamCacheVt2ea8) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0xf19
 class KartParamCacheLref : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap
@@ -24,11 +17,6 @@ class KartParamCacheLref : public KartParamCache {
   uint64_t mFieldcd8;      // 0xcd8
   uint8_t mPadce0[0x238];  // 0xce0 — unproven gap
   uint8_t mPadf18;         // 0xf18 — ctor zero
-// extent 0xf19 (ctor 0x7100AA3C6C stores reach 0xf19)
-
 };
-// dtor: resets cells 0x710130d918; fn size 0x18c.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

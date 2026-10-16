@@ -5,16 +5,9 @@
 #include "gear/Race/RaceDirectorBase38.hpp"
 
 // RaceDirectorVta260 — PROVISIONAL vtable-anchored name (vptr 0x12ca260,
-// GOT cell 0x1310470). Far-family singleton: ctor 0x71007fd3d4 (cxa_guard
-// getter 0x71007fd410 in the same region) runs ctor 0x71007b976c
-// (RaceDirectorBase38), zeroes 0x38 and 0x40..0x4f, then zeroes
-// 0xb0..0xbf. Everything between 0x50 and 0xaf is untouched by the ctor.
-// Extent 0xc0.
-// Naming: sole getter caller 0x13cfa4 sits in the nn::ldn/LAN init region (MakeIpv4Address + ErrorResultVariant setup) but never names the singleton; near-zero ctor gives no semantics.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// GOT cell 0x1310470). Far-family singleton; ctor 0x71007fd3d4; extent 0xc0.
+// Sole getter caller 0x13cfa4 (nn::ldn/LAN init region) never names it.
+// Details: doc/gear/Race/RaceDirectorVta260.md
 
 namespace gear {
 class RaceDirectorVta260 : public RaceDirectorBase38 {

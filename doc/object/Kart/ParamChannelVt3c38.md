@@ -1,0 +1,23 @@
+# ParamChannelVt3c38
+
+ ParamChannelVt3c38 — address-anchored name (vptr 0x12b3c38, GOT cell
+ 0x130db68). LAZY-resolver channel type of the 0x66496c cluster (sibling of
+ ParamChannelVt38f8/0x12b38f8): no static vptr store — initialized
+ at runtime by the shared lazy-init method 0x7100646850(this, ctx).
+ Same proven layout (extent >= 0x170); see Vt38f8 for the full
+ resolver map. Shares the ctor region 0x710065e178 with Vt38f8.
+ Slot 0x48 returns 5 (family ID) — Slot48_ret5_7100664f8c.
+
+## Vtable and extent facts
+
+ vtable fact (vtInitParamChannel_7100664f74): slot 0 (0x10) is the
+ vtable-init — stores the class vtable pointer (global pointer at
+ 0x710130918, +0x10) into *this.
+
+## Naming and additional notes
+
+ Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.
+
+## Construction / init order
+
+- ParamChannelVt3c38 — address-anchored name (vptr 0x12b3c38, GOT cell 0x130db68). LAZY-resolver channel type of the 0x66496c cluster (sibling of ParamChannelVt38f8/0x12b38f8): no static vptr store — initialized at runtime by the shared lazy-init method 0x7100646850(this, ctx). Same proven layout (extent >= 0x170); see Vt38f8 for the full resolver map. Shares the ctor region 0x710065e178 with Vt38f8. Slot 0x48 returns 5 (family ID) — Slot48_ret5_7100664f8c. vtable fact (vtInitParamChannel_7100664f74): slot 0 (0x10) is the vtable-init — stores the class vtable pointer (global pointer at 0x710130918, +0x10) into *this. Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.

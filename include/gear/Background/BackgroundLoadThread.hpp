@@ -14,7 +14,6 @@ class BackgroundLoadThread {
   ResourceRaceCommon mResourceRaceCommon;  // 0x4B58
   uint8_t mPad4CA8[0x44];                  // 0x4CA8 — unproven padding
   RaceInfo mRaceInfo;                      // 0x4CEC
-// extent 0x4cec (extent fixed by mResourceRaceCommon at 0x4B58 (32-bit reference))
-
+  // extent 0x4cec (extent fixed by mResourceRaceCommon at 0x4B58 (32-bit reference))
 };
 }  // namespace gear

@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheCloudDraw — named from ctor string evidence: ctor string tag 'aglclwd' + member names mIsDrawReduceBuffer/mIsSyncSunPosition/mDrawOrder/mCloudColorScale (0xf1a661-0xf1a745) (was address-anchored KartParamCacheVt2b28) (vptr 0x12f2b28, cell 0x13151d8, n=13, site 0xa96144, ctor 0xa960f8).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0x7f90
 class KartParamCacheCloudDraw : public KartParamCache {
  public:
   uint8_t mPad40[0x3c8];     // 0x40 — unproven gap
@@ -96,11 +89,6 @@ class KartParamCacheCloudDraw : public KartParamCache {
   uint64_t mField7f50;       // 0x7f50
   uint8_t mPad7f58[0x30];    // 0x7f58 — unproven gap
   uint64_t mField7f88;       // 0x7f88
-// extent 0x7f90 (ctor 0x7100A960F8 stores reach 0x7f90)
-
 };
-// dtor: re-stamps vptr 0x13151d8; pooled-array strides 0x1258; resets cells 0x130d830,0x130d848,0x130d918,0x130d920; fn size 0x230.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

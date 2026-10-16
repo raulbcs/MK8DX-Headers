@@ -3,15 +3,9 @@
 #include <cstdint>
 
 // RaceDirectorSetStatePod — PROVISIONAL vtable-anchored name. 0x3C-byte
-// POD state record (ctor 0x71000585c4, NO vtable). Two instances per
-// RaceDirectorPlayerSet (at +0xB8 and +0xC0; the second is also stored into
-// [[set+0xB0]+0x78], i.e. shared with the RaceDirectorSetLanePool child).
-// Carries a hardcoded 0.25f ratio at +0x24.
-// Naming: POD state record (ctor 0x585c4, 0.25f ratio); two instances per PlayerSet; no name.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// POD state record (ctor 0x71000585c4, NO vtable); 0.25f ratio at +0x24.
+// Two instances per RaceDirectorPlayerSet (+0xB8, +0xC0).
+// Details: doc/gear/Race/RaceDirectorSetStatePod.md
 
 namespace gear {
 struct RaceDirectorSetStatePod {
@@ -25,7 +19,6 @@ struct RaceDirectorSetStatePod {
   uint8_t pad34[4];      //0x34 — unproven padding
   uint32_t mZero38;      //0x38
   // (0x3C total)
-// extent 0x3c (ctor 0x71000585C4 stores reach 0x3c)
-
+  // extent 0x3c (ctor 0x71000585C4 stores reach 0x3c)
 };
 }  // namespace gear

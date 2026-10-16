@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheVt3df8 — address-anchored name (vptr 0x12f3df8, cell 0x13153c8, n=13, site 0xad0720, ctor 0xad06d0).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0x5c4
 class KartParamCacheVt3df8 : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap
@@ -61,11 +54,6 @@ class KartParamCacheVt3df8 : public KartParamCache {
   uint64_t mField5a8;      // 0x5a8
   uint8_t mPad5b0[0x10];   // 0x5b0 — unproven gap
   uint32_t mZero5c0;       // 0x5c0 — ctor zero
-// extent 0x5c4 (ctor 0x7100AD06D0 stores reach 0x5c4)
-
 };
-// dtor: pooled-array strides 0x678; fn size 0x128.
 
 }  // namespace object
-
-// Naming: ctor strings found (pref, start/end, blur_type/kernel, clear color) but no engine tag and no unambiguous role; kept address-anchored.

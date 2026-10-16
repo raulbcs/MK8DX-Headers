@@ -4,20 +4,13 @@
 
 #include "object/Kart/KartRigidBody.hpp"
 
-// KartVehicleMove — size 0x5F8 (operator new(0x5F8) in the KartVehicle
-// ctor 0x71001701e4, stored at KartVehicle+0x28). Derives from
-// KartRigidBody (ctor 0x71001812b4 calls 0x710014ddb4 first). Name
-// confirmed by the recorder channel string "RecorderKartVehicleMove".
-//
-// MISATTRIBUTED FIELDS: the bitfield at +0x1680 and the float pairs at
-// +0x2288/+0x2298 lie beyond the 0x5F8 allocation and belong to another,
-// unnamed class.
 namespace object {
 struct KartVehicle;
 }  // namespace object
 
+// KartVehicleMove — size 0x5F8 (operator new(0x5F8) in the KartVehicle
 struct KartVehicleMove : public object::KartRigidBody {
-  void* static_table_e0;              //0xE0 — ctor overwrites with (0x12fd668+0x40)
+  void* static_table_e0;  //0xE0 — ctor overwrites with (0x12fd668+0x40)
   //0xE8/0xF0 — pose-holder list links {prev, next}. The KartMove manager
   // ctor 0x710016f868 links the KartVehicleMove group (KartMove+0x28,
   // +0x30, +0x38) through these fields at 0x170284..0x1702a4; several

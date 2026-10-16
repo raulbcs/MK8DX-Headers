@@ -19,7 +19,6 @@ class SZSThread : public nn::ae::AppletThread {
   uint8_t mFlag102;   // 0x102 — ctor zero; teardown-pending gate
   uint8_t pad103[5];  // 0x103 — to alloc size
                       // (0x108 total)
-// extent 0x108 (prior-survey total 0x108)
-
+  // extent 0x108 (prior-survey total 0x108)
 };
 }  // namespace repl

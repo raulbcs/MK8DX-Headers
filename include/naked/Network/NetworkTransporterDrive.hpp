@@ -5,8 +5,7 @@
 
 #include "NetworkDataDrive.hpp"
 
-class NetworkTransporterDrive : public enl::ContentTransporterForMulti<NetworkDataDrive>
-{
-public:
-    //
+class NetworkTransporterDrive : public enl::ContentTransporterForMulti<NetworkDataDrive> {
+ public:
+  //
 };

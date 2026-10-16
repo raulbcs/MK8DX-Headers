@@ -5,13 +5,8 @@
 #include "RaceDirectorSetChain.hpp"
 
 // RaceDirectorSetChainMid — PROVISIONAL vtable-anchored name. Mid layer
-// (ctor 0x71000628bc, vtable 0x11b3fd8 / GOT 0x12fbe50). Size 0xF8 (factory
-// alloc 0x6f1d8). Adds zeros at 0xE0-0xEF.
-// Naming: mid layer ctor 0x628bc only zeroes fields; no name evidence.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// (ctor 0x71000628bc, vtable 0x11b3fd8 / GOT 0x12fbe50); size 0xF8
+// (factory alloc 0x6f1d8). Details: doc/gear/Race/RaceDirectorSetChainMid.md
 
 namespace gear {
 class RaceDirectorSetChainMid : public RaceDirectorSetChain {

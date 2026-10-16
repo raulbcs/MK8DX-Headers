@@ -4,34 +4,11 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
-// Naming: no consumers beyond the allocation site 0x820ff0 examined (mii::Database calls nearby but unlinked); no binary name evidence.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
-
+// Naming: no consumers beyond the allocation site 0x820ff0 examined; no binary name evidence (see doc).
 namespace gear {
-// RaceDirectorVtb5d0 — PROVISIONAL vtable-anchored name (vptr written by
-// the ctor from cell 0x1310788; .data 0x12cb5d0). Far-family director,
-// 24 slots. Ctor 0x81eacc, size 0x880 (alloc 0x820ff0: new 0x880;
-// mii::Database calls nearby).
-// Base: RaceDirectorBase38 (ctor 0x7b976c).
-//
-// Ctor field map: 0x38 u32 = 0; 0x40/0x48 u64 = 0; 0x50 u8 = 0;
-// 0x58 ptr pair (new 0x98 obj via ctor 0x81e65c from a 0x61a5f0
-// singleton, + null); 0x60 big member (memset 0x4e8, then sub-ctor
-// 0x81ec70 building ~10 stride-0x78 channel blocks — each {u32 @+0x8,
-// u64 @+0x10, sub-ctor 0x628628 @+0x28}; member-init 0x628f3c and
-// init 0x628dc4 close it); scattered u64 zeros at 0xc8/0x130/0x198/
-// 0x200/0x268/0x2d0/0x338/0x3a0/0x408/0x470/0x4d8 (stride 0x68 pointer
-// table inside the memset region); 0x540/0x550 u32 = 0; 0x548/0x558
-// u64 = 0; 0x560 sub-object (ctor 0x628628); 0x5a0 u32 = 0;
-// 0x5a8 ptr = cell 0x1310790 (+0x10); 0x5b0 = this; 0x5b8 ptr =
-// cell 0x1310798 (+0x10); 0x5c0 u64 = 0; 0x5c8 embedded thread (create
-// 0x629270: prio 18, attr 0x10000, rodata name 0xf0bf1e); 0x6c8 ptr =
-// this+0x6e0; 0x6d0 = 1; 0x6d8 u32 = 0; 0x7e0 sub-object (ctor
-// 0x628628); 0x820 memset 0x60 (to 0x880).
-// Gap: 0x6dc..0x6c7 and 0x7e0-struct interiors beyond the ctor writes.
+// RaceDirectorVtb5d0 — PROVISIONAL vtable-anchored name (vptr from cell
+// 0x1310788; .data 0x12cb5d0). Far-family director, 24 slots; ctor 0x81eacc,
+// size 0x880 (alloc 0x820ff0). Details: doc/gear/Race/RaceDirectorVtb5d0.md
 class RaceDirectorVtb5d0 : public RaceDirectorBase38 {
  public:
   uint32_t mZero38;           // 0x38 — ctor zero

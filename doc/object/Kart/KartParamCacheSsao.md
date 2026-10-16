@@ -1,0 +1,243 @@
+# KartParamCacheSsao
+
+## Identity
+
+KartParamCacheSsao — named from ctor string evidence: ctor string tag 'aglssao' + params radius/ao_far/dist_attn/enable_reprojection/mix_rate (0xf1e713-0xf1e7ef) (was address-anchored KartParamCacheVt40c8) (vptr 0x12f40c8, cell 0x1315480, n=13, site 0xae7da4, ctor 0xae7d58).
+Variant of the 0x63c6f8 param-cache cluster.
+
+## Member notes
+
+Notes in field order; proven from the cited addresses.
+
+- 0x40 — unproven gap
+- 0x1d0 — ctor zero
+- 0x1d4 — unproven gap
+- 0x1d8 — ctor zero
+- 0x1e0
+- 0x1e8 — unproven gap
+- 0x210 — ctor stores `this`
+- 0x218
+- 0x220 — unproven gap
+- 0x230
+- 0x231 — unproven gap
+- 0x238
+- 0x240 — unproven gap
+- 0x250
+- 0x254 — unproven gap
+- 0x258
+- 0x260 — unproven gap
+- 0x270
+- 0x274 — unproven gap
+- 0x278
+- 0x280 — unproven gap
+- 0x290
+- 0x294 — unproven gap
+- 0x298
+- 0x2a0 — unproven gap
+- 0x2b0
+- 0x2b1 — unproven gap
+- 0x2b8
+- 0x2c0 — unproven gap
+- 0x2d0
+- 0x2d1 — unproven gap
+- 0x2d8
+- 0x2e0 — unproven gap
+- 0x2f0
+- 0x2f4 — unproven gap
+- 0x2f8
+- 0x300 — unproven gap
+- 0x310
+- 0x314 — unproven gap
+- 0x318 — ctor zero
+- 0x31c
+- 0x320
+- 0x324
+- 0x328
+- 0x32c
+- 0x330
+- 0x334
+- 0x338
+- 0x33c
+- 0x340
+- 0x344
+- 0x348
+- 0x34c
+- 0x350
+- 0x354
+- 0x358
+- 0x35c
+- 0x360
+- 0x364
+- 0x368
+- 0x36c
+- 0x370
+- 0x374
+- 0x378
+- 0x37c
+- 0x380
+- 0x384
+- 0x388
+- 0x38c
+- 0x390
+- 0x394
+- 0x398
+- 0x39c
+- 0x3a0
+- 0x3a4
+- 0x3a8
+- 0x3ac — unproven gap
+- 0x608 — ctor zero
+- 0x60c
+- 0x610 — ctor zero
+- 0x611 — unproven gap
+- 0x3a98 — ctor zero
+- 0x3aa0 — ctor zero
+- 0x3aa4 — unproven gap
+- 0x3aa8 — ctor zero
+- 0x3ab0 — ctor zero
+- 0x3ab8 — ctor zero
+- 0x3abc — unproven gap
+- 0x3ac0 — ctor zero
+- 0x3ac8 — ctor zero
+- 0x3ad0 — ctor zero
+- 0x3ad4 — unproven gap
+- 0x3ad8 — ctor zero
+- 0x3ae0 — ctor zero
+- 0x3ae8 — ctor zero
+- 0x3aec — unproven gap
+- 0x3af0 — ctor zero
+- 0x3af8 — ctor zero
+- 0x3b00 — ctor zero
+- 0x3b04 — unproven gap
+- 0x3b08 — ctor zero
+- 0x3b10 — ctor zero
+- 0x3b18 — ctor zero
+- 0x3b1c — unproven gap
+- 0x3b20 — ctor zero
+- 0x3b28 — ctor zero
+- 0x3b30 — ctor zero
+- 0x3b34 — unproven gap
+- 0x3b38 — ctor zero
+- 0x3b40 — ctor zero
+- 0x3b48 — ctor zero
+- 0x3b4c — unproven gap
+- 0x3b50 — ctor zero
+- 0x3b58 — ctor zero
+- 0x3b60 — ctor zero
+- 0x3b64 — unproven gap
+- 0x3b68 — ctor zero
+- 0x3b70 — ctor zero
+- 0x3b78 — ctor zero
+- 0x3b7c — unproven gap
+- 0x3b80 — ctor zero
+- 0x3b88 — ctor zero
+- 0x3b90 — ctor zero
+- 0x3b94 — unproven gap
+- 0x3b98 — ctor zero
+- 0x3ba0 — ctor zero
+- 0x3ba8 — ctor zero
+- 0x3bac — unproven gap
+- 0x3bb0 — ctor zero
+- 0x3bb8 — ctor zero
+- 0x3bc0 — ctor zero
+- 0x3bc4 — unproven gap
+- 0x3bc8 — ctor zero
+- 0x3bd0 — ctor zero
+- 0x3bd8 — ctor zero
+- 0x3bdc — unproven gap
+- 0x3be0 — ctor zero
+- 0x3be8 — ctor zero
+- 0x3bf0 — ctor zero
+- 0x3bf4 — unproven gap
+- 0x3bf8 — ctor zero
+- 0x3c00 — ctor zero
+- 0x3c08 — ctor zero
+- 0x3c0c — unproven gap
+- 0x3c10 — ctor zero
+- 0x3c18
+- 0x3c20 — unproven gap
+- 0x3c38
+- 0x3c40 — unproven gap
+- 0x3c58
+- 0x3c60 — unproven gap
+- 0x3c78
+- 0x3c80 — unproven gap
+- 0x3c90
+- 0x3c94 — unproven gap
+- 0x3c98
+- 0x3ca0 — unproven gap
+- 0x3cb0 — ctor zero
+- 0x3cb4 — unproven gap
+- 0x3cb8
+- 0x3cc0 — unproven gap
+- 0x3cd0
+- 0x3cd4 — unproven gap
+- 0x3cd8
+- 0x3ce0 — unproven gap
+- 0x3cf0 extent 0x3cf4 (ctor 0x7100AE7D58 stores reach 0x3cf4) dtor: re-stamps vptr 0x1315480; resets cells 0x130d830,0x130d918,0x130d920; fn size 0x258.
+
+> KartParamCacheSsao — named from ctor string evidence: ctor string tag 'aglssao' + params radius/ao_far/dist_attn/enable_reprojection/mix_rate (0xf1e713-0xf1e7ef) (was address-anchored KartParamCacheVt40c8) (vptr 0x12f40c8, cell 0x1315480, n=13, site 0xae7da4, ctor 0xae7d58).
+
+> Variant of the 0x63c6f8 param-cache cluster.
+
+> Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).
+
+## Construction / init order
+
+In field/offset order (= binary init order within this header):
+- 0x1d0 — ctor zero
+- 0x1d8 — ctor zero
+- 0x210 — ctor stores `this`
+- 0x318 — ctor zero
+- 0x608 — ctor zero
+- 0x610 — ctor zero
+- 0x3a98 — ctor zero
+- 0x3aa0 — ctor zero
+- 0x3aa8 — ctor zero
+- 0x3ab0 — ctor zero
+- 0x3ab8 — ctor zero
+- 0x3ac0 — ctor zero
+- 0x3ac8 — ctor zero
+- 0x3ad0 — ctor zero
+- 0x3ad8 — ctor zero
+- 0x3ae0 — ctor zero
+- 0x3ae8 — ctor zero
+- 0x3af0 — ctor zero
+- 0x3af8 — ctor zero
+- 0x3b00 — ctor zero
+- 0x3b08 — ctor zero
+- 0x3b10 — ctor zero
+- 0x3b18 — ctor zero
+- 0x3b20 — ctor zero
+- 0x3b28 — ctor zero
+- 0x3b30 — ctor zero
+- 0x3b38 — ctor zero
+- 0x3b40 — ctor zero
+- 0x3b48 — ctor zero
+- 0x3b50 — ctor zero
+- 0x3b58 — ctor zero
+- 0x3b60 — ctor zero
+- 0x3b68 — ctor zero
+- 0x3b70 — ctor zero
+- 0x3b78 — ctor zero
+- 0x3b80 — ctor zero
+- 0x3b88 — ctor zero
+- 0x3b90 — ctor zero
+- 0x3b98 — ctor zero
+- 0x3ba0 — ctor zero
+- 0x3ba8 — ctor zero
+- 0x3bb0 — ctor zero
+- 0x3bb8 — ctor zero
+- 0x3bc0 — ctor zero
+- 0x3bc8 — ctor zero
+- 0x3bd0 — ctor zero
+- 0x3bd8 — ctor zero
+- 0x3be0 — ctor zero
+- 0x3be8 — ctor zero
+- 0x3bf0 — ctor zero
+- 0x3bf8 — ctor zero
+- 0x3c00 — ctor zero
+- 0x3c08 — ctor zero
+- 0x3c10 — ctor zero
+- 0x3cb0 — ctor zero
+- 0x3cf0 extent 0x3cf4 (ctor 0x7100AE7D58 stores reach 0x3cf4) dtor: re-stamps vptr 0x1315480; resets cells 0x130d830,0x130d918,0x130d920; fn size 0x258.

@@ -8,8 +8,8 @@ namespace object {
 // Dispatch entry behind cell 0x1314f68 (proven: idx*0x10 indexing in
 // FUN_7100a7763c) — extent 0x10.
 struct WeightDispatchEntry {
-    void* fn;                 // 0x00 void(void* vehAtOffset)
-    int64_t offset;           // 0x08 target = veh + (offset >> 1)
+  void* fn;        // 0x00 void(void* vehAtOffset)
+  int64_t offset;  // 0x08 target = veh + (offset >> 1)
 };
 static_assert(sizeof(WeightDispatchEntry) == 0x10);
 

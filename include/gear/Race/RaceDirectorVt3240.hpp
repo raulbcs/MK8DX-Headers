@@ -4,26 +4,14 @@
 
 #include "gear/Race/RaceDirectorBase38.hpp"
 
-// Naming: consumer proven: ctor 0x501c54 is the mode-id-4 branch of the per-mode list-node dispatcher 0x398c00-0x398e98 (new 0x138 at 0x398e28, wired to mgr+0x178/+0x1b0 like RaceListItemE); the dispatcher never names it.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// Naming: consumer proven — ctor 0x501c54 is the mode-id-4 branch of the
+// per-mode list-node dispatcher 0x398c00-0x398e98; the dispatcher never names it.
 
 namespace gear {
-// RaceDirectorVt3240 — PROVISIONAL vtable-anchored name (vptr written by
-// the ctor from cell 0x12fb038; .data 0x1283240). Far-family director,
-// 24 slots. Ctor 0x501c54, size 0x138 (alloc 0x398e24: new 0x138).
-// Base: RaceDirectorBase38 (ctor 0x7b976c).
-//
-// Ctor field map: 0x38 u32 = 0; 0x40/0x48 u64 = 0; 0x80 u64 = 0;
-// 0x88/0x90 u64 = 0; 0x98/0xa0 u64 = 0; 0xa8 u32 = 0; 0xac s32 = -1;
-// 0xb0 u64 = 0; 0xb8 ptr = vtable cell 0x12fb038 (+0x10); 0xc0 u64 = 0;
-// 0xc8 u8 = 0; 0xd0 u64 = 0; 0xd8/0xe0 u64 = 0; 0xe8 sub-object
-// (vptr from cell 0x12fd480, init 0x7c355c with 1.0f / -10.0f stack
-// args); 0x11c u64 = 0; 0x128 u32 = 12; 0x12c u32 = 0; 0x130 u16 = 0;
-// 0x132 u8 = 0; 0x134 s32 = -150.
-// Gap: 0x50..0x7f untouched by the ctor.
+// RaceDirectorVt3240 — PROVISIONAL vtable-anchored name (vptr from cell
+// 0x12fb038; .data 0x1283240). Far-family director, 24 slots; ctor 0x501c54,
+// extent 0x138 (alloc 0x398e24). Base ctor 0x7b976c.
+// Details: doc/gear/Race/RaceDirectorVt3240.md
 class RaceDirectorVt3240 : public RaceDirectorBase38 {
  public:
   uint32_t mZero38;      // 0x38 — ctor zero

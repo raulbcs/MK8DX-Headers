@@ -151,151 +151,151 @@ class KartPhysicsBody : public gear::Actor {
   // Embedded member at 0x100 (ctor 0x8dbc50; vptr 0x12d5b98, n=14;
   // the member ctor stores 1 at +0x8 and its gate fn 0x8dbc70 reads
   // that bool before tail-jumping member vt slot 0x68)
-  char mVt100[0x8];    // 0x100 — member vptr (ctor 0x8dbc50 stores the
-                       // 0x12d5b98 cell at 0x11768)
-  uint8_t mFlag108;    // 0x108 — scale-refresh flag: member ctor sets
-                       // 1 (0x8dbc64); shapePos calc recomputes it as
-                       // (fresh scale == 1.0f ? 1 : cached 0x110 !=
-                       // fresh) at 0x12a68
-  char mPad109[0x3];   // 0x109 — never accessed
-  float mF10c;         // 0x10c — 1.0f on ctor; runtime: refreshed
-                       // scale stored by the shapePos calc (0x12a6c)
-  float mScaleY110;    // 0x110 — 0 on ctor; runtime: same refreshed
-                       // scale value stored again at 0x12a70
-  uint32_t mFlag114;   // 0x114 — 0 on ctor (u64 zero 0x110-0x117);
-                       // runtime: second axis flag word of the calc
-                       // (0x12a78); reset writes it in
-                       // FUN_7100012e20-0x13190 (0x12f00)
-  uint8_t mField118;   // 0x118 — zeroed on ctor; rewritten by
-                       // FUN_7100012e20-0x13190 (0x12f04)
-  char mPad119[7];     // 0x119 — never accessed
-  float mRate128;         // 0x128 — float rate accumulator:
-                          // FUN_7100013a90 seeds it with 0.01f
-                          // (0x13ac8, rodata 0x3c23d70a);
-                          // FUN_71000134bc adds a rodata constant and
-                          // clamps to [0, cap] (0x13540-0x13564); the
-                          // Koura slot fn 0x710002f140 reads it when
-                          // state 0x71 == 3 (0x2f164)
+  char mVt100[0x8];   // 0x100 — member vptr (ctor 0x8dbc50 stores the
+                      // 0x12d5b98 cell at 0x11768)
+  uint8_t mFlag108;   // 0x108 — scale-refresh flag: member ctor sets
+                      // 1 (0x8dbc64); shapePos calc recomputes it as
+                      // (fresh scale == 1.0f ? 1 : cached 0x110 !=
+                      // fresh) at 0x12a68
+  char mPad109[0x3];  // 0x109 — never accessed
+  float mF10c;        // 0x10c — 1.0f on ctor; runtime: refreshed
+                      // scale stored by the shapePos calc (0x12a6c)
+  float mScaleY110;   // 0x110 — 0 on ctor; runtime: same refreshed
+                      // scale value stored again at 0x12a70
+  uint32_t mFlag114;  // 0x114 — 0 on ctor (u64 zero 0x110-0x117);
+                      // runtime: second axis flag word of the calc
+                      // (0x12a78); reset writes it in
+                      // FUN_7100012e20-0x13190 (0x12f00)
+  uint8_t mField118;  // 0x118 — zeroed on ctor; rewritten by
+                      // FUN_7100012e20-0x13190 (0x12f04)
+  char mPad119[7];    // 0x119 — never accessed
+  float mRate128;     // 0x128 — float rate accumulator:
+                      // FUN_7100013a90 seeds it with 0.01f
+                      // (0x13ac8, rodata 0x3c23d70a);
+                      // FUN_71000134bc adds a rodata constant and
+                      // clamps to [0, cap] (0x13540-0x13564); the
+                      // Koura slot fn 0x710002f140 reads it when
+                      // state 0x71 == 3 (0x2f164)
   // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
   // the isSurfaceValid slot 0x7100013190: pos + vel*t + 0.5*accel*t^2)
-  void* mHandle120;       // 0x120 — per-core query handle: vtable slot
-                          // 0x2c0 result stored by init
-                          // FUN_7100012090 (0x1213c), passed to
-                          // 0x889278 (0x121a8); the collector records
-                          // &mVt100 at [handle->+0xf0] (0x12394)
-  float mPosX12c;         // 0x12c — position xyz (written by the
-  float mPosY130;         // 0x130 — shapePos calc integration 0x71000137a0+;
-  float mPosZ134;         // 0x134 — ==2 state branch copies them raw)
-  float mPrevX138;        // 0x138 — previous position xyz, saved by
-  float mPrevY13c;        // 0x13c — the shapePos calc from 0x12c-0x134
-  float mPrevZ140;        // 0x140 — before integrating (0x12570-0x12580)
-  float mMoveX144;        // 0x144 — per-frame movement xyz = position
-  float mMoveY148;        // 0x148 — minus previous position, written by
-  float mMoveZ14c;        // 0x14c — the shapePos calc (0x12cb0-0x12cb8)
-  float mSpeed150;        // 0x150 — scalar speed accumulator: slot 96
-                          // accumulates into it with a 2.5f low clamp,
-                          // upper bound 15.0f when byte +0x216 is set,
-                          // 40.0f when clear
-  float mDeltaX154;       // 0x154 — per-frame position delta xyz: slot 52
-  float mDeltaY158;       // 0x158 — integrates position as pos += velocity
-  float mDeltaZ15c;       // 0x15c — + delta (mode 0xd samples a direction
-                          // into it, scaled by 70.0); slot 96 tail writes
-                          // basis * speed here
-  float mVelX160;       // 0x160 — velocity xyz: slot 52 subtracts a
-  float mVelY164;       // 0x164 — quarter of the stored impulse
-  float mVelZ168;       // 0x168 — (0x1dc-0x1e4) per core step and zeroes
-                        // the triple after the per-wheel integration
-  float mPayload16c;      // 0x16c — 3-word payload vec applied when
-  float mPayload170;      // 0x170 — body state 0x71 == 3: copied from
-  float mPayload174;      // 0x174 — the caller by FUN_7100014ff8
-                          // (0x15008-0x15018); zeroed by the wide reset
-                          // FUN_7100012d44 (0x12d28: str xzr/wzr)
-  uint16_t mField178;     // 0x178 — 1 on ctor (u8 1 at +0x178, u8 0 at
-                          // +0x179 restored by the reset, 0x12f10-0x12f1c)
-  char mPad17a[2];        // 0x17a — never accessed
-  float mAccX17c;         // 0x17c — acceleration xyz (written by fn
-  float mAccY180;         // 0x180 — 0x7100012e20-0x13190; ctor zeroes via
-  float mAccZ184;         // 0x184 — unaligned u64 stores, split here)
-  float mAccW188;         // 0x188
-  float mF18c;            // 0x18c — ctor 0.05f (drag/damping constant?)
-  void* mName190;         // 0x190 — const char*, rodata 0xf20ea8
-  void* mName198;         // 0x198 — name pair 2: rodata 0xf20eac
-  void* mName1a0;         // 0x1a0 — name pair 1: rodata 0xf20eb0
-  void* mName1a8;         // 0x1a8 — rodata 0xf20eb4; slot 82 derefs it
-                          // (0x199b4) and frames word 0x50 against the
-                          // count behind the pointer
-  uint16_t mField1b0;     // 0x1b0 — -1 on ctor
-  uint16_t mField1b2;     // 0x1b2 — -1 on ctor
-  uint8_t mField1b4;      // 0x1b4 — 1 on ctor
-  char mPad1b5[3];        // 0x1b5 — never accessed
-  uint64_t mField1b8;     // 0x1b8 — per-core control-block table pointer
-                          // (slot 52): u32 array stride 4 at +0x40,
-                          // pointer array stride 8 at +0x20
-  uint32_t mField1c0;     // 0x1c0 — direction-candidate bitfield, low 5
-                          // bits decoded from the global candidate table
-                          // winner halfword (slot 52); tested == 0xd
-  uint32_t mField1c4;     // 0x1c4 — direction-candidate bitfield, low 3
-                          // bits (winner halfword >> 5, slot 52)
+  void* mHandle120;    // 0x120 — per-core query handle: vtable slot
+                       // 0x2c0 result stored by init
+                       // FUN_7100012090 (0x1213c), passed to
+                       // 0x889278 (0x121a8); the collector records
+                       // &mVt100 at [handle->+0xf0] (0x12394)
+  float mPosX12c;      // 0x12c — position xyz (written by the
+  float mPosY130;      // 0x130 — shapePos calc integration 0x71000137a0+;
+  float mPosZ134;      // 0x134 — ==2 state branch copies them raw)
+  float mPrevX138;     // 0x138 — previous position xyz, saved by
+  float mPrevY13c;     // 0x13c — the shapePos calc from 0x12c-0x134
+  float mPrevZ140;     // 0x140 — before integrating (0x12570-0x12580)
+  float mMoveX144;     // 0x144 — per-frame movement xyz = position
+  float mMoveY148;     // 0x148 — minus previous position, written by
+  float mMoveZ14c;     // 0x14c — the shapePos calc (0x12cb0-0x12cb8)
+  float mSpeed150;     // 0x150 — scalar speed accumulator: slot 96
+                       // accumulates into it with a 2.5f low clamp,
+                       // upper bound 15.0f when byte +0x216 is set,
+                       // 40.0f when clear
+  float mDeltaX154;    // 0x154 — per-frame position delta xyz: slot 52
+  float mDeltaY158;    // 0x158 — integrates position as pos += velocity
+  float mDeltaZ15c;    // 0x15c — + delta (mode 0xd samples a direction
+                       // into it, scaled by 70.0); slot 96 tail writes
+                       // basis * speed here
+  float mVelX160;      // 0x160 — velocity xyz: slot 52 subtracts a
+  float mVelY164;      // 0x164 — quarter of the stored impulse
+  float mVelZ168;      // 0x168 — (0x1dc-0x1e4) per core step and zeroes
+                       // the triple after the per-wheel integration
+  float mPayload16c;   // 0x16c — 3-word payload vec applied when
+  float mPayload170;   // 0x170 — body state 0x71 == 3: copied from
+  float mPayload174;   // 0x174 — the caller by FUN_7100014ff8
+                       // (0x15008-0x15018); zeroed by the wide reset
+                       // FUN_7100012d44 (0x12d28: str xzr/wzr)
+  uint16_t mField178;  // 0x178 — 1 on ctor (u8 1 at +0x178, u8 0 at
+                       // +0x179 restored by the reset, 0x12f10-0x12f1c)
+  char mPad17a[2];     // 0x17a — never accessed
+  float mAccX17c;      // 0x17c — acceleration xyz (written by fn
+  float mAccY180;      // 0x180 — 0x7100012e20-0x13190; ctor zeroes via
+  float mAccZ184;      // 0x184 — unaligned u64 stores, split here)
+  float mAccW188;      // 0x188
+  float mF18c;         // 0x18c — ctor 0.05f (drag/damping constant?)
+  void* mName190;      // 0x190 — const char*, rodata 0xf20ea8
+  void* mName198;      // 0x198 — name pair 2: rodata 0xf20eac
+  void* mName1a0;      // 0x1a0 — name pair 1: rodata 0xf20eb0
+  void* mName1a8;      // 0x1a8 — rodata 0xf20eb4; slot 82 derefs it
+                       // (0x199b4) and frames word 0x50 against the
+                       // count behind the pointer
+  uint16_t mField1b0;  // 0x1b0 — -1 on ctor
+  uint16_t mField1b2;  // 0x1b2 — -1 on ctor
+  uint8_t mField1b4;   // 0x1b4 — 1 on ctor
+  char mPad1b5[3];     // 0x1b5 — never accessed
+  uint64_t mField1b8;  // 0x1b8 — per-core control-block table pointer
+                       // (slot 52): u32 array stride 4 at +0x40,
+                       // pointer array stride 8 at +0x20
+  uint32_t mField1c0;  // 0x1c0 — direction-candidate bitfield, low 5
+                       // bits decoded from the global candidate table
+                       // winner halfword (slot 52); tested == 0xd
+  uint32_t mField1c4;  // 0x1c4 — direction-candidate bitfield, low 3
+                       // bits (winner halfword >> 5, slot 52)
   // 0x1c8: ctor zeroes u64 at unaligned 0x1c6 (0x117dc)
-  uint8_t mMoved1c8;      // 0x1c8 — moved-this-frame flag: cleared at
-                          // the top of FUN_71000182c0 (0x18334), set to
-                          // 1 right after the movement is added into
-                          // 0x12c-0x134 (0x18690); read by
-                          // FUN_7100019b0c to gate the impulse-vs-basis
-                          // test (0x19b70) and by
-                          // bodySpawnObjSlot28_7100036aec to pick the
-                          // wheel array variant (0x36bb4)
-  uint8_t mGate1c9;       // 0x1c9 — physics gate flag: slot 52 skips the
-  uint8_t mGate1ca;       // 0x1ca — core step when all three of these are
-  uint8_t mGate1cb;       // 0x1cb — clear
-  char mPad1cc[0x4];      // 0x1cc — never accessed
-  uint64_t mField1d0;     // 0x1d0 — zeroed on ctor
-  uint32_t mField1d8;     // 0x1d8 — zeroed on ctor
-  float mImpulseX1dc;     // 0x1dc — stored impulse/driver-basis xyz:
-  float mImpulseY1e0;     // 0x1e0 — slot 69 copies the driver record's
-  float mImpulseZ1e4;     // 0x1e4 — rec+0x40/44/48 here; slot 52 applies
-                          // a quarter of it to the velocity per step
-  float mF1e8;            // 0x1e8 — 3.5f; also read as the manager/mode
-                          // word by slot 52
-  uint8_t mField1ec;      // 0x1ec — zeroed on ctor
-  char mPad1ed[1];        // 0x1ed — never accessed
-  uint16_t mField1ee;     // 0x1ee — -1 on ctor
-  uint32_t mField1f0;     // 0x1f0 — zeroed on ctor
-  uint16_t mField1f4;     // 0x1f4 — zeroed on ctor
-  char mPad1f6[2];        // 0x1f6 — never accessed
-  uint32_t mField1f8;     // 0x1f8 — 1 on ctor
-  uint8_t mField1fc;      // 0x1fc — 1 on ctor
-  char mPad1fd[3];        // 0x1fd — never accessed
-  uint64_t mField200;     // 0x200 — zeroed on ctor
-  uint64_t mField208;     // 0x208 — best direction-candidate entry
-                          // (threshold 0.08; published by slot 52);
-                          // slot 96 also stores basis*speed into
-                          // 0x204/0x208/0x20c
-  int32_t mDriftParam210; // 0x210 — signed driving param: sign-
-                          // extended i8 from params+0x30 by
-                          // copyDrivingParams_7100037e10 (0x37ed0) and
-                          // the teleport/respawn setups FUN_710001617c
-                          // (0x1624c) / FUN_7100016ce8 (0x16c60, reset
-                          // to 0), always rewritten together with the
-                          // basis flags 0x214/0x216
-  uint8_t mFlag214;       // 0x214 — basis-reset trigger flag (slot 69)
-  uint8_t mFlag215;       // 0x215 — basis-reset trigger flag (slot 69)
-  uint8_t mFlag216;       // 0x216 — boost dir selector: set picks the alt
-                          // path in slot 96 (speed clamp 15.0f instead
-                          // of 40.0f)
-  char mPad217[1];        // 0x217 — never accessed
-  uint64_t mField218;     // 0x218 — zeroed on ctor
-  uint64_t mField220;     // 0x220 — zeroed on ctor; runtime: rigid-body
-                          // state enum (RigidBodyUpdate dispatches on
-                          // cmp #7, fn 0x7100013b2c)
-  char mPad228[6];        // 0x228 — ctor zeroes u16 0x228, u8 0x22a;
-                          // byte 0x228 = 1 flags a spin reset (slot 82
-                          // kartBodySlot82JudgeSpinReset_7100019954 and
-                          // the Koura slot 82 kouraStateSlot82_710002f374);
-                          // byte 0x229 = 1 is set by FUN_7100014e78
-                          // (0x14f14) on the respawn transition that
-                          // moves the state ring to 0x71 = 9; 0x22b-0x22f
-                          // never accessed
+  uint8_t mMoved1c8;       // 0x1c8 — moved-this-frame flag: cleared at
+                           // the top of FUN_71000182c0 (0x18334), set to
+                           // 1 right after the movement is added into
+                           // 0x12c-0x134 (0x18690); read by
+                           // FUN_7100019b0c to gate the impulse-vs-basis
+                           // test (0x19b70) and by
+                           // bodySpawnObjSlot28_7100036aec to pick the
+                           // wheel array variant (0x36bb4)
+  uint8_t mGate1c9;        // 0x1c9 — physics gate flag: slot 52 skips the
+  uint8_t mGate1ca;        // 0x1ca — core step when all three of these are
+  uint8_t mGate1cb;        // 0x1cb — clear
+  char mPad1cc[0x4];       // 0x1cc — never accessed
+  uint64_t mField1d0;      // 0x1d0 — zeroed on ctor
+  uint32_t mField1d8;      // 0x1d8 — zeroed on ctor
+  float mImpulseX1dc;      // 0x1dc — stored impulse/driver-basis xyz:
+  float mImpulseY1e0;      // 0x1e0 — slot 69 copies the driver record's
+  float mImpulseZ1e4;      // 0x1e4 — rec+0x40/44/48 here; slot 52 applies
+                           // a quarter of it to the velocity per step
+  float mF1e8;             // 0x1e8 — 3.5f; also read as the manager/mode
+                           // word by slot 52
+  uint8_t mField1ec;       // 0x1ec — zeroed on ctor
+  char mPad1ed[1];         // 0x1ed — never accessed
+  uint16_t mField1ee;      // 0x1ee — -1 on ctor
+  uint32_t mField1f0;      // 0x1f0 — zeroed on ctor
+  uint16_t mField1f4;      // 0x1f4 — zeroed on ctor
+  char mPad1f6[2];         // 0x1f6 — never accessed
+  uint32_t mField1f8;      // 0x1f8 — 1 on ctor
+  uint8_t mField1fc;       // 0x1fc — 1 on ctor
+  char mPad1fd[3];         // 0x1fd — never accessed
+  uint64_t mField200;      // 0x200 — zeroed on ctor
+  uint64_t mField208;      // 0x208 — best direction-candidate entry
+                           // (threshold 0.08; published by slot 52);
+                           // slot 96 also stores basis*speed into
+                           // 0x204/0x208/0x20c
+  int32_t mDriftParam210;  // 0x210 — signed driving param: sign-
+                           // extended i8 from params+0x30 by
+                           // copyDrivingParams_7100037e10 (0x37ed0) and
+                           // the teleport/respawn setups FUN_710001617c
+                           // (0x1624c) / FUN_7100016ce8 (0x16c60, reset
+                           // to 0), always rewritten together with the
+                           // basis flags 0x214/0x216
+  uint8_t mFlag214;        // 0x214 — basis-reset trigger flag (slot 69)
+  uint8_t mFlag215;        // 0x215 — basis-reset trigger flag (slot 69)
+  uint8_t mFlag216;        // 0x216 — boost dir selector: set picks the alt
+                           // path in slot 96 (speed clamp 15.0f instead
+                           // of 40.0f)
+  char mPad217[1];         // 0x217 — never accessed
+  uint64_t mField218;      // 0x218 — zeroed on ctor
+  uint64_t mField220;      // 0x220 — zeroed on ctor; runtime: rigid-body
+                           // state enum (RigidBodyUpdate dispatches on
+                           // cmp #7, fn 0x7100013b2c)
+  char mPad228[6];         // 0x228 — ctor zeroes u16 0x228, u8 0x22a;
+                           // byte 0x228 = 1 flags a spin reset (slot 82
+                           // kartBodySlot82JudgeSpinReset_7100019954 and
+                           // the Koura slot 82 kouraStateSlot82_710002f374);
+                           // byte 0x229 = 1 is set by FUN_7100014e78
+                           // (0x14f14) on the respawn transition that
+                           // moves the state ring to 0x71 = 9; 0x22b-0x22f
+                           // never accessed
 
   // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
   // channel: fn cell 0x12fae28, empty-string name, owner back-ptr)

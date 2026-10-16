@@ -84,78 +84,78 @@ struct KartVehicleDrift {
   // float b; } set by FUN_710017b120 (entry 0), FUN_710017b184 (entry 1),
   // FUN_710017b1e8 (entry 2), FUN_710017b24c (entry 3); each setter folds
   // arg0 through the KartConfig singleton 0x87fcd0 ([ret+0x10] compared to 3).
-  int32_t s90;                //0x90 — wheel entry[0].id (setter FUN_710017b120,
-                              // 0x17b13c); ctor-zeroed 0x17b350
-  uint8_t b94;                //0x94 — direction latch: entry[0].a low byte; setter
-                              // FUN_710017bd58 writes 1 here for state 4 (0x17bd88)
-  uint8_t b95;                //0x95 — direction latch: setter writes 1 here otherwise
-                              // (0x17bd98); entry[0].a high byte
-  uint8_t b96;                //0x96 — ctor-zeroed (0x17b348), reset-zeroed (0x17b4d4),
-                              // cleared by FUN_710017b568 (0x17b56c)
-  uint8_t pad_097;            //0x97 — untouched by the whole accessor family
-  float f98;                  //0x98 — wheel entry[0].b (0x17b170); ctor-zeroed
-                              // (0x17b378, xzr covers 0x98..0x9f)
-  uint32_t s9c;               //0x9C — KartVehicle mPlayerID copy? (read at 0x17bdf4);
-                              // also wheel entry[1].id per setter FUN_710017b184
-                              // (0x17b1a0)
-  float fa0;                  //0xA0 — wheel entry[1].a (0x17b1d0)
-  float fa4;                  //0xA4 — wheel entry[1].b (0x17b1d4)
-  int32_t sa8;                //0xA8 — wheel entry[2].id (0x17b204); read as index into
-                              // a KartVehicle actor table at 0x17bdf4/0x17be7c
-  float fac;                  //0xAC — wheel entry[2].a (0x17b234)
-  float fb0;                  //0xB0 — wheel entry[2].b (0x17b238)
-  int32_t sb4;                //0xB4 — wheel entry[3].id (0x17b268); calc2 also stores a
-                              // clamped float here (0x17c3f8)
-  float fb8;                  //0xB8 — wheel entry[3].a (0x17b298); calc2 zeroes it
-                              // (0x17c404, stp wzr,w8 covers 0xb8/0xbc)
-  int32_t sbc;                //0xBC — wheel entry[3].b; calc2 stores (int)(a *
-                              // rodata[0xed58e8]) here (0x17c404); checked > 0
-                              // (FUN_710017bc94), zeroed in calc
-  uint8_t fc0;                //0xC0 — flag: clears itself + Body floats (+0x10c/+0x58/+0x60)
-                              // when [Move+0x5DC] < 1 or [Move subobj +0x201] (0x17bfb4)
-  uint8_t pad_0c1[3];         //0xC1 — untouched by ctor (only 0xc0 is cleared,
-                              // 0x17b374) and by the whole accessor family
-  float fc4;                  //0xC4 — charge: fC4 += fC8, saturating at 1.0 (0x17bea0,
-                              // dis 17bea0..17beb8); gate fC4 >= 0.6f releases the
-                              // mini-turbo (rodata [0xed5930] = 0.6)
-  float fc8;                  //0xC8 — charge increment
-  float fcc;                  //0xCC — fCC += [0xed5934] (= -0.2), clamped to
-                              // [rodata 0xed58ec = 0.1, rodata 0xed58a8 = 0.8]
-                              // (dis 17bec4..17bef8); mirrored to KartVehicleBody+0x114
+  int32_t s90;         //0x90 — wheel entry[0].id (setter FUN_710017b120,
+                       // 0x17b13c); ctor-zeroed 0x17b350
+  uint8_t b94;         //0x94 — direction latch: entry[0].a low byte; setter
+                       // FUN_710017bd58 writes 1 here for state 4 (0x17bd88)
+  uint8_t b95;         //0x95 — direction latch: setter writes 1 here otherwise
+                       // (0x17bd98); entry[0].a high byte
+  uint8_t b96;         //0x96 — ctor-zeroed (0x17b348), reset-zeroed (0x17b4d4),
+                       // cleared by FUN_710017b568 (0x17b56c)
+  uint8_t pad_097;     //0x97 — untouched by the whole accessor family
+  float f98;           //0x98 — wheel entry[0].b (0x17b170); ctor-zeroed
+                       // (0x17b378, xzr covers 0x98..0x9f)
+  uint32_t s9c;        //0x9C — KartVehicle mPlayerID copy? (read at 0x17bdf4);
+                       // also wheel entry[1].id per setter FUN_710017b184
+                       // (0x17b1a0)
+  float fa0;           //0xA0 — wheel entry[1].a (0x17b1d0)
+  float fa4;           //0xA4 — wheel entry[1].b (0x17b1d4)
+  int32_t sa8;         //0xA8 — wheel entry[2].id (0x17b204); read as index into
+                       // a KartVehicle actor table at 0x17bdf4/0x17be7c
+  float fac;           //0xAC — wheel entry[2].a (0x17b234)
+  float fb0;           //0xB0 — wheel entry[2].b (0x17b238)
+  int32_t sb4;         //0xB4 — wheel entry[3].id (0x17b268); calc2 also stores a
+                       // clamped float here (0x17c3f8)
+  float fb8;           //0xB8 — wheel entry[3].a (0x17b298); calc2 zeroes it
+                       // (0x17c404, stp wzr,w8 covers 0xb8/0xbc)
+  int32_t sbc;         //0xBC — wheel entry[3].b; calc2 stores (int)(a *
+                       // rodata[0xed58e8]) here (0x17c404); checked > 0
+                       // (FUN_710017bc94), zeroed in calc
+  uint8_t fc0;         //0xC0 — flag: clears itself + Body floats (+0x10c/+0x58/+0x60)
+                       // when [Move+0x5DC] < 1 or [Move subobj +0x201] (0x17bfb4)
+  uint8_t pad_0c1[3];  //0xC1 — untouched by ctor (only 0xc0 is cleared,
+                       // 0x17b374) and by the whole accessor family
+  float fc4;           //0xC4 — charge: fC4 += fC8, saturating at 1.0 (0x17bea0,
+                       // dis 17bea0..17beb8); gate fC4 >= 0.6f releases the
+                       // mini-turbo (rodata [0xed5930] = 0.6)
+  float fc8;           //0xC8 — charge increment
+  float fcc;           //0xCC — fCC += [0xed5934] (= -0.2), clamped to
+                       // [rodata 0xed58ec = 0.1, rodata 0xed58a8 = 0.8]
+                       // (dis 17bec4..17bef8); mirrored to KartVehicleBody+0x114
 
   // 0xD0..0xF7 — mini-turbo/boost scratch floats (ctor-zeroed 0x17b380-
   // 0x17b398, then partially rodata-initialized; reset zeroes the block
   // again at 0x17b4ec-0x17b4f8).
-  float fd0;                  //0xD0 — mini-turbo charge pair: loaded/stored as an
-                              // ldp/stp pair with +0xd4 in FUN_710017bea0
-                              // (0x17bf7c/0x17bf8c), zeroed (0x17bf9c), then
-                              // fD0 = charge * select(+0xd4, +0xd8-half) (0x17bfbc)
-  float fd4;                  //0xD4 — pair element; reset-zeroed (0x17b4e8)
-  int32_t sd8;                //0xD8 — countdown: set to 10 when the registered-actor
-                              // check passes (0x17b760-0x17b764), then decremented
-                              // per calc (0x17b768-0x17b774); NOT ctor-initialized
-  float fdc;                  //0xDC — accumulator scaled by rodata [0xed5ac4] and
-                              // floored at -30.0f by calc2 (0x17c458-0x17c4b8)
-  uint8_t pad_0e0[4];         //0xE0 — ctor-zeroed (0x17b398, xzr covers 0xdc..0xe3)
-  float fe4;                  //0xE4 — zeroed every calc2 pass (0x17c514); ctor-zeroed
-  uint8_t pad_0e8[4];         //0xE8 — ctor-zeroed (0x17b394, xzr covers 0xe4..0xeb)
-  float fec;                  //0xEC — ctor: rodata [0xed58e8], or 0.0f when
-                              // [kart_vehicle+0xda] is set (fcsel 0x17b408, str 0x17b428)
-  float ff0;                  //0xF0 — ctor float from rodata table 0xf200f8e0 (0x17b430)
-  float ff4;                  //0xF4 — ctor float from rodata table 0xf200f880 (0x17b434)
-  void* mf8;                  //0xF8 — heap subobject: operator new(0x2a0) constructed
-                              // by 0x3aea10 when ([0x87fcd0]+0x8 | 2) != 7
-                              // (0x17b470-0x17b488)
-  uint8_t f100;               //0x100 — cleared by FUN_710017b9dc
-  uint8_t b101;               //0x101 — read by getter FUN_71001423d8
-  uint8_t b102;               //0x102 — written by calc2 (0x17c290); cleared by the
-                              // reset (0x17b4b8) and FUN_710017b568 (0x17b570)
-  uint8_t pad_103;            //0x103 — untouched by the whole accessor family
-  uint32_t s104;              //0x104 — cleared by the state-change handler (0x17be84)
-  uint32_t s108;              //0x108 — cleared in calc 0x710017b578 (0x17b914)
-  int32_t s10c;               //0x10C — arg to 0x7100175f5c in the same calc
-                              // The calc also mirrors floats into KartVehicleBody+0x110/0x114/0x118
-                              // (0x17bf14-0x17bf74).
-  uint8_t pad_110[0x8];       //0x110 — to the allocation end 0x118 (new at 0x71001815bc)
+  float fd0;             //0xD0 — mini-turbo charge pair: loaded/stored as an
+                         // ldp/stp pair with +0xd4 in FUN_710017bea0
+                         // (0x17bf7c/0x17bf8c), zeroed (0x17bf9c), then
+                         // fD0 = charge * select(+0xd4, +0xd8-half) (0x17bfbc)
+  float fd4;             //0xD4 — pair element; reset-zeroed (0x17b4e8)
+  int32_t sd8;           //0xD8 — countdown: set to 10 when the registered-actor
+                         // check passes (0x17b760-0x17b764), then decremented
+                         // per calc (0x17b768-0x17b774); NOT ctor-initialized
+  float fdc;             //0xDC — accumulator scaled by rodata [0xed5ac4] and
+                         // floored at -30.0f by calc2 (0x17c458-0x17c4b8)
+  uint8_t pad_0e0[4];    //0xE0 — ctor-zeroed (0x17b398, xzr covers 0xdc..0xe3)
+  float fe4;             //0xE4 — zeroed every calc2 pass (0x17c514); ctor-zeroed
+  uint8_t pad_0e8[4];    //0xE8 — ctor-zeroed (0x17b394, xzr covers 0xe4..0xeb)
+  float fec;             //0xEC — ctor: rodata [0xed58e8], or 0.0f when
+                         // [kart_vehicle+0xda] is set (fcsel 0x17b408, str 0x17b428)
+  float ff0;             //0xF0 — ctor float from rodata table 0xf200f8e0 (0x17b430)
+  float ff4;             //0xF4 — ctor float from rodata table 0xf200f880 (0x17b434)
+  void* mf8;             //0xF8 — heap subobject: operator new(0x2a0) constructed
+                         // by 0x3aea10 when ([0x87fcd0]+0x8 | 2) != 7
+                         // (0x17b470-0x17b488)
+  uint8_t f100;          //0x100 — cleared by FUN_710017b9dc
+  uint8_t b101;          //0x101 — read by getter FUN_71001423d8
+  uint8_t b102;          //0x102 — written by calc2 (0x17c290); cleared by the
+                         // reset (0x17b4b8) and FUN_710017b568 (0x17b570)
+  uint8_t pad_103;       //0x103 — untouched by the whole accessor family
+  uint32_t s104;         //0x104 — cleared by the state-change handler (0x17be84)
+  uint32_t s108;         //0x108 — cleared in calc 0x710017b578 (0x17b914)
+  int32_t s10c;          //0x10C — arg to 0x7100175f5c in the same calc
+                         // The calc also mirrors floats into KartVehicleBody+0x110/0x114/0x118
+                         // (0x17bf14-0x17bf74).
+  uint8_t pad_110[0x8];  //0x110 — to the allocation end 0x118 (new at 0x71001815bc)
 };
 }  // namespace object

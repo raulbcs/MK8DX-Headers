@@ -1,0 +1,46 @@
+# ParamChannelVt20e8
+
+ ParamChannelVt20e8 — address-anchored name (vptr 0x12b20e8, GOT cell
+ 0x130d938). Channel type of the 0x66496c cluster: built in
+ place inside the headered containers (ctor family 0x7100668528 /
+ in-place vptr store), derived from KartParamCacheChan via
+ ChanBase (0x12b3af0). EXTENT PROVEN 0x80 (not the bare Chan 0x20):
+ embedded instances share vptr cell 0x130d938 and are spaced 0x80 apart
+ in their parents (0x71006dda30..0x71006dda68: sub-objects at +0x518,
+ +0x598, +0x618, +0x698; the next sub-object at +0x718 carries a
+ different vptr from cell 0x130d918 — same pattern at 0x710069600c:
+ +0x978 -> +0x9f8). Member writes reach +0x78 (slots 18/19), inside
+ the 0x80 stride. Slots 8/9 (0x50/0x58): identical forwarders
+ 0x7100647c7c/0x7100647cac — advance to the child at +0x18, call child
+ vtable+0x18, return the u64 at child+8
+ [paramChannelChildVt0x18ForwardA/B].
+
+## Vtable and extent facts
+
+ vtable facts (paramChannelDeletingDtor_7100647c40,
+ vtInitTailBaseCtor_7100647c2c, paramChannelForwardVtCall_7100647bec,
+ virtualForwardSlot19_7100647c14):
+   slot 0 (0x10): vtable-init — stores vptr from GOT cell 0x710130938 (+0x10)
+     into *this, then tail-calls the base-class ctor continuation
+     0x7100661c4c.
+   slot 1 (0x18): deleting dtor — resets vptr from cell 0x710130d938 (+0x10),
+     calls cleanup helper 0x7100661c4c, then operator delete(this).
+   slot 18 (0xa0): invokes the child object at this+0x70 through its own
+     vtable slot 2 (0x10), passing (child, x1, u32 at this+0x78).
+   slot 19 (0xa8): trampoline — loads object at this+0x70, tail-jumps its
+     vtable slot 3 (0x18) with (obj, *(this+0x78)).
+ EXTENT RESOLVED (was: 0x20 vs >= 0x7c): true extent is 0x80. Evidence:
+ parents embed consecutive ParamChannelVt20e8 sub-objects (same vptr,
+ cell 0x710130d938 +0x10) exactly 0x80 apart — 0x71006dda30..
+ 0x71006dda68 (+0x518/+0x598/+0x618/+0x698, next different-vptr member
+ at +0x718) and 0x710069600c..0x7100696028 (+0x978 -> +0x9f8). The
+ +0x70/+0x78 dereferences in slots 18/19 sit inside the stride. There
+ is no operator-new site for this class (built in place only).
+
+## Naming and additional notes
+
+ Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.
+
+## Construction / init order
+
+- ParamChannelVt20e8 — address-anchored name (vptr 0x12b20e8, GOT cell 0x130d938). Channel type of the 0x66496c cluster: built in place inside the headered containers (ctor family 0x7100668528 / in-place vptr store), derived from KartParamCacheChan via ChanBase (0x12b3af0). EXTENT PROVEN 0x80 (not the bare Chan 0x20): embedded instances share vptr cell 0x130d938 and are spaced 0x80 apart in their parents (0x71006dda30..0x71006dda68: sub-objects at +0x518, +0x598, +0x618, +0x698; the next sub-object at +0x718 carries a different vptr from cell 0x130d918 — same pattern at 0x710069600c: +0x978 -> +0x9f8). Member writes reach +0x78 (slots 18/19), inside the 0x80 stride. Slots 8/9 (0x50/0x58): identical forwarders 0x7100647c7c/0x7100647cac — advance to the child at +0x18, call child vtable+0x18, return the u64 at child+8 [paramChannelChildVt0x18ForwardA/B]. vtable facts (paramChannelDeletingDtor_7100647c40, vtInitTailBaseCtor_7100647c2c, paramChannelForwardVtCall_7100647bec, virtualForwardSlot19_7100647c14): slot 0 (0x10): vtable-init — stores vptr from GOT cell 0x710130938 (+0x10) into *this, then tail-calls the base-class ctor continuation 0x7100661c4c. slot 1 (0x18): deleting dtor — resets vptr from cell 0x710130d938 (+0x10), calls cleanup helper 0x7100661c4c, then operator delete(this). slot 18 (0xa0): invokes the child object at this+0x70 through its own vtable slot 2 (0x10), passing (child, x1, u32 at this+0x78). slot 19 (0xa8): trampoline — loads object at this+0x70, tail-jumps its vtable slot 3 (0x18) with (obj, *(this+0x78)). EXTENT RESOLVED (was: 0x20 vs >= 0x7c): true extent is 0x80. Evidence: parents embed consecutive ParamChannelVt20e8 sub-objects (same vptr, cell 0x710130d938 +0x10) exactly 0x80 apart — 0x71006dda30.. 0x71006dda68 (+0x518/+0x598/+0x618/+0x698, next different-vptr member at +0x718) and 0x710069600c..0x7100696028 (+0x978 -> +0x9f8). The +0x70/+0x78 dereferences in slots 18/19 sit inside the stride. There is no operator-new site for this class (built in place only). Naming: generic shared ctor ('default'/'param'/'name'/'type' strings only); per-class identity is a runtime param-id hash (dictionary via 0x710062fd48), not statically resolvable.

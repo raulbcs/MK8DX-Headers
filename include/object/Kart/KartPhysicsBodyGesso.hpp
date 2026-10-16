@@ -43,7 +43,6 @@ class KartPhysicsBodyGesso : public KartPhysicsBody {
   uint32_t mField4b8;     // 0x4b8
   uint32_t mField4bc;     // 0x4bc
   uint8_t mPad4c0;        // 0x4c0 — ctor zero
-  uint8_t mPad4C1[0x7];  // 0x4C1 — unproven gap
+  uint8_t mPad4C1[0x7];   // 0x4C1 — unproven gap
 };
 }  // namespace object
-

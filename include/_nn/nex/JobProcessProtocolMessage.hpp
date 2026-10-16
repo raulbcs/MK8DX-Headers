@@ -14,7 +14,6 @@ class JobProcessProtocolMessage {
   uint32_t mFlags;           //0x40
   uint8_t mPad44[0x9C];      //0x44 — unproven padding
   nn::nex::Buffer* mMsgBuf;  //0xE0
-// extent 0xe8 (ctor 0x7100a2917c stores reach 0xe8; sole site 0xa291fc)
-
+  // extent 0xe8 (ctor 0x7100a2917c stores reach 0xe8; sole site 0xa291fc)
 };
 }  // namespace nn::nex

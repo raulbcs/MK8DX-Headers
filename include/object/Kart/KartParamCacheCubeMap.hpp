@@ -1,12 +1,5 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (was address-anchored KartParamCacheVt31e8) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
-// Variant of the 0x63c6f8 param-cache cluster.
+// extent 0x454
 class KartParamCacheCubeMap : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap
@@ -72,11 +65,6 @@ class KartParamCacheCubeMap : public KartParamCache {
   uint64_t mZero440;       // 0x440 — ctor zero
   uint64_t mZero448;       // 0x448 — ctor zero
   uint32_t mField450;      // 0x450
-// extent 0x454 (ctor 0x7100AB868C stores reach 0x454)
-
 };
-// dtor: re-stamps vptr 0x13152a0; resets cells 0x130d918,0x1315298; fn size 0x280.
 
 }  // namespace object
-
-// Naming: factory/array structural variant (base-call chain + factory case id only, no per-class strings).

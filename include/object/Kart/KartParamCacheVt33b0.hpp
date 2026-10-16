@@ -1,10 +1,3 @@
-#pragma once
-
-#include <cstdint>
-
-#include "object/Kart/KartParamCache.hpp"
-
-namespace object {
 // KartParamCacheVt33b0 — address-anchored name (vptr 0x12f33b0, cell 0x13152c8, n=13, site 0xa83f70, ctor 0xa83984, alloc UNPROVEN — cite refuted by ctor stores reaching 0x1C8).
 // Variant of the 0x63c6f8 param-cache cluster.
 class KartParamCacheVt33b0 : public KartParamCache {
@@ -34,8 +27,5 @@ class KartParamCacheVt33b0 : public KartParamCache {
   uint64_t mField1b8;     // 0x1b8
   uint64_t mField1c0;     // 0x1c0 — ctor: call result
 };
-// dtor: resets cells 0x710130d918,0x713152d8; fn size 0x1a4.
 
 }  // namespace object
-
-// Naming: docblock ctor anchor yields only nvn init strings (nvnDeviceInitialize/nvnDeviceGetProcAddress) — anchor misquote suspected; needs re-verification.

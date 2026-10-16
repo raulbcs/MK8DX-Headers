@@ -11,11 +11,9 @@
 #include "_nn/ae/NSAAppletThread.hpp"
 #include "_nn/ae/OfflineWebAppletThread.hpp"
 
-// Naming: sole ctor 0x872004 builds all seven named applet threads but the host object itself has no rodata name and no MethodTree entry.
-// the ELF carries no name for this class (strings and the method-tree
-// registrations at 0x6327a8 cover only graphics/profiling and the
-// MapObjBase::calc*-family entries; custom-RTTI predicates hold no name
-// string), so the name stays PROVISIONAL.
+// AppletThreadHost — PROVISIONAL name; vtable 0x12d02c8 (cell 0x1310fb0);
+// ctor 0x7100872004 (base 0x71007b976c) builds 7 in-place applet threads;
+// sole site 0x8bca3c; extent >= 0xda0.
 
 namespace nn::err {
 // fwd — SDK type, no header in nnheaders vendor; ctor C1 via plt
@@ -24,13 +22,6 @@ struct ErrorResultVariant;
 }  // namespace nn::err
 
 namespace nn::ae {
-// AppletThreadHost — PROVISIONAL name (vtable 0x12d02c8, cell 0x1310fb0;
-// slot 0x10 = 0x87275c, its own family). Ctor 0x7100872004(this): base
-// 0x71007b976c, priority [0x130d250], then SEVEN in-place applet
-// threads (each via 0x7100628a54 with {cell+0x10, rodata name} on the
-// stack), buffers from nn::swkbd, nn::err::ErrorResultVariant @0xb94,
-// and a member-init pass 0x7100628f3c over all seven. Sole
-// construction site 0x8bca3c. Extent >= 0xda0.
 class AppletThreadHost {
  public:
   void* vptr;                             // 0x00

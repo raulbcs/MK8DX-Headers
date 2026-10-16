@@ -17,7 +17,7 @@ class StepSequenceJob {
   uint64_t mPtr10;        // 0x10 — ctor zero
   uint64_t mPtr18;        // 0x18 — ctor zero
   uint8_t mFlag20;        // 0x20 — ctor zero
-  uint8_t pad_21[0x7];  //0x21 — unproven gap
+  uint8_t pad_21[0x7];    //0x21 — unproven gap
   uint64_t mPtr28;        // 0x28 — ctor zero
   uint32_t mField30;      // 0x30 — ctor zero
   uint32_t mArg38;        // 0x38 — ctor-written (arg w1)

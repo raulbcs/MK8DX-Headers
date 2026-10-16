@@ -11,7 +11,7 @@ namespace nn::nex {
 class JobCheckAndRelay {
  public:
   void* vtable;           // 0x00
-  uint8_t pad_8[0x98];  //0x8 — unproven gap
+  uint8_t pad_8[0x98];    //0x8 — unproven gap
   uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
   uint32_t mFielda0;      // 0xa0 — ctor-written
   uint8_t mPada4[0x4];    // 0xa4 — unproven gap
@@ -60,4 +60,3 @@ class JobCheckAndRelay {
   uint8_t mPad1C3[0x5];  // 0x1C3 — unproven gap
 };
 }  // namespace nn::nex
-
