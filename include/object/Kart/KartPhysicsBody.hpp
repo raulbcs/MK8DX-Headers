@@ -11,7 +11,7 @@ namespace object {
 //
 // Concrete size 0x328: the intermediate base (KartPhysicsBodyMid,
 // ctor 0x3703c) starts its own fields at 0x328. Ctor-proven writes
-// only below; interior unproven gaps are pads.
+// only below; interior gaps are justified below as never-accessed pads.
 //
 // Derived evidence: Koura ctor 0x30d50 (vptr 0x11b0d98, n=126) calls
 // the root ctor; TogezoBomb's inlined ctor (vptr 0x11b0898, n=128)
@@ -108,8 +108,12 @@ class KartPhysicsBody : public gear::Actor {
                       // object in the shapePos calc 0x7100012784)
   uint32_t mField60;  // 0x60 — ctor arg w2
 
-  // Embedded member at 0x68 (ctor stores vptr 0x11addf8, n=4)
-  uint8_t mPad64[0x4];  // 0x64 — unproven gap
+  // Embedded member at 0x68 (ctor stores vptr 0x11addf8, n=4).
+  // 0x64-0x67 are never read or written by any body member: the ctor
+  // writes 0x60 and jumps straight to the member vptr (0x1171c), and
+  // no access with a body `this` exists in the physics cluster
+  // 0x7100011600-0x7100039000.
+  uint8_t mPad64[0x4];  // 0x64 — ctor/alignment padding (never accessed)
   char mSub68[8];       // 0x68 — extent to next write
   uint8_t mField70;     // 0x70 — 0 on ctor, then 0xb
   uint8_t mField71;     // 0x71 — body-state enum ring (read all over
@@ -138,22 +142,56 @@ class KartPhysicsBody : public gear::Actor {
   float mScaleZf0;      // 0xf0 — drifts from the fresh value, the calc
   float mScaleWf4;      // 0xf4 — re-applies it via 0x71006a1194
                         // (all zeroed on ctor; 1.0 = no override)
-  uint32_t mFieldF8;    // 0xf8 — zeroed on ctor
-  char mPadFc[4];       // 0xfc — unproven padding
+  uint32_t mFieldF8;    // 0xf8 — zeroed on ctor; runtime: flag word
+                        // rewritten by the shapePos calc (0x12a74)
+  char mPadFc[4];       // 0xfc — never accessed: ctor leaves it
+                        // unwritten (only 0xf8 is stored, 0x1172c) and
+                        // no body member touches it
 
-  // Embedded member at 0x100 (ctor 0x8dbc50; vptr 0x12d5b98, n=14)
-  char mSub100[0xc];   // 0x100..0x10c — unproven gap
-  float mF10c;         // 0x10c — 1.0f
-  uint64_t mField110;  // 0x110 — zeroed on ctor
-  uint8_t mField118;   // 0x118 — zeroed on ctor
-  char mPad119[7];     // 0x119 — unproven padding
+  // Embedded member at 0x100 (ctor 0x8dbc50; vptr 0x12d5b98, n=14;
+  // the member ctor stores 1 at +0x8 and its gate fn 0x8dbc70 reads
+  // that bool before tail-jumping member vt slot 0x68)
+  char mVt100[0x8];    // 0x100 — member vptr (ctor 0x8dbc50 stores the
+                       // 0x12d5b98 cell at 0x11768)
+  uint8_t mFlag108;    // 0x108 — scale-refresh flag: member ctor sets
+                       // 1 (0x8dbc64); shapePos calc recomputes it as
+                       // (fresh scale == 1.0f ? 1 : cached 0x110 !=
+                       // fresh) at 0x12a68
+  char mPad109[0x3];   // 0x109 — never accessed
+  float mF10c;         // 0x10c — 1.0f on ctor; runtime: refreshed
+                       // scale stored by the shapePos calc (0x12a6c)
+  float mScaleY110;    // 0x110 — 0 on ctor; runtime: same refreshed
+                       // scale value stored again at 0x12a70
+  uint32_t mFlag114;   // 0x114 — 0 on ctor (u64 zero 0x110-0x117);
+                       // runtime: second axis flag word of the calc
+                       // (0x12a78); reset writes it in
+                       // FUN_7100012e20-0x13190 (0x12f00)
+  uint8_t mField118;   // 0x118 — zeroed on ctor; rewritten by
+                       // FUN_7100012e20-0x13190 (0x12f04)
+  char mPad119[7];     // 0x119 — never accessed
+  float mRate128;         // 0x128 — float rate accumulator:
+                          // FUN_7100013a90 seeds it with 0.01f
+                          // (0x13ac8, rodata 0x3c23d70a);
+                          // FUN_71000134bc adds a rodata constant and
+                          // clamps to [0, cap] (0x13540-0x13564); the
+                          // Koura slot fn 0x710002f140 reads it when
+                          // state 0x71 == 3 (0x2f164)
   // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
   // the isSurfaceValid slot 0x7100013190: pos + vel*t + 0.5*accel*t^2)
-  uint8_t mPad120[0xc];   // 0x120 — unproven padding
+  void* mHandle120;       // 0x120 — per-core query handle: vtable slot
+                          // 0x2c0 result stored by init
+                          // FUN_7100012090 (0x1213c), passed to
+                          // 0x889278 (0x121a8); the collector records
+                          // &mVt100 at [handle->+0xf0] (0x12394)
   float mPosX12c;         // 0x12c — position xyz (written by the
   float mPosY130;         // 0x130 — shapePos calc integration 0x71000137a0+;
   float mPosZ134;         // 0x134 — ==2 state branch copies them raw)
-  uint8_t mPad138[0x18];  // 0x138 — unproven padding
+  float mPrevX138;        // 0x138 — previous position xyz, saved by
+  float mPrevY13c;        // 0x13c — the shapePos calc from 0x12c-0x134
+  float mPrevZ140;        // 0x140 — before integrating (0x12570-0x12580)
+  float mMoveX144;        // 0x144 — per-frame movement xyz = position
+  float mMoveY148;        // 0x148 — minus previous position, written by
+  float mMoveZ14c;        // 0x14c — the shapePos calc (0x12cb0-0x12cb8)
   float mSpeed150;        // 0x150 — scalar speed accumulator: slot 96
                           // accumulates into it with a 2.5f low clamp,
                           // upper bound 15.0f when byte +0x216 is set,
@@ -167,25 +205,29 @@ class KartPhysicsBody : public gear::Actor {
   float mVelY164;       // 0x164 — quarter of the stored impulse
   float mVelZ168;       // 0x168 — (0x1dc-0x1e4) per core step and zeroes
                         // the triple after the per-wheel integration
-  char mPad16c[0xc];    // 0x16c — unproven padding
-  uint16_t mField178;     // 0x178 — 1 on ctor
-  char mPad17a[2];        // 0x17a — unproven padding
+  float mPayload16c;      // 0x16c — 3-word payload vec applied when
+  float mPayload170;      // 0x170 — body state 0x71 == 3: copied from
+  float mPayload174;      // 0x174 — the caller by FUN_7100014ff8
+                          // (0x15008-0x15018); zeroed by the wide reset
+                          // FUN_7100012d44 (0x12d28: str xzr/wzr)
+  uint16_t mField178;     // 0x178 — 1 on ctor (u8 1 at +0x178, u8 0 at
+                          // +0x179 restored by the reset, 0x12f10-0x12f1c)
+  char mPad17a[2];        // 0x17a — never accessed
   float mAccX17c;         // 0x17c — acceleration xyz (written by fn
   float mAccY180;         // 0x180 — 0x7100012e20-0x13190; ctor zeroes via
   float mAccZ184;         // 0x184 — unaligned u64 stores, split here)
   float mAccW188;         // 0x188
   float mF18c;            // 0x18c — ctor 0.05f (drag/damping constant?)
-  const char* mName190;   // 0x190 — rodata 0xf20ea8 (name pair 2)
-  const char* mName198;   // 0x198 — rodata 0xf20eac
-  const char* mName1a0;   // 0x1a0 — rodata 0xf20eb0 (name pair 1)
-  const char* mName1a8;   // 0x1a8 — rodata 0xf20eb4
-  uint8_t mPad190[0x20];  // 0x190 — unproven gap; [this+0x1a8] points
-                          // at the per-player count word (slot 82 frames
-                          // word 0x50 against it)
+  void* mName190;         // 0x190 — const char*, rodata 0xf20ea8
+  void* mName198;         // 0x198 — name pair 2: rodata 0xf20eac
+  void* mName1a0;         // 0x1a0 — name pair 1: rodata 0xf20eb0
+  void* mName1a8;         // 0x1a8 — rodata 0xf20eb4; slot 82 derefs it
+                          // (0x199b4) and frames word 0x50 against the
+                          // count behind the pointer
   uint16_t mField1b0;     // 0x1b0 — -1 on ctor
   uint16_t mField1b2;     // 0x1b2 — -1 on ctor
   uint8_t mField1b4;      // 0x1b4 — 1 on ctor
-  char mPad1b5[3];        // 0x1b5 — unproven padding
+  char mPad1b5[3];        // 0x1b5 — never accessed
   uint64_t mField1b8;     // 0x1b8 — per-core control-block table pointer
                           // (slot 52): u32 array stride 4 at +0x40,
                           // pointer array stride 8 at +0x20
@@ -194,12 +236,19 @@ class KartPhysicsBody : public gear::Actor {
                           // winner halfword (slot 52); tested == 0xd
   uint32_t mField1c4;     // 0x1c4 — direction-candidate bitfield, low 3
                           // bits (winner halfword >> 5, slot 52)
-  char mPad1c8[1];        // 0x1c8 — unproven gap (ctor zeroes u64 at
-                          // unaligned 0x1c6)
+  // 0x1c8: ctor zeroes u64 at unaligned 0x1c6 (0x117dc)
+  uint8_t mMoved1c8;      // 0x1c8 — moved-this-frame flag: cleared at
+                          // the top of FUN_71000182c0 (0x18334), set to
+                          // 1 right after the movement is added into
+                          // 0x12c-0x134 (0x18690); read by
+                          // FUN_7100019b0c to gate the impulse-vs-basis
+                          // test (0x19b70) and by
+                          // bodySpawnObjSlot28_7100036aec to pick the
+                          // wheel array variant (0x36bb4)
   uint8_t mGate1c9;       // 0x1c9 — physics gate flag: slot 52 skips the
   uint8_t mGate1ca;       // 0x1ca — core step when all three of these are
   uint8_t mGate1cb;       // 0x1cb — clear
-  char mPad1cc[0x4];      // 0x1cc — unproven gap
+  char mPad1cc[0x4];      // 0x1cc — never accessed
   uint64_t mField1d0;     // 0x1d0 — zeroed on ctor
   uint32_t mField1d8;     // 0x1d8 — zeroed on ctor
   float mImpulseX1dc;     // 0x1dc — stored impulse/driver-basis xyz:
@@ -209,26 +258,32 @@ class KartPhysicsBody : public gear::Actor {
   float mF1e8;            // 0x1e8 — 3.5f; also read as the manager/mode
                           // word by slot 52
   uint8_t mField1ec;      // 0x1ec — zeroed on ctor
-  char mPad1ed[1];        // 0x1ed — unproven padding
+  char mPad1ed[1];        // 0x1ed — never accessed
   uint16_t mField1ee;     // 0x1ee — -1 on ctor
   uint32_t mField1f0;     // 0x1f0 — zeroed on ctor
   uint16_t mField1f4;     // 0x1f4 — zeroed on ctor
-  char mPad1f6[2];        // 0x1f6 — unproven padding
+  char mPad1f6[2];        // 0x1f6 — never accessed
   uint32_t mField1f8;     // 0x1f8 — 1 on ctor
   uint8_t mField1fc;      // 0x1fc — 1 on ctor
-  char mPad1fd[3];        // 0x1fd — unproven padding
+  char mPad1fd[3];        // 0x1fd — never accessed
   uint64_t mField200;     // 0x200 — zeroed on ctor
   uint64_t mField208;     // 0x208 — best direction-candidate entry
                           // (threshold 0.08; published by slot 52);
                           // slot 96 also stores basis*speed into
                           // 0x204/0x208/0x20c
-  char mPad210[4];        // 0x210 — best candidate score float (slot 52)
+  int32_t mDriftParam210; // 0x210 — signed driving param: sign-
+                          // extended i8 from params+0x30 by
+                          // copyDrivingParams_7100037e10 (0x37ed0) and
+                          // the teleport/respawn setups FUN_710001617c
+                          // (0x1624c) / FUN_7100016ce8 (0x16c60, reset
+                          // to 0), always rewritten together with the
+                          // basis flags 0x214/0x216
   uint8_t mFlag214;       // 0x214 — basis-reset trigger flag (slot 69)
   uint8_t mFlag215;       // 0x215 — basis-reset trigger flag (slot 69)
   uint8_t mFlag216;       // 0x216 — boost dir selector: set picks the alt
                           // path in slot 96 (speed clamp 15.0f instead
                           // of 40.0f)
-  char mPad217[1];        // 0x217 — unproven gap
+  char mPad217[1];        // 0x217 — never accessed
   uint64_t mField218;     // 0x218 — zeroed on ctor
   uint64_t mField220;     // 0x220 — zeroed on ctor; runtime: rigid-body
                           // state enum (RigidBodyUpdate dispatches on
@@ -236,32 +291,52 @@ class KartPhysicsBody : public gear::Actor {
   char mPad228[6];        // 0x228 — ctor zeroes u16 0x228, u8 0x22a;
                           // byte 0x228 = 1 flags a spin reset (slot 82
                           // kartBodySlot82JudgeSpinReset_7100019954 and
-                          // the Koura slot 82 kouraStateSlot82_710002f374)
+                          // the Koura slot 82 kouraStateSlot82_710002f374);
+                          // byte 0x229 = 1 is set by FUN_7100014e78
+                          // (0x14f14) on the respawn transition that
+                          // moves the state ring to 0x71 = 9; 0x22b-0x22f
+                          // never accessed
 
   // Recorder channel descriptor at 0x230 (shape of RaceCheckerVt3's
   // channel: fn cell 0x12fae28, empty-string name, owner back-ptr)
-  uint8_t mPad22E[0x2];  // 0x22E — unproven gap
+  uint8_t mPad22E[0x2];  // 0x22E — never accessed
   void* mChan230;        // 0x230 — cell 0x12fb108+0x10
   void* mChan238;        // 0x238 — fn (cell 0x12fae28+0x10)
-  const char* mChan240;  // 0x240 — ""
-  uint8_t mPad240[0x8];  // 0x240 — unproven gap
+  void* mChan240;        // 0x240 — const char*, rodata 0xed6af8 ("")
   void* mChan248;        // 0x248 — cell 0x12fb110+0x10
   void* mChan250;        // 0x250 — owner = this
   void* mChan258;        // 0x258 — cell 0x12fb110+0x10 (ctor also
                          // stores cell 0x12fb118 at 0x260)
   char mPad260[0x14];    // 0x260 — ctor zeroes + stores more cells
   uint16_t mField274;    // 0x274
-  uint8_t mPad276[0x2];  // 0x276 — unproven gap
+  uint8_t mPad276[0x2];  // 0x276 — never accessed
   uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
                          // helper object (CollisionScale 0x7100013338
                          // vcalls its slots 0x98/0xa8)
   uint64_t mField280;    // 0x280 — zeroed on ctor
-  uint32_t mField288;    // 0x288 — zeroed on ctor
-  char mPad28c[0x30];    // 0x28c — unproven padding
+  uint32_t mField288;    // 0x288 — zeroed on ctor; incremented by init
+                         // FUN_7100012090 (0x123bc, [mgr+0x1a0]+1)
+  char mReg28c[0x30];    // 0x28c — embedded 0x30-byte registration
+                         // record passed by pointer to the collector
+                         // registration helper 0x8db01c by init
+                         // FUN_7100012090 (0x12244); interior bytes are
+                         // never accessed through the body pointer
   uint32_t mField2bc;    // 0x2bc — zeroed on ctor
-  char mPad2c0[0x18];    // 0x2c0 — unproven padding
-  uint32_t mField2d8;    // 0x2d8 — zeroed on ctor
-  char mPad2dc[0xc];     // 0x2dc — unproven padding
+  uint32_t mRayDirX2c0;  // 0x2c0 — downward KCL ray direction xyz and
+  uint32_t mRayDirY2c4;  // 0x2c4 — ground point xyz stored by the ray
+  uint32_t mRayDirZ2c8;  // 0x2c8 — probes FUN_71000196d8 /
+  float mHitX2cc;        // 0x2cc — FUN_7100019704: direction words from
+  float mHitY2d0;        // 0x2d0 — the raycast outputs (0x19784-0x197c4)
+  float mHitZ2d4;        // 0x2d4 — and hit point = pos - dir*dist
+  uint8_t mGround2d8;    // 0x2d8 — ground-contact flag: set to
+                         // (raycast dist < 0) each probe (0x19764-0x19770)
+  char mPad2d9[0x3];     // 0x2d9 — never accessed
+  char mPad2dc[0x4];     // 0x2dc — never accessed
+  void* mWheelRec2e0;    // 0x2e0 — new[](0x78) name-tagged record
+                         // array (4 entries, stride 0x18, rodata names
+                         // 0xed6d05/0xed6d11/0xed6d1c/0xed6d27) bound
+                         // onto the collector by init FUN_7100012090
+                         // (0x12338-0x12384)
   uint32_t mCur2e8;      // 0x2e8 — current/previous value pair: the
   uint32_t mPrev2ec;     // 0x2ec — setter fn 0x7100013278 moves the old
                          // value to 0x2ec (guard byte 0x1f3), same
@@ -271,12 +346,22 @@ class KartPhysicsBody : public gear::Actor {
                          // input pose u32 quad into
                          // 0x304/0x308/0x30c/0x310).
   uint16_t mField2f0;    // 0x2f0
-  uint8_t mPad2F2[0x2];  // 0x2F2 — unproven gap
+  uint8_t mPad2F2[0x2];  // 0x2F2 — never accessed
   int32_t mField2f4;     // 0x2f4 — -1 on ctor (update-record field)
   int32_t mField2f8;     // 0x2f8 — -1 on ctor (update-record field)
-  char mPad2fc[0x18];    // 0x2fc — unproven padding
+  float mPoseX2fc;       // 0x2fc — rigid-body pose vec3, read and
+  float mPoseY300;       // 0x300 — reshuffled by the RigidBodyUpdate
+  float mPoseZ304;       // 0x304 — dispatcher FUN_7100013b2c
+  float mPose2308;       // 0x308 — second pose vec3 (0x308-0x310):
+  float mPose230c;       // 0x30c — same dispatcher swaps its lanes at
+  float mPose2310;       // 0x310 — 0x13fa8-0x14020; callers
+                         // FUN_7100013a90 / FUN_7100013adc store the
+                         // input quad here (see 0x2ec note)
   uint32_t mField314;    // 0x314 — zeroed on ctor
-  char mPad318[2];       // 0x318 — unproven padding
+  uint16_t mField318;    // 0x318 — -1 on ctor (0x11888); no other
+                         // access through a body pointer (the 0x318
+                         // reads in 0x7100019a40/0x710002f140/0x7100037d28
+                         // are vtable offsets, not fields)
   uint16_t mField31a;    // 0x31a — -1 on ctor
   uint32_t mField31c;    // 0x31c — zeroed on ctor
   uint16_t mField320;    // 0x320 — -1 on ctor; runtime: rescue/player

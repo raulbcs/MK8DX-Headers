@@ -1,9 +1,20 @@
 #pragma once
 
-// KartPhysicsSurfaceQuery — docblock-only mirror (no struct: interior layout
-// unproven). Shared manager entry: getPhysManager_71007f7ac0(); slot-4 entry
-// = [mgr+0x190+4*8] (double-get). Per-core id: TLS cell 0x710012fad88 (value-1,
-// fallback nn::os::GetCurrentCoreNumber). Current-pair filter cell: *(void**)0x71012fb3e8.
+// KartPhysicsSurfaceQuery — docblock-only mirror (no struct: interior
+// layout beyond the fields below is unproven). Shared manager entry:
+// getPhysManager_71007f7ac0(); slot-4 entry = [mgr+0x190+4*8] (double-get).
+// Per-core id: TLS cell 0x710012fad88 (value-1, fallback
+// nn::os::GetCurrentCoreNumber). Current-pair filter cell: *(void**)0x71012fb3e8.
+//
+// Proven fields of the query object reached as [body+0x98] (all from
+// FUN_7100012090 / FUN_7100012784):
+//   +0x30  u32   entry count (0x120c4: ldr w23,[x8,0x30]; loop bound)
+//   +0x38  ptr   entry-pointer array, indexed [i*8] (0x120f8-0x12100)
+//   +0xa?  bool  vtable slot 0x80 = validity check, called at 0x12810
+//          and 0x14720 with the axis getters below gated on its result
+// Scale override path: getters 0x71001425c4/0x71001425f0 read the
+// manager at [x0+0x48]; when the body's cached axis scale 0xe8-0xf4
+// drifts from the fresh value the calc re-applies it via 0x71006a1194.
 
 // perCorePairCollectorTick_71000002b0 (extent 0x84c, ret 0x710070afc): x0 = pair
 // collector, buckets +0x38/+0x48/+0x58 (s32 count + ptr array each); classifies
