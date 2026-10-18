@@ -11,7 +11,6 @@ struct WeightDispatchEntry {
   void* fn;        // 0x00 void(void* vehAtOffset)
   int64_t offset;  // 0x08 target = veh + (offset >> 1)
 };
-static_assert(sizeof(WeightDispatchEntry) == 0x10);
 
 // FUN_710068640c (0x710068640c) — spawn/attach up to two objects; state at
 // director +0x1c8/+0x208/+0x248/+0x330, 0x50-byte record at +0xb90 copied

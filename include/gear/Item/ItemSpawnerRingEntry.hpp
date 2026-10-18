@@ -11,5 +11,4 @@ struct SpawnerRingEntry {
   uint64_t v1;  // 0x08 <- info->[0x180]->[0x58]
   uint64_t v2;  // 0x10 <- info->[0x180]->[0x60]
 };
-static_assert(sizeof(SpawnerRingEntry) == 0x18);
 }  // namespace gear

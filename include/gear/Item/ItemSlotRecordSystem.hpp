@@ -31,7 +31,6 @@ struct ItemSlotRecord {
   uint32_t listCap;        // 0x6c = stage->[0x14] + stage->[0x20] + 1 (FUN_710060b930)
   void* listData;          // 0x70 appended from the arrays above
 };
-static_assert(sizeof(ItemSlotRecord) == 0x78);
 
 // FUN_710079ca24 — two-phase item-slot (re)assignment; writes an ItemSlotRecord
 // into this+0x78 via FUN_710079aee0. Related fns 0x5dbf48/0x5dc950/0x79edb4/

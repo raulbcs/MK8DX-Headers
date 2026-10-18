@@ -1,0 +1,26 @@
+#pragma once
+
+#include <cstdint>
+
+// Vt12c4e90 - quantized s16 scalar channel (qbits 9..16); built inline by
+// scalar factory FUN_71007b95a8; min/max fixed to -32768.0f/+32767.0f
+// at +0x280/+0x284, quantization uses exp2f(15).
+// extent 0x288 - details: doc/object/Vt12c4e90.md
+
+namespace object {
+class Vt12c4e90 {
+ public:
+  void* mVtable;           // 0x000 - 0x12c4e90 (via GOT cell 0x130fe90)
+  uint8_t mPad8[0x1B8];    // 0x008 - unproven padding
+  uint32_t mF1C0;          // 0x1C0 - numValues (8 at the factory site)
+  uint32_t mF1C4;          // 0x1C4 - width (4, s16 per tick)
+  uint8_t mPad1C8[0x28];   // 0x1C8 - unproven padding
+  float mF1F0;             // 0x1F0 - step
+  float mF1F4;             // 0x1F4 - (2^15 - 1) / range
+  float mF1F8;             // 0x1F8 - reciprocal of +0x1F4
+  uint8_t mPad1FC[0x7C];   // 0x1FC - unproven padding
+  void* mOwner;            // 0x278 - owning hub/backref (factory x19)
+  float mMin280;           // 0x280 - -32768.0f (rodata 0xed6870)
+  float mMax284;           // 0x284 - +32767.0f (rodata 0xed6774)
+};
+}  // namespace object

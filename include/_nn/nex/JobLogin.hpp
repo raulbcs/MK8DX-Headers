@@ -3,18 +3,19 @@
 #include <cstdint>
 
 namespace nn::nex {
-// RTTI-confirmed (typeinfo mangled name: N2nn3nex8JobLoginE).
-// vptr 0x12e7a78 (GOT cell 0x1314dc8, n=13, ctor 0xa20e4c, sole construction site 0xa20fe4).
-// Member of the nn::nex job vtable family: shared slots 0x5917a0 (vt+0x18
-// secondary dispatch), 0x5917b0, ret-0 stubs 0x5917cc/0x5917d4/0x5917d8;
-// base nn::nex::ForcedCriticalSection (primary vptr cell family at 0x130b618).
+// JobLogin — RTTI-confirmed; vptr 0x12e7a78 (GOT cell 0x1314dc8); base of
+// nn::nex::JobNNIDLogin, built inline in factory FUN_7100a43370 (vptr at
+// 0xa43624, overridden by the derived vptr at 0xa43674). D1 0xa44078 / D0 0xa440fc.
+// extent >= 0x1a0 (lower bound) - details: doc/_nn/nex/JobLogin.md
 class JobLogin {
  public:
-  void* vtable;           // 0x00
-  uint8_t pad_8[0x98];    //0x8 — unproven gap
-  uint8_t mBase08[0x98];  // 0x08 — nn::nex::ForcedCriticalSection base region (shared job ctor 0x588b04, extent 0xa0; secondary vptr at 0x78)
-                          // (no own-field ctor evidence found)
-  // Object size 0x118 (allocation size at the factory new preceding ctor 0xa20e4c).
-  uint8_t mPadA0[0x78];  // 0xA0 — unproven gap (region unmapped by ctor analysis)
+  void* vtable;           // 0x00 - 0x12e7a78 (cell 0x1314dc8 + 0x10)
+  uint8_t mBase08[0xa8];  // 0x08 — nn::nex::ForcedCriticalSection base region
+                          // (shared job ctor 0x588b04, extent 0xa0; secondary
+                          // vptr at +0x78)
+  // 0xb0..0x19f — dtor-managed region: D1 0xa44078 releases [+0x190],
+  // reinstalls the +0x198 secondary vptr (cell 0x130b4a8) and destroys it,
+  // and runs the +0x1a0 subobject init (0xa2c1e8). Field ownership between
+  // this base and the derived class above 0xa0 is unresolved (unverified).
 };
 }  // namespace nn::nex

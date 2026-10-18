@@ -1,5 +1,11 @@
 // Ctor 0x710013f968 (race-director vtable 0x11ba328); member ctors 0x6287b4 at the seven
 // extent 0x794
+#pragma once
+#include <cstdint>
+
+namespace object {
+class KartUnitHolder;  // object/Kart/KartUnitHolder.hpp
+
 class KartDirector {
  public:
   uint8_t pad_00[0x50];               // 0x00 — unproven padding
