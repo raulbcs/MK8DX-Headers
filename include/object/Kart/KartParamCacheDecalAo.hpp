@@ -1,4 +1,4 @@
-// KartParamCacheDecalAo — named from ctor string evidence: ctor name string 'DecalAoMgr' (0xf1a97f) (was address-anchored KartParamCacheVt2be0) (vptr 0x12f2be0, cell 0x13151f0, n=14, site 0xa9a2fc, ctor 0xa9a2e0).
+// KartParamCacheDecalAo — named from ctor string evidence: ctor name string 'DecalAoMgr' (0xf1a97f) (vptr 0x12f2be0, cell 0x13151f0, n=14, site 0xa9a2fc, ctor 0xa9a2e0).
 // extent 0x19a8
 class KartParamCacheDecalAo : public KartParamCache {
  public:

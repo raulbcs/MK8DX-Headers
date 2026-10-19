@@ -6,10 +6,9 @@ namespace object {
 class KartRigidBody : public gear::RigidBody {
  public:
   virtual void test();
-  // Class ends at 0xE0: the "mPadE0 Vector3f" here was a misread —
-  // the derived ctors (Body 0x178da4, Move 0x1812b4) overwrite +0xE0
-  // with a static-table pointer, which is the first field of the
-  // DERIVED class, not a RigidBody field.
+  // Class ends at 0xE0: +0xE0 is the first field of the DERIVED class
+  // (static-table pointer written by the Body 0x178da4 and Move 0x1812b4
+  // ctors), not a RigidBody field.
 
   KartRigidBody();
 };

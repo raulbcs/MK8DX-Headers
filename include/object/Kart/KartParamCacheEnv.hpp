@@ -1,4 +1,4 @@
-// KartParamCacheEnv — named from ctor string tag 'aglenv' (0x64822c window; was address-anchored KartParamCacheVt2358) (vptr 0x12b2358,
+// KartParamCacheEnv — named from ctor string tag 'aglenv' (0x64822c window) (vptr 0x12b2358,
 // extent 0x38
 class KartParamCacheEnv {
  public:

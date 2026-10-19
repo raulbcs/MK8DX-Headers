@@ -1,4 +1,4 @@
-// KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (was address-anchored KartParamCacheVt31e8) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
+// KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
 // extent 0x454
 class KartParamCacheCubeMap : public KartParamCache {
  public:

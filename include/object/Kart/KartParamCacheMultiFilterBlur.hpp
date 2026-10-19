@@ -1,4 +1,4 @@
-// KartParamCacheMultiFilterBlur — named from ctor string evidence: ctor name string 'MultiFilterBlur' + params blur_type/blur_num/gaussian_kernel (0xef9d6d-0xef9dd5) (was address-anchored KartParamCacheVt3628) (vptr 0x12b3628,
+// KartParamCacheMultiFilterBlur — named from ctor string evidence: ctor name string 'MultiFilterBlur' + params blur_type/blur_num/gaussian_kernel (0xef9d6d-0xef9dd5) (vptr 0x12b3628,
 // extent 0x170
 class KartParamCacheMultiFilterBlur : public KartParamCacheMid {
  public:

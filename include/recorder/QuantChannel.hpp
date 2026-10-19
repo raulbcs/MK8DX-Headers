@@ -37,8 +37,7 @@ struct RawVec2Channel {     // 0x280-byte variant (no-quant fallback)
   uint8_t tail_280[0x00];   // no extra fields proven
 };
 
-// extent 0x28c (field end; prior-survey alloc claim 0x288 — unresolved
-// conflict, see doc/recorder/QuantChannel.md)
+// extent 0x28c (field end — see doc/recorder/QuantChannel.md)
 struct ScalarQuantChannel {  // 0x288-byte variant
   QuantChannelCommon head;   // 0x000..0x280 (extent 0x280)
   float span_280;            //0x280 — (max - min), as u64 pair with 0x284

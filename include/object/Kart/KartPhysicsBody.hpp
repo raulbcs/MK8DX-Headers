@@ -313,7 +313,7 @@ class KartPhysicsBody : public gear::Actor {
   void* mField268;       // 0x268 — reset to null by FUN_710001d28c (along
                          //   with the FUN_71006a00c4([0x328],0,0) call)
   uint32_t mField270;    // 0x270 — reset to 0 by FUN_710001d28c
-  uint8_t mPad274[0x2];  // 0x274 — unproven padding (was mField274 u16)
+  uint8_t mPad274[0x2];  // 0x274 — unproven padding
   uint8_t mPad276[0x2];  // 0x276 — never accessed
   uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
                          // helper object (CollisionScale 0x7100013338

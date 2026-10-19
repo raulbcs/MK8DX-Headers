@@ -1,4 +1,4 @@
-// KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (was address-anchored KartParamCacheVt30a8) (vptr
+// KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (vptr
 // extent 0x1a30
 class KartParamCacheColorCorrection : public KartParamCache {
  public:

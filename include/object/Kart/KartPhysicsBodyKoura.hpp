@@ -54,17 +54,15 @@ namespace object {
 //   slots 111/127 (also read from the manager cell in slot 118
 //   0x710002f6c4).
 //
-// EXTENT RESOLVED (was: contradiction vs >= 0x4d4): the allocation is
-// exactly 0x460 (operator new(0x460) at 0x7100035f10, ctor 0x7100030d50
-// at 0x7100035f30). The trailer-cluster writers (kouraResetFlagsAnd-
-// Trailer_710002ce60 +0x4cf, kouraDriftAlignSlot111_710002dbc4 and
-// kouraResetChaseSlotsSlot127_710002fd14 +0x4d0) are slots of the
-// KartPhysicsBodyKouraTogezo subclass, not of this class: both sit in
-// the Togezo vtable (vptr cell 0x12fb7c0 -> 0x11b0888; Togezo ctor
-// 0x2c5cc stores it) and are absent from this class's primary vtable
-// (cell 0x12fb838 -> 0x11b0d88). Togezo is allocated new(0x4d8) at
-// 0x7100030b10 (see KartPhysicsBodyKouraTogezo.hpp), which covers the
-// +0x4d0 writes. Extent stays 0x460.
+// The +0x4cf/+0x4d0 trailer writers (kouraResetFlagsAndTrailer_
+// 710002ce60, kouraDriftAlignSlot111_710002dbc4,
+// kouraResetChaseSlotsSlot127_710002fd14) belong to the
+// KartPhysicsBodyKouraTogezo subclass, not this class: they sit in the
+// Togezo vtable (vptr cell 0x12fb7c0 -> 0x11b0888; Togezo ctor 0x2c5cc
+// stores it) and are absent from this class's primary vtable (cell
+// 0x12fb838 -> 0x11b0d88). Togezo is allocated new(0x4d8) at
+// 0x7100030b10 (see KartPhysicsBodyKouraTogezo.hpp), covering the
+// +0x4d0 writes; this class's extent remains 0x460.
 //
 // Additional slot facts :
 // slot 3 (0x28, kouraDeletingDtor_710002ff7c): same shape as the root

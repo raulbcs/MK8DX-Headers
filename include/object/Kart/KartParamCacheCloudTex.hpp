@@ -1,4 +1,4 @@
-// KartParamCacheCloudTex — named from ctor string evidence: ctor string tag 'aglclwd' + member names mBaseTextureNo/mNoiseTextureNo/mbCloudTexBlend/mCloudTexBlendRate (0xf1a080-0xf1a0f7) (was address-anchored KartParamCacheVt2ab0) (vptr 0x12f2ab0, cell 0x13151d0, n=13, site 0xa94c04, ctor 0xa94bb8).
+// KartParamCacheCloudTex — named from ctor string evidence: ctor string tag 'aglclwd' + member names mBaseTextureNo/mNoiseTextureNo/mbCloudTexBlend/mCloudTexBlendRate (0xf1a080-0xf1a0f7) (vptr 0x12f2ab0, cell 0x13151d0, n=13, site 0xa94c04, ctor 0xa94bb8).
 // extent 0xaf9
 class KartParamCacheCloudTex : public KartParamCache {
  public:

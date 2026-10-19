@@ -1,4 +1,4 @@
-// KartParamCacheCloud — named from ctor string evidence: ctor string tag 'aglcloud' + params tex_random_seed/tex_base_freq noise block (0xf02b9b-0xf1bd21) (was address-anchored KartParamCacheVt2f40) (vptr 0x12f2f40, cell 0x1315250, n=13, site 0xaac060, ctor 0xaac014).
+// KartParamCacheCloud — named from ctor string evidence: ctor string tag 'aglcloud' + params tex_random_seed/tex_base_freq noise block (0xf02b9b-0xf1bd21) (vptr 0x12f2f40, cell 0x1315250, n=13, site 0xaac060, ctor 0xaac014).
 // extent 0x7f60
 class KartParamCacheCloud : public KartParamCache {
  public:

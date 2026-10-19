@@ -1,4 +1,4 @@
-// KartParamCacheOfx — named from ctor string evidence: ctor string tag 'aglofx' (0xf1f263) (was address-anchored KartParamCacheVt4bb8) (vptr 0x12f4bb8, cell 0x1315530, n=13, site 0xaf5744, ctor 0xaf56f8).
+// KartParamCacheOfx — named from ctor string evidence: ctor string tag 'aglofx' (0xf1f263) (vptr 0x12f4bb8, cell 0x1315530, n=13, site 0xaf5744, ctor 0xaf56f8).
 // extent 0x2840
 class KartParamCacheOfx : public KartParamCache {
  public:

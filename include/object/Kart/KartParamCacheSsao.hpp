@@ -1,4 +1,4 @@
-// KartParamCacheSsao — named from ctor string evidence: ctor string tag 'aglssao' + params radius/ao_far/dist_attn/enable_reprojection/mix_rate (0xf1e713-0xf1e7ef) (was address-anchored KartParamCacheVt40c8) (vptr 0x12f40c8, cell 0x1315480, n=13, site 0xae7da4, ctor 0xae7d58).
+// KartParamCacheSsao — named from ctor string evidence: ctor string tag 'aglssao' + params radius/ao_far/dist_attn/enable_reprojection/mix_rate (0xf1e713-0xf1e7ef) (vptr 0x12f40c8, cell 0x1315480, n=13, site 0xae7da4, ctor 0xae7d58).
 // extent 0x3cf4
 class KartParamCacheSsao : public KartParamCache {
  public:

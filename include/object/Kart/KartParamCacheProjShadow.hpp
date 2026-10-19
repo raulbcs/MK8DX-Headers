@@ -1,4 +1,4 @@
-// KartParamCacheProjShadow — named from ctor string evidence: ctor string tag 'aglprojsdw' + params bias_scale/anim_swing_cyc_x/scroll anim (0xf1dc97-0xf1ddb4) (was address-anchored KartParamCacheVt3f60) (vptr 0x12f3f60, cell 0x1315460, n=13, site 0xade4d0, ctor 0xade480).
+// KartParamCacheProjShadow — named from ctor string evidence: ctor string tag 'aglprojsdw' + params bias_scale/anim_swing_cyc_x/scroll anim (0xf1dc97-0xf1ddb4) (vptr 0x12f3f60, cell 0x1315460, n=13, site 0xade4d0, ctor 0xade480).
 // extent 0x541
 class KartParamCacheProjShadow : public KartParamCache {
  public:

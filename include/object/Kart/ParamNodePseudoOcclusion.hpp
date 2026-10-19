@@ -3,7 +3,7 @@
 #include <cstdint>
 
 namespace object {
-// ParamNodePseudoOcclusion — named from ctor string evidence: ctor params Position/Radius/CoreRadius/VerticesBias/DepthOffset/PseudoOccl (0xeeee93-0xf1ea66) (was address-anchored ParamNodeVt4400) (vptr 0x12f4400, cell 0x13154d0, n=22, site 0xaeeef0, ctor 0xaeeec8).
+// ParamNodePseudoOcclusion — named from ctor string evidence: ctor params Position/Radius/CoreRadius/VerticesBias/DepthOffset/PseudoOccl (0xeeee93-0xf1ea66) (vptr 0x12f4400, cell 0x13154d0, n=22, site 0xaeeef0, ctor 0xaeeec8).
 class ParamNodePseudoOcclusion {
  public:
   void* vtable;           // 0x00

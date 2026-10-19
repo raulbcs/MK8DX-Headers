@@ -1,4 +1,4 @@
-// KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (was address-anchored KartParamCacheVt2ea8) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
+// KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
 // extent 0xf19
 class KartParamCacheLref : public KartParamCache {
  public:

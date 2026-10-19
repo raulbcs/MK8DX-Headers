@@ -6,8 +6,8 @@
 
 // KartVehicleNet — size 0x42D8, proven by operator new(0x42D8) in the
 // KartVehicle ctor (v400 0x71001701cc, stored at KartVehicle+0x20; ctor
-// 0x710018d664 calls the 0x70-byte Control base first). The old
-// pad_5C[0x4268] was off by 0x14: 0x5C is inside the base class.
+// 0x710018d664 calls the 0x70-byte Control base first). Entries begin
+// at 0x70, immediately after the Control base.
 namespace object {
 class KartVehicleNet : public KartVehicleControl {
  public:

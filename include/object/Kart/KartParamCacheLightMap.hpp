@@ -1,4 +1,4 @@
-// KartParamCacheLightMap — named from ctor string evidence: ctor string tag 'agllmap' (0xefa640) (was address-anchored KartParamCacheVt48f8) (vptr 0x12b48f8, cell 0x130dce0, n=13, site 0x67885c, ctor 0x678808).
+// KartParamCacheLightMap — named from ctor string evidence: ctor string tag 'agllmap' (0xefa640) (vptr 0x12b48f8, cell 0x130dce0, n=13, site 0x67885c, ctor 0x678808).
 // extent 0x8f4
 class KartParamCacheLightMap : public KartParamCache {
  public:

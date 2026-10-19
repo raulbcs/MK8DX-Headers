@@ -1,4 +1,4 @@
-// KartParamCacheShadowPP — named from ctor string evidence: ctor string tag 'aglshpp' + params screenSpaceBlurType/pcfWidth/is_outputLinearSampler (0xf028a5-0xf1df4a) (was address-anchored KartParamCacheVt4050) (vptr 0x12f4050, cell 0x1315478, n=13, site 0xae2fb0, ctor 0xae2f64).
+// KartParamCacheShadowPP — named from ctor string evidence: ctor string tag 'aglshpp' + params screenSpaceBlurType/pcfWidth/is_outputLinearSampler (0xf028a5-0xf1df4a) (vptr 0x12f4050, cell 0x1315478, n=13, site 0xae2fb0, ctor 0xae2f64).
 // extent 0x905
 class KartParamCacheShadowPP : public KartParamCache {
  public:

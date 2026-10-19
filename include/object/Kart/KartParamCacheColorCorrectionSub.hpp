@@ -1,4 +1,4 @@
-// KartParamCacheColorCorrectionSub — named from ctor string evidence: same ctor 0x64fb3c + same tag 'aglccr' as KartParamCacheColorCorrection; vptr 0x12b30b8 = base+0x10 (secondary MI subobject table) (was address-anchored KartParamCacheVt30b8) (vptr 0x12b30b8, cell 0x130da78, n=13, site 0x64fb88, ctor 0x64fb3c, alloc 0x270).
+// KartParamCacheColorCorrectionSub — named from ctor string evidence: same ctor 0x64fb3c + same tag 'aglccr' as KartParamCacheColorCorrection; vptr 0x12b30b8 = base+0x10 (secondary MI subobject table) (vptr 0x12b30b8, cell 0x130da78, n=13, site 0x64fb88, ctor 0x64fb3c, alloc 0x270).
 // extent 0x1a2c
 class KartParamCacheColorCorrectionSub : public KartParamCache {
  public:

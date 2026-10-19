@@ -1,4 +1,4 @@
-// KartParamCacheMultiFilterColorDrift — named from ctor string evidence: ctor name string 'MultiFilterColorDrift' + params drift_r/g/b (0xef9e5b-0xef9e8b) (was address-anchored KartParamCacheVt37d8) (vptr 0x12b37d8,
+// KartParamCacheMultiFilterColorDrift — named from ctor string evidence: ctor name string 'MultiFilterColorDrift' + params drift_r/g/b (0xef9e5b-0xef9e8b) (vptr 0x12b37d8,
 // extent 0x170
 class KartParamCacheMultiFilterColorDrift : public KartParamCacheMid {
  public:

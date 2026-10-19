@@ -1,4 +1,4 @@
-// KartParamCacheMultiFilterFormat — named from ctor string evidence: params format/comp_sel_r/g/b/a (0xef9e0f-0xef9e4e); format config of the MultiFilter family (Blur/ColorDrift siblings) (was address-anchored KartParamCacheVt3748) (vptr 0x12b3748,
+// KartParamCacheMultiFilterFormat — named from ctor string evidence: params format/comp_sel_r/g/b/a (0xef9e0f-0xef9e4e); format config of the MultiFilter family (Blur/ColorDrift siblings) (vptr 0x12b3748,
 // extent 0x1b0
 class KartParamCacheMultiFilterFormat : public KartParamCacheMid {
  public:
