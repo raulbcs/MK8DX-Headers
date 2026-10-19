@@ -175,7 +175,9 @@ class KartPhysicsBody : public gear::Actor {
                       // FUN_71000134bc adds a rodata constant and
                       // clamps to [0, cap] (0x13540-0x13564); the
                       // Koura slot fn 0x710002f140 reads it when
-                      // state 0x71 == 3 (0x2f164)
+                      // state 0x71 == 3 (0x2f164); the frame flag
+                      // writer FUN_710001cb68 stores (mRate128 > 0) as a
+                      // byte at 0x348, and FUN_710001cb98 forces it to 1
   // 0x120-0x177: kinematic state block (ctor memset 0x58; readers are
   // the isSurfaceValid slot 0x7100013190: pos + vel*t + 0.5*accel*t^2)
   void* mHandle120;    // 0x120 — per-core query handle: vtable slot
@@ -307,8 +309,11 @@ class KartPhysicsBody : public gear::Actor {
   void* mChan250;        // 0x250 — owner = this
   void* mChan258;        // 0x258 — cell 0x12fb110+0x10 (ctor also
                          // stores cell 0x12fb118 at 0x260)
-  char mPad260[0x14];    // 0x260 — ctor zeroes + stores more cells
-  uint16_t mField274;    // 0x274
+  char mPad260[0x8];     // 0x260 — ctor zeroes + stores more cells
+  void* mField268;       // 0x268 — reset to null by FUN_710001d28c (along
+                         //   with the FUN_71006a00c4([0x328],0,0) call)
+  uint32_t mField270;    // 0x270 — reset to 0 by FUN_710001d28c
+  uint8_t mPad274[0x2];  // 0x274 — unproven padding (was mField274 u16)
   uint8_t mPad276[0x2];  // 0x276 — never accessed
   uint64_t mField278;    // 0x278 — zeroed on ctor; runtime: collision
                          // helper object (CollisionScale 0x7100013338

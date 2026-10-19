@@ -28,6 +28,7 @@ namespace object {
 // 710002c6c0, kouraDriftAlignSlot111_710002dbc4, kouraSlot117ClampAnd-
 // Respawn_710002e768, kouraResetFlagsAndTrailer_710002ce60, kouraReset-
 // ChaseSlotsSlot127_710002fd14, clearFlag4ccResetRef_710002cd60,
+// reset FUN_710001d28c clears byte 0x3d4 and zeroes 0x268/0x270 (root).
 // kouraGetFloatByState_710002fc78, kouraBuildDriverSetupsSlot90_710002ec0c):
 // 0x399 = shell state byte, 2 <-> 3 transitions; state-3 tested with
 //   ==3 (kouraGetFloatByState picks table entry by it); basis reset

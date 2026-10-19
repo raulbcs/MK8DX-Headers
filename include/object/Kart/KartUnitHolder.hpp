@@ -36,7 +36,8 @@ class KartUnitHolder {
   void* mListHead248;       // 0x248 — intrusive list head (sentinel = self),
                             // one per active entry index (ctor 0x16e23c)
   void* mListNext250;       // 0x250
-  uint32_t mZero258;        // 0x258 — ctor zero
+  uint32_t mZero258;        // 0x258 — ctor zero; incremented per attach by
+                            // the boost-record attach FUN_710013d400
   uint8_t pad25C[4];        // 0x25C — unproven padding (to u64 @0x260)
   uint64_t mZero260;        // 0x260 — ctor zero
   uint64_t mZero268;        // 0x268 — ctor zero
@@ -67,12 +68,19 @@ class KartUnitHolder {
                             // 0x16e370, size 0x8000|(n<<20)); entry+0x278 object
                             // ptr gets vt calls at slots 0x58/0x80/0x30
   int32_t mIndex348;        // 0x348 — active entry index, clamped < 2 (0x16e72c)
-  int32_t mIndex34C;        // 0x34C — mirror index (1 - mIndex348)
-  uint8_t mZero350;         // 0x350 — cleared by per-unit reset FUN_710013f430
+  int32_t mIndex34C;        // 0x34C — mirror index (1 - mIndex348); also the
+                            // bank selector for the 0x78-stride boost-record
+                            // list, clamped < 2 by FUN_710013d400
+  uint8_t mRespawnFlag350;  // 0x350 — respawn-in-progress: set 1 by the
+                            // respawn setter FUN_710013d234, cleared by
+                            // per-unit reset FUN_710013f430
   uint8_t pad351[3];        // 0x351 — unproven padding
-  uint32_t mZero354;        // 0x354 — cleared by per-unit reset
+  uint32_t mRespawnTime354; // 0x354 — respawn setter FUN_710013d234 writes
+                            // (flags&1) ? 0x64 : 0; reset clears it
   uint32_t mState358;       // 0x358 — state-machine counter {1,2,3,7,8,9,10};
-                            // transitions write m35C=0 then m358=new
+                            // transitions write m35C=0 then m358=new;
+                            // predicates FUN_710013d308 (==3) and
+                            // FUN_710013e0bc (==4) query it
   uint32_t mGate35C;        // 0x35C — compared >= 3, incremented in FUN_710016e6e4
   uint8_t mFlag360;         // 0x360 — ((RaceCheck+8)|2)==7 result (0x16eab8)
   uint8_t mFlag361;         // 0x361 — set 1 by FUN_710016ef3c (KartDirectorVt8)

@@ -20,7 +20,15 @@ class KartDirector {
   uint8_t pad_E0[0x8];                // 0xE0 — unproven padding
   uint8_t mFlagE8;                    // 0xE8 — run the post-calc hook (arg: m6F8)
   uint8_t mFlagE9;                    // 0xE9 — per-unit pre-reset flag ((mode|2)==7, slot 14)
-  uint8_t pad_EA[0x86];               // 0xEA — see field notes above
+  uint8_t pad_EA[0x26];               // 0xEA — unproven padding
+  int mSlotCount110;                  // 0x110 — count for the 0x118 slot array
+  uint8_t pad_114[0x4];               // 0x114 — unproven padding
+  void* mSlots118[8];                 // 0x118 — slot pointers; finder clamps the
+                                      //   index at 8 (0x710013d194)
+  void* mListEnd158;                  // 0x158 — list sentinel (== this)
+  void* mListHead160;                 // 0x160 — intrusive list head, next @ node+8,
+                                      //   obj @ node+0x10 (walker 0x710013d39c)
+  uint8_t pad_168[0x8];               // 0x168 — unproven padding
 
   char mWork170[0xC8];    // 0x170 — CalcPosition job block
   char mWork238[0xC8];    // 0x238 — CalcAI job block
@@ -31,7 +39,10 @@ class KartDirector {
   char mWork620[0xC8];    // 0x620 — KartRadar job block
   uint8_t pad_6E8[0x10];  // 0x6E8 — unproven padding
   void* m6F8;             // 0x6F8 — argument of the post-calc hook
-  uint8_t pad_700[0x90];  // 0x700 — unproven padding
+  void* mStackHead700;    // 0x700 — guarded stack head: push-unique (only stores
+                          //   when empty — FUN_710013d498), mutex at 0x708
+  uint8_t mMutex708[0x10]; // 0x708 — mutex guarding mStackHead700
+  uint8_t pad_718[0x78];  // 0x718 — unproven padding
   int mPhase790;          // 0x790 — current CalcPhase (1..5)
 
   void CalcAI() asm("KartDirector::CalcAI");              // KartDirector::CalcAI
