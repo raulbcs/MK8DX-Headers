@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheChan.hpp"
+#include <object/Kart/KartParamCacheChanBase.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
 
-namespace object {
+namespace object::Kart {
 // ParamChannelVt20e8 — address-anchored name (vptr 0x12b20e8, GOT cell
 class ParamChannelVt20e8 : public KartParamCacheChan {
  public:
@@ -13,4 +15,4 @@ class ParamChannelVt20e8 : public KartParamCacheChan {
   // (0x80 total)
   // extent 0x80 (embedded stride 0x80 proven in prior survey)
 };
-}  // namespace object
+}  // namespace object::Kart

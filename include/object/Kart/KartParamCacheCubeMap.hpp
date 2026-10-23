@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheCubeMap — named from ctor string evidence: ctor string tag 'aglcube' + param cubemap_mgr (0xf02a28-0xf1c50d) (vptr 0x12f31e8, cell 0x13152a0, n=13, site 0xab86d8, ctor 0xab868c).
 // extent 0x454
+namespace object::Kart {
 class KartParamCacheCubeMap : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

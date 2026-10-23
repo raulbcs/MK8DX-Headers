@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheOfx — named from ctor string evidence: ctor string tag 'aglofx' (0xf1f263) (vptr 0x12f4bb8, cell 0x1315530, n=13, site 0xaf5744, ctor 0xaf56f8).
 // extent 0x2840
+namespace object::Kart {
 class KartParamCacheOfx : public KartParamCache {
  public:
   uint8_t mPad40[0x190];    // 0x40 — unproven gap

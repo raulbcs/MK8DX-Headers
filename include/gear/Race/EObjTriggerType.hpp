@@ -21,3 +21,5 @@ enum EObjTriggerType : int32_t {
   ObjTrigger_DashPanel = 10,       // tier 0x20: 60f, level 10, impulse; KCL attr DASH=0xa cross-link proven (18af54)
   ObjTrigger_Unknown11 = 11,       // tier 0x1: 90f, level 11, impulse (mushroom-class)
 };
+
+}  // namespace gear

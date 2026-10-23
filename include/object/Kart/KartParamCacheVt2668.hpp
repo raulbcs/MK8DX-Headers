@@ -1,5 +1,10 @@
+#pragma once
+
+#include <cstdint>
+
 // KartParamCacheVt2668 — address-anchored name (vptr 0x12b2668,
 // GOT cell 0x130d980). Cluster variant, extent 0x168 (ctor 0x710064a708):
+namespace object::Kart {
 class KartParamCacheVt2668 {
  public:
   void* vtable;                // 0x00

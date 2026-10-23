@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheDecal — named from ctor string evidence: ctor string tag 'agldecd' + 'DecalDrawer' name string (0xf1e99a-0xf1e9a2) (vptr 0x12f42a8, cell 0x13154b0, n=13, site 0xaed278, ctor 0xaed234).
 // extent 0x48c
+namespace object::Kart {
 class KartParamCacheDecal : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

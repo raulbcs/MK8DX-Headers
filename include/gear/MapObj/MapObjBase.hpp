@@ -24,6 +24,7 @@
 
 #include "MapObjDrawManager.hpp"
 #include "MapObjReactProxy.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class MapObjBase : public Actor,

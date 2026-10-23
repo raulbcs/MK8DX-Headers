@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCacheMid2.hpp>
+
 // KartParamCacheVt1d08 — address-anchored name (vptr 0x12b1d08,
 // GOT cell 0x130d858). Mid2-derived variant (ctor 0x710063c87c calls the Mid2 overload
+namespace object::Kart {
 class KartParamCacheVt1d08 : public KartParamCacheMid2 {
  public:
 };

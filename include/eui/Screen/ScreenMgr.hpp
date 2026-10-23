@@ -3,7 +3,7 @@
 #include <heap/seadDisposer.h>
 #include <container/seadBuffer.h>
 
-#include <hostio/seadHostIONode.h>
+#include "sead/hostio/seadHostIONode.hpp"
 
 #include <prim/seadRuntimeTypeInfo.h>
 

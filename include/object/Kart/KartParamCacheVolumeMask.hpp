@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheVolumeMask — named from ctor string evidence: ctor string tag 'aglvolm' + param volume_mask (0xf1aa11-0xf01d00) (vptr 0x12f2d18, cell 0x1315208, n=14, site 0xa9cad8, ctor 0xa9ca94).
 // extent 0x548
+namespace object::Kart {
 class KartParamCacheVolumeMask : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

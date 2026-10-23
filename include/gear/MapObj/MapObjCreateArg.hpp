@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include <gear/Course/MapUnitMapObj.hpp>
+#include <gear/MapObj/MapUnitMapObj.hpp>
 #include <gear/MapObj/MapObjParameter.hpp>
 
 namespace gear {

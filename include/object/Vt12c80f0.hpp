@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <object/Vt12c8020.hpp>
 
 // object::Vt12c80f0 — PLACEHOLDER name; derives from Vt12c8020, overriding slots
 // 2/3 (dtors) and 7/8/9/16/17/18/19. Same 0x3a0 layout.

@@ -1,3 +1,7 @@
+#pragma once
+
+#include <cstdint>
+
 // KartChassis — size 0x510, proven by operator new(0x510) in the KartVehicle
 // ctor (v400 0x7100170298, stored at KartVehicle+0x50; ctor 0x710011c0c4).
 namespace object {

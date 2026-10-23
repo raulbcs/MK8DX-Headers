@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheLref — named from ctor string evidence: ctor string tag 'agllref' + params user_param/sys_param (0xf02963-0xf1bae0) (vptr 0x12f2ea8, cell 0x1315240, n=13, site 0xaa3cac, ctor 0xaa3c6c).
 // extent 0xf19
+namespace object::Kart {
 class KartParamCacheLref : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

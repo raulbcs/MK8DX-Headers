@@ -18,7 +18,7 @@ class LeaveSessionJob {
   };
   Result m30;             // 0x30 - {ptr, null} step result
   const char* m40;        // 0x40 - step name (MethodTree string)
-  uint8_t mPad48[0x18];   // 0x48
+  uint8_t mPad48[0x18];   // 0x48 — unproven padding
   void* m60;              // 0x60 - 0x20-byte subobject (ctor 0x929ec0,
                           //   0x98508c); freed by 0x929ee0 in dtor path
   uint8_t mPad68[0x18];   // 0x68 - unproven

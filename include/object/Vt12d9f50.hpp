@@ -1,3 +1,4 @@
+#include <object/Vt12da1a0.hpp>
 #pragma once
 
 // Vt12d9f50 - PLACEHOLDER name; runtime dispatch table of the Vt12da1a0-layout

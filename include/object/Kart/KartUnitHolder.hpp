@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "KartVehicle.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace object {
 /*

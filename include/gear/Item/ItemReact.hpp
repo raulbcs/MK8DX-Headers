@@ -4,6 +4,7 @@
 
 #include "Obj/ItemObjBase.hpp"
 #include "EItemType.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemReact {

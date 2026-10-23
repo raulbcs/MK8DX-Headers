@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheCloudDraw — named from ctor string evidence: ctor string tag 'aglclwd' + member names mIsDrawReduceBuffer/mIsSyncSunPosition/mDrawOrder/mCloudColorScale (0xf1a661-0xf1a745) (vptr 0x12f2b28, cell 0x13151d8, n=13, site 0xa96144, ctor 0xa960f8).
 // extent 0x7f90
+namespace object::Kart {
 class KartParamCacheCloudDraw : public KartParamCache {
  public:
   uint8_t mPad40[0x3c8];     // 0x40 — unproven gap

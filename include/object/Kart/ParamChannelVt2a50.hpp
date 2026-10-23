@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheChan.hpp"
+#include <object/Kart/KartParamCacheChanBase.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
 
-namespace object {
+namespace object::Kart {
 // ParamChannelVt2a50 — address-anchored name (vptr 0x12b2a50, GOT cell
 // extent 0x198
 class ParamChannelVt2a50 : public KartParamCacheChan {
@@ -12,4 +14,4 @@ class ParamChannelVt2a50 : public KartParamCacheChan {
   char mOwn20[0x178];  // 0x20 — own-field region
                        // (0x198 total)
 };
-}  // namespace object
+}  // namespace object::Kart

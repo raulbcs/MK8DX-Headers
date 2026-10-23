@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheProjShadow — named from ctor string evidence: ctor string tag 'aglprojsdw' + params bias_scale/anim_swing_cyc_x/scroll anim (0xf1dc97-0xf1ddb4) (vptr 0x12f3f60, cell 0x1315460, n=13, site 0xade4d0, ctor 0xade480).
 // extent 0x541
+namespace object::Kart {
 class KartParamCacheProjShadow : public KartParamCache {
  public:
   uint8_t mPad40[0x344];  // 0x40 — unproven gap

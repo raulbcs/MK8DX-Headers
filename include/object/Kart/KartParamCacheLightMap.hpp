@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheLightMap — named from ctor string evidence: ctor string tag 'agllmap' (0xefa640) (vptr 0x12b48f8, cell 0x130dce0, n=13, site 0x67885c, ctor 0x678808).
 // extent 0x8f4
+namespace object::Kart {
 class KartParamCacheLightMap : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

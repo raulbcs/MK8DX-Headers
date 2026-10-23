@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheCloudTex — named from ctor string evidence: ctor string tag 'aglclwd' + member names mBaseTextureNo/mNoiseTextureNo/mbCloudTexBlend/mCloudTexBlendRate (0xf1a080-0xf1a0f7) (vptr 0x12f2ab0, cell 0x13151d0, n=13, site 0xa94c04, ctor 0xa94bb8).
 // extent 0xaf9
+namespace object::Kart {
 class KartParamCacheCloudTex : public KartParamCache {
  public:
   uint8_t mPad40[0x190];  // 0x40 — unproven gap

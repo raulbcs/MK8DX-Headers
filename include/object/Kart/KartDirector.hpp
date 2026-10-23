@@ -6,6 +6,7 @@
 namespace object {
 class KartUnitHolder;  // object/Kart/KartUnitHolder.hpp
 
+// extent 0x794 (CalcPosition str w21,[x19,#0x790] @0x710013efd8)
 class KartDirector {
  public:
   uint8_t pad_00[0x50];               // 0x00 — unproven padding

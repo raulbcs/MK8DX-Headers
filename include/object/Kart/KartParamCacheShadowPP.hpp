@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheShadowPP — named from ctor string evidence: ctor string tag 'aglshpp' + params screenSpaceBlurType/pcfWidth/is_outputLinearSampler (0xf028a5-0xf1df4a) (vptr 0x12f4050, cell 0x1315478, n=13, site 0xae2fb0, ctor 0xae2f64).
 // extent 0x905
+namespace object::Kart {
 class KartParamCacheShadowPP : public KartParamCache {
  public:
   uint8_t mPad40[0x190];   // 0x40 — unproven gap

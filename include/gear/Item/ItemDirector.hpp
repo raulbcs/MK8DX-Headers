@@ -10,6 +10,7 @@
 #include <container/seadPtrArray.h>
 
 #include "ItemEventManager.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemDirector : public Actor {

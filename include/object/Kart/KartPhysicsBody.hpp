@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <gear/Actor/Actor.hpp>
 
 #include "gear/Actor/Actor.hpp"
 

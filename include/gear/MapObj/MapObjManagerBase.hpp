@@ -8,6 +8,7 @@
 
 #include "MapObjBase.hpp"
 #include "MapObjParameter.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class MapObjManagerBase

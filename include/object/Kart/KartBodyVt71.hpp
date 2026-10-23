@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <gear/Actor/Actor.hpp>
+
 // Address-anchored name ("Vt71"): base of the kart body family — 665 vtables (71-101
 // extent 0x208
+namespace object::Kart {
 class KartBodyVt71 : public gear::Actor {
  public:
   char mSub38[0xf0];   // 0x38 — embedded member (ctor 0x86838c); the
@@ -17,4 +23,4 @@ class KartBodyVt71 : public gear::Actor {
   void* mField1a8;     // 0x1a8 — cleared by the re-init slot 0x18
   char mPad1b0[0x58];  // 0x1b0 — to end (0x208)
 };
-}  // namespace object
+}  // namespace object::Kart

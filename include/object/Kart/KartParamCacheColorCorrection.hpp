@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheColorCorrection — named from ctor string evidence: ctor string tag 'aglccr' + params hue/saturation/brightness/gamma/toycam_enable (EN/JP pairs at 0xef93f6-0xef94c4) (vptr
 // extent 0x1a30
+namespace object::Kart {
 class KartParamCacheColorCorrection : public KartParamCache {
  public:
   void* mSecVt1d0;          // 0x1d0 — secondary vptr (0x12b26b0 +0x10)

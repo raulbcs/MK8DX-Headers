@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheChan.hpp"
+#include <object/Kart/KartParamCacheChanBase.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
 
-namespace object {
+namespace object::Kart {
 // ParamChannelVt3998 — address-anchored name (vptr 0x12b3998, GOT cell
 // 0x130db38). Lazy-resolver channel of the 0x66496c cluster.
 // extent 0x170 (cluster lower bound) - details: doc/object/Kart/ParamChannelVt3998.md
@@ -19,4 +21,4 @@ class ParamChannelVt3998 : public KartParamCacheChan {
   uint8_t pad12c[0x34];    // 0x12c — unproven padding
   uint8_t mBlob160[0x10];  // 0x160 — resolver blob copy (unverified)
 };
-}  // namespace object
+}  // namespace object::Kart

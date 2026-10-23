@@ -1,5 +1,10 @@
+#pragma once
+
+#include <cstdint>
+
 // KartParamCacheEnv — named from ctor string tag 'aglenv' (0x64822c window) (vptr 0x12b2358,
 // extent 0x38
+namespace object::Kart {
 class KartParamCacheEnv {
  public:
   void* vptr;        // 0x00

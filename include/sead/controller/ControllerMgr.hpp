@@ -4,6 +4,8 @@
 
 namespace sead {
 
+class Controller;  // seadController.h (vendor)
+
 /// sead::ControllerMgr (heap name "sead::ControllerMgr" @0xef7b6c; cf. upstream
 /// seadControllerMgr.h, CalculateTask singleton). TaskBase-derived overrides at slots
 /// 0-3, 10, 22 vs base vtable 0x12af938; singleton instance cell 0x12fccb0.

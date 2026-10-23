@@ -1,8 +1,11 @@
 #pragma once
 
+#include <cstdint>
+
 #include <audio/Kart/AudSoundObjKart.hpp>
 
 #include "KartVehicle.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace object {
 class KartInfoProxy {

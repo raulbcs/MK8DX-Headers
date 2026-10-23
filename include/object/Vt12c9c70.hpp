@@ -1,3 +1,4 @@
+#include <object/Vt12c9268.hpp>
 #pragma once
 
 // Vt12c9c70 - "SystemSubEngine" subsystem (ctor passes the name string

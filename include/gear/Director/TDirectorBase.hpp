@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include <agl/common/aglRenderInfo.h>
 
 #include <gear/Actor/ActorVisitor.hpp>

@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheMid2 — address-anchored name (vptr 0x12b4518,
 // extent 0x1d0
+namespace object::Kart {
 class KartParamCacheMid2 : public KartParamCache {
  public:
   uint8_t mPad40[0x10];   // 0x40 — unproven gap

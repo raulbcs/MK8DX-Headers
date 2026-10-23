@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <gear/Collision/GndColManager.hpp>
 #include <gear/Course/FieldDirector.hpp>
 #include <gear/Item/ItemDirector.hpp>
 #include <gear/MapObj/MapObjDirector.hpp>
@@ -8,6 +9,7 @@
 #include <object/Directors/RecorderDirector.hpp>
 #include <object/Effect/GameEffectDirector.hpp>
 #include <object/Kart/KartDirector.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace object {
 class ObjectEngine {

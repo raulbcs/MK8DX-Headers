@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include <object/ObjectEngine.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class FrameworkGameScene {

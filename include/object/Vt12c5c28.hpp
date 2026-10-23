@@ -1,3 +1,4 @@
+#include <object/Vt12c9268.hpp>
 #pragma once
 
 // Vt12c5c28 - PLACEHOLDER name; "CameraEngine" subsystem (ctor passes the name

@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <gear/MapObj/MapObjBase.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace object {
 // Ultimately inherits gear::MapObjBase

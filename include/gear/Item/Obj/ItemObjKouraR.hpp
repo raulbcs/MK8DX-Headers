@@ -3,6 +3,8 @@
 #include <cstdint>
 
 #include "ItemObjKouraG.hpp"
+#include <gear/Item/Obj/ItemObjKouraG.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemObjKouraR : public ItemObjKouraG {

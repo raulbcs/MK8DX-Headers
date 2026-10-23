@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheSky — named from ctor string evidence: ctor string tag 'aglsky' + params sun_indensity/rayleigh (0xf02b5f-0xf1bfea) (vptr 0x12f2fb8, cell 0x1315270, n=13, site 0xaae038, ctor 0xaadfec).
 // extent 0xdb0
+namespace object::Kart {
 class KartParamCacheSky : public KartParamCache {
  public:
   uint8_t mPad40[0x208];   // 0x40 — unproven gap

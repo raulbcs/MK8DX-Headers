@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <_nn/nex/RC4PacketEncDec.hpp>
 
 namespace nn::nex {
 // DummyPacketEncDec — RTTI-named (typeinfo 0x12e4c20, name

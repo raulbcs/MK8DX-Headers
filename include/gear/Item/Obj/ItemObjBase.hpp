@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include <math/seadMatrix.h>
 #include <math/seadVector.h>
 
@@ -15,6 +17,7 @@
 
 #include "../EItemType.hpp"
 #include "../ItemReactInfo.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 // extent 0x328 (allocation size 0x328 @0x71001816b0 in the KartVehicleMove

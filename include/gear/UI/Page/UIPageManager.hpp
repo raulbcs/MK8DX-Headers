@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 #include <eui/Screen/Screen.hpp>
 #include <eui/Screen/ScreenMgr.hpp>
 

@@ -1,5 +1,15 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+#include <object/Kart/ParamChannelVt32b8.hpp>
+#include <object/Kart/KartParamCacheNode.hpp>
+#include <object/Kart/ParamNodeVtd5b0.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
+
 // KartParamCacheVtd608 — address-anchored name (vptr 0x12bd608,
 // GOT cell 0x130e8a8). Named node-group container of the c63c6f8
+namespace object::Kart {
 class KartParamCacheVtd608 : public KartParamCache {
  public:
   KartParamCacheNode mNode48;  // 0x48 — 0x30 (same node type as Mid 0x68)
@@ -14,4 +24,4 @@ class KartParamCacheVtd608 : public KartParamCache {
   uint8_t mNode260[0xb8];      // 0x260 — Vt558 node (ctor 0x7100727d54; padded
 };
 
-}  // namespace object
+}  // namespace object::Kart

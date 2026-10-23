@@ -32,6 +32,8 @@
 // 0x120@0xA0.
 namespace object {
 
+namespace Kart { struct KartSteerAssist; }  // KartSteerAssist.hpp
+
 class KartVehicle {
  public:
   struct ControlInfo {
@@ -87,7 +89,7 @@ class KartVehicle {
                                       //  ctor 0x142a60 with mPlayerID); 8-byte thunks ldr
                                       //  x0,[x0,#0x90] (FUN_7100175a28 / FUN_7100175a30)
   uintptr_t mPad98;                   // 0x98 — unproven padding
-  KartSteerAssist* mKartSteerAssist;  // 0xA0
+  Kart::KartSteerAssist* mKartSteerAssist;  // 0xA0
   uint32_t mPlayerID;                 // 0xA8
   uint32_t mPadAC;                    // 0xAC — unproven padding
   uint32_t mBodyID;                   // mush::EBodyID 0xB0

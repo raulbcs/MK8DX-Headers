@@ -1,7 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
 #include "FrameworkGameScene.hpp"
 #include "FrameworkRootSceneBase.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class FrameworkUtil {

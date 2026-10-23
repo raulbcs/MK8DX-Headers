@@ -1,5 +1,10 @@
+#pragma once
+
+#include <cstdint>
+
 // KartParamCache — address-anchored name (slot-5 evidence: shared ret
 // extent 0x40
+namespace object::Kart {
 class KartParamCache {
  public:
   void* vtable;         // 0x00

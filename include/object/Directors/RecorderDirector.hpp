@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 // Race recorder scene director; vtable 0x7101261ad8 (19 slots +
 // makeGhostData); tick 0x71003ab8d0 at slot 0x80.
 

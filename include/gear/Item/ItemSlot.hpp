@@ -5,6 +5,7 @@
 #include <gear/Actor/Actor.hpp>
 #include "EItemSlot.hpp"
 #include <object/Kart/KartInfoProxy.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemOwner;

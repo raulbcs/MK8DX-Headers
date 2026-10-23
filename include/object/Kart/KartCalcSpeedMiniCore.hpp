@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <gear/Actor/Actor.hpp>
+
 // Kart speed calculation runtime, "mini core" variant. Vtable .data
 // extent 0x300
+namespace object::Kart {
 class KartCalcSpeedMiniCore : public gear::Actor {
  public:
   uint8_t mPad8[0x30];    // 0x8 — sead::hostio::Node base members (see
@@ -50,4 +56,4 @@ class KartCalcSpeedMiniCore : public gear::Actor {
   uint32_t mField2f8;     // 0x2f8
   uint8_t pad_2FC[0x4];   // 0x2FC — untouched by ctor 0x34d2d8 and by the derived
 };
-}  // namespace object
+}  // namespace object::Kart

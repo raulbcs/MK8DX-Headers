@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheMid2.hpp"
+#include <object/Kart/KartParamCache.hpp>
+#include <object/Kart/KartParamCacheMid2.hpp>
 
-namespace object {
+namespace object::Kart {
 // KartParamCacheVt3400 — address-anchored name (vptr 0x12b3400,
 // GOT cell 0x130dae8; cell holds vt-0x10). Large Mid2-derived cache variant;
 // size 0xb80 (operator new at 0x71003d0a4c). Ctor 0x710065df30.
@@ -47,4 +49,4 @@ class KartParamCacheVt3400 : public KartParamCacheMid2 {
                              // with -1; name-table call 0x7100689f00 w/
                              // string 0xef9ab9; unverified)
 };
-}  // namespace object
+}  // namespace object::Kart

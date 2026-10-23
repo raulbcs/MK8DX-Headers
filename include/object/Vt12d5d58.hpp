@@ -1,12 +1,14 @@
 #pragma once
 
 #include <cstdint>
+#include <object/Vt12c7d88.hpp>
 
 // Vt12d5d58 — PLACEHOLDER name; intermediate class of the Vt12c7d88 hierarchy
 // (base ctor FUN_71007d4c9c; derived Vt12ca828 re-overrides the vptr at its
 // sites). Ctor FUN_71008dce74; size 0x168 proven by operator new 0x168 at
 // 0x804ed4. extent 0x168 - details: doc/object/Vt12d5d58.md
 
+namespace object {
 struct Vt12d5d58 : public Vt12c7d88 {
   uint8_t mPadD8[0x5c];   // 0xD8 — unproven (region between base and intermediate fields)
   uint32_t mField134;     // 0x134 — float from arg s0 (ctor 0x8dcebc..0x8dcec4)
@@ -19,3 +21,5 @@ struct Vt12d5d58 : public Vt12c7d88 {
   uint32_t mField160;     // 0x160 — u32 pair from global [0x12fb148] (ctor 0x8dcee4)
   uint8_t mPad164[0x4];   // 0x164 — unproven (alignment)
 };
+
+}  // namespace object

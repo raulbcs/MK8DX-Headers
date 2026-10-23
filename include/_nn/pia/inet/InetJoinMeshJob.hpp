@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <_nn/pia/session/JoinMeshJob.hpp>
 
 namespace nn::pia::inet {
 // InetJoinMeshJob — RTTI-named (typeinfo 0x12da6d0, name

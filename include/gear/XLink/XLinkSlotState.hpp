@@ -1,6 +1,6 @@
 #pragma once
 
-#include <hostio/seadHostIONode.h>
+#include "sead/hostio/seadHostIONode.hpp"
 #include <prim/seadRuntimeTypeInfo.h>
 
 #include <cstdint>

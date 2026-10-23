@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCacheMid.hpp>
+
 // KartParamCacheVt3868 — address-anchored name (vptr 0x12b3868,
 // extent 0x150
+namespace object::Kart {
 class KartParamCacheVt3868 : public KartParamCacheMid {
  public:
   char mChan110[0x18];  // 0x110 — channel-pair member (ctor pair

@@ -5,6 +5,8 @@
 #include <cstdint>
 
 #include "ItemObjBase.hpp"
+#include <gear/Item/Obj/ItemObjBase.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemObjKouraG : public ItemObjBase {

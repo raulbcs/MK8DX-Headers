@@ -1,8 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <object/Kart/KartVehicle.hpp>
 
-namespace object {
+namespace object::Kart {
 class KartVehicleMove;  // object/Kart/KartVehicleMove.hpp
 // Size 0x120: operator new(0x120) in the KartVehicle ctor (v400
 // 0x710017025c), allocated only when KartVehicle+0xD0 mIsMaster != 0 (else
@@ -140,4 +141,4 @@ class KartSteerAssist {
   //   == 0. Dispatch: level 1 -> 0x7100158c8c (+ 0x7100159394 +
   //   0x71001596ec); level 2 -> 0x7100158c8c + 0x71001596ec.
 };
-}  // namespace object
+}  // namespace object::Kart

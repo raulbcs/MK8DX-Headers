@@ -1,10 +1,10 @@
 // Lakitu (Jugem) recover handler. Size 0x1D8, held at KartVehicle+0x90.
-// extent 0x1D8
 #pragma once
 #include <cstdint>
 
 namespace object {
 
+// extent 0x1d8 (operator new(0x1d8) @ 0x71001704dc)
 class KartJugemRecover {
  public:
   void* vtable0;              // 0x00 — vtable pair (multiple inheritance)

@@ -36,7 +36,7 @@ jobs:
           EOF
           fails=$(mktemp)
           find include -name '*.hpp' | sort | while IFS= read -r f; do
-            clang++ -fsyntax-only -std=c++17 -DNNSDK -Iinclude -Ivendor/sead/include -Itools/shims -Ivendor/nnheaders -Ivendor/nnheaders/include "$f" 2>/dev/null \
+            clang++ -fsyntax-only -std=c++17 -DNNSDK -Iinclude -Itools/shims -Ivendor/sead/include -Ivendor/nnheaders -Ivendor/nnheaders/include "$f" 2>/dev/null \
               || echo "$f" >> "$fails"
           done
           unexpected=$(mktemp); stale=$(mktemp)

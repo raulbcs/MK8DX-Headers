@@ -9,6 +9,7 @@
 #include "EItemSlot.hpp"
 #include "ItemSlot.hpp"
 #include "Obj/ItemObjBase.hpp"
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 class ItemSlot;

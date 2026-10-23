@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheCloud — named from ctor string evidence: ctor string tag 'aglcloud' + params tex_random_seed/tex_base_freq noise block (0xf02b9b-0xf1bd21) (vptr 0x12f2f40, cell 0x1315250, n=13, site 0xaac060, ctor 0xaac014).
 // extent 0x7f60
+namespace object::Kart {
 class KartParamCacheCloud : public KartParamCache {
  public:
   uint8_t mPad40[0x490];    // 0x40 — unproven gap

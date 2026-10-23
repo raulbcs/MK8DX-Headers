@@ -1,3 +1,7 @@
+#pragma once
+
+#include <cstdint>
+
 // KartChassisAnim — size 0x130, proven by operator new(0x130) in the
 // KartVehicle ctor (v400 0x7100170308, stored at KartVehicle+0x58; ctor
 namespace object {

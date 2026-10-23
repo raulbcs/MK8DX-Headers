@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheMid2.hpp"
+#include <object/Kart/KartParamCache.hpp>
+#include <object/Kart/KartParamCacheMid2.hpp>
 
-namespace object {
+namespace object::Kart {
 // KartParamCacheVt77d8 — address-anchored name (vptr 0x12b77d8, GOT cell
 // 0x130e238; cell holds vt-0x10). Very large Mid2-derived cache variant;
 // size 0xb060 (member slot [outer+0x4d8, outer+0xb538) in factory 0x717900).
@@ -32,4 +34,4 @@ class KartParamCacheVt77d8 : public KartParamCacheMid2 {
   uint8_t mPadb055[3];       // 0xb055 — unproven padding
   void* mZerob058;           // 0xb058 — ctor zero (0x6cb228)
 };
-}  // namespace object
+}  // namespace object::Kart

@@ -1,5 +1,10 @@
+#pragma once
+
+#include <cstdint>
+
 // KartParamCacheNodeBase — address-anchored name (vptr 0x12b2198,
 // extent 0x20
+namespace object::Kart {
 class KartParamCacheNodeBase {
  public:
   void* vptr;         // 0x00

@@ -11,6 +11,8 @@
 #include "MapObjParameter.hpp"
 #include "container/seadPtrArray.h"
 #include "gear/Actor/Actor.hpp"
+#include <gear/Actor/Actor.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace gear {
 using MapObjCreatorFn = gear::MapObjBase* (*)(gear::MapObjCreateArg&);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <_nn/pia/transport/StationPacketHandler.hpp>
 
 namespace nn::pia::transport {
 // nn::pia::transport::RelayStationPacketHandler — RTTI-named (typeinfo

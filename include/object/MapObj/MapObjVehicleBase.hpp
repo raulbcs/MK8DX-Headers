@@ -5,6 +5,7 @@
 #include <gear/MapObj/MapObjCreateArg.hpp>
 
 #include <gear/MapObj/IMapObjBounce.hpp>
+#include <object/Kart/KartSteerAssist.hpp>
 
 namespace object {
 class MapObjVehicleBase : public gear::MapObjBase, public gear::IMapObjBounce {

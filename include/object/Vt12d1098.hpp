@@ -19,4 +19,5 @@ class Vt12d1098 {
   void* mSub50;        // 0x50 - sub-object #3, init 0x888c30(9, 0x3b, 999)
   uint8_t mFlag58;     // 0x58 - set to 1 by C1
   char mPad59[0x7];    // 0x59..0x5f - unproven
+};
 }  // namespace object

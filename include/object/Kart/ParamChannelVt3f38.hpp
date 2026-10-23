@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheChan.hpp"
+#include <object/Kart/KartParamCacheChanBase.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
 
-namespace object {
+namespace object::Kart {
 // ParamChannelVt3f38 - address-anchored name (vptr 0x12b3f38, GOT cell
 // 0x130dbb8, factory 0x6681d8).
 // extent 0x278 - details: doc/object/Kart/ParamChannelVt3f38.md
@@ -36,4 +38,4 @@ class ParamChannelVt3f38 : public KartParamCacheChan {
   Group78 mGroups78[4];  // 0x78 - memcpy(arg+0x78, 0x200) overwrites
                          // (0x278 total)
 };
-}  // namespace object
+}  // namespace object::Kart

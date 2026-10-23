@@ -1,5 +1,11 @@
+#pragma once
+
+#include <cstdint>
+#include <object/Kart/KartParamCache.hpp>
+
 // KartParamCacheVt24c8 — address-anchored name (vptr
 // extent 0x58
+namespace object::Kart {
 class KartParamCacheVt24c8 : public KartParamCache {
  public:
   uint8_t pad40[8];   // 0x40 — untouched by the ctors

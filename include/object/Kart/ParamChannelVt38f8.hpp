@@ -3,8 +3,10 @@
 #include <cstdint>
 
 #include "object/Kart/KartParamCacheChan.hpp"
+#include <object/Kart/KartParamCacheChanBase.hpp>
+#include <object/Kart/KartParamCacheChan.hpp>
 
-namespace object {
+namespace object::Kart {
 // ParamChannelVt38f8 — address-anchored name (vptr 0x12b38f8, GOT cell
 class ParamChannelVt38f8 : public KartParamCacheChan {
  public:
@@ -19,4 +21,4 @@ class ParamChannelVt38f8 : public KartParamCacheChan {
                            // extent 0x170 (prior-survey total 0x170)
   uint8_t mGap118[4];      // 0x118 — unproven gap
 };
-}  // namespace object
+}  // namespace object::Kart

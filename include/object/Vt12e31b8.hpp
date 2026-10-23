@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <object/Vt12e2ec8.hpp>
 
 // Vt12e31b8 — PLACEHOLDER name; derived of Vt12e2ec8 (shares 4 of 7 slot impls); installed vptr
 // 0x12e31c0; GOT cell 0x13144d0 holds vptr-0x10 (0x12e31b8 is the typeinfo slot, typeinfo 0x12e4230).
