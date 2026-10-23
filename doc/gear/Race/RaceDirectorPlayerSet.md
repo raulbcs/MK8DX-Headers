@@ -6,7 +6,7 @@ Per-player child-director set/factory: the 0x7c2938 call is the primary base Rac
 
 Builds ~17 child directors (alloc -> ctor -> register at the 0x38/0x40/0x4C cursor -> store into a set field), dispatching on getRaceCheckManager [x0+8]/[x0+0xc] == 3. Named fields hold the RaceDirectorVt* chain members.
 
-Naming: factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceCheckerBase flags; no rodata name, no method-tree entry. The ELF carries no name for this class (strings and the method-tree registrations at 0x6327a8 cover only graphics/profiling and the MapObjBase::calc*-family entries; custom-RTTI predicates hold no name string), so the name stays PROVISIONAL.
+Naming: factory ctor 0x6eb5c builds ~17 child directors dispatching on RaceStateChecker flags; no rodata name, no method-tree entry. The ELF carries no name for this class (strings and the method-tree registrations at 0x6327a8 cover only graphics/profiling and the MapObjBase::calc*-family entries; custom-RTTI predicates hold no name string), so the name stays PROVISIONAL.
 
 ## Fields
 

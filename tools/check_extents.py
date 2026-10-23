@@ -198,7 +198,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/MapObj/MapObjItemBox.hpp
 #   include/object/MapObj/MapObjVehicleBase.hpp
 #   include/object/ObjectEngine.hpp
-#   include/object/Race/RaceCheckerBase.hpp
+#   include/object/Race/RaceStateChecker.hpp
 #   include/object/Record/RecordFileKart.hpp
 #   include/object/Record/RecordFileManager.hpp
 #   include/object/Vt11bb080.hpp

@@ -7,7 +7,7 @@
 #include <gear/Actor/Actor.hpp>
 
 namespace object {
-class RaceCheckerBase;
+class RaceStateChecker;
 }  // namespace object
 
 namespace gear {
@@ -44,7 +44,7 @@ class RaceDirector : public Actor {
   Actor** mActors;                            //0x40 — Actor array (alloc 0x18 = 3 slots)
   uint8_t mPad48[4];                          //0x48 — unproven padding
   uint32_t mInsertCursor4C;                   //0x4C — child insertion cursor (0x4d8e8-0x4d9b8)
-  object::RaceCheckerBase* mRaceCheckerBase;  //0x50 — ctor arg x1 (0x4d808)
+  object::RaceStateChecker* mRaceStateChecker;  //0x50 — ctor arg x1 (0x4d808)
   gear::LapRankChecker* mLapRankChecker;      //0x58
   Actor* mSubActor60;                         //0x60 — new(0xB0), ctor 0x7100066448 (vtable 0x11b41c8)
   Actor* mSubActor68;                         //0x68 — new(0x1C8), ctor 0x71000490fc (vtable [0x12fbc00]+0x10)

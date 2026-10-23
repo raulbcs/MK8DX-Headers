@@ -1,16 +1,19 @@
 #pragma once
 
-#include "RaceCheckerBase.hpp"
+#include "RaceStateChecker.hpp"
 
 // RaceKartChecker — one instance per kart; vtable .data 0x12d0c48 (GOT
 // 0x13110d0); ctor 0x710087ffd0 (new[](0xb8) at 0x3a2008/0x87e2e0/0x87e354).
 // extent 0xb8 (operator new[](0xb8) at 0x3a2008/0x87e2e0/0x87e354)
 
 namespace object {
-class RaceKartChecker : public RaceCheckerBase {
+class RaceKartChecker : public RaceStateChecker {
  public:
   // enter body 0x71008802f4 (slot 0x70); calc body 0x7100881514 (slot 0xb8).
 
+  // Shadows RaceStateChecker::mRaceState — per-kart instances store the kart
+  // index here (0..11), not the race state.
+  uint32_t mKartIndex;  // 0x38
   uint16_t mFlags3c;  // 0x3c — zeroed on ctor/enter; bit 2 checked by calc
   uint16_t mPad3e;    // 0x3e — unproven padding
   uint32_t mField40;  // 0x40 — ctor stores 1; reset on enter, gets kart index

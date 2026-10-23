@@ -18,7 +18,7 @@ Slots beyond Actor's vtable; each stage of enter/calc/exit fires a pre/post hook
 - 0x40 mActors — Actor array walked by calc/exit/enter (ctor allocs 0x18 = 3 slots, 0x4d818-0x4d830).
 - 0x48 — unproven padding.
 - 0x4C mInsertCursor4C — child insertion cursor: ctor registers each created child at mActors[cursor] and increments (0x4d8e8-0x4d9b8).
-- 0x50 mRaceCheckerBase — ctor arg x1 (0x4d808).
+- 0x50 mRaceStateChecker — ctor arg x1 (0x4d808).
 - 0x58 mLapRankChecker.
 - 0x60 mSubActor60 — new(0xB0), ctor 0x7100066448 (gear/Race/RaceDirectorSubActor60.hpp, vtable 0x11b41c8), registered as child.
 - 0x68 mSubActor68 — new(0x1C8), ctor 0x71000490fc (vtable [0x12fbc00]+0x10; u16 +0x40 and byte +0x42 zeroed), registered.
@@ -33,7 +33,7 @@ Class ends at 0x90: derived RaceDirectorVt2 is 0xA0 with fields only at 0x90-0x9
 
 Ctor entry address not separately labeled; the following store/allocation sequence is proven, in binary order:
 
-1. ctor arg x1 -> mRaceCheckerBase (0x50) at 0x4d808.
+1. ctor arg x1 -> mRaceStateChecker (0x50) at 0x4d808.
 2. mActors (0x40) allocation: 0x18 = 3 slots, 0x4d818-0x4d830; mActorCount (0x38) = 3 after it succeeds.
 3. Child registration loop through mInsertCursor4C (0x4C): 0x4d8e8-0x4d9b8.
 4. mSubActor60 (0x60): new(0xB0), ctor 0x7100066448, registered as child.

@@ -2,6 +2,7 @@
 #include <container/seadBuffer.h>
 
 #include "eui/Screen/Screen.hpp"
+#include "gear/Race/ERaceState.hpp"
 #include "gear/UI/UIControl.hpp"
 #include "gear/UI/UIAnimator.hpp"
 #include "gear/UI/UIHeap.hpp"
@@ -99,7 +100,7 @@ class UIPage : public eui::Screen {
   uint32_t mPad118;     // 0x118
   uint32_t mPad11C;     // 0x11C
   uint32_t mPageState;  // 0x120
-  uint32_t mSubState;   // 0x124
+  uint32_t mSubState;   // 0x124 — mirrors gear::ERaceState
 
   uintptr_t mPad128;    // 0x128
   uint32_t mStateStep;  // 0x130
