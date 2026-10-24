@@ -22,7 +22,7 @@
 #include "KartVehicleTrick.hpp"
 #include "kart/KartVehicleMove.hpp"  // real 64-bit layout (the object/ stub is gone)
 
-// Canonical KartVehicle layout (byte-exact offsets, v400).
+// Canonical KartVehicle layout (byte-exact offsets, ).
 // Subobject sizes proven by operator new sites in ctor
 // 0x7100170100-0x7100170460: Control 0x70@0x10, Cpu 0x90@0x18, Net 0x42D8@0x20,
 // Move 0x5F8@0x28, Trick 0x1A0@0x30, Body 0x160@0x38, unknown-obj ~0x90@0x40 (NOT

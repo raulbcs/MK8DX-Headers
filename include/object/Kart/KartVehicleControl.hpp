@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // KartVehicleControl — size 0x70, proven by operator new(0x70) in the
-// KartVehicle ctor (v400 0x7100170194, stored at KartVehicle+0x10; ctor
+// KartVehicle ctor (0x7100170194, stored at KartVehicle+0x10; ctor
 // 0x7100179660). Fields below come from that ctor + reset 0x71001796e4.
 namespace object {
 class KartVehicleControl {

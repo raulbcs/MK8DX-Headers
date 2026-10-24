@@ -5,8 +5,7 @@
 
 namespace object::Kart {
 class KartVehicleMove;  // object/Kart/KartVehicleMove.hpp
-// Size 0x120: operator new(0x120) in the KartVehicle ctor (v400
-// 0x710017025c), allocated only when KartVehicle+0xD0 mIsMaster != 0 (else
+// Size 0x120: operator new(0x120) in the KartVehicle ctor (// 0x710017025c), allocated only when KartVehicle+0xD0 mIsMaster != 0 (else
 // nullptr at KartVehicle+0xA0). Ctor 0x71001502a8; evidenced: +0xC0 stores
 // the KartVehicle*, +0xC8 the KartVehicleMove*. Assist level (u32) at +0x28
 // (ctor arg *x3, overridden by global u32 [0x12fd548] when nonzero); auto

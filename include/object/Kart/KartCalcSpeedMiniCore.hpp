@@ -83,7 +83,5 @@ class KartCalcSpeedMiniCore : public gear::Actor {
   // KartCalcSpeedMini vtable 0x710124ccf8 overrides +0x80/+0x88/+0x90 with
   // notifying wrappers (0x34c6dc/0x34c86c/0x34ca34). Slot +0x88 = reset
   // FUN_710034c898, +0x90 = main frame calc FUN_710034cae0.
-  // NOTE: vt_map400.json vtable 2780 slot names (…_710034b588/…_710034b7d0)
-  // are stale pre-rebase addresses.
 };
 }  // namespace object::Kart

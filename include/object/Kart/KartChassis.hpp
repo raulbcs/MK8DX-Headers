@@ -3,15 +3,14 @@
 #include <cstdint>
 
 // KartChassis — size 0x510, proven by operator new(0x510) in the KartVehicle
-// ctor (v400 0x7100170298, stored at KartVehicle+0x50; ctor 0x710011c0c4).
+// ctor (0x7100170298, stored at KartVehicle+0x50; ctor 0x710011c0c4).
 // Vtable 0x71011b9c88 (GOT 0x71012fd148); followed by a float constant table
 // (0.333, 0.15, 0.0547, 0.0304, -3.286, 0.4, 0.317, 1.15, 1.213, 0.01, 0.667,
 // 1.194, 0.5, -0.4, 0.8177, -0.1, 0.05 @0x71011b9cb0+) — suspension/wheel
 // parameters, struct association UNCERTAIN.
 // +0x10 = model handle (ret of 0x7100890cbc), passed to the KartChassisAnim
-// ctor; the KartVehicleDrift pointer claim at +0x110 is refuted in v400
-// (Drift lives at KartVehicleMove+0x110; +0x110 here is inside a ctor-zeroed
-// template block). Pipeline: helper 0x7100170548 runs the suspension calc
+// ctor (+0x30/+0x38/0x3C = suspension node ids; +0x40/0x48 = named object +
+// idx; +0x50/0x58 = optional node + index). Pipeline: helper 0x7100170548 runs the suspension calc
 // (0x710015e5b4) writing vec3 pairs to +0x190/0x1D0 and mirrors
 // KartVehicle+0x104/0x108/0x10C → +0x19C/0x1A0/0x1A4.
 namespace object {

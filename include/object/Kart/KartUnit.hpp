@@ -36,16 +36,16 @@ struct KartUnit {
                                          //  ← row+0x8c bits 5/6/7) — they are runtime
                                          //  state written by other families.
   uint8_t pad_044[0x2c];                 // 0x44 — unproven padding
-  // NOTE (v400 correction): FUN_7100164614 reads the state block 0x70..0x90
+  // NOTE (correction): FUN_7100164614 reads the state block 0x70..0x90
   // through *(KartUnit+0x50) — a pointer at +0x50 — not directly on this
   // object. The u32 fields below starting at 0x70 are therefore attributed
   // to the pointed-to object, not to KartUnit itself.
   uint32_t state_block[9];               // 0x70..0x90 — contiguous u32 state snapshot
                                          //  (via [this+0x50]; FUN_7100164614 copies all 9
                                          //  to stack in one block, 0x164ed4-0x164f1c).
-                                         //  v305-era lead: +0x78 = control bitfield
+                                         //  lead: +0x78 = control bitfield
                                          //  (idle/drift/boost/airborne), +0x7c = gate
-                                         //  bits — bit map NOT yet confirmed in v400.
+                                         //  bits — bit map not yet confirmed.
   uint8_t pad_094[0x138];                // 0x94 — unproven padding
   uint32_t status_1cc;                   // 0x1cc — RMW'd with ~0xc000 and 0x40000|0x4000 masks
                                          //  in FUN_7100164614 (0x164bcc/0x164a28); mirrors the
@@ -130,11 +130,9 @@ struct KartUnit {
   uint8_t flag_fb5;           // 0xfb5 — bool
   uint8_t flag_fb6;           // 0xfb6 — bool
 
-  // extent 0xFB7 (ctor 0x7100399c14 + the init/reset fn 0x7100399c78 that
-  // follows it: writes the marker halfword 0xFB8 at +0xFAC and the strb
-  // flag defaults 0xfa0..0xfb6 at 0x399e58-0x39a900; allocation site
-  // unproven). The mk8dx-re "KartUnit 0x1AD8, vtable 0x11b2fe0" claim is
-  // NOT corroborated: no new(0x1AD8) anywhere near this family, and the
-  // ctor stores a sead RuntimeTypeInfo ptr, not a vtable.
+  // extent 0xFB7 (init/reset fn 0x7100399c78: writes the marker halfword
+  // 0xFB8 at +0xFAC and the strb flag defaults 0xfa0..0xfb6 at
+  // 0x399e58-0x39a900; ctor 0x7100399c14 stores a sead RuntimeTypeInfo ptr,
+  // not a vtable — allocation site unproven).
 };
 }  // namespace object

@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // KartSusKit — size 0x128, proven by operator new(0x128) in the KartVehicle
-// init (v400 0x71001701e4 region, stored at KartVehicle+0x68; ctor 0x710015dd9c
+// init (0x71001701e4 region, stored at KartVehicle+0x68; ctor 0x710015dd9c
 // receives the KartVehicle*). Name mirrors KartVehicle::mSusKit (field-mirror evidence)
 // (suspension kit). Runtime cross-evidence: FUN_7100174f7c = isSusD0AtLeastOne_
 // (bool predicate: [kart+0x68]->+0xD0 >= 1.0f) gating the KartVehicle+0x1D9

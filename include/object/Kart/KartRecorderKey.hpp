@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // Per-kart recorder key/writer — size 0x298, proven by operator new(0x298)
-// in the KartVehicle init (v400 0x7100170458, stored at KartVehicle+0x80;
+// in the KartVehicle init (0x7100170458, stored at KartVehicle+0x80;
 // setup 0x71003ae42c, part of the recorder per-kart setup cluster next to
 // recorderSetupKartChannels_71003aef8c). Allocated only when the recorder is
 // active — skipped when (managerBits|2)==7 (ghosts/replays), together with

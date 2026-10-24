@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // KartChassisAnim — size 0x130, proven by operator new(0x130) in the
-// KartVehicle ctor (v400 0x7100170308, stored at KartVehicle+0x58; ctor
+// KartVehicle ctor (0x7100170308, stored at KartVehicle+0x58; ctor
 namespace object {
 struct KartVehicle;  // KartVehicle.hpp
 struct KartChassis;  // KartChassis.hpp

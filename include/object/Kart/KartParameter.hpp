@@ -6,7 +6,7 @@ namespace object {
 struct KartUnit;  // kart/KartUnit.hpp
 
 // KartParameter — per-kart parameter object (0xb8 bytes; operator new(0xb8)
-// at v400 0x71001700b0 inside FUN_7100170090, stored at KartVehicle+0x78;
+// at 0x71001700b0 inside FUN_7100170090, stored at KartVehicle+0x78;
 // ctor = the stat calc FUN_710014b6d0). Initialized by the stat calc
 // (vehicle-class-driven weights); the kart then caches the wrapper
 // getters' results as bytes at KartVehicle+0xd8..0xdd

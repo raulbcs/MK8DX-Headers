@@ -5,7 +5,7 @@
 #include "KartRigidBody.hpp"
 
 // KartVehicleTrick — size 0x1A0, proven by operator new(0x1A0) in the
-// KartVehicle ctor (v400 0x7100170200, stored at KartVehicle+0x30; ctor
+// KartVehicle ctor (0x7100170200, stored at KartVehicle+0x30; ctor
 // 0x7100195768 calls the KartRigidBody base 0x710014ddb4).
 namespace object {
 struct KartVehicle;  // KartVehicle.hpp

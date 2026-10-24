@@ -5,7 +5,7 @@
 #include "KartRigidBody.hpp"
 
 // KartVehicleBody — size 0x160, proven by operator new(0x160) in the
-// KartVehicle ctor (v400 0x7100170218, stored at KartVehicle+0x38; ctor
+// KartVehicle ctor (0x7100170218, stored at KartVehicle+0x38; ctor
 // 0x7100178da4 calls the KartRigidBody base 0x710014ddb4). NOTE: the
 // 74-slot vtable family whose impl touches +0x240 is a DIFFERENT class —
 // it cannot be this one (offsets beyond 0x160 are out of bounds).

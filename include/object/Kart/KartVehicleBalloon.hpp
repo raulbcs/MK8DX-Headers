@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // KartVehicleBalloon — size 0xAB8, proven by operator new(0xAB8) in the
-// KartVehicle init (v400 0x71001703f4, stored at KartVehicle+0x70; ctor
+// KartVehicle init (0x71001703f4, stored at KartVehicle+0x70; ctor
 // 0x71001142e4 receives the KartVehicle*). Name mirrors KartVehicle::mKartBalloon (field-mirror + ctor strings '/BattleBalloon/BattleBalloon.bfres', 'm_BattleBalloon') (balloon/battle item object).
 namespace object {
 struct KartVehicle;  // KartVehicle.hpp
