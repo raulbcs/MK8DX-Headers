@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include <object/Kart/ETrickPose.hpp>
+
 #include "KartRigidBody.hpp"
 
 // KartVehicleTrick — size 0x1A0, proven by operator new(0x1A0) in the
