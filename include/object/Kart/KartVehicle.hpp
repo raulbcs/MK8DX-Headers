@@ -25,7 +25,8 @@
 // Canonical KartVehicle layout (byte-exact offsets, v400).
 // Subobject sizes proven by operator new sites in ctor
 // 0x7100170100-0x7100170460: Control 0x70@0x10, Cpu 0x90@0x18, Net 0x42D8@0x20,
-// Move 0x5F8@0x28, Trick 0x1A0@0x30, Body 0x160@0x38, React 0x90@0x40,
+// Move 0x5F8@0x28, Trick 0x1A0@0x30, Body 0x160@0x38, unknown-obj ~0x90@0x40 (NOT
+// React — React 0xD8 lives at KartVehicleMove+0x120, ctor 0x710017eb94),
 // Collision 0x2D0@0x48 (ctor 0x139838), Chassis 0x510@0x50, ChassisAnim
 // 0x130@0x58 (ctor 0x12289c), HeadLight 0x130@0x60 (ctor 0x140514), SusKit
 // 0x128@0x68 (ctor 0x15dd9c), Balloon 0xAB8@0x70 (ctor 0x1142e4), SteerAssist
@@ -61,7 +62,12 @@ class KartVehicle {
       mKartVehicleMove;                  // 0x28 — deref +0x118, +0x37c (FUN_7100173234/324c)
   KartVehicleTrick* mKartVehicleTrick;   // 0x30
   KartVehicleBody* mKartVehicleBody;     // 0x38
-  KartVehicleReact* mKartVehicleReact;   // 0x40
+  void* mUnknownObj40;                    // 0x40 — NOT KartVehicleReact: own class
+                                          //  (ctor 0x7100191f50, vtables 0x71011baf68
+                                          //  [60 slots] + 0x71011bb168 @+8; alloc size
+                                          //  UNCERTAIN ~0x90, no mov w0 at the site
+                                          //  0x7100170238). React lives at
+                                          //  KartVehicleMove+0x120.
   KartVehicleCollision* mKartCollision;  // 0x48 — object of 0x2D0 bytes (ctor 0x139838)
   KartChassis* mKartChassis;             // 0x50 — object of 0x510 bytes (ctor 0x11c0c4)
   KartChassisAnim* mKartChassisAnim;     // 0x58 — object of 0x130 bytes (ctor 0x12289c,

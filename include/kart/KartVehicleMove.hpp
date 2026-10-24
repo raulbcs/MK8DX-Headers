@@ -252,7 +252,13 @@ struct KartVehicleMove : public object::KartRigidBody {
   uint8_t driftGate5dc;               //0x5DC — drift flag byte +0xC0 path: clears +0xC0 and
                                       // Body floats when this < 1 or [subobj +0x201]
                                       // (drift 0x17bfb4)
-  uint8_t zero_5dd[0x17];             //0x5DD - 0x5F3 — ctor-zeroed (memset 0x5A0..0x5F3,
-                                      // 0x1814f8..0x181508) and never accessed on this class
+  uint8_t zero_5dd[0xb];              //0x5DD - 0x5E7 — ctor-zeroed (memset 0x5A0..0x5F3,
+                                      // 0x1814f8..0x181508)
+  float mult5e8;                      //0x5E8 — reset writes 1.0f (0x181cb0); pair with
+                                      // the offroad family (current multiplier)
+  uint32_t zero5ec;                   //0x5EC — reset writes 0 (0x181cb4)
+  float multDefault5f0;               //0x5F0 — reset writes 1.1f (0x181cb8,
+                                      // movk 0xcccd<<32 = 0x3F8CCCCD); the "1.1" the
+                                      // +0x4B4 comment attributed to [[+0x118]+0xC0]
   float f5f4;                         //0x5F4 — ctor sets 0.1f (last field)
 };

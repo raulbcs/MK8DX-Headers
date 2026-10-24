@@ -4,11 +4,12 @@
 
 // KartVehicleDrift — drift state object (name from the recorder channel
 // string "RecorderKartVehicleDrift", rodata 0xee602a). Held through the
-// POINTER at KartChassis+0x110 (getters 0x71001420e4/21b4/23d8 load
-// *(void**)(chassis+0x110)); extent 0x118 — operator new(0x118) at
-// 0x71001815bc inside the KartVehicleMove ctor, immediately followed by
-// bl 0x710017b304 (Drift ctor family). Accessor family:
-// 0x710017b9xx-0x710017bfb4 + calc 0x710017b578.
+// KartVehicleMove+0x110 (str @0x71001815d8 after new(0x118) at 0x71001815bc;
+// extent 0x118). The older claim "POINTER at KartChassis+0x110 (getters
+// 0x71001420e4/21b4/23d8)" is NOT corroborated in v400: those getters have
+// zero BL callers and Chassis+0x110 sits inside a ctor-zeroed template block.
+// Drift ctor family entry: 0x710017b304; accessors 0x710017b9xx-0x710017bfb4
+// + calc 0x710017b578.
 namespace object {
 struct KartVehicle;      // KartVehicle.hpp
 struct KartVehicleMove;  // kart/KartVehicleMove.hpp
