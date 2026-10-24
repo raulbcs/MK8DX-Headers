@@ -62,14 +62,14 @@ class KartVehicle {
   KartVehicleTrick* mKartVehicleTrick;   // 0x30
   KartVehicleBody* mKartVehicleBody;     // 0x38
   KartVehicleReact* mKartVehicleReact;   // 0x40
-  KartVehicleCollision* mKartCollision;  // 0x48 — size 0x2D0 (ctor 0x139838)
-  KartChassis* mKartChassis;             // 0x50 — size 0x510 (ctor 0x11c0c4)
-  KartChassisAnim* mKartChassisAnim;     // 0x58 — size 0x130 (ctor 0x12289c,
+  KartVehicleCollision* mKartCollision;  // 0x48 — object of 0x2D0 bytes (ctor 0x139838)
+  KartChassis* mKartChassis;             // 0x50 — object of 0x510 bytes (ctor 0x11c0c4)
+  KartChassisAnim* mKartChassisAnim;     // 0x58 — object of 0x130 bytes (ctor 0x12289c,
                                          //  receives KartChassis+0x10)
-  KartVehicleHeadLight* mKartHeadLight;  // 0x60 — size 0x130 (ctor 0x140514)
-  KartSusKit* mSusKit;                   // 0x68 — size 0x128 (ctor 0x15dd9c); FUN_7100174f7c
+  KartVehicleHeadLight* mKartHeadLight;  // 0x60 — object of 0x130 bytes (ctor 0x140514)
+  KartSusKit* mSusKit;                   // 0x68 — object of 0x128 bytes (ctor 0x15dd9c); FUN_7100174f7c
                                          //  reads a float at Sus+0xD0 (>= 1.0f gate)
-  KartVehicleBalloon* mKartBalloon;      // 0x70 — size 0xAB8 (ctor 0x1142e4)
+  KartVehicleBalloon* mKartBalloon;      // 0x70 — object of 0xAB8 bytes (ctor 0x1142e4)
   KartParameter* mKartParameter;         // 0x78 — 0xb8-byte param object; init by the
                                          //  stat calc FUN_710014b6d0, getters cached
                                          //  as bytes at +0xd8..0xdd by FUN_7100170090
@@ -85,26 +85,29 @@ class KartVehicle {
                           //  (==2 gate in the Path2Gate cluster,
                           //  FUN_7100173140)
   KartJugemRecover*
-      mKartJugemRecover;              // 0x90 — size 0x1D8 (new @ 0x71001704dc,
+      mKartJugemRecover;              // 0x90 — object of 0x1D8 bytes (new @ 0x71001704dc,
                                       //  ctor 0x142a60 with mPlayerID); 8-byte thunks ldr
                                       //  x0,[x0,#0x90] (FUN_7100175a28 / FUN_7100175a30)
   uintptr_t mPad98;                   // 0x98 — unproven padding
   Kart::KartSteerAssist* mKartSteerAssist;  // 0xA0
   uint32_t mPlayerID;                 // 0xA8
-  uint32_t mPadAC;                    // 0xAC — unproven padding
-  uint32_t mBodyID;                   // mush::EBodyID 0xB0
-  uint32_t mDriverID;                 // mush::EDriverID 0xB4
-  uint8_t mPadB0[0x8];                // 0xB0 — unproven gap
-  uint8_t mPadB8[0x10];               // 0xB8 - 0xC7 — unproven padding
-  uint32_t mTeamType;                 // gear::ETeamType 0xC8
-  uint8_t mPadC8[0x4];                // 0xC8 — unproven gap
-  uint32_t mPadCC;                    // 0xCC — unproven padding
+  uint32_t mPadAC;                    // 0xAC — u32 read by ctor-continuation
+                                      //  (0x71001706c4)
+  uint32_t mBodyID;                   // 0xB0 — mush::EBodyID
+  uint32_t mDriverID;                 // 0xB4 — mush::EDriverID
+  uint8_t mPadB8[0x10];               // 0xB8 - 0xC7 — unproven padding; 0xB8 u32
+                                      //  read at 0x7100170624/0x7100170adc
+  uint32_t mTeamType;                 // 0xC8 — gear::ETeamType
+  uint32_t mPadCC;                    // 0xCC — u32, mode-of-race dependent store
+                                      //  (0x710016fe84/0x710016fec0)
   bool mIsMaster;                     // 0xD0
   uint8_t mPadD1;                     // 0xD1 — unproven padding
   bool mIsCpu;                        // 0xD2
   bool mIsCpuOrKiller;                // 0xD3
   bool mIsGhost;                      // 0xD4
-  uint8_t mPadD5[3];                  // 0xD5-0xD7 — unproven padding
+  bool mPadD5;                        // 0xD5 — bool (0x7100170004/0x7100170030,
+                                      //  0x7100174ac4, 0x710017855c)
+  uint8_t mPadD6[2];                  // 0xD6-0xD7 — unproven padding
   bool mIsBike;                       // 0xD8 — INIT: mirrored from isKartUnitState24Eq1 by
                                       //  FUN_7100170090 (0x1700d0); suggests KartUnit mode_24==1
                                       //  encodes bike
@@ -136,7 +139,9 @@ class KartVehicle {
   bool mIsThief;                       // 0xEA
   bool mIsEndTeresaTrigger;            // 0xEB
   bool mIsGoalGhostAlone;              // 0xEC
-  uint8_t mPadED[7];                   // 0xED - 0xF3 — unproven padding
+  bool mFlagED;                       // 0xED — bool (0x7100174b6c/0x7100174bdc/
+                                      //  0x7100174ad4, 0x71001786d4)
+  uint8_t mPadEE[6];                  // 0xEE - 0xF3 — unproven padding
   float mF_f4;                         // 0xF4 — factor into +0x26C via helper 0x170548
   uint8_t mPadF8[0xC];                 // 0xF8 - 0x103 — unproven padding
   uint32_t mChassisMirror19C;          // 0x104 — copied to KartChassis+0x19C by helper
@@ -147,7 +152,14 @@ class KartVehicle {
   float mKartScaleMultiplier;          // 0x11C
   uint8_t mPad120[0x0C];               // 0x120 - 0x12B — unproven padding
   float mCameraShownHeight;            // 0x12C
-  uint8_t mPad130[0x20];               // 0x130 - 0x14F — unproven padding
+  float mF130;                         // 0x130 — f32 init 0x71001709e8, read
+                                       //  0x7100172d00 (buoyancy FUN_7100172ac0)
+  float mF134;                         // 0x134 — f32 init 0x71001709f8
+  float mF138;                         // 0x138 — f32 init 0x7100170a10
+  float mF13C;                         // 0x13C — f32 (0x71001735fc, 0x7100174a6c)
+  uint8_t mPad140[4];                  // 0x140 — f32-or-ptr, type ambiguous
+                                       //  (0x7100174a80 str s1 vs 0x7100173d84 ldr x1)
+  uint8_t mPad144[0xC];                // 0x144 - 0x14F — unproven padding
   float mWaterDepth;                   // 0x150 — UNCERTAIN: no accessor found; real water state
                                        // is +0x29C/+0x2A4
   uint8_t mPad154[0x10];               // 0x154 - 0x163 — unproven padding
@@ -165,7 +177,9 @@ class KartVehicle {
                                        //  14+21 gate 0x204000 (FUN_710017a830), 29
                                        //  (FUN_7100177400, byte 0x1CF>>5)
   uint32_t mKartFrames;                // 0x1D0 — zeroed per-frame (FUN_7100173df4)
-  uint8_t mPad1D4[5];                  // 0x1D4 - 0x1D8 — unproven padding
+  float mF1D4;                         // 0x1D4 — f32 (FUN_7100173df4:
+                                       //  0x7100173f80/0x7100173fd8)
+  uint8_t mPad1D8;                     // 0x1D8 — unproven padding
   bool mFlag1D9;                       // 0x1D9 — set true by FUN_7100173204 (SusKit call path)
   uint8_t mPad1DA[2];                  // 0x1DA - 0x1DB — unproven padding
   float mAntiGTransFrame;              // 0x1DC — UNCERTAIN: no access site found
@@ -181,7 +195,8 @@ class KartVehicle {
   uint8_t mPad1F8[8];                  // 0x1F8 - 0x1FF — unproven padding
   uint32_t mTrickFramesLeft;           // 0x200
   uint32_t mTrickFrames;               // 0x204
-  uint8_t mPad208[4];                  // 0x208 - 0x20B — unproven padding
+  uint32_t mField208;                  // 0x208 — u32; 8-byte zero store covers
+                                       //  0x208..0x20F (0x7100172414)
   uint32_t mTrickSubstate20C;          // 0x20C — trick pose id 4/5/6/7/8/0x23; +0x208 =
                                        // timer;
                                        //  +0x1CC bit 0x40000 while mTrickFramesLeft>0
@@ -191,20 +206,27 @@ class KartVehicle {
   float mPressScale;                   // 0x220
   uint32_t mThunderFrames;             // 0x224
   float mThunderScale;                 // 0x228
-  uint32_t mPad22C;                    // 0x22C — unproven padding
+  float mF22C;                         // 0x22C — f32 init 0x7100172438; reads
+                                       //  0x710017a33c, 0x710017b650, 0x710017d274
   uint32_t mSlipstreamChargeFrames;    // 0x230
   uint32_t mSlipstreamDashFrames;      // 0x234
   uint8_t mPad238[0xC];                // 0x238 - 0x243 — unproven padding
   uint32_t mControlLockFrames;         // 0x244
   int32_t mBattleInvincibilityFrames;  // 0x248
-  uint32_t mPad24C;                    // 0x24C — unproven padding
+  uint32_t mCounter24C;                // 0x24C — counter (FUN_7100173df4:
+                                       //  0x71001742e0/0x71001742ec; FUN_7100176400
+                                       //  0x7100176a1c)
   uint32_t mBlinkVisualFrames;         // 0x250
   bool mIsDontSearch;                  // 0x254
   uint8_t mPad255[3];                  // 0x255 - 0x257 — unproven padding
   uint32_t mAirFramesForJugem;         // 0x258
   uint32_t mPrisonIndex;               // 0x25C
   float mKillerEndRatio;               // 0x260
-  uint8_t mPad264[8];                  // 0x264 - 0x26B — unproven padding
+  bool mFlag264;                       // 0x264 — bool (0x7100172470, 0x71001737b8,
+                                       //  0x71001763cc)
+  uint8_t mPad265[3];                  // 0x265 - 0x267 — unproven padding
+  uint32_t mField268;                  // 0x268 — u32 (FUN_7100173df4:
+                                       //  0x7100174328/0x7100174334)
   float
       mF26c;                             // 0x26C — ctor helper 0x170548: getKartUnitF32F90(kartParameter)
                                          //  * mF_f4 (0x170588-0x1705a4)
@@ -228,7 +250,17 @@ class KartVehicle {
                                          // only when +0x2A4>0
   uint8_t mPad2B4[0xC];                  // 0x2B4 - 0x2BF — unproven padding
   uint8_t mFlag2C0;                      // 0x2C0 — zeroed by FUN_7100173204
-  uint8_t mPad2C1[0x63];                 // 0x2C1 - 0x323 — unproven padding
+  uint8_t mPad2C1[0x1B];               // 0x2C1 - 0x2DB — unproven padding
+  uint32_t mSlotTable2DC[14];          // 0x2DC - 0x313 — slot array init'd by the
+                                       //  ctor-continuation (twin blocks
+                                       //  0x7100170b2c..0x7100172050); per-slot
+                                       //  semantics open
+  float mBuoyancyF314[3];              // 0x314 - 0x31F — buoyancy group
+                                       //  (FUN_7100172ac0: 0x7100172d5c-0x7100172d84)
+  uint32_t mField320;                  // 0x320 — zeroed as an 8-byte pair with
+                                       //  mRenegadeCaughtFrames (str xzr
+                                       //  0x7100172498); read 0x7100177a84/
+                                       //  0x7100177cfc
   uint32_t mRenegadeCaughtFrames;        // 0x324
   uint32_t mCaughtRenegadeToPrisonTime;  // 0x328
   uint8_t mPad32C[8];                    // 0x32C - 0x333 — unproven padding
@@ -238,9 +270,18 @@ class KartVehicle {
   uint8_t mPad33D[3];                    // 0x33D - 0x33F — unproven padding
   sead::Vector2f
       mStickVolForKiller;  // 0x340 — zeroed via 8-byte store in FUN_7100173c40
-  uint8_t mPad348[0x28];   // 0x348 - 0x36F — unproven padding
-  uint8_t mPad370[0x748];  // 0x370 - 0xAB7 — unproven gap (region unmapped by
-                           // ctor analysis)
+  bool mFlag348;                       // 0x348 — bool (0x7100178358, FUN_71001782f8)
+  uint8_t mPad349[3];                  // 0x349 - 0x34B — unproven padding
+  // 0x34C..0x36F — f32 group accessed by FUN_71001819b0/FUN_7100182f38
+  // (0x7100182350-0x7100182424, 0x71001866a4) — object attribution UNCERTAIN
+  // (this may be KartVehicleMove, a 0x5F8-byte object); left unpadded.
+  uint8_t mPad34C[0x24];               // 0x34C - 0x36F — unproven padding
+
+  // Extent 0x370 — allocation site 0x710016ddcc (mov w0,#0x370; bl 0x710060b234;
+  // bl ctor 0x710016f868; str x27,[x19,#0x18]). The ctor is ONE fallthrough
+  // chain that file_list.yml slices into 5 FUNs (0x16f868/0x16fe8c/0x170090/
+  // 0x1703f0/0x170548); x19 stays live across all of them.
+  // extent 0x370
 
   ControlInfo getControlInfo();
 
