@@ -14,9 +14,12 @@ class RecorderKartUnit;
 struct KartUnit {
   uint8_t pad_000[8];  // 0x00 — unproven padding
   KartVehicle*
-      kart_vehicle;       // 0x08 — back-pointer to the KartVehicle that
-                          //  owns this unit through KartParameter (FUN_710012a30c
-                          //  reads its mKartStatusBits +0x1cc from here)
+      kart_vehicle;  // 0x08 — back-pointer to the KartVehicle that
+                     //  owns this unit through KartParameter (FUN_710012a30c
+                     //  reads its mKartStatusBits +0x1cc from here).
+                     //  NOTE: the ctor 0x7100399c14 writes -1 here via the
+                     //  0x86bb18 base-init (+0x08/+0x10..+0x20 = -1); this
+                     //  pointer is filled in AFTER construction.
   uint8_t pad_010[0x14];  // 0x10 — unproven padding
   uint32_t
       mode_24;                           // 0x24 — compared ==1 / ==2 / ==3 (isKartUnitField24Eq{1,2,3};
@@ -113,7 +116,11 @@ struct KartUnit {
   uint8_t flag_fb5;           // 0xfb5 — bool
   uint8_t flag_fb6;           // 0xfb6 — bool
 
-  // extent 0xFB7 (ctor 0x7100399c14 stores reach 0xFB7 — strb flag
-  // defaults 0xfa0..0xfb6 at 0x399e58-0x39a900; allocation site unproven)
+  // extent 0xFB7 (ctor 0x7100399c14 + the init/reset fn 0x7100399c78 that
+  // follows it: writes the marker halfword 0xFB8 at +0xFAC and the strb
+  // flag defaults 0xfa0..0xfb6 at 0x399e58-0x39a900; allocation site
+  // unproven). The mk8dx-re "KartUnit 0x1AD8, vtable 0x11b2fe0" claim is
+  // NOT corroborated: no new(0x1AD8) anywhere near this family, and the
+  // ctor stores a sead RuntimeTypeInfo ptr, not a vtable.
 };
 }  // namespace object
