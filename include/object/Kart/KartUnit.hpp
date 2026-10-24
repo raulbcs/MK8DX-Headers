@@ -35,18 +35,17 @@ struct KartUnit {
                                          //  row indices/selector bytes and +0xfb3/4/5
                                          //  ← row+0x8c bits 5/6/7) — they are runtime
                                          //  state written by other families.
-  uint8_t pad_044[0x2c];                 // 0x44 — unproven padding
-  // NOTE (correction): FUN_7100164614 reads the state block 0x70..0x90
-  // through *(KartUnit+0x50) — a pointer at +0x50 — not directly on this
-  // object. The u32 fields below starting at 0x70 are therefore attributed
-  // to the pointed-to object, not to KartUnit itself.
-  uint32_t state_block[9];               // 0x70..0x90 — contiguous u32 state snapshot
-                                         //  (via [this+0x50]; FUN_7100164614 copies all 9
-                                         //  to stack in one block, 0x164ed4-0x164f1c).
-                                         //  lead: +0x78 = control bitfield
-                                         //  (idle/drift/boost/airborne), +0x7c = gate
-                                         //  bits — bit map not yet confirmed.
-  uint8_t pad_094[0x138];                // 0x94 — unproven padding
+  uint8_t pad_044[0x28];                 // 0x44 - 0x6B — unproven padding
+  float mF6c[10];                        // 0x6C..0x93 — f32 block written this-direct
+                                         //  by FUN_7100100ab0 (matrix via
+                                         //  [KU+8]=KV→[KV+0x38][idx]→vt+0x78)
+  uint8_t pad_094[0x138];                // 0x94 — unproven padding.
+                                         // NOTE: the u32 state block 0x70..0x90 that
+                                         // FUN_7100164614 snapshots lives in
+                                         // *(KartVehicle+0x50)+0x70 (chassis), not here.
+                                         // lead: +0x78 = control bitfield
+                                         // (idle/drift/boost/airborne), +0x7c = gate
+                                         // bits — bit map not yet confirmed.
   uint32_t status_1cc;                   // 0x1cc — RMW'd with ~0xc000 and 0x40000|0x4000 masks
                                          //  in FUN_7100164614 (0x164bcc/0x164a28); mirrors the
                                          //  KartVehicle+0x1cc bit pattern (bits 14/21).

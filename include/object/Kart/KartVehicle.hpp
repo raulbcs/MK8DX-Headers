@@ -163,19 +163,24 @@ class KartVehicle {
   float mF134;                         // 0x134 — f32 init 0x71001709f8
   float mF138;                         // 0x138 — f32 init 0x7100170a10
   float mF13C;                         // 0x13C — f32 (0x71001735fc, 0x7100174a6c)
-  uint8_t mPad140[4];                  // 0x140 — f32-or-ptr, type ambiguous
-                                       //  (0x7100174a80 str s1 vs 0x7100173d84 ldr x1)
-  uint8_t mPad144[0xC];                // 0x144 - 0x14F — unproven padding
+  uint8_t mPad140[4];                  // 0x140 - 0x143 — unproven gap
+  uint8_t mPad144[4];                  // 0x144 - 0x147 — unproven gap
+  sead::Vector3f mGroundRaycast148;    // 0x148 — ground raycast hit (0x273d4c);
+                                       //  z component read as float at +0x150
+  float mHeight154;                    // 0x154 — f32, init -1.0
+  uint8_t mPad158[0xC];                // 0x158 - 0x163 — unproven padding
   float mWaterDepth;                   // 0x150 — UNCERTAIN: no accessor found; real water state
                                        // is +0x29C/+0x2A4
-  uint8_t mPad154[0x10];               // 0x154 - 0x163 — unproven padding
   float mBikeConst164;                 // 0x164 — ctor picks from table 0xf20898 indexed by
                                        //  mIsHangOnBike (0x1704f4-0x17051c)
   float mBikeConst168;                 // 0x168 — same, table 0xf208a0[mIsHangOnBike]
   uint8_t mPad16C[4];                  // 0x16C - 0x16F — unproven padding
   ControlInfo kartControlInfo;         // 0x170 - 0x183
   uint8_t mPad184[0x40];               // 0x184 - 0x1C3 — unproven padding
-  float mAntiGEmissionFrame;           // 0x1C4 — UNCERTAIN: no access site found
+  float mAntiGAmount1C4;               // 0x1C4 — anti-G amount f32 0..1 (not
+                                       //  frames): set 1.0 + status bit 0x1000
+                                       //  (0x172a20), ramp ±0.04/frame (0x173904),
+                                       //  blend (0x179280)
   uint32_t mPad1C8;                    // 0x1C8 — unproven padding
   uint32_t mKartStatusBits;            // 0x1CC — bits 4 (FUN_7100174ec8), 6
                                        // (FUN_7100174f5c), 0x800/0x8000/
@@ -188,7 +193,8 @@ class KartVehicle {
   uint8_t mPad1D8;                     // 0x1D8 — unproven padding
   bool mFlag1D9;                       // 0x1D9 — set true by FUN_7100173204 (SusKit call path)
   uint8_t mPad1DA[2];                  // 0x1DA - 0x1DB — unproven padding
-  float mAntiGTransFrame;              // 0x1DC — UNCERTAIN: no access site found
+  float mAntiGBlend1DC;                // 0x1DC — anti-G blend amount f32 (not
+                                       //  frames; ramp site 0x173904 family)
   float mStartCharge;                  // 0x1E0 — rocket-start charge 0..1 (FUN_7100173df4,
                                        // 173ec0..173ef4);
                                        //  GO tiers 0.95/0.935/0.92/0.90 -> 0x4000/0x2000/0x1000
@@ -207,7 +213,10 @@ class KartVehicle {
                                        // timer;
                                        //  +0x1CC bit 0x40000 while mTrickFramesLeft>0
                                        //  (FUN_7100175f5c)
-  uint8_t mPad210[0xc];                // 0x210 - 0x21B — unproven padding
+  float mChannel210;                   // 0x210 — f32 ramp channel, gated by
+                                       //  status bits 0x80/0x800000
+  float mChannel214;                   // 0x214 — f32 ramp channel (same gate)
+  uint8_t mPad218[4];                  // 0x218 - 0x21B — unproven padding
   uint32_t mPressFrames;               // 0x21C
   float mPressScale;                   // 0x220
   uint32_t mThunderFrames;             // 0x224
@@ -216,15 +225,17 @@ class KartVehicle {
                                        //  0x710017a33c, 0x710017b650, 0x710017d274
   uint32_t mSlipstreamChargeFrames;    // 0x230
   uint32_t mSlipstreamDashFrames;      // 0x234
-  uint8_t mPad238[0xC];                // 0x238 - 0x243 — unproven padding
+  uint32_t mPad238;                    // 0x238 — unproven padding
+  float mF23c;                         // 0x23C — f32 0..1
+  float mF240;                         // 0x240 — f32, mirror ±1 of steer
   uint32_t mControlLockFrames;         // 0x244
   int32_t mBattleInvincibilityFrames;  // 0x248
   uint32_t mCounter24C;                // 0x24C — counter (FUN_7100173df4:
                                        //  0x71001742e0/0x71001742ec; FUN_7100176400
                                        //  0x7100176a1c)
   uint32_t mBlinkVisualFrames;         // 0x250
-  bool mIsDontSearch;                  // 0x254
-  uint8_t mPad255[3];                  // 0x255 - 0x257 — unproven padding
+  uint32_t mCountdown254;              // 0x254 — u32 countdown, 180 frames
+                                       //  (set 0x177688, tick decrement)
   uint32_t mAirFramesForJugem;         // 0x258
   uint32_t mPrisonIndex;               // 0x25C
   float mKillerEndRatio;               // 0x260
@@ -236,8 +247,8 @@ class KartVehicle {
   float
       mF26c;                             // 0x26C — ctor helper 0x170548: getKartUnitF32F90(kartParameter)
                                          //  * mF_f4 (0x170588-0x1705a4)
-  bool mIsAfterOnResetPosition;          // 0x270
-  uint8_t mPad271[3];                    // 0x271 - 0x273 — unproven padding
+  uint32_t mCountdown270;              // 0x270 — u32 countdown, 180 frames
+                                       //  (set 0x173124, tick decrement)
   float mUnknown274;                     // 0x274 — float (FUN_710017842c)
   float mXluAlpha;                       // 0x278 — recorder ch "p_xlu_alpha" (FUN_710017842c);
                                          // boost-envelope strb at +0x278 is NOT this field
