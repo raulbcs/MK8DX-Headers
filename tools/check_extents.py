@@ -156,6 +156,7 @@ NO_EXTENT_ALLOWLIST = """
 #   include/object/Kart/AudioTaskThread.hpp
 #   include/object/Kart/BackgroundLoadThread.hpp
 #   include/object/Kart/ContentsThread.hpp
+#   include/object/Kart/DriverKart.hpp
 #   include/object/Kart/KartChassisEffect.hpp
 #   include/object/Kart/KartFloorEffect.hpp
 #   include/object/Kart/KartInfoProxy.hpp
