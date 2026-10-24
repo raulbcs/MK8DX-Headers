@@ -28,18 +28,32 @@ struct KartUnit {
                                          // FUN_710014c304)
   uint8_t pad_02c[0x0c];                 // 0x2c — unproven padding
   RecorderKartUnit* recorder_kart_unit;  // 0x38
-  uint32_t kart_index_40;                // 0x40 — kart index
+  uint32_t kart_index_40;                // 0x40 — kart index. NOTE: the pads
+                                         //  0x02c..0x1cb receive NO writes from the
+                                         //  0x399000-0x39b000 init cluster (reset
+                                         //  0x7100399c78 only touches +0x14..0x20 config
+                                         //  row indices/selector bytes and +0xfb3/4/5
+                                         //  ← row+0x8c bits 5/6/7) — they are runtime
+                                         //  state written by other families.
   uint8_t pad_044[0x2c];                 // 0x44 — unproven padding
-  uint32_t state_block[9];               // 0x70..0x90 — contiguous u32 state snapshot:
-                                         //  FUN_7100164614 copies all 9 to stack in one
-                                         //  block (0x164ed4-0x164f1c). v305-era lead: +0x78
-                                         //  = control bitfield (idle/drift/boost/airborne),
-                                         //  +0x7c = adjacent gate bits — bit map NOT yet
-                                         //  confirmed in v400.
+  // NOTE (v400 correction): FUN_7100164614 reads the state block 0x70..0x90
+  // through *(KartUnit+0x50) — a pointer at +0x50 — not directly on this
+  // object. The u32 fields below starting at 0x70 are therefore attributed
+  // to the pointed-to object, not to KartUnit itself.
+  uint32_t state_block[9];               // 0x70..0x90 — contiguous u32 state snapshot
+                                         //  (via [this+0x50]; FUN_7100164614 copies all 9
+                                         //  to stack in one block, 0x164ed4-0x164f1c).
+                                         //  v305-era lead: +0x78 = control bitfield
+                                         //  (idle/drift/boost/airborne), +0x7c = gate
+                                         //  bits — bit map NOT yet confirmed in v400.
   uint8_t pad_094[0x138];                // 0x94 — unproven padding
   uint32_t status_1cc;                   // 0x1cc — RMW'd with ~0xc000 and 0x40000|0x4000 masks
                                          //  in FUN_7100164614 (0x164bcc/0x164a28); mirrors the
-                                         //  KartVehicle+0x1cc bit pattern (bits 14/21)
+                                         //  KartVehicle+0x1cc bit pattern (bits 14/21).
+                                         //  Bit 15 (0x8000) is NEW: site 0x164bcc — bits
+                                         //  14+15 both set → zero the angle accumulator
+                                         //  [ptr]+0x108, else wrap ±2π (rodata ±6.2831855).
+                                         //  Bit 18 (0x40000) = trick window (confirmed).
   uint8_t pad_1d0[0xabc];                // 0x1d0 — unproven padding
 
   uint32_t wheel_flag_c8c;  // 0xc8c — read as int, ==1 selects the
