@@ -7,10 +7,10 @@
 
 namespace object {
 // Root physics body of the item/kart physics family (32 vtables share
-// the KartPhysicsBody_shapePos_710001299c slot). Vtable .data 0x11ada60
+// the ObjPhysicsBody_shapePos_710001299c slot). Vtable .data 0x11ada60
 // (GOT cell 0x12fb050), ctor 0x71000116a4(this, x1 = param block, w2).
 //
-// Concrete size 0x328: the intermediate base (KartPhysicsBodyMid,
+// Concrete size 0x328: the intermediate base (ObjPhysicsBodyMid,
 // ctor 0x3703c) starts its own fields at 0x328. Ctor-proven writes
 // only below; interior gaps are justified below as never-accessed pads.
 //
@@ -31,7 +31,7 @@ namespace object {
 // is zeroed after the per-wheel integration. Slot 69 (vt+0x238) =
 // driver up/basis update (bodyDriverUpBasisSlot69_7100037ff0): copies
 // the driver record's rec+0x40/44/48 into 0x1dc-0x1e4 and rebuilds the
-// basis vector at 0x344-0x34c (past this root; KartPhysicsBodyMid).
+// basis vector at 0x344-0x34c (past this root; ObjPhysicsBodyMid).
 // Slot 96 (vt+0x310) = boost speed update (bodyBoostSpeedSlot96_
 // 7100038a44): accumulates into the scalar speed at 0x150 (clamps
 // 2.5f low; 15.0f upper when byte +0x216 set, 40.0f when clear) and
@@ -97,7 +97,7 @@ namespace object {
 //   filtered by FUN_71000312b4 over this+0x12c/0x3cc/0x3c0 vs rodata
 //   500.0f/150.0f gates and an atan2 angle test against [this+0x42c]
 //   degrees; fires the item trigger table on accept.
-class KartPhysicsBody : public gear::Actor {
+class ObjPhysicsBody : public gear::Actor {
  public:
   uint64_t mField38;  // 0x38 — zeroed on ctor
   uint64_t mField40;  // 0x40 — zeroed on ctor

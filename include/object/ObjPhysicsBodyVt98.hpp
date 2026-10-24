@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // Address-anchored name ("Vt98"). Rigid body whose head
@@ -8,7 +8,7 @@ namespace object {
 // (a vtable-swap-init body). Vtable .data 0x11ae6b0 (GOT cell
 // 0x12fb3d8), ctor 0x7100020520 — calls the root ctor 0x116a4 directly.
 // Size 0x450 (allocation 0x450 at 0x238a8, ctor call 0x238c8).
-class KartPhysicsBodyVt98 : public KartPhysicsBody {
+class ObjPhysicsBodyVt98 : public ObjPhysicsBody {
  public:
   uint8_t mPad328[0x4];   // 0x328 — unproven gap
   uint32_t mZero32c;      // 0x32c — ctor zero

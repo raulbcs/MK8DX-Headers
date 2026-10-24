@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // Slot names carry TS_ItemTeresa evidence (Boo body). 96 slots.
 // Vtable .data 0x11aeac0 (GOT cell 0x12fb468), ctor 0x7100023aec, size 0x348
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodyTeresa : public KartPhysicsBody {
+class ObjPhysicsBodyTeresa : public ObjPhysicsBody {
  public:
   uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap

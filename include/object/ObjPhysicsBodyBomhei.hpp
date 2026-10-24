@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // BomheiBomb (bomb) physics body. Vtable .data 0x11ae100 (GOT cell
@@ -8,7 +8,7 @@ namespace object {
 // Size 0x3e8 (allocation 0x3e8 at 0x1fb18, ctor call 0x1fb2c). Slot 0
 // is PhysicsBodySingletonGetter_710001e258 (a lazily-guarded static
 // singleton accessor).
-class KartPhysicsBodyBomhei : public KartPhysicsBody {
+class ObjPhysicsBodyBomhei : public ObjPhysicsBody {
  public:
   uint64_t mZero328;      // 0x328 — ctor zero
   uint64_t mZero330;      // 0x330 — ctor zero

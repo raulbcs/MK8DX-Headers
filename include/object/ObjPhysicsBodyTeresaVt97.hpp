@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // Address-anchored suffix. TS_ItemTeresa evidence; 97 slots.
 // Vtable .data 0x11aeec0 (GOT cell 0x12fb4c8), ctor 0x7100024d48, size 0x350
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodyTeresaVt97 : public KartPhysicsBody {
+class ObjPhysicsBodyTeresaVt97 : public ObjPhysicsBody {
  public:
   uint64_t mField328;    // 0x328
   uint32_t mField330;    // 0x330

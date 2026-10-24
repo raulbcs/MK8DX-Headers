@@ -11,7 +11,7 @@ Derived from ItemObjKouraG.
 
 ## Construction / init order
 
-- Extent 0x460 (allocation size 0x460 — movz w0,#0x460; bl 0x710060afec _Znwm @0x710035f10 → ctor 0x710030d50, stores reach 0x460 and call the KartPhysicsBodyMid base ctor 0x71003703c).
+- Extent 0x460 (allocation size 0x460 — movz w0,#0x460; bl 0x710060afec _Znwm @0x710035f10 → ctor 0x710030d50, stores reach 0x460 and call the ObjPhysicsBodyMid base ctor 0x71003703c).
 
 ## EStateEx
 

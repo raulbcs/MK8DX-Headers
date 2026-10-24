@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // Slot names carry ItemSHorn evidence (Super Horn body). 96 slots.
 // Vtable .data 0x11b1b70 (GOT cell 0x12fb940), ctor 0x710003a440, size 0x370
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodySHorn : public KartPhysicsBody {
+class ObjPhysicsBodySHorn : public ObjPhysicsBody {
  public:
   uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap

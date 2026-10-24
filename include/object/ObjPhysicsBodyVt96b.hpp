@@ -1,20 +1,17 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
-// Address-anchored name. 96 slots.
-// Vtable .data 0x11b27d0 (GOT cell 0x12fba88), ctor 0x710003e8b4, size 0x348
+// Address-anchored name. 96 slots; two ctor callers.
+// Vtable .data 0x11b0050 (GOT cell 0x12fb6c8), ctor 0x710002a7c8, size 0x338
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodyVt96d : public KartPhysicsBody {
+class ObjPhysicsBodyVt96b : public ObjPhysicsBody {
  public:
   uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap
   uint64_t mField330;    // 0x330
-  uint64_t mZero338;     // 0x338 — ctor zero
-  uint32_t mZero340;     // 0x340 — ctor zero
-  uint8_t pad_344[0x4];  //0x344 — unproven gap
 };
 }  // namespace object
 

@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
-// Slot names carry ItemPackunS evidence (Pakkun/plant body). 96 slots.
-// Vtable .data 0x11b1770 (GOT cell 0x12fb8e0), ctor 0x710003940c, size 0x340
+// Slot names carry ItemKillerS evidence (bullet bill body). 96 slots.
+// Vtable .data 0x11afcb0 (GOT cell 0x12fb678), ctor 0x7100029e10, size 0x340
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodyPackun : public KartPhysicsBody {
+class ObjPhysicsBodyKiller : public ObjPhysicsBody {
  public:
   uint32_t mField328;    // 0x328
   uint8_t mPad32c[0x4];  // 0x32c — unproven gap

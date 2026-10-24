@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KartPhysicsBodyKoura.hpp"
+#include "ObjPhysicsBodyKoura.hpp"
 
 namespace object {
 // TogezoBomb (spiked shell bomb) physics body. Vtable .data 0x11b0898
@@ -13,7 +13,7 @@ namespace object {
 // slots 0x2c8-0x3e8 are Togezo-specific state machines (0x2cdxx-
 // 0x2fdxx region), while 0x340/0x348/0x3c0/0x3c8/0x3d0 share the
 // Koura values (inherited behavior).
-class KartPhysicsBodyKouraTogezo : public KartPhysicsBodyKoura {
+class ObjPhysicsBodyKouraTogezo : public ObjPhysicsBodyKoura {
  public:
 };
 }  // namespace object

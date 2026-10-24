@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KartPhysicsBodyMid.hpp"
+#include "ObjPhysicsBodyMid.hpp"
 
 namespace object {
 // Koura (shell) physics body. Vtable .data 0x11b0d98, primary vptr from
@@ -12,7 +12,7 @@ namespace object {
 // TogezoBomb (vtable 0x11b0898, n=128) derives from this class — its
 // inlined ctor calls 0x30d50.
 //
-// Ctor own-field writes (after the KartPhysicsBodyMid base ctor):
+// Ctor own-field writes (after the ObjPhysicsBodyMid base ctor):
 // secondary vptr at 0x390, byte flags 0x398-0x39b, u32 0x39c, zeros
 // 0x3a0-0x3c0, u16/u32 cluster 0x3c0-0x3d2, u64 0x3f8.
 //
@@ -57,11 +57,11 @@ namespace object {
 // The +0x4cf/+0x4d0 trailer writers (kouraResetFlagsAndTrailer_
 // 710002ce60, kouraDriftAlignSlot111_710002dbc4,
 // kouraResetChaseSlotsSlot127_710002fd14) belong to the
-// KartPhysicsBodyKouraTogezo subclass, not this class: they sit in the
+// ObjPhysicsBodyKouraTogezo subclass, not this class: they sit in the
 // Togezo vtable (vptr cell 0x12fb7c0 -> 0x11b0888; Togezo ctor 0x2c5cc
 // stores it) and are absent from this class's primary vtable (cell
 // 0x12fb838 -> 0x11b0d88). Togezo is allocated new(0x4d8) at
-// 0x7100030b10 (see KartPhysicsBodyKouraTogezo.hpp), covering the
+// 0x7100030b10 (see ObjPhysicsBodyKouraTogezo.hpp), covering the
 // +0x4d0 writes; this class's extent remains 0x460.
 //
 // Additional slot facts :
@@ -176,7 +176,7 @@ namespace object {
 //   slot 98); 0x3c1/0x3c2 = boost/hop gate bytes (slots 70/82/110/111);
 //   0x3d4-0x3dc = start position (slot 110 writes, slot 111 steers by
 //   it); 0x4b0-0x4b8 = saved pre-roast position (slot 112).
-class KartPhysicsBodyKoura : public KartPhysicsBodyMid {
+class ObjPhysicsBodyKoura : public ObjPhysicsBodyMid {
  public:
   void* mSecVt390;  // 0x390 — secondary vtable (GOT cell +0x10)
   // Field-usage evidence (item behavior machines):

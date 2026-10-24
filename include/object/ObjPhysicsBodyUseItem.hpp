@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBodyVt96b.hpp"
+#include "ObjPhysicsBodyVt96b.hpp"
 
 namespace object {
 // Slot names carry UseItemCaller evidence. Derives Vt96b (ctor 0x2b444 calls 0x2a7c8).
 // Vtable .data 0x11b03f0 (GOT cell 0x12fb718), ctor 0x710002b428, size 0x358
 // (factory allocation immediately before the ctor call). Root-derived
 // (ctor calls 0x116a4);
-class KartPhysicsBodyUseItem : public KartPhysicsBodyVt96b {
+class ObjPhysicsBodyUseItem : public ObjPhysicsBodyVt96b {
  public:
   uint32_t mField338;    // 0x338
   uint8_t mPad33c[0x4];  // 0x33c — unproven gap

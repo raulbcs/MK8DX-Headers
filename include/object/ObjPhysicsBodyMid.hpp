@@ -1,13 +1,13 @@
 #pragma once
 
-#include "KartPhysicsBody.hpp"
+#include "ObjPhysicsBody.hpp"
 
 namespace object {
 // Intermediate physics-body base between the root and the item bodies.
 // Vtable .data 0x11b13a8 (GOT cell 0x12fb8c0), ctor 0x710003703c — calls
 // the root ctor 0x116a4 then writes its own fields at 0x328..0x390.
 // Size 0x390: the Koura body (derived) starts its own fields at 0x390.
-class KartPhysicsBodyMid : public KartPhysicsBody {
+class ObjPhysicsBodyMid : public ObjPhysicsBody {
  public:
   uint32_t mField328;  // 0x328 — zeroed on ctor
   char mPad32c[4];     // 0x32c — unproven padding
