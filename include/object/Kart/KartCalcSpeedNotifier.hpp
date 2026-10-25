@@ -1,19 +1,19 @@
 #pragma once
 
 #include <cstdint>
-#include <object/Kart/KartCalcSpeedMiniCore.hpp>
+#include <object/Kart/KartCalcSpeed.hpp>
 
-// Kart speed calculation runtime, "mini" variant — derives the core
-// (factory 0x34c620: new(0x358), calls the core ctor 0x34d2d8, then
-// installs vtable 0x710124ccf8 whose +0x80/+0x88/+0x90 wrappers call the
-// core versions and notify the registry at mListenersE8).
+// Kart speed calculation runtime with registry notification — derives
+// KartCalcSpeed (factory 0x34c620: new(0x358), calls the core ctor
+// 0x34d2d8, then installs vtable 0x710124ccf8 whose +0x80/+0x88/+0x90
+// wrappers call the core versions and notify the registry).
 namespace object::Kart {
-class KartCalcSpeedMini : public KartCalcSpeedMiniCore {
+class KartCalcSpeedNotifier : public KartCalcSpeed {
  public:
-  // 0x300..0x357 — mini tail (core extent 0x300; concrete object 0x358).
+  // 0x300..0x357 — derived tail (base extent 0x300; concrete object 0x358).
   uint32_t mCloneCount300;        // 0x300 — clone array count (init 0)
   uint32_t mCloneCap304;          // 0x304 — clone array capacity (init 0)
-  KartCalcSpeedMiniCore** mCloneArray308;  // 0x308 — clone array, cap 8
+  KartCalcSpeed** mCloneArray308;  // 0x308 — clone array, cap 8
                                   //  (alloc 0x710060b930 at 0x34c6b4); append
                                   //  in slot +0x2b8 (0x34d198: new(0x300) +
                                   //  core ctor @0x34d1cc, append @0x34d1d0)

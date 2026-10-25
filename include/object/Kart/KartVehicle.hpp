@@ -94,7 +94,8 @@ class KartVehicle {
       mKartJugemRecover;              // 0x90 — object of 0x1D8 bytes (new @ 0x71001704dc,
                                       //  ctor 0x142a60 with mPlayerID); 8-byte thunks ldr
                                       //  x0,[x0,#0x90] (FUN_7100175a28 / FUN_7100175a30)
-  uintptr_t mPad98;                   // 0x98 — unproven padding
+  uint32_t mField98;                  // 0x98 — u32 read at 0x7100170688
+  uint8_t mPad9C[4];                  // 0x9C - 0x9F — unproven padding
   Kart::KartSteerAssist* mKartSteerAssist;  // 0xA0
   uint32_t mPlayerID;                 // 0xA8
   uint32_t mPadAC;                    // 0xAC — u32 read by ctor-continuation
@@ -202,7 +203,13 @@ class KartVehicle {
   uint32_t mGessoFrames;               // 0x1E8 — set to 1 by FUN_7100175afc (min-1
                                        // semantics)
   int32_t mTeresaFrames;               // 0x1EC — compared ==0x258/600 by FUN_7100174ce8
-  float mUnknown1F0;                   // 0x1F0 — float (FUN_710017842c: ldr s)
+  float mF1F0;                         // 0x1F0 — f32 scale read at 0x71001784f8
+                                       //  (inside FUN_7100178304): computes
+                                       //  1 - 0.5*this, clamped >= 0.5, and writes
+                                       //  the result to +0x278 via FUN_710017279c
+                                       //  (0x710017875c-0x710017876c). No writer to
+                                       //  +0x1F0 found in the 0x17xxxx-0x18xxxx
+                                       //  cluster (full capstone scan of [xN, #0x1f0])
   int mJumpActionType;                 // 0x1F4
   uint8_t mPad1F8[8];                  // 0x1F8 - 0x1FF — unproven padding
   uint32_t mTrickFramesLeft;           // 0x200
@@ -217,8 +224,11 @@ class KartVehicle {
                                        //  status bits 0x80/0x800000
   float mChannel214;                   // 0x214 — f32 ramp channel (same gate)
   uint8_t mPad218[4];                  // 0x218 - 0x21B — unproven padding
-  uint32_t mPressFrames;               // 0x21C
-  float mPressScale;                   // 0x220
+  uint32_t mSpinFrames;                // 0x21C — spin frames (bob-omb spin/squash,
+                                       //  star spin); set 0x7100175ab8/0x7100175af4/
+                                       //  0x7100175afc; NOT KartVehicleMove+0x220
+                                       //  (wallBoostScale, different object)
+  float mSpinRatio;                    // 0x220 — spin ratio 0..1
   uint32_t mThunderFrames;             // 0x224
   float mThunderScale;                 // 0x228
   float mF22C;                         // 0x22C — f32 init 0x7100172438; reads

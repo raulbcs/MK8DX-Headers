@@ -21,7 +21,13 @@ class KartVehicleCpu : public KartVehicleControl {
   //   0x080 f32 = 0.25f, 0x084 u32 = 0 (x store pair)
   // Only 0x070..0x073 stays unproven (may be written by base ctor
   // 0x179660); extent from factory alloc 0x90 at 0x71001701b4.
-  uint8_t mPad70[0x14];             // 0x70  // unproven
-  sead::Vector3f mDriveUnitVector;  // 0x84 (x/y store pair)
+  uint8_t mPad70[0x14];   // 0x70  // unproven
+  // Full 3-float Vector3f: copied as a unit from the owner's KartVehicleMove
+  // subobject (owner = [this+0x10], Move = [owner+0x28]; sources Move+0x308/
+  // +0x30C/+0x310) by 0x710017a000, which stores all three words together
+  // (0x710017a01c..0x710017a02c). Ctor 0x7100179f5c pre-zeroes only x/y via
+  // the stp at 0x7100179f94 (z is left for the copy). Unit-length or exact
+  // drive-direction semantics not proven — neutral name.
+  sead::Vector3f mMoveVector;  // 0x84
 };
 }  // namespace object

@@ -3,10 +3,10 @@
 #include <cstdint>
 #include <gear/Actor/Actor.hpp>
 
-// Kart speed calculation runtime, "mini core" variant. Vtable .data
+// Kart speed calculation runtime core. Vtable .data
 // extent 0x300
 namespace object::Kart {
-class KartCalcSpeedMiniCore : public gear::Actor {
+class KartCalcSpeed : public gear::Actor {
  public:
   uint8_t mPad8[0x30];    // 0x8 — sead::hostio::Node base members (see
   uint64_t mField38;      // 0x38 — ctor: [0x13063a0]+0x2a8 secondary vtable
@@ -78,9 +78,9 @@ class KartCalcSpeedMiniCore : public gear::Actor {
   uint8_t pad_2FC[0x4];   // 0x2FC — untouched by ctor 0x34d2d8 and by the derived
 
   // Core extent 0x300. The concrete tail (clone array + interfaces) belongs
-  // to the KartCalcSpeedMini derived class — see KartCalcSpeedMini.hpp.
+  // to the KartCalcSpeedNotifier derived class — see KartCalcSpeedNotifier.hpp.
   // Vtable 0x710124d0e8 (ctor 0x34d2d8 via GOT 0x71013063a0); derived
-  // KartCalcSpeedMini vtable 0x710124ccf8 overrides +0x80/+0x88/+0x90 with
+  // KartCalcSpeedNotifier vtable 0x710124ccf8 overrides +0x80/+0x88/+0x90 with
   // notifying wrappers (0x34c6dc/0x34c86c/0x34ca34). Slot +0x88 = reset
   // FUN_710034c898, +0x90 = main frame calc FUN_710034cae0.
 };
